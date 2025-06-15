@@ -2,10 +2,13 @@ import json
 from typing import List, Tuple, Dict, Set
 from openai import OpenAI
 import os
-from visualize_objects import process_grid
+from arc_agi.objects.visualize_objects import process_grid
+
+with open("arc_agi/objects/object_types.json", "r") as f:
+    objects_data = json.load(f)
 
 
-def prepare_llm_prompt(grid: List[List[int]], objects: List[Set[Tuple[int, int]]]) -> str:
+def prepare_llm_prompt(grid: List[List[int]], objects: List[Set[Tuple[int, int]]], add_prompt: str = "") -> str:
     """
     Constructs a prompt for an LLM to evaluate the logical validity of detected objects in a grid.
     The prompt includes a description of the grid size and the list of detected objects with their coordinates.
@@ -59,11 +62,21 @@ def prepare_llm_prompt(grid: List[List[int]], objects: List[Set[Tuple[int, int]]
         "on the mentioned criteria or more importantly, you might think that a particular object is a part of a bigger"
         "object and they should be merged. Remember, that you are allowed to either select an object from the provided"
         "list of objects or merge two objects and create a new one if you think that's reasonable. You can't return any"
-        "other objects apart from these two cases. Here's an example output for your reference:\n"
+        "other objects apart from these two cases.\n"
         ""
     )
-
+    # examples of object types
+    prompt += (
+        f"Here are a few examples of the possible types of objects that can be expected in the grid: \n"
+        f"{objects_data} \n\n"
+        f"These are some examples to give you and idea of the type of objects to expect in the grids. This is not an"
+        f"exhaustive list and therefore, there can be other objects too."
+    )
+    # additional prompt
+    prompt += add_prompt
+    # example output format
     example_output = """
+    Here's an example output for your reference:
     ### Object 1 Analysis:
     1. **Validity**: Yes, Object 1 is a valid object.
     2. **Reasoning**: 

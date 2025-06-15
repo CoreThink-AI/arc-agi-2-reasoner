@@ -1,3 +1,4 @@
+from typing import List, Tuple, Dict, Any, Set
 from arcagi.objects.base import Grid, BaseObject
 from arcagi.objects.llm_inference import  call_llm
 
@@ -77,6 +78,19 @@ class SpatialRelations:
         Analyze the contents of the objects for relationship (e.g., shared items, parts).
         """
         return self._ask_llm("content relationship")
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert self-relation properties to a dictionary."""
+        return {
+            "above_below_relationship": self.above_below_relationship(),
+            "left_right_relationship": self.left_right_relationship(),
+            "containment_relationship": self.containment_relationship(),
+            "contact_relationship": self.contact_relationship(),
+            "pattern_color_placement_size_shape_relationship": self.pattern_color_placement_size_shape_match(),
+            "cavity_relationship": self.cavity_relationship(),
+            "perimeter_relationship": self.perimeter_relationship(),
+            "content_relationship": self.content_relationship()
+        }
 
 
 # Example usage
