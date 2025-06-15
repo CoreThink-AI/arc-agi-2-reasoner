@@ -22,8 +22,8 @@
 import json
 import os
 import csv
-from visualize_objects import process_grid
-from visualize import visualize_task, read_json_as_string
+from .visualize_objects import process_grid
+from .visualize import visualize_task, read_json_as_string
 
 # Directory where JSON task files are located
 train_dir = r"C:\Users\Anugyan\PycharmProjects\ARC-AGI-2-CT\ARC-AGI-2\data\training"
