@@ -7,8 +7,7 @@ from typing import List, Tuple, Dict, Any, Set
 import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
-from arcagi.objects.llm_inference import call_llm
-
+from arc_agi.objects.llm_inference import call_llm
 
 @dataclass(frozen=True)
 class Coordinates:
