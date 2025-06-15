@@ -8,6 +8,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from arc_agi.objects.llm_inference import call_llm
+from arc_agi.objects.visualize_objects import find_objects
+from arc_agi.objects.llm_reasoner import prepare_llm_prompt
+
 
 @dataclass(frozen=True)
 class Coordinates:
@@ -135,6 +138,7 @@ class Grid:
         Returns:
             int: background color of the grid, -1 if no specific background color found
         """
+        self.background_color = 0
         try:
             # Convert grid to string format
             grid_str = "\n".join(" ".join(str(cell) for cell in row) for row in self.to_list())
@@ -165,12 +169,45 @@ class Grid:
                 max_tokens=max_tokens
             )
 
-            background_color = int(response.split('"background_color":')[1].split('}')[0].strip())
-            return background_color
+            self.background_color = int(response.split('"background_color":')[1].split('}')[0].strip())
+            return self.background_color
 
         except Exception as e:
             print(f"[LLM background detection error] {e}")
-            return -1
+            self.background_color = -1
+            return self.background_color
+
+    def find_objects_in_grid(self) -> List[Set[Tuple[int, int]]]:
+        """
+            Rule-based method to find objects in the grid
+            :returns List of objects found
+        """
+        self.objects = find_objects(self.grid.tolist())
+        return self.objects
+
+    def find_objects_reasoner(self, provider: str, model: str, temperature: float, max_tokens: int) -> str:
+        """
+            Reasoning layer for the objects detected
+            :returns Reasoning from the LLM in string format
+        """
+        self.reasoning = ""
+        try:
+            add_prompt = f"The background color for this grid is {self.background_color}. The cells in this color can be" \
+                         f"considered a part of the background and most probably not any object"
+            prompt = prepare_llm_prompt(self.grid.tolist(), self.objects, add_prompt)
+
+            # Call the LLM
+            self.reasoning = call_llm(
+                provider=provider,
+                prompt=prompt,
+                model=model,
+                temperature=temperature,
+                max_tokens=max_tokens
+            )
+            return self.reasoning
+        except Exception as e:
+            print(f"[LLM reasoning error] {e}")
+            return self.reasoning
 
 
 class BaseObject:

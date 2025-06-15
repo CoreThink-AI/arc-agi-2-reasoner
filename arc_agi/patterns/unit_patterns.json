@@ -1,186 +1,208 @@
 {
-    "Horizontal Fill": {
-      "description": "Extend or fill an object horizontally across contiguous empty or target cells.",
-      "params": {
-        "source_object": ["line", "square", "rectangle", "cavity"],
-        "column_index": ["left of an object", "right of an object"],
-        "fill_color": ["based on source", "based on some different objects"],
-        "sequence": ["based on source width", "based on source height"],
-        "stop_condition": ["another object", "grid boundary", "specific color"],
-        "overlaps": ["keep the latest", "no overlaps possible"]
-      }
-    },
-    "Vertical Fill": {
-      "description": "Extend or fill an object vertically across contiguous empty or target cells.",
-      "params": {
-        "source_object": ["line", "square", "rectangle", "cavity"],
-        "row_index": ["top of an object", "below an object"],
-        "fill_color": ["based on source color"],
-        "sequence": ["based on source width", "based on source height"],
-        "stop_condition": ["another object", "grid boundary", "specific color"]
-      }
-    },
-    "Connecting Bridges": {
-      "description": "Draw a “bridge” (line/shape) between two objects in a specified color order.",
-      "params": {
-        "source_object": ["line", "square", "rectangle", "cavity"],
-        "target_object": ["line", "square", "rectangle", "cavity"],
-        "bridge_color": ["based on bridge starting point", "based on bridge ending point", "based on cavity inside an object"],
-        "connection_shape": ["line", "triangle", "rectangle", "circle"],
-        "path_direction": ["orthogonal", "diagonal", "based on color sequence"],
-        "thickness": ["based on width of cavity", "based on width of starting object"]
-      }
-    },
-    "Boundary Attachment Fill": {
-      "description": "Close holes or voids inside an object’s boundary bounding area.",
-      "params": {
-        "objects_with_holes": ["horizontally laid", "vertically laid", "diagonally laid"],
-        "attachment_direction": ["left", "right", "top", "bottom"],
-        "fill_logic": ["fits in space to form rectangle", "gets laid on the object"],
-        "object_filled": ["irregular", "triangle", "rectangle", "square"]
-      }
-    },
-    "Diagonal Fill": {
-      "description": "Propagate color or object along a diagonal axis.",
-      "params": {
-        "source_point_or_corner": ["L-shaped", "rectangle"],
-        "direction": ["↘", "↖", "↗", "↙"],
-        "fill_color": ["same as source", "complementary to source", "change on bounce"],
-        "stop_condition": ["object obstruction", "hit grid boundary"]
-      }
-    },
-    "Pattern Matching Fill / Remove": {
-      "description": "Identify a repeating subpattern and either color it in or erase it.",
-      "params": {
-        "template_pattern": ["alternate objects", "similar objects"],
-        "operation": ["remove cells to match pattern", "fill cells to match pattern"],
-        "fill_color": ["boundary color", "pattern color"],
-        "tolerance": ["no tolerance", "edges are exceptions"],
-        "target_regions": ["inside a cavity", "outside an object"]
-      }
-    },
-    "Pattern Growth": {
-      "description": "Generate a larger or repeated pattern seeded from one or more “starter” objects.",
-      "params": {
-        "seed_objects": ["colored cell", "rectangle", "diagonal"],
-        "transformation_sequence": ["circular", "straight", "fill all", "towards an object"],
-        "inter_object_spacing": ["none", "single", "multiple", "variable"],
-        "repeat": ["till filling the cavity", "only once"],
-        "stopping_condition": ["reached an object", "reached boundary", "filled object completely"]
-      }
-    },
-    "Find Objects in the Input Image and Color Them": {
-      "description": "Detects all instances of a certain object class and applies a new color.",
-      "params": {
-        "object_type": ["plus", "rectangle", "irregular", "circle", "cell", "horizontal bar"],
-        "new_color": ["complements the original color", "constant throughout", "alternating pattern"],
-        "detection_method": ["exact match", "fuzzy", "at some location"],
-        "overlap_policy": ["all unique", "overlaps allowed"]
-      }
-    },
-    "Remove Objects from the Output in a Particular Sequence": {
-      "description": "Systematically delete objects one at a time in a defined order.",
-      "params": {
-        "object_list_ordered": ["all in the row", "all in a column", "same shape"],
-        "removal_method": ["erase and color", "replace with background"],
-        "trigger_condition": ["based on an object", "leftmost", "rightmost", "topmost", "overlaps"]
-      }
-    },
-    "Rearrange the Objects in the Output in a Particular Sequence/Pattern": {
-      "description": "From a set of objects, only retain those in a given order, rearrange the rest.",
-      "params": {
-        "keep_sequence": ["ascending order of height", "descending order of height"],
-        "color_of_object": ["same as in-place object", "original color"],
-        "pattern": ["to a particular part of another object", "to a particular region"]
-      }
-    },
-    "Alternating Pattern Filling": {
-      "description": "Fill cells with two (or more) colors/objects in an alternating rhythm (checkerboard, stripes).",
-      "params": {
-        "colors": [["A", "B"], ["A", "A", "B"]],
-        "pattern_type": ["checkerboard", "stripe_vertical", "stripe_horizontal"],
-        "internal_sequence_spacing": ["none", "singular"]
-      }
-    },
-    "Object Translation Based on Environment Colors": {
-      "description": "Move an object toward/away from regions of a given color.",
-      "params": {
-        "moving_object_shape": ["plus", "square", "rectangle", "all cells"],
-        "target_environment_color": ["same as moving object", "complementary color"],
-        "translation_vector": ["centroid of the environment colors", "on top of environment color"],
-        "step_size": ["arbitrary", "fixed size"]
-      }
-    },
-    "Cavity Fill": {
-      "description": "Fill the cavities inside bigger objects.",
-      "params": {
-        "object_outline": ["U shaped", "V shaped", "rectangular", "triangle", "square"],
-        "max_indent_depth": ["based on available filling material", "till complete object"],
-        "fill_color": ["arbitrary", "based on material already present"]
-      }
-    },
-    "Add/Replace an Object": {
-      "description": "Swap out one object for another, preserving position or properties.",
-      "params": {
-        "source_object": ["horizontal bar", "vertical bar", "rectangle", "square", "circle", "triangle", "irregular"],
-        "add_replacement_object": ["horizontal bar", "vertical bar", "rectangle", "square", "circle", "triangle", "cell"],
-        "inherit_properties": ["same midpoint", "same centroid", "at some location"],
-        "additional_change": ["add a boundary to new object", "do nothing"]
-      }
-    },
-    "Falling Down (Gravity-Effect)": {
-      "description": "Let objects “drop” vertically until they hit another object or the floor.",
-      "params": {
-        "object_list": ["cell", "square", "rectangle"],
-        "gravity_direction": ["downward"],
-        "collision_map": ["horizontal bar", "vertical bar"]
-      }
-    },
-    "Get Attached to Similar Object": {
-      "description": "Move or grow an object until it contacts another of the same type.",
-      "params": {
-        "moving_object": ["plus", "U shaped", "V shaped", "square", "rectangle", "irregular"],
-        "target_object_type": ["rectangle", "square", "irregular"],
-        "attachment_rule": ["head on with common color side", "fit into cavity"],
-        "movement_path": ["fixed numeric steps", "reach goal"]
-      }
-    },
-    "Object Translation Based on Goal": {
-      "description": "Move objects toward a specified “goal” region or object.",
-      "params": {
-        "source_object": ["square", "rectangle", "irregular"],
-        "goal_location_or_object": ["square", "matching pattern"],
-        "pathfinding_method": ["straight-line", "fixed path"],
-        "step_count_or_speed": ["stop on obstacle", "stop on goal", "fixed"]
-      }
-    },
-    "Object Dismantles": {
-      "description": "Break an object into constituent parts or pixels.",
-      "params": {
-        "source_object": ["irregular", "rectangular", "square"],
-        "fragment_shape": ["individual cells", "smaller tiles", "break at hit"],
-        "dismantle_sequence": ["outer-to-inner", "when hit by other object", "symmetric"],
-        "dispersion_pattern": ["momentum conserved", "toward hit object", "away from hit object"]
-      }
-    },
-    "Symmetry-Based Pattern": {
-      "description": "Reflect or rotate objects/patterns around an axis or point.",
-      "params": {
-        "symmetry_type": ["horizontal", "vertical", "rotational"],
-        "axis_or_center_point": ["horizontal bar", "vertical bar", "single cell"],
-        "object_group": ["individual cells", "square"],
-        "copy_mode": ["duplicate", "mirror"]
-      }
-    },
-    "Ray-Cast / Ray-Trace Pattern": {
-      "description": "Project a “ray” from a source until it hits a wall or object, marking its path in a shape.",
-      "params": {
-        "ray_source": ["starting cell", "object"],
-        "direction": ["horizontal", "vertical", "diagonal", "change on hit"],
-        "shape": ["line", "triangle", "circle", "rectangle"],
-        "stop_condition": ["object", "boundary"],
-        "mark_color": ["same as starting point", "alternating pattern", "change on hit", "based on other objects"]
-      }
+  "Horizontal Fill": {
+    "description": "Extend or fill an object horizontally across contiguous empty or target cells.",
+    "params": {
+      "source_object": ["line", "square", "rectangle", "cavity"],
+      "column_index": ["left of an object", "right of an object"],
+      "fill_color": ["based on source", "based on some different objects"],
+      "sequence": ["based on source width", "based on source height"],
+      "stop_condition": ["another object", "grid boundary", "specific color"],
+      "overlaps": ["keep the latest", "no overlaps possible"]
+    }
+  },
+  "Vertical Fill": {
+    "description": "Extend or fill an object vertically across contiguous empty or target cells.",
+    "params": {
+      "source_object": ["line", "square", "rectangle", "cavity"],
+      "row_index": ["top of an object", "below an object"],
+      "fill_color": ["based on source color"],
+      "sequence": ["based on source width", "based on source height"],
+      "stop_condition": ["another object", "grid boundary", "specific color"]
+    }
+  },
+  "Connecting Bridges": {
+    "description": "Draw a “bridge” (line/shape) between two objects in a specified color order.",
+    "params": {
+      "source_object": ["line", "square", "rectangle", "cavity"],
+      "target_object": ["line", "square", "rectangle", "cavity"],
+      "bridge_color": [
+        "based on bridge starting point",
+        "based on bridge ending point",
+        "based on cavity inside an object"
+      ],
+      "connection_shape": ["line", "triangle", "rectangle", "circle"],
+      "path_direction": ["orthogonal", "diagonal", "based on color sequence"],
+      "thickness": ["based on width of cavity", "based on width of starting object"]
+    }
+  },
+  "Boundary Attachment Fill": {
+    "description": "Close holes or voids inside an object’s boundary bounding area.",
+    "params": {
+      "objects_with_holes": ["horizontally laid", "vertically laid", "diagonally laid"],
+      "attachment_direction": ["left", "right", "top", "bottom"],
+      "fill_logic": ["fits in space to form rectangle", "gets laid on the object"],
+      "object_filled": ["irregular", "triangle", "rectangle", "square"]
+    }
+  },
+  "Diagonal Fill": {
+    "description": "Propagate color or object along a diagonal axis.",
+    "params": {
+      "source_point_or_corner": ["L-shaped", "rectangle"],
+      "direction": ["↘", "↖", "↗", "↙"],
+      "fill_color": ["same as source", "complementary to source", "change on bounce"],
+      "stop_condition": ["object obstruction", "hit grid boundary"]
+    }
+  },
+  "Pattern Matching Fill / Remove": {
+    "description": "Identify a repeating subpattern and either color it in or erase it.",
+    "params": {
+      "template_pattern": ["alternate objects", "similar objects"],
+      "operation": ["remove cells to match pattern", "fill cells to match pattern"],
+      "fill_color": ["boundary color", "pattern color"],
+      "tolerance": ["no tolerance", "edges are exceptions"],
+      "target_regions": ["inside a cavity", "outside an object"]
+    }
+  },
+  "Pattern Growth": {
+    "description": "Generate a larger or repeated pattern seeded from one or more “starter” objects.",
+    "params": {
+      "seed_objects": ["colored cell", "rectangle", "diagonal"],
+      "transformation_sequence": ["circular", "straight", "fill all", "towards an object"],
+      "inter_object_spacing": ["none", "single", "multiple", "variable"],
+      "repeat": ["till filling the cavity", "only once"],
+      "stopping_condition": ["reached an object", "reached boundary", "filled object completely"]
+    }
+  },
+  "Find Objects in the Input Image and Color Them": {
+    "description": "Detects all instances of a certain object class and applies a new color.",
+    "params": {
+      "object_type": ["plus", "rectangle", "irregular", "circle", "cell", "horizontal bar"],
+      "new_color": ["complements the original color", "constant throughout", "alternating pattern"],
+      "detection_method": ["exact match", "fuzzy", "at some location"],
+      "overlap_policy": ["all unique", "overlaps allowed"]
+    }
+  },
+  "Remove Objects from the Output in a Particular Sequence": {
+    "description": "Systematically delete objects one at a time in a defined order.",
+    "params": {
+      "object_list_ordered": ["all in the row", "all in a column", "same shape"],
+      "removal_method": ["erase and color", "replace with background"],
+      "trigger_condition": ["based on an object", "leftmost", "rightmost", "topmost", "overlaps"]
+    }
+  },
+  "Rearrange the Objects in the Output in a Particular Sequence/Pattern": {
+    "description": "From a set of objects, only retain those in a given order, rearrange the rest.",
+    "params": {
+      "keep_sequence": ["ascending order of height", "descending order of height"],
+      "color_of_object": ["same as in-place object", "original color"],
+      "pattern": ["to a particular part of another object", "to a particular region"]
+    }
+  },
+  "Alternating Pattern Filling": {
+    "description": "Fill cells with two (or more) colors/objects in an alternating rhythm (checkerboard, stripes).",
+    "params": {
+      "colors": [["A", "B"], ["A", "A", "B"]],
+      "pattern_type": ["checkerboard", "stripe_vertical", "stripe_horizontal"],
+      "internal_sequence_spacing": ["none", "singular"]
+    }
+  },
+  "Object Translation Based on Environment Colors": {
+    "description": "Move an object toward/away from regions of a given color.",
+    "params": {
+      "moving_object_shape": ["plus", "square", "rectangle", "all cells"],
+      "target_environment_color": ["same as moving object", "complementary color"],
+      "translation_vector": ["centroid of the environment colors", "on top of environment color"],
+      "step_size": ["arbitrary", "fixed size"]
+    }
+  },
+  "Cavity Fill": {
+    "description": "Fill the cavities inside bigger objects.",
+    "params": {
+      "object_outline": ["U shaped", "V shaped", "rectangular", "triangle", "square"],
+      "max_indent_depth": ["based on available filling material", "till complete object"],
+      "fill_color": ["arbitrary", "based on material already present"]
+    }
+  },
+  "Add/Replace an Object": {
+    "description": "Swap out one object for another, preserving position or properties.",
+    "params": {
+      "source_object": ["horizontal bar", "vertical bar", "rectangle", "square", "circle", "triangle", "irregular"],
+      "add_replacement_object": ["horizontal bar", "vertical bar", "rectangle", "square", "circle", "triangle", "cell"],
+      "inherit_properties": ["same midpoint", "same centroid", "at some location"],
+      "additional_change": ["add a boundary to new object", "do nothing"]
+    }
+  },
+  "Falling Down (Gravity-Effect)": {
+    "description": "Let objects “drop” vertically until they hit another object or the floor.",
+    "params": {
+      "object_list": ["cell", "square", "rectangle"],
+      "gravity_direction": ["downward"],
+      "collision_map": ["horizontal bar", "vertical bar"]
+    }
+  },
+  "Get Attached to Similar Object": {
+    "description": "Move or grow an object until it contacts another of the same type.",
+    "params": {
+      "moving_object": ["plus", "U shaped", "V shaped", "square", "rectangle", "irregular"],
+      "target_object_type": ["rectangle", "square", "irregular"],
+      "attachment_rule": ["head on with common color side", "fit into cavity"],
+      "movement_path": ["fixed numeric steps", "reach goal"]
+    }
+  },
+  "Object Translation Based on Goal": {
+    "description": "Move objects toward a specified “goal” region or object.",
+    "params": {
+      "source_object": ["square", "rectangle", "irregular"],
+      "goal_location_or_object": ["square", "matching pattern"],
+      "pathfinding_method": ["straight-line", "fixed path"],
+      "step_count_or_speed": ["stop on obstacle", "stop on goal", "fixed"]
+    }
+  },
+  "Object Dismantles": {
+    "description": "Break an object into constituent parts or pixels.",
+    "params": {
+      "source_object": ["irregular", "rectangular", "square"],
+      "fragment_shape": ["individual cells", "smaller tiles", "break at hit"],
+      "dismantle_sequence": ["outer-to-inner", "when hit by other object", "symmetric"],
+      "dispersion_pattern": ["momentum conserved", "toward hit object", "away from hit object"]
+    }
+  },
+  "Symmetry-Based Pattern": {
+    "description": "Reflect or rotate objects/patterns around an axis or point.",
+    "params": {
+      "symmetry_type": ["horizontal", "vertical", "rotational"],
+      "axis_or_center_point": ["horizontal bar", "vertical bar", "single cell"],
+      "object_group": ["individual cells", "square"],
+      "copy_mode": ["duplicate", "mirror"]
+    }
+  },
+  "Ray-Cast / Ray-Trace Pattern": {
+    "description": "Project a “ray” from a source until it hits a wall or object, marking its path in a shape.",
+    "params": {
+      "ray_source": ["starting cell", "object"],
+      "direction": ["horizontal", "vertical", "diagonal", "change on hit"],
+      "shape": ["line", "triangle", "circle", "rectangle"],
+      "stop_condition": ["object", "boundary"],
+      "mark_color": ["same as starting point", "alternating pattern", "change on hit", "based on other objects"]
+    }
+  },
+  "Scattering Pattern": {
+    "description": "Project a scatter-like pattern which is triangular in shape with staircase-like edges, and fills all the cells in its path",
+    "params": {
+      "source": ["starting cell", "object"],
+      "direction": ["horizontal", "vertical", "diagonal", "radially outwards"],
+      "shape": ["triangle"],
+      "stop_condition": ["object", "boundary"],
+      "mark_color": ["same as starting point", "alternating pattern", "change on hit", "based on other objects"],
+      "boundary": ["single cell thickness of different color than the pattern", "multi cell thickness of different color than the pattern"],
+      "edge_pattern": ["staircase with a width 'w' and height 'h', where 'w' and 'h' are number of cells"]
+    }
+  },
+  "Patterns formed using small objects": {
+    "description": "Spatial patterns and color scheme formed by smaller objects",
+    "params": {
+      "small_object_type": ["small adjacent objects", "parts of a bigger object"],
+      "small_pattern_type": ["spatial pattern and/or color scheme pattern formed by smaller distinct objects", "coloring scheme pattern formed inside a object"]
     }
   }
-  
+}
