@@ -1,8 +1,8 @@
 import asyncio
 from openai import AsyncOpenAI
 from dotenv import load_dotenv
-from arc_agi.patterns.pattern_detection_prompt import PROMPT
-from arc_agi.objects.llm_inference import call_llm
+from arc_agi.src.patterns.pattern_detection_prompt import PROMPT
+from arc_agi.src.objects.llm_inference import call_llm
 import os
 import json
 from typing import List
