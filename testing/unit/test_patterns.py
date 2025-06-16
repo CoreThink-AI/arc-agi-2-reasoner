@@ -1,5 +1,5 @@
-from arc_agi.objects.base import BaseObject, Coordinates
-from arc_agi.patterns.find_patterns import unit_patterns
+from arc_agi.src.objects.base import BaseObject, Coordinates
+from arc_agi.src.patterns.find_patterns import unit_patterns
 import json
 import asyncio
 import numpy as np

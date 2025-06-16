@@ -2,9 +2,9 @@ import json
 from typing import List, Tuple, Dict, Set
 from openai import OpenAI
 import os
-from arc_agi.objects.visualize_objects import process_grid
+from arc_agi.src.objects.visualize_objects import process_grid
 
-with open("arc_agi/objects/object_types.json", "r") as f:
+with open(os.path.join(os.path.dirname(__file__), "object_types.json"), "r") as f:
     objects_data = json.load(f)
 
 

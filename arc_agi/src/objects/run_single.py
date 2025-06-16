@@ -1,7 +1,7 @@
 import json
-from visualize import read_json_as_string, visualize_task
-from visualize_objects import process_grid
-from llm_reasoner import llm_reasoner
+from .visualize import read_json_as_string, visualize_task
+from .visualize_objects import process_grid
+from .llm_reasoner import llm_reasoner
 
 # Paste your JSON string
 task_json_path = input("Enter path of task json: ")

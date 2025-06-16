@@ -1,6 +1,6 @@
 from typing import List, Tuple, Dict, Any, Set
-from arc_agi.objects.base import Grid, BaseObject
-from arc_agi.objects.llm_inference import  call_llm
+from arc_agi.src.objects.base import Grid, BaseObject
+from arc_agi.src.objects.llm_inference import  call_llm
 
 
 class SpatialRelations:
@@ -29,7 +29,7 @@ class SpatialRelations:
             f"Object B:\n{self.object_b_metadata}\n\n"
             f"Answer with a concise and clear explanation of the {relation_type}."
         )
-        return call_llm(self.provider,prompt, self.model, self.temperature, self.max_tokens)
+        return call_llm(prompt, self.provider, self.model, self.temperature, self.max_tokens)
 
     def above_below_relationship(self):
         """
@@ -97,7 +97,7 @@ class SpatialRelations:
 # if __name__ == "__main__":
 #     task_json_path = input("Enter path of task json: ")
 #     import json
-#     from arcagi.objects.visualize import read_json_as_string
+#     from arc_agi.objects.visualize import read_json_as_string
 #     # visualize
 #     task_data = json.loads(read_json_as_string(task_json_path))
 #     # Pick one of the grids (e.g., first one)
@@ -109,7 +109,7 @@ class SpatialRelations:
 #     import os
 #     os.environ["OPENAI_API_KEY"] = "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"
 #     print("background: ", x.find_background('openai', 'gpt-4.1-2025-04-14', 0.0, 4096))
-#     from arcagi.objects.visualize_objects import find_objects
+#     from arc_agi.objects.visualize_objects import find_objects
 #     objects = find_objects(x.to_list())
 #     y1 = BaseObject(x.to_list(), objects[2])
 #     y1.visualize()
