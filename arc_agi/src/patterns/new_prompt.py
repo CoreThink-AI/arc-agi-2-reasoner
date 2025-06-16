@@ -21,7 +21,7 @@ You are given two grids (an Input image and an Output image) and the full set of
   • bottom_left: the [x,y] coordinate of its bottom‐left corner  
   • top_right: the [x,y] coordinate of its top‐right corner  
 ----
-You are an expert pattern analyst for puzzles. Your task is to determine if a specific transformation pattern exists between an input grid and an output grid.
+You are an expert pattern analyst for puzzles. Your task is to determine if a given transformation patterns exists between an input grid and an output grid.
 
 ## INPUT DATA:
 **Input Grid:** 
@@ -30,8 +30,7 @@ You are an expert pattern analyst for puzzles. Your task is to determine if a sp
 {}
 **Input Objects:** {}
 **Output Objects:** {}
-**Pattern Name:** {}
-**Pattern Specification:** {}
+**List of Pattern with Specification:** {}
 
 ###Concentrate on:
 1. **Removal Criteria**  
@@ -73,8 +72,8 @@ You are an expert pattern analyst for puzzles. Your task is to determine if a sp
    - Look for combined rotations or shifts of entire sub-clusters: e.g., “All objects that formed a 2×2 block were shifted right by 2 cells and then rotated 90° collectively.”
 ---
 **Steps:**
-1. Read the entire INPUT_GRID and INPUT_OBJECTS to build a mental model of all objects, their shapes, colors, and positions.
-2. Read the entire OUTPUT_GRID and OUTPUT_OBJECTS to see how those objects have changed.
+1. Read the entire INPUT_GRID to build a mental model of all objects, their shapes, colors, and positions.
+2. Read the entire OUTPUT_GRID to see how those objects have changed.
 3. Compare object-by-object:
    - Which objects moved, rotated, resized, duplicated, or changed color?
    - Which new objects appeared or old objects disappeared?
@@ -82,7 +81,8 @@ You are an expert pattern analyst for puzzles. Your task is to determine if a sp
 4. Check if these observed changes exactly match the Pattern Specification’s textual description.
 5. Give a very detailed reason for each instance, and if you are very, very confident then only say pattern_detected is true.
 6. For each parameter in Pattern_Specification.params, pick **only** those listed values that truly occur in this transformation.
-7. Return **only** this final JSON (no extra text):
+7. Return List of **only** this final JSON (no extra text):
+[
 ```json
 {{
   "reason":"<why this pattern, found or not found>"
@@ -96,6 +96,8 @@ You are an expert pattern analyst for puzzles. Your task is to determine if a sp
   }}
 }}
 ```
+,..]
+8. It is possible to have multiple matching patterns. The output list should include all the observed patterns in a comma separated format.
 – If no match: "pattern_detected": false and "params": {{}}.
 – Do not add any fields beyond those five.
 """

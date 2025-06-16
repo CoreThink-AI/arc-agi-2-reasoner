@@ -1,8 +1,12 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
-from typing import Dict, List, Union
+from typing import Dict, List, Union, Tuple, Set
 import os
+import base64
+import numpy as np
+from PIL import Image
+import io
 
 # Define a simple colormap for ARC colors (0–9)
 ARC_COLORS = [
@@ -108,3 +112,32 @@ def visualize_objects(grid: List[List[int]], objects: List[Set[Tuple[int, int]]]
     plt.yticks(np.arange(-0.5, len(grid), 1), [])
 
     plt.show()
+
+def get_arr_viz(arr):
+    viz = ""
+    for row in arr:
+        viz += " | ".join(str(i) for i in row) + "\n"
+        
+    return viz.strip()
+
+def array_to_base64_image(arr):
+        if not isinstance(arr, np.ndarray):
+            arr = np.array(arr, dtype=np.uint8)
+        if arr.ndim == 2:
+            img = Image.fromarray(arr, mode="L")  # "L"
+        elif arr.ndim == 3 and arr.shape[2] == 3:
+            img = Image.fromarray(arr, mode="RGB")
+        else:
+            raise ValueError(
+                "Array must be either 2D (grayscale) or 3D with 3 channels (RGB)."
+            )
+
+        # 3. Write the image into an in-memory bytes buffer
+        buffer = io.BytesIO()
+        img.save(buffer, format="JPEG")  # you can also choose "PNG"
+        buffer.seek(0)
+
+        # 4. Base64-encode the bytes
+        img_bytes = buffer.read()
+        b64_str = base64.b64encode(img_bytes).decode("utf-8")
+        return b64_str

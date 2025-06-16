@@ -3,7 +3,7 @@ from arc_agi.src.patterns.find_patterns import unit_patterns
 import json
 import asyncio
 import numpy as np
-from testing.samples.sample1 import grid_a,grid_b,input_obj,output_obj
+from arc_agi.src.objects.object_finder import find_objects
 
 def create_base_object_sync(grid, coord_tuples):
     """
@@ -12,8 +12,8 @@ def create_base_object_sync(grid, coord_tuples):
     """
     # BaseObject constructor expects Set[Tuple[int, int]] directly
     data = BaseObject(grid, coord_tuples).to_dict(
-        provider="anthropic", 
-        model="claude-3-opus-20240229", 
+        provider="openai", 
+        model="gpt-4.1", 
         temperature=0.0, 
         max_tokens=4096
     )
@@ -27,6 +27,12 @@ async def create_base_object(grid, coord_tuples):
     return await asyncio.to_thread(create_base_object_sync, grid, coord_tuples)
 
 async def main():
+    with open("data/35ab12c3.json") as f:
+        json_data = json.load(f)
+    grid_a = json_data["train"][0]["input"]
+    grid_b = json_data["train"][0]["output"]
+    input_obj = find_objects(grid_a)
+    output_obj = find_objects(grid_b)
     print("Making Input Objects")
     # Create all input object tasks concurrently
     input_tasks = [create_base_object(grid_a, obj) for obj in input_obj]
@@ -40,8 +46,9 @@ async def main():
     print(f"Created {len(after_list)} output objects")
     
     print("Finding Patterns")
-    results = await unit_patterns(grid_a, grid_b, before_list, after_list)
-    print(results)
+    pattern_params,counts = await unit_patterns(grid_a, grid_b, before_list, after_list)
+    print(pattern_params)
+    print(counts)
 
 if __name__ == "__main__":
     asyncio.run(main())
