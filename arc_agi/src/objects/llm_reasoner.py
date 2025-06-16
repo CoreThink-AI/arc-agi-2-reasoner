@@ -1,8 +1,6 @@
 import json
 from typing import List, Tuple, Dict, Set
-from openai import OpenAI
 import os
-from arc_agi.src.objects.visualize_objects import process_grid
 
 with open(os.path.join(os.path.dirname(__file__), "object_types.json"), "r") as f:
     objects_data = json.load(f)
@@ -100,42 +98,6 @@ def prepare_llm_prompt(grid: List[List[int]], objects: List[Set[Tuple[int, int]]
 
     return prompt
 
-
-def query_llm_for_reasoning_openai(prompt: str, model: str = "gpt-4.1-2025-04-14") -> str:
-    """
-    Sends the prompt to the OpenAI API and returns the response text.
-    """
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    response = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": "You are an expert visual reasoning agent."},
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0,
-        max_tokens=4096
-    )
-    return response.choices[0].message.content
-
-
-def llm_reasoner(task_json_path, category, grid_number, grid_type):
-    with open(task_json_path, 'r') as f:
-        task_data = json.load(f)
-
-    grid = task_data[category][grid_number - 1][grid_type]
-    objects = process_grid(grid)
-
-    # Create prompt
-    prompt = prepare_llm_prompt(grid, objects)
-
-    # Query the LLM
-    llm_response = query_llm_for_reasoning_openai(prompt)
-
-    print("LLM Response:")
-    print(llm_response)
-
-
-# llm_reasoner(9, 'train', 3, 'input')
 
 
 
