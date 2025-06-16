@@ -3,7 +3,7 @@ from arc_agi.src.patterns.find_patterns import unit_patterns
 import json
 import asyncio
 import numpy as np
-from arc_agi.objects.visualize_objects import find_objects
+from arc_agi.src.objects.visualize_objects import find_objects
 
 def create_base_object_sync(grid, coord_tuples):
     """

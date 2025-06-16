@@ -1,9 +1,9 @@
-from arc_agi.objects.visualize import read_json_as_string
+from arc_agi.src.objects.visualize import read_json_as_string
 import json
 import os
-from arc_agi.objects.base import Grid, BaseObject
-from arc_agi.objects.self_relations import SpatialRelations
-from arc_agi.objects.visualize_objects import find_objects
+from arc_agi.src.objects.base import Grid, BaseObject
+from arc_agi.src.objects.self_relations import SpatialRelations
+from arc_agi.src.objects.visualize_objects import find_objects
 from dotenv import load_dotenv
 load_dotenv()
 # visualize
