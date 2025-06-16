@@ -27,7 +27,7 @@ def plot_grid(grid: List[List[int]], title: str, ax: plt.Axes):
     ax.set_title(title)
     ax.set_xticks([])
     ax.set_yticks([])
-    
+
     # Add grid lines with dark grey color
     ax.grid(True, which='both', color='#636363', linestyle='-', linewidth=0.5)
     ax.set_xticks(np.arange(-.5, arr.shape[1], 1), minor=True)
@@ -86,32 +86,25 @@ def read_json_as_string(file_path: str) -> str:
         return f.read()
 
 
-def rename_json_files(directory: str):
+def visualize_objects(grid: List[List[int]], objects: List[Set[Tuple[int, int]]]):
     """
-    Renames all .json files in the given directory to the format task_1.json, task_2.json, ...
-
-    Args:
-        directory: Path to the directory containing .json files.
+    Visualizes the grid with objects highlighted using unique colors and dark grey grid lines.
     """
-    # List and filter only .json files
-    json_files = [f for f in os.listdir(directory) if f.lower().endswith('.json')]
-    json_files.sort()  # Ensure consistent order
+    display_grid = np.zeros((len(grid), len(grid[0]), 3), dtype=float)
+    cmap = plt.cm.get_cmap('tab20', len(objects))
 
-    for i, filename in enumerate(json_files, start=1):
-        old_path = os.path.join(directory, filename)
-        new_name = f"task_{i}.json"
-        new_path = os.path.join(directory, new_name)
-        os.rename(old_path, new_path)
-        print(f"Renamed: {filename} → {new_name}")
+    for idx, obj in enumerate(objects):
+        color = cmap(idx)[:3]
+        for x, y in obj:
+            display_grid[x, y] = color
 
-    print("\nRenaming completed.")
+    plt.figure(figsize=(8, 8))
+    plt.imshow(display_grid)
+    plt.title(f"{len(objects)} object(s) detected")
 
-# rename_json_files(r"C:\Users\Anugyan\PycharmProjects\ARC-AGI-2-CT\ARC-AGI-2\data\training")
+    # Add grid lines
+    plt.grid(True, which='both', color='#636363', linestyle='-', linewidth=1)
+    plt.xticks(np.arange(-0.5, len(grid[0]), 1), [])
+    plt.yticks(np.arange(-0.5, len(grid), 1), [])
 
-
-# # Paste your JSON string
-# task_json_path = r"C:\Users\Anugyan\PycharmProjects\ARC-AGI-2-CT\ARC-AGI-2\data\training\task_9.json"
-#
-#
-# task_data = json.loads(read_json_as_string(task_json_path))
-# visualize_task(task_data)
+    plt.show()
