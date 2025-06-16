@@ -7,9 +7,9 @@ from typing import List, Tuple, Dict, Any, Set
 import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
-from .llm_inference import call_llm
-from .visualize_objects import find_objects
-from .llm_reasoner import prepare_llm_prompt
+from arc_agi.src.utils.llm_utils import call_llm
+from arc_agi.src.objects.object_finder import find_objects
+from arc_agi.src.objects.llm_reasoner import prepare_llm_prompt
 
 
 @dataclass(frozen=True)
