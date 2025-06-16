@@ -1,12 +1,11 @@
 import asyncio
 from dotenv import load_dotenv
 from arc_agi.src.patterns.new_prompt import PROMPT
-import os
 import json
 from typing import List, Dict, Optional
-from pydantic import BaseModel,RootModel
+from pydantic import BaseModel
 from collections import Counter
-from arc_agi.src.utils.viz_utils import get_arr_viz
+from arc_agi.src.utils.visualization_utils import get_arr_viz
 from arc_agi.src.utils.llm_utils import get_completion, summarize_reasons
 
 load_dotenv()

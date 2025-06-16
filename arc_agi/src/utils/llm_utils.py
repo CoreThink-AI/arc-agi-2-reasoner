@@ -1,10 +1,18 @@
 import os
 import openai
 import anthropic
+import asyncio
+import random
 import requests
+from openai import AsyncOpenAI
+from typing import List
+from dotenv import load_dotenv
+load_dotenv()
+
+from arc_agi.src.utils.visualization_utils import array_to_base64_image
 
 anthropic_client = anthropic.Anthropic()
-
+openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def get_anthropic_response(prompt):
     response = anthropic_client.messages.create(
@@ -104,5 +112,79 @@ def call_llm(provider: str, prompt: str, model: str = None, temperature: float =
 
     else:
         raise ValueError(f"Unsupported provider: {provider}")
+    
+async def get_completion_with_retry(img1,img2,semaphore, PatternDetectionResponse, prompt: str, max_retries: int = 3):
+    """Get completion with retry logic and rate limiting using OpenAI"""
+    async with semaphore:  # Limit concurrent requests
+        for attempt in range(max_retries):
+            try:
+                # Add small delay to avoid hitting rate limits
+                await asyncio.sleep(random.uniform(0.2, 0.8))
+                
+                response = await openai_client.beta.chat.completions.parse(
+                    model="o4-mini",
+                    messages=[{
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": prompt},
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/jpeg;base64,{img1}"},
+                    },
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": f"data:image/jpeg;base64,{img2}"},
+                    }
+                ],
+            }],
+                    response_format=PatternDetectionResponse,
+                )
+                print(len(prompt))
+                result = response.choices[0].message.parsed
+                return result
+                    
+            except Exception as e:
+                if attempt == max_retries - 1:
+                    print(f"Failed after {max_retries} attempts: {e}")
+                    return None  # Return None when all retries fail
+                else:
+                    print(f"Attempt {attempt + 1} failed: {e}, retrying...")
+                    await asyncio.sleep(random.uniform(1.0, 2.0))  # Longer delay before retry
+
+async def get_completion(grid1,grid2,semaphore,PatternDetectionResponse,prompt: str):
+    img1 = array_to_base64_image(grid1)
+    img2 = array_to_base64_image(grid2)
+    return await get_completion_with_retry(img1,img2,semaphore,PatternDetectionResponse,prompt)
+
+async def summarize_reasons(reasons_list: List[str]) -> str:
+    """Summarize multiple reasons using GPT-4.1"""
+    if not reasons_list:
+        return ""
+    
+    if len(reasons_list) == 1:
+        return reasons_list[0]
+    
+    combined_reasons = "\n\n".join([f"Reason {i+1}: {reason}" for i, reason in enumerate(reasons_list)])
+    
+    prompt = f"""You are given multiple explanations for why a specific pattern was detected in a transformation. Please provide a concise, unified summary that captures the key insights from all explanations.
+
+Multiple Explanations:
+{combined_reasons}
+
+Please provide a clear, concise summary that combines the key points from all explanations above:"""
+
+    try:
+        response = await openai_client.chat.completions.create(
+            model="gpt-4.1",  
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.3,
+            max_tokens=200
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        print(f"Error summarizing reasons: {e}")
+        return combined_reasons 
+
+
 
 
