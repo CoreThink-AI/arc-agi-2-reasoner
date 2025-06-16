@@ -19,7 +19,6 @@ def call_llm(provider: str, prompt: str, model: str = None, temperature: float =
         str: The generated response from the LLM.
     """
     provider = provider.lower()
-
     if provider == "openai":
         client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         if not model:

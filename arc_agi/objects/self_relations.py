@@ -1,6 +1,6 @@
 from typing import List, Tuple, Dict, Any, Set
-from arcagi.objects.base import Grid, BaseObject
-from arcagi.objects.llm_inference import  call_llm
+from arc_agi.objects.base import Grid, BaseObject
+from arc_agi.objects.llm_inference import  call_llm
 
 
 class SpatialRelations:
@@ -29,7 +29,7 @@ class SpatialRelations:
             f"Object B:\n{self.object_b_metadata}\n\n"
             f"Answer with a concise and clear explanation of the {relation_type}."
         )
-        return call_llm(prompt, self.provider, self.model, self.temperature, self.max_tokens)
+        return call_llm(self.provider,prompt, self.model, self.temperature, self.max_tokens)
 
     def above_below_relationship(self):
         """

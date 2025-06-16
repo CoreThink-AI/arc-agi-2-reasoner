@@ -63,7 +63,7 @@
       "target_regions": ["inside a cavity", "outside an object"]
     }
   },
-  "Pattern Growth": {
+  "Creating Patterns based on starting Objects": {
     "description": "Generate a larger or repeated pattern seeded from one or more “starter” objects.",
     "params": {
       "seed_objects": ["colored cell", "rectangle", "diagonal"],
