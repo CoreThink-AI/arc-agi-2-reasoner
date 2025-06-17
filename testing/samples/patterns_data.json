@@ -1,0 +1,16 @@
+{
+    "1ae2feb7": ["Horizontal Fill"],
+    "3e6067c3": ["Connecting Bridges"],
+    "16b78196": ["Boundary Attachment Fill"],
+    "142ca369": ["Diagonal Fill"],
+    "135a2760": ["Pattern Matching Fill / Remove"],
+    "13e47133": ["Creating Patterns based on starting Objects"],
+    "1818057f": ["Find Objects in the Input Image and Color Them"],
+    "195c6913": ["Ray‑Cast / Ray‑Trace Pattern"],
+    "221dfab4": ["Remove Objects from the Output in a Particular Sequence"],
+    "247ef758": ["Object Translation Based on Environment Colors"],
+    "271d71e2": ["Object Translation Based on Goal"],
+    "28a6681f": ["Cavity Fill"],
+    "2b83f449": ["Add/Replace an Object"]
+  }
+  

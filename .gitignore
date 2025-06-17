@@ -45,6 +45,7 @@ site/
 # Logs
 *.log
 logs/
+logs_parallel/
 
 # Local development settings
 local_settings.py
