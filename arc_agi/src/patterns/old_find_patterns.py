@@ -1,13 +1,12 @@
 import asyncio
 from dotenv import load_dotenv
-from arc_agi.src.patterns.pattern_detection_prompt import PROMPT
+from arc_agi.src.patterns.new_prompt import PROMPT
 import json
 from typing import List, Dict, Optional
 from pydantic import BaseModel
 from collections import Counter
 from arc_agi.src.utils.visualization_utils import get_arr_viz
 from arc_agi.src.utils.llm_utils import get_completion, summarize_reasons
-from arc_agi.src.patterns.object_comparison import compare_object_lists
 
 load_dotenv()
 CONCURRENT_REQUESTS = 5
@@ -29,17 +28,14 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
         prompts = []
         input_grid_viz = get_arr_viz(input_grid)
         output_grid_viz = get_arr_viz(output_grid)
-        comparison = compare_object_lists(before_list, after_list)
-
-        add_json = json.dumps(comparison.added)
-        remove_json = json.dumps(comparison.removed)
-        retain_json = json.dumps(comparison.retained)
+        
+        before_list_json = json.dumps(before_list)
+        after_list_json = json.dumps(after_list)
         prompts.append(PROMPT.format(
             input_grid_viz, 
             output_grid_viz, 
-            add_json, 
-            remove_json, 
-            retain_json,
+            before_list_json, 
+            after_list_json, 
             pattern_data
         ))
         prompts = prompts*5
