@@ -49,4 +49,8 @@ logs_parallel/
 
 # Local development settings
 local_settings.py
-db.sqlite3 
+db.sqlite3
+config.local.json
+
+# Pattern test object creation script
+create_pattern_test_objects_30.py
