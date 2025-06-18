@@ -1,5 +1,7 @@
-from .solver_prompts import *
-from ..utils.llm_utils import *
+from arc_agi.src.solver.solver_prompts import example_template, solver_prompt_template
+from arc_agi.src.utils.llm_utils import get_anthropic_response_stream
+
+import re
 
 
 def get_arr_viz(arr):
@@ -24,15 +26,41 @@ def get_prompts(arc_input, hint):
     examples_str = get_formatted_examples(arc_input["train"], hint=hint)
     test_input_viz_arr = [get_arr_viz(entry['input']) for entry in arc_input['test']]
 
-    prompt_arr = [solver_prompt_template.format(examples=examples_str, test_input_viz=test_input_viz) for test_input_viz in test_input_viz_arr]
+    prompt_arr = [solver_prompt_template.format(examples=examples_str, test_input_viz=test_input_viz, hint=hint) for test_input_viz in test_input_viz_arr]
     ground_truths_arr = [get_arr_viz(entry['output']) for entry in arc_input['test'] if 'output' in entry]
     
     return prompt_arr, ground_truths_arr
 
+def extract_matrix_from_response(response):
+    # Extract text between backticks (```)
+    code_blocks = re.findall(r'```(.*?)```', response, re.DOTALL)
+    
+    if code_blocks:
+        # Return the first code block found, stripped of whitespace
+        return code_blocks[0].strip()
+    
+    # Fallback: try to extract matrix-like content with square brackets
+    matrix = re.search(r'\[(.*?)\]', response, re.DOTALL)
+    if matrix:
+        return matrix.group(0)
+    
+    return ""
+
+def matrix_to_arr(matrix_str):
+    matrix_str = matrix_str.replace("```", "")
+    lines = matrix_str.split("\n")
+    arr = []
+    for line in lines:
+        line = line.strip()
+        arr.append([int(x) for x in line.split("|")])
+    return arr
+
 def get_solved_outputs(arc_input, hint):
     prompt_arr, ground_truths_arr = get_prompts(arc_input, hint)
-    responses = [get_anthropic_response_stream(prompt) for prompt in prompt_arr]
-    return responses
+    raw_responses = [get_anthropic_response_stream(prompt) for prompt in prompt_arr]
+    responses = [extract_matrix_from_response(response) for response in raw_responses]
+    arr_responses = [matrix_to_arr(response) for response in responses]
+    return responses, arr_responses
 
 
 if __name__ == "__main__":
@@ -46,10 +74,12 @@ Examples are given for your reference"""
     
     prompt_arr, ground_truths_arr = get_prompts(arc_input, hint)
 
-    res = get_anthropic_response_stream(prompt_arr[0])
+    # res = get_anthropic_response_stream(prompt_arr[0])
+    
+    responses, arr_responses = get_solved_outputs(arc_input, hint)
     
     print(prompt_arr[0])
-    print(res)
+    print(arr_responses[0])
     
 
 

@@ -9,7 +9,7 @@ from typing import List
 from dotenv import load_dotenv
 load_dotenv()
 
-from arc_agi.src.utils.visualization_utils import array_to_base64_image
+from .visualization_utils import array_to_base64_image
 
 anthropic_client = anthropic.Anthropic()
 openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -37,6 +37,7 @@ def get_anthropic_response(prompt):
 
 
 def get_anthropic_response_stream(prompt):
+    response_text = ""
     with anthropic_client.messages.stream(
         model="claude-opus-4-20250514",
         max_tokens=16000,
@@ -50,7 +51,10 @@ def get_anthropic_response_stream(prompt):
         }]
     ) as stream:
         for text in stream.text_stream:
-            print(text, end="", flush=True)
+            # print(text, end="", flush=True)
+            response_text += text
+    
+    return response_text
 
 
 def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 4096) -> str:
