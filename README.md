@@ -59,12 +59,22 @@ cp env_template.txt .env
 ```
 arc-agi-2-reasoner/
 ├── arc_agi/
-│   ├── solver/     # Core solving logic
-│   ├── patterns/   # Pattern recognition modules
-│   └── objects/    # Object definitions and utilities
-├── data/           # Training and test data
-├── testing/        # Test cases and utilities
-└── requirements.txt
+│   ├── __init__.py
+│   ├── core.py
+│   └── src/
+│       ├── solver/           # Core solving logic
+│       ├── patterns/         # Pattern recognition modules
+│       ├── patterns_intersection/  # Pattern intersection logic
+│       ├── objects/          # Object definitions and utilities
+│       └── utils/            # Utility functions
+├── data/                     # Training and test data (JSON files)
+├── testing/
+│   ├── unit/                # Unit tests
+│   └── samples/             # Sample test cases
+├── requirements.txt
+├── setup.py
+├── env_template.txt
+└── README.md
 ```
 
 ## Usage
