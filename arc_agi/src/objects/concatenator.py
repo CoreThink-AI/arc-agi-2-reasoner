@@ -80,12 +80,13 @@ def prepare_llm_prompt(grid: List[List[int]], objects: List[Set[Tuple[int, int]]
     prompt += (
         "\nPlease evaluate whether each of the above objects is a valid and logical object based on perceptual reasoning.\n"
         "You must reject objects that are highly irregular, fragmented, or chaotic, unless they clearly form a recognizable structure or pattern.\n"
-        "Objects that contain multiple colors should exhibit a consistent structure or internal pattern — random patches of color without coherence are not valid.\n"
-        "Valid objects typically have regular or semi-regular shapes, even if they include diagonals or embedded holes, and should be interpretable as a single whole from a human perspective.\n"
+        "Prioritize shape and spatial coherence over color uniformity. A valid object may contain multiple colors, especially if used in a structured, patterned, or symmetric way.\n"
+        "Reject multi-color objects only when their layout appears chaotic or random, and the spatial structure lacks coherence.\n"
+        "Valid objects should exhibit structural integrity, regularity, symmetry, or recognizable forms, and be interpretable as a perceptual whole.\n"
         "You should prefer rejecting objects that appear visually noisy or made of unrelated fragments, especially if the shape or color layout does not make sense.\n"
         "\nFor each object, provide:\n"
         "1. Whether the object is valid.\n"
-        "2. Your reasoning for that decision.\n\n"
+        "2. Your reasoning for that decision.\n"
     )
 
     # Specify output format
@@ -94,7 +95,7 @@ def prepare_llm_prompt(grid: List[List[int]], objects: List[Set[Tuple[int, int]]
                 1. Object 1: <Valid / Not Valid> , <Reason>
                 2. Object 2: <Valid / Not Valid> , <Reason>
                 3. ...
-                
+
                 List of Valid Objects:
                 1. Object X: [(x1, y1), (x2, y2), ...]
                 2. Object Y: [(x3, y3), (x4, y4), ...]
