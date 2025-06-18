@@ -116,11 +116,14 @@ class Grid:
         """
         return "\n".join(" ".join(str(cell) for cell in row) for row in self.to_list())
 
-    def visualize(self) -> None:
+    def visualize(self, save_path: str = None, show: bool = True) -> None:
         """
-        Display the grid using matplotlib with color mapping.
-        """
+        Display or save the grid using matplotlib with color mapping.
 
+        Args:
+            save_path: If provided, the image will be saved to this path.
+            show: Whether to display the image using plt.show().
+        """
         fig, ax = plt.subplots(figsize=(5, 5))
         cmap = plt.matplotlib.colors.ListedColormap(self.ARC_COLORS)
         ax.imshow(self.grid, cmap=cmap, vmin=0, vmax=9)
@@ -130,7 +133,13 @@ class Grid:
         ax.grid(True, which='both', color='#636363', linestyle='-', linewidth=0.5)
         ax.set_xticks(np.arange(-.5, self.grid.shape[1], 1), minor=True)
         ax.set_yticks(np.arange(-.5, self.grid.shape[0], 1), minor=True)
-        plt.show()
+
+        if save_path:
+            plt.savefig(save_path, bbox_inches='tight')
+        if show:
+            plt.show()
+        else:
+            plt.close(fig)
 
     def find_background(self, provider: str, model: str, temperature: float, max_tokens: int) -> int:
         """
@@ -194,8 +203,17 @@ class Grid:
         """
         try:
             concatenated_objects = group_and_merge_adjacent_objects(self.objects)
-            valid_objects = extract_valid_objects(self.grid.tolist(), concatenated_objects, provider, model, temperature, max_tokens)
-            combined = self.objects + valid_objects
+            valid_objects = extract_valid_objects(self.grid.tolist(), concatenated_objects, provider, model,
+                                                  temperature, max_tokens)
+            # Flatten valid object coordinates into a set
+            valid_coords = set(coord for obj in valid_objects for coord in obj)
+            # Filter out self.objects that intersect with any valid_object
+            filtered_original_objects = [
+                obj for obj in self.objects if obj.isdisjoint(valid_coords)
+            ]
+            # Combine the filtered original objects with valid objects
+            combined = filtered_original_objects + valid_objects
+            # Deduplicate
             unique = list({frozenset(obj) for obj in combined})
             self.objects = [set(obj) for obj in unique]
             return self.objects
@@ -245,10 +263,14 @@ class BaseObject:
             x, y = coord.x, coord.y
             self.masked_grid[x][y] = self.grid[x][y]
 
-    def visualize(self) -> None:
+    def visualize(self, save_path: str = None, show: bool = True) -> None:
         """
         Visualize the object by showing only its coordinates with original colors,
-        setting all other grid cells to black (0).
+        setting all other grid cells to black (0). Optionally save the visualization.
+
+        Args:
+            save_path: If provided, the image will be saved to this path.
+            show: Whether to display the image using plt.show().
         """
         # Convert to numpy array for plotting
         arr = np.array(self.masked_grid)
@@ -266,7 +288,12 @@ class BaseObject:
         ax.set_xticks(np.arange(-.5, arr.shape[1], 1), minor=True)
         ax.set_yticks(np.arange(-.5, arr.shape[0], 1), minor=True)
 
-        plt.show()
+        if save_path:
+            plt.savefig(save_path, bbox_inches='tight')
+        if show:
+            plt.show()
+        else:
+            plt.close(fig)
 
     def _calculate_bounds(self) -> None:
         """Calculate the bounding box of the object."""
