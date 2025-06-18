@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from arc_agi.src.utils.llm_utils import call_llm
 from arc_agi.src.objects.object_finder import find_objects
-from arc_agi.src.objects.llm_reasoner import prepare_llm_prompt
+from arc_agi.src.objects.concatenator import group_and_merge_adjacent_objects, extract_valid_objects
 
 
 @dataclass(frozen=True)
@@ -69,16 +69,16 @@ class Grid:
             raise ValueError("Grid must be 2D.")
 
         self.ARC_COLORS = [
-            "#000000",  # 0 = black (background)
-            "#0074D9",  # 1 = blue
-            "#2ECC40",  # 2 = green
-            "#FF4136",  # 3 = red
-            "#FFDC00",  # 4 = yellow
-            "#AAAAAA",  # 5 = gray
-            "#F012BE",  # 6 = magenta
-            "#FF851B",  # 7 = orange
-            "#870C25",  # 8 = dark red
-            "#B10DC9",  # 9 = purple
+            "#000000",  # 0 = black
+            "#6395EE",  # 1 = custom blue
+            "#FF0000",  # 2 = red
+            "#008000",  # 3 = green
+            "#FFFF00",  # 4 = yellow
+            "#808080",  # 5 = grey
+            "#FF00FF",  # 6 = magenta
+            "#FFA500",  # 7 = orange
+            "#ADD8E6",  # 8 = light blue
+            "#A52A2A",  # 9 = brown
         ]
 
     @classmethod
@@ -145,19 +145,21 @@ class Grid:
 
             # Create prompt
             prompt = (
-                "You are given a 2D grid of integers from 0 to 9.\n"
-                "Each integer represents a color. 0 is usually black and often represents the background. But that is "
-                "not mandatory. A different color can also constitute the background.\n"
-                "Some colored cells (non-background) form objects in this grid, but you are not given their coordinates"
-                "The cells which logically and intuitively are not a part of these objects form the background.\n"
-                "Your task is to:\n"
-                "-  Identify the background color used in the grid.\n"
-                "It is important to remember that there can be cases where no particular color seems to form the "
-                "background. In such cases, you can return '-1' as an output"
-                "Output format should be a JSON object like: {\"background_color\": 0}\n"
-                "Respond with the JSON object. Add explanations after that.\n\n"
-                "Here's the grid:\n"
-                f"Grid:\n{grid_str}"
+                "You are given a 2D grid of integers ranging from 0 to 9.\n"
+                "Each integer represents a color. The goal is to determine the most likely background color in the grid.\n\n"
+                "The background color is typically:\n"
+                "- The color that appears most frequently overall in the grid.\n"
+                "- The color that touches the edges of the grid (top, bottom, left, or right).\n"
+                "- The color that is not part of compact or enclosed clusters (i.e., likely not part of foreground objects).\n\n"
+                "Use the following decision strategy:\n"
+                "1. Start by identifying the most frequent color in the grid.\n"
+                "2. If that color also touches one or more edges of the grid, assume it is the background.\n"
+                "3. If multiple colors meet these criteria or the result is ambiguous, return -1.\n\n"
+                "Only return a JSON object in this exact format:\n"
+                "{\"background_color\": <integer from 0 to 9 or -1>}\n\n"
+                "Do not explain your reasoning before the JSON. Only output the JSON on the first line.\n\n"
+                "Here is the grid:\n"
+                f"{grid_str}"
             )
 
             # Call LLM
@@ -177,37 +179,29 @@ class Grid:
             self.background_color = -1
             return self.background_color
 
-    def find_objects_in_grid(self) -> List[Set[Tuple[int, int]]]:
+    def find_objects_in_grid(self, provider: str, model: str, temperature: float, max_tokens: int) -> List[Set[Tuple[int, int]]]:
         """
             Rule-based method to find objects in the grid
             :returns List of objects found
         """
-        self.objects = find_objects(self.grid.tolist())
+        self.objects = find_objects(self.grid.tolist(), self.find_background(provider, model, temperature, max_tokens))
         return self.objects
 
-    def find_objects_reasoner(self, provider: str, model: str, temperature: float, max_tokens: int) -> str:
+    def objects_concatenator(self, provider: str, model: str, temperature: float, max_tokens: int) -> List[Set[Tuple[int, int]]]:
         """
-            Reasoning layer for the objects detected
-            :returns Reasoning from the LLM in string format
+            Concatenation layer for the objects detected
+            :returns
         """
-        self.reasoning = ""
         try:
-            add_prompt = f"The background color for this grid is {self.background_color}. The cells in this color can be" \
-                         f"considered a part of the background and most probably not any object"
-            prompt = prepare_llm_prompt(self.grid.tolist(), self.objects, add_prompt)
-
-            # Call the LLM
-            self.reasoning = call_llm(
-                provider=provider,
-                prompt=prompt,
-                model=model,
-                temperature=temperature,
-                max_tokens=max_tokens
-            )
-            return self.reasoning
+            concatenated_objects = group_and_merge_adjacent_objects(self.objects)
+            valid_objects = extract_valid_objects(self.grid.tolist(), concatenated_objects, provider, model, temperature, max_tokens)
+            combined = self.objects + valid_objects
+            unique = list({frozenset(obj) for obj in combined})
+            self.objects = [set(obj) for obj in unique]
+            return self.objects
         except Exception as e:
             print(f"[LLM reasoning error] {e}")
-            return self.reasoning
+            return self.objects
 
 
 class BaseObject:
@@ -230,19 +224,21 @@ class BaseObject:
         self._calculate_centroid()
         self._analyze_colors()
         self.ARC_COLORS = [
-            "#000000",  # 0 = black (background)
-            "#0074D9",  # 1 = blue
-            "#2ECC40",  # 2 = green
-            "#FF4136",  # 3 = red
-            "#FFDC00",  # 4 = yellow
-            "#AAAAAA",  # 5 = gray
-            "#F012BE",  # 6 = magenta
-            "#FF851B",  # 7 = orange
-            "#870C25",  # 8 = dark red
-            "#B10DC9",  # 9 = purple
+            "#000000",  # 0 = black
+            "#6395EE",  # 1 = custom blue
+            "#FF0000",  # 2 = red
+            "#008000",  # 3 = green
+            "#FFFF00",  # 4 = yellow
+            "#808080",  # 5 = grey
+            "#FF00FF",  # 6 = magenta
+            "#FFA500",  # 7 = orange
+            "#ADD8E6",  # 8 = light blue
+            "#A52A2A",  # 9 = brown
+            "#00FFFF",  # 10 = cyan (for masked cells)
         ]
+
         # Create a blank (black) grid
-        self.masked_grid = [[0 for _ in row] for row in self.grid]
+        self.masked_grid = [[10 for _ in row] for row in self.grid]
 
         # Copy original color values for object's coordinates
         for coord in self.coordinates:
@@ -439,30 +435,6 @@ class BaseObject:
             "top_right": self.get_top_right().to_tuple()
         }
 
-
-
-# task_json_path = input("Enter path of task json: ")
-# import json
-# from visualize import read_json_as_string
-# # visualize
-# task_data = json.loads(read_json_as_string(task_json_path))
-# # Pick one of the grids (e.g., first one)
-# print("Enter space separated grid params (ex. train 1 input) which means 1st grid of the train sample's input")
-# grid_params = input("Enter space separated grid params: ").split(" ")
-# grid = task_data[grid_params[0]][int(grid_params[1]) - 1][grid_params[2]]
-# x = Grid(grid)
-# x.visualize()
-# import os
-# os.environ["OPENAI_API_KEY"] = ""
-# print("background: ", x.find_background('openai', 'gpt-4.1-2025-04-14', 0.0, 4096))
-# from visualize_objects import find_objects
-# objects = find_objects(x.to_list())
-# for i in objects:
-#     print(i)
-# y_ = objects[2]
-# y = BaseObject(x.to_list(), y_)
-# y.visualize()
-# print(y.to_dict('openai', 'gpt-4.1-2025-04-14', 0.0, 4096))
 
 
 
