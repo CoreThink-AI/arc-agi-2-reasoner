@@ -1,15 +1,8 @@
 from arc_agi.src.solver.solver_prompts import example_template, solver_prompt_template
 from arc_agi.src.utils.llm_utils import get_anthropic_response_stream
+from arc_agi.src.utils.visualization_utils import get_arr_viz
 
 import re
-
-
-def get_arr_viz(arr):
-    viz = ""
-    for row in arr:
-        viz += " | ".join(str(i) for i in row) + "\n"
-        
-    return viz.strip()
 
 def get_formatted_examples(example_inputs, hint):
     examples_str = ""
