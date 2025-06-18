@@ -72,7 +72,7 @@ def call_llm(provider: str, prompt: str, model: str = None, temperature: float =
     if provider == "openai":
         client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         if not model:
-            model = "gpt-4.1-2025-04-14"
+            model = "gpt-4.1-mini"
         response = client.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": prompt}],
@@ -175,7 +175,7 @@ Please provide a clear, concise summary that combines the key points from all ex
 
     try:
         response = await openai_client.chat.completions.create(
-            model="gpt-4.1",  
+            model="gpt-4.1-mini",  
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=200

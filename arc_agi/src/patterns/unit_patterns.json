@@ -107,7 +107,7 @@
     }
   },
   "Object Translation Based on Environment Colors": {
-    "description": "Move an object toward/away from regions of a given color.",
+    "description": "Move an object to a place based on the colors surrounding them",
     "params": {
       "moving_object_shape": ["plus", "square", "rectangle", "all cells"],
       "target_environment_color": ["same as moving object", "complementary color"],
