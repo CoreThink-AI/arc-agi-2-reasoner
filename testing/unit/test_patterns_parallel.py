@@ -74,10 +74,10 @@ def normalize_string(s: str) -> str:
     """Normalize string by converting to lowercase and removing spaces and punctuation"""
     return re.sub(r'[^a-z0-9]', '', s.lower())
 
-with open("testing/samples/patterns_data.json") as d:
+with open("testing/samples/patterns_data_test.json") as d:
     PATTERN_DATA = json.load(d)
 
-with open("testing/samples/pattern_testing_objects.json") as f:
+with open("testing/samples/pattern_test_objects_30.json") as f:
     OBJECT_DATA = json.load(f)
 
 async def run_single_pattern_test(pattern_key):
