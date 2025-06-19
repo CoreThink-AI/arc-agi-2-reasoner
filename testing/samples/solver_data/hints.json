@@ -1,5 +1,7 @@
 {
-    "581f7754": "There seem to be rectangular regions with a set of digits within (let's call that content of the object). And near the bottom, there seem to be unit digits. \nYou need to connect the content of each object to the content of the other objects in the order of the unit digits at the bottom. The color (digit) of the connections should be the same as the color of the content that the connection is coming from.\nExamples are given for your reference",
+    "3e6067c3": "There seem to be rectangular regions with a set of digits within (let's call that content of the object). And near the bottom, there seem to be unit digits. \nYou need to connect the content of each object to the content of the other objects in the order of the unit digits at the bottom. The color (digit) of the connections should be the same as the color of the content that the connection is coming from.\nExamples are given for your reference",
     
-    "135a2760": "This task involves pattern matching and filling. Look for specific patterns in the input and apply them to the output. The pattern seems to involve filling certain regions based on the input structure."
+    "16b78196": "It seems like there is a column in the middle that goes from one end of the grid to another. That one stays stationary. There are individual objects scattered around the middle column.\nEach scattered object either fits to the open slots on the middle column, or it fits with another scattered object that has already been latched to the middle column such that they fit well. Don't change the size, shape, or orientation of the objects.",
+
+    "142ca369": ""
 }
