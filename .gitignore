@@ -46,6 +46,8 @@ site/
 *.log
 logs/
 logs_parallel/
+testing/logs/
+logs_solver
 
 # Local development settings
 local_settings.py
