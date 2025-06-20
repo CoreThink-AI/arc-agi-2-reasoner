@@ -7,12 +7,14 @@ import requests
 from openai import AsyncOpenAI
 from typing import List
 from dotenv import load_dotenv
+from cerebras.cloud.sdk import Cerebras
 load_dotenv()
 
 from .visualization_utils import array_to_base64_image
 
 anthropic_client = anthropic.Anthropic()
 openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+cerebras_client = Cerebras(api_key=os.getenv("CEREBRAS_API_KEY"))
 
 def get_anthropic_response(prompt):
     response = anthropic_client.messages.create(
@@ -55,6 +57,13 @@ def get_anthropic_response_stream(prompt):
             response_text += text
     
     return response_text
+
+def get_cerebras_response(prompt: str) -> str:
+    response = cerebras_client.chat.completions.create(
+        model="qwen-3-32b",
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return response.choices[0].message.content
 
 
 def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 4096) -> str:

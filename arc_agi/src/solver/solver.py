@@ -1,26 +1,26 @@
 from arc_agi.src.solver.solver_prompts import example_template, solver_prompt_template
-from arc_agi.src.utils.llm_utils import get_anthropic_response_stream
+from arc_agi.src.utils.llm_utils import get_anthropic_response_stream, get_cerebras_response
 from arc_agi.src.utils.visualization_utils import get_arr_viz
 
 import re
 
-def get_formatted_examples(example_inputs, hint):
+def get_formatted_examples(example_inputs):
     examples_str = ""
     
     for i, entry in enumerate(example_inputs):
         input_viz = get_arr_viz(entry["input"])
         output_viz = get_arr_viz(entry["output"])
-        examples_str += example_template.format(i=i+1, input_viz=input_viz, output_viz=output_viz, hint=hint) + "\n"
+        examples_str += example_template.format(i=i+1, input_viz=input_viz, output_viz=output_viz) + "\n"
         
     return examples_str.strip()
 
 
 def get_prompts(arc_input, hint):
-    examples_str = get_formatted_examples(arc_input["train"], hint=hint)
+    examples_str = get_formatted_examples(arc_input["train"])
     test_input_viz_arr = [get_arr_viz(entry['input']) for entry in arc_input['test']]
 
     prompt_arr = [solver_prompt_template.format(examples=examples_str, test_input_viz=test_input_viz, hint=hint) for test_input_viz in test_input_viz_arr]
-    ground_truths_arr = [get_arr_viz(entry['output']) for entry in arc_input['test'] if 'output' in entry]
+    ground_truths_arr = [entry['output'] for entry in arc_input['test'] if 'output' in entry]
     
     return prompt_arr, ground_truths_arr
 
@@ -45,15 +45,24 @@ def matrix_to_arr(matrix_str):
     arr = []
     for line in lines:
         line = line.strip()
-        arr.append([int(x) for x in line.split("|")])
+        # Filter out empty strings before converting to int
+        row = [int(x) for x in line.split("|") if x.strip()]
+        if row:  # Only add non-empty rows
+            arr.append(row)
     return arr
 
-def get_solved_outputs(arc_input, hint):
+def get_solved_outputs(arc_input, hint, return_raw_responses=False):
     prompt_arr, ground_truths_arr = get_prompts(arc_input, hint)
-    raw_responses = [get_anthropic_response_stream(prompt) for prompt in prompt_arr]
+    # raw_responses = [get_anthropic_response_stream(prompt) for prompt in prompt_arr]
+    raw_responses = [get_cerebras_response(prompt) for prompt in prompt_arr]
     responses = [extract_matrix_from_response(response) for response in raw_responses]
     arr_responses = [matrix_to_arr(response) for response in responses]
-    return responses, arr_responses
+    if return_raw_responses:
+        return (raw_responses, arr_responses), ground_truths_arr
+    else:
+        return arr_responses, ground_truths_arr
+
+
 
 
 if __name__ == "__main__":
