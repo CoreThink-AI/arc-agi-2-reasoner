@@ -56,7 +56,7 @@
   "Pattern Matching Fill / Remove": {
     "description": "Identify a repeating subpattern and either color it in or erase it.",
     "params": {
-      "template_pattern": ["alternate objects", "similar objects"],
+      "template_pattern": ["alternate objects", "similar objects","symmetry via some axis"],
       "operation": ["remove cells to match pattern", "fill cells to match pattern"],
       "fill_color": ["boundary color", "pattern color"],
       "tolerance": ["no tolerance", "edges are exceptions"],

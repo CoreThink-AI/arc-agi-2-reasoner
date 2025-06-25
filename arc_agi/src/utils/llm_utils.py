@@ -1,5 +1,9 @@
 import os
 import openai
+from openai import OpenAI
+from openai import AsyncAzureOpenAI, AzureOpenAI
+from pydantic import BaseModel
+from typing import List
 import anthropic
 import asyncio
 import random
@@ -13,16 +17,32 @@ load_dotenv()
 from .visualization_utils import array_to_base64_image
 
 anthropic_client = anthropic.Anthropic()
-openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+#openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 cerebras_client = Cerebras(api_key=os.getenv("CEREBRAS_API_KEY"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+endpoint = os.getenv("ENDPOINT_URL")
+deployment = os.getenv("DEPLOYMENT_NAME", "o4-mini")
+subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
+
+# Initialize Azure OpenAI client with key-based authentication
+openai_client = AsyncAzureOpenAI(
+    azure_endpoint=endpoint,
+    api_key=subscription_key,
+    api_version="2025-03-01-preview",
+)
+client = AzureOpenAI(
+    azure_endpoint=endpoint,
+    api_key=subscription_key,
+    api_version="2025-03-01-preview",
+)
 
 def get_anthropic_response(prompt):
     response = anthropic_client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=16000,
+        model="claude-opus-4-20250514",
+        max_tokens=32000,
         thinking={
             "type": "enabled",
-            "budget_tokens": 10000
+            "budget_tokens": 16000
         },
         messages=[{
             "role": "user",
@@ -42,10 +62,10 @@ def get_anthropic_response_stream(prompt):
     response_text = ""
     with anthropic_client.messages.stream(
         model="claude-opus-4-20250514",
-        max_tokens=16000,
+        max_tokens=32000,
         thinking={
             "type": "enabled",
-            "budget_tokens": 10000
+            "budget_tokens": 16000
         },
         messages=[{
             "role": "user",
@@ -81,16 +101,20 @@ def call_llm(provider: str, prompt: str, model: str = None, temperature: float =
         str: The generated response from the LLM.
     """
     provider = provider.lower()
-
+    client = AzureOpenAI(
+    azure_endpoint=endpoint,
+    api_key=subscription_key,
+    api_version="2025-03-01-preview",
+    )
     if provider == "openai":
-        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        if not model:
-            model = "gpt-4.1-mini"
+        #client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        #if not model:
+        model = deployment
         response = client.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": prompt}],
-            temperature=temperature,
-            max_tokens=max_tokens
+            #temperature=temperature,
+            #max_tokens=max_tokens
         )
         return response.choices[0].message.content
 
@@ -135,7 +159,7 @@ async def get_completion_with_retry(img1,img2,semaphore, PatternDetectionRespons
                 await asyncio.sleep(random.uniform(0.2, 0.8))
                 
                 response = await openai_client.beta.chat.completions.parse(
-                    model="o4-mini",
+                    model=deployment,
                     messages=[{
                 "role": "user",
                 "content": [
@@ -181,14 +205,14 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
     
     prompt = f"""You are given multiple explanations for why a specific pattern was detected in a transformation. Please provide a concise, unified summary that captures the key insights from all explanations.
 
-Multiple Explanations:
-{combined_reasons}
+    Multiple Explanations:
+    {combined_reasons}
 
-Please provide a clear, concise summary that combines the key points from all explanations above:"""
+    Please provide a step by step account of how the input image would go through the transformation to reach the output image:"""
 
     try:
         response = await openai_client.chat.completions.create(
-            model="gpt-4.1-mini",  
+            model=deployment,  
             messages=[{"role": "user", "content": prompt}],
             temperature=0.3,
             max_tokens=200
@@ -198,6 +222,30 @@ Please provide a clear, concise summary that combines the key points from all ex
         print(f"Error summarizing reasons: {e}")
         return combined_reasons 
 
+
+class GridModel(BaseModel):
+    grid: List[List[int]]
+
+def parse_grid(response):
+    client = AzureOpenAI(
+    azure_endpoint=endpoint,
+    api_key=subscription_key,
+    api_version="2025-03-01-preview",
+)
+    response = client.responses.parse(
+        model=deployment,
+        input=[
+            {"role": "system", "content": "Extract the 2D grid from the description."},
+            {
+                "role": "user",
+                "content": f"{response}",
+            },
+        ],
+        text_format=GridModel,
+    )
+
+    gm: GridModel = response.output_parsed
+    return [gm.grid]
 
 
 
