@@ -27,7 +27,7 @@ async def create_base_object(grid, coord_tuples):
     return await asyncio.to_thread(create_base_object_sync, grid, coord_tuples)
 
 async def main():
-    with open("data/31f7f899.json") as f:
+    with open("data/271d71e2.json") as f:
         json_data = json.load(f)
     grid_input = json_data["train"][0]["input"]
     grid_output = json_data["train"][0]["output"]
