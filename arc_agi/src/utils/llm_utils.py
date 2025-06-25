@@ -20,9 +20,9 @@ anthropic_client = anthropic.Anthropic()
 #openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 cerebras_client = Cerebras(api_key=os.getenv("CEREBRAS_API_KEY"))
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-endpoint = os.getenv("ENDPOINT_URL", "https://vish-mc5c24wy-eastus2.cognitiveservices.azure.com/")
+endpoint = os.getenv("ENDPOINT_URL")
 deployment = os.getenv("DEPLOYMENT_NAME", "o4-mini")
-subscription_key = "AcQ5Oiimy5ztGFmgFdQ2gRtyCbwo2ZRbIsXBZLT0FbT841oFeYTjJQQJ99BFACHYHv6XJ3w3AAAAACOGDklC"
+subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
 
 # Initialize Azure OpenAI client with key-based authentication
 openai_client = AsyncAzureOpenAI(
