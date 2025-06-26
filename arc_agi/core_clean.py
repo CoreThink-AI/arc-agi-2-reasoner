@@ -7,7 +7,7 @@ import json
 import asyncio
 import time
 from collections import Counter
-from arc_agi.src.solver.solver import get_solved_outputs
+from arc_agi.src.solver.solver import get_solved_outputs, get_solved_outputs_multiple_in_parallel
 from arc_agi.src.utils.visualization_utils import plot_grid
 import matplotlib.pyplot as plt
 
@@ -27,8 +27,10 @@ async def get_consensus_response(json_data, hint, num_attempts=3):
     print(f"Getting consensus from {num_attempts} attempts...")
     
     # Run solver attempts concurrently
-    tasks = [get_solved_outputs(json_data, hint) for _ in range(num_attempts)]
-    results = await asyncio.gather(*tasks, return_exceptions=True)
+    # tasks = [get_solved_outputs(json_data, hint) for _ in range(num_attempts)]
+    # results = await asyncio.gather(*tasks, return_exceptions=True)
+    
+    results = await get_solved_outputs_multiple_in_parallel(json_data, hint, num_attempts)
     
     # Extract valid responses
     valid_responses = []

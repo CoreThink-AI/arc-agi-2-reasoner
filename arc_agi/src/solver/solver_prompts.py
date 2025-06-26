@@ -45,7 +45,7 @@ You are given a set of **Input–Output Examples** and a detailed list of **Tran
 
 1. Present your **full reasoning**, detailing how each step from the hint maps to the transformation operations you perform.
 2. Do **not** invent any new rules or skip any hint steps. Ensure the Test Output reflects the same behavior demonstrated by the examples.
-3. Embedd the Final output in ``` ``` and use \n for new row and | as column separator.
+3. Embed the Final output in ``` ``` and use \n for new row and | as column separator.
 4. I want you to solve this puzzle **step by step**. First, restate the problem. Then outline your plan. Then execute each step, numbering them, and finally give your answer.
 **Test Output:**
 
