@@ -27,11 +27,17 @@ class PatternDetectionResponse(BaseModel):
     result: List[PatternDetectionResult]
 
 
-async def generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_grid_viz, name, description, reason):
+def format_params_for_prompt(params: Dict[str, List[str]]) -> str:
+    return "\n".join([f"- **{key}**: {', '.join(values)}" for key, values in params.items()])
+
+
+async def generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_grid_viz, name, description, reason, params):
+    formatted_params = format_params_for_prompt(params)
     prompt = HINT_PROMPT_TEMPLATE.format(
         pattern_name=name,
         description=description,
         reason=reason,
+        params=formatted_params,
         input_grid_viz=input_grid_viz,
         output_grid_viz=output_grid_viz
     )
@@ -69,32 +75,28 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
 
         counts = Counter()
         all_detected_patterns = []
-        pattern_params = {}  # Will store unique params for each pattern name
-        pattern_reasons = {}  # Will store reasons for each pattern name
-        pattern_descriptions = {}  # Will store descriptions for each pattern name
+        pattern_params = {}
+        pattern_reasons = {}
+        pattern_descriptions = {}
 
         for r in results:
             if isinstance(r, Exception):
                 print(f"Request failed: {r}")
                 continue
             if r is not None and hasattr(r, 'result'):
-                # r.result is a list of PatternDetectionResult objects
                 for pattern_result in r.result:
-                    if pattern_result.pattern_detected:  # Only count detected patterns
+                    if pattern_result.pattern_detected:
                         pattern_name = pattern_result.pattern_name
                         counts[pattern_name] += 1
                         all_detected_patterns.append(pattern_result.model_dump())
 
-                        # Collect reasons for summarization
                         if pattern_name not in pattern_reasons:
                             pattern_reasons[pattern_name] = []
                         pattern_reasons[pattern_name].append(pattern_result.reason)
 
-                        # Store description (should be same for all instances of this pattern)
                         if pattern_name not in pattern_descriptions:
                             pattern_descriptions[pattern_name] = pattern_result.pattern_description
 
-                        # Collect unique params for this pattern
                         if pattern_name not in pattern_params:
                             pattern_params[pattern_name] = {}
 
@@ -102,30 +104,26 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
                             for param_key, param_values in pattern_result.params.items():
                                 if param_key not in pattern_params[pattern_name]:
                                     pattern_params[pattern_name][param_key] = set()
-                                # Add all values to the set for this parameter
                                 if isinstance(param_values, list):
                                     pattern_params[pattern_name][param_key].update(param_values)
                                 else:
                                     pattern_params[pattern_name][param_key].add(param_values)
 
-        # Convert sets to lists for JSON serialization if needed
         for pattern_name in pattern_params:
             for param_key in pattern_params[pattern_name]:
                 pattern_params[pattern_name][param_key] = list(pattern_params[pattern_name][param_key])
 
-        # Summarize reasons for each pattern
         summarized_reasons = {}
         for pattern_name in counts:
             reasons = pattern_reasons.get(pattern_name, [])
             summarized_reasons[pattern_name] = await summarize_reasons(reasons)
 
-        # Restructure pattern_params to include name, description, reason, and params
         restructured_pattern_params = []
         for pattern_name in pattern_params:
             pattern_description = pattern_descriptions.get(pattern_name, "")
             reason = summarized_reasons.get(pattern_name, "")
             params = pattern_params[pattern_name]
-            detailed_hint = await generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_grid_viz, pattern_name, pattern_description, reason)
+            detailed_hint = await generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_grid_viz, pattern_name, pattern_description, reason, params)
             restructured_pattern_params.append({
                 'name': pattern_name,
                 'description': pattern_description,
