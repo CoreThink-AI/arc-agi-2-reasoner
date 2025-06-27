@@ -57,7 +57,7 @@ async def get_prompts(arc_input, hint):
     """
     test_input_vizs = [
     get_arr_viz(
-        [ row[col_mid:] for row in grid[row_mid:] ]
+        [ row[col_mid-2:] for row in grid[row_mid-2:] ]
     )
     for entry in arc_input['test']
     for grid in (entry['input'],)
@@ -74,7 +74,7 @@ async def get_prompts(arc_input, hint):
     ground_truths_arr = [entry.get('output', []) for entry in arc_input['test']]
     """
     ground_truths_arr = [
-    [ row[col_mid:] for row in grid[row_mid:] ]
+    [ row[col_mid-2:] for row in grid[row_mid-2:] ]
     for entry in arc_input['test']
     for grid in (entry.get('output', []),)
     for row_mid, col_mid in ((len(grid)//2, len(grid[0])//2),)
