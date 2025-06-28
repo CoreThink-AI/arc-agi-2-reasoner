@@ -17,7 +17,7 @@ load_dotenv()
 from .visualization_utils import array_to_base64_image
 
 anthropic_client = anthropic.Anthropic()
-#openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 cerebras_client = Cerebras(api_key=os.getenv("CEREBRAS_API_KEY"))
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 endpoint = os.getenv("ENDPOINT_URL")
@@ -25,16 +25,16 @@ deployment = os.getenv("DEPLOYMENT_NAME", "o4-mini")
 subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
 
 # Initialize Azure OpenAI client with key-based authentication
-openai_client = AsyncAzureOpenAI(
-    azure_endpoint=endpoint,
-    api_key=subscription_key,
-    api_version="2025-03-01-preview",
-)
-client = AzureOpenAI(
-    azure_endpoint=endpoint,
-    api_key=subscription_key,
-    api_version="2025-03-01-preview",
-)
+#openai_client = AsyncAzureOpenAI(
+#    azure_endpoint=endpoint,
+#    api_key=subscription_key,
+#    api_version="2025-03-01-preview",
+#)
+#client = AzureOpenAI(
+#    azure_endpoint=endpoint,
+#    api_key=subscription_key,
+#    api_version="2025-03-01-preview",
+#)
 
 def get_anthropic_response(prompt):
     response = anthropic_client.messages.create(
@@ -214,8 +214,7 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
         response = await openai_client.chat.completions.create(
             model=deployment,  
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.3,
-            max_tokens=200
+            max_completion_tokens=200
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
