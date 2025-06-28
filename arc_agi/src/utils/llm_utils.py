@@ -12,6 +12,7 @@ from openai import AsyncOpenAI
 from typing import List
 from dotenv import load_dotenv
 from cerebras.cloud.sdk import Cerebras
+from arc_agi.src.patterns.detailed_hint_prompt import HINT_SUMMARY_PROMPT
 load_dotenv()
 
 from .visualization_utils import array_to_base64_image
@@ -203,7 +204,7 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
     
     combined_reasons = "\n\n".join([f"Reason {i+1}: {reason}" for i, reason in enumerate(reasons_list)])
     
-    prompt = f"""You are given multiple explanations for why a specific pattern was detected in a transformation. Please provide a concise, unified summary that captures the key insights from all explanations.
+    prompt = f"""You are given multiple explanations for why a specific pattern was detected in a transformation. Please provide a detailed, unified summary that captures the key insights from all explanations.
 
     Multiple Explanations:
     {combined_reasons}
@@ -221,6 +222,28 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
         print(f"Error summarizing reasons: {e}")
         return combined_reasons 
 
+async def summarize_hints(hint_list: List[str]) -> str:
+    """Summarize multiple reasons using GPT-4.1"""
+    if not hint_list:
+        return ""
+    
+    if len(hint_list) == 1:
+        return hint_list[0]
+    
+    combined_hints = "\n\n".join([f"Reason {i+1}: {reason}" for i, reason in enumerate(hint_list)])
+    
+    prompt = HINT_SUMMARY_PROMPT.format(combined_hints)
+
+    try:
+        response = await openai_client.chat.completions.create(
+            model=deployment,  
+            messages=[{"role": "user", "content": prompt}],
+            max_completion_tokens=200
+        )
+        return response.choices[0].message.content.strip()
+    except Exception as e:
+        print(f"Error summarizing reasons: {e}")
+        return combined_hints[0] 
 
 class GridModel(BaseModel):
     grid: List[List[int]]

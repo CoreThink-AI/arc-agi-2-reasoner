@@ -57,6 +57,44 @@ Explain the final effect or visual result on the output grid — what new elemen
 - Reference the actual content and layout of the input/output grid in your explanation.
 - Keep each section short but informative.
 
-🎁 Output only the structured hint(s). Do not wrap it in explanations or additional commentary.
+🎁 Output only the structured hint(s). Do not wrap it in explanations or additional commentary. Make sure it is very very detailed.
 """
 
+HINT_SUMMARY_PROMPT = """
+You are an expert in visual reasoning for grid-based puzzles. You have just generated multiple structured hints for how a particular pattern transformation applies in a given Input→Output example. Now your task is to **summarize** those hints into a single, **concise** structured hint that retains all the key sections and essential information, eliminating redundancy.
+
+📥 Inputs:
+{}
+
+🧠 Your Task:
+Combine and condense the above hints into one structured hint. Preserve the following sections exactly as labeled, but merge overlapping points and shorten wording where possible:
+
+---
+
+### 🧩 Task
+(One clear description of the transformation being applied)
+
+### 🔢 Input
+(Brief summary of only the most critical input features)
+
+### 🎯 Objective
+(What the pattern accomplishes in the output)
+
+### 🪜 Step-by-Step
+(A streamlined sequence of the steps, in order)
+
+### 🚧 Constraints
+(Only the core parameters that govern the transformation)
+
+### 📤 Output
+(What the final grid looks like and what changed)
+
+---
+
+📌 Guidelines:
+- Do **not** add new technical details—only distill what’s already there.
+- Use instructional language.
+- Output **only** the unified structured hint, with no extra commentary.
+
+ Make sure it is very very detailed.
+"""
