@@ -42,7 +42,7 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
             retain_json,
             pattern_data
         ))
-        prompts = prompts*5
+        prompts = prompts*3
         print(f"Processing {len(prompts)} patterns with {CONCURRENT_REQUESTS} concurrent requests...")
         tasks = [get_completion(input_grid,output_grid,semaphore,PatternDetectionResponse,p) for p in prompts]
         results = await asyncio.gather(*tasks, return_exceptions=True)

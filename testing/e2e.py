@@ -6,7 +6,9 @@ Handles task solving with pattern-based hints and consensus from multiple attemp
 import json, os
 import asyncio
 import time
+import logging
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from arc_agi.src.solver.solver import get_solved_outputs_multiple_in_parallel
 from arc_agi.src.utils.visualization_utils import plot_grid
 import matplotlib.pyplot as plt
@@ -34,6 +36,39 @@ async def create_base_object(grid, coord_tuples):
     Async wrapper that runs the sync function in a thread pool
     """
     return await asyncio.to_thread(create_base_object_sync, grid, coord_tuples)
+
+async def process_single_training_example(i, train_example):
+    """
+    Process a single training example using ThreadPoolExecutor pattern similar to Solver
+    
+    Args:
+        i: Index of the training example
+        train_example: Single training example with input/output
+        
+    Returns:
+        tuple: (pattern_params, counts) for this training example
+    """
+    iteration_start = time.time()
+    
+    grid_input = train_example["input"]
+    grid_output = train_example["output"]
+    grid_a = Grid(grid_input)
+    input_obj = grid_a.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
+    grid_b = Grid(grid_output)
+    output_obj = grid_b.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
+    
+    # Create all input object tasks concurrently
+    input_tasks = [create_base_object(grid_input, obj) for obj in input_obj]
+    before_list = await asyncio.gather(*input_tasks)
+    # Create all output object tasks concurrently
+    output_tasks = [create_base_object(grid_output, obj) for obj in output_obj]
+    after_list = await asyncio.gather(*output_tasks)
+    
+    pattern_params, counts = await unit_patterns(grid_input, grid_output, before_list, after_list)
+    
+    iteration_time = time.time() - iteration_start
+    
+    return pattern_params, counts, iteration_time
 
 async def get_consensus_response(json_data, hint, num_attempts=3,critic=False):
     """
@@ -232,41 +267,60 @@ async def get_hints(file_path):
     all_counts = {}
     
     pattern_detection_start = time.time()
-    for i in range(len(json_data["train"])):
-        iteration_start = time.time()
-        
-        grid_input = json_data["train"][i]["input"]
-        grid_output = json_data["train"][i]["output"]
-        grid_a = Grid(grid_input)
-        input_obj = grid_a.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
-        input_obj = grid_a.objects_concatenator('openai', 'gpt-4.1-mini', 0.0, 4096)
-        grid_b = Grid(grid_output)
-        output_obj = grid_b.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
-        output_obj = grid_b.objects_concatenator('openai', 'gpt-4.1-mini', 0.0, 4096)
-        
-        object_creation_start = time.time()
-        # Create all input object tasks concurrently
-        input_tasks = [create_base_object(grid_input, obj) for obj in input_obj]
-        before_list = await asyncio.gather(*input_tasks)
-        # Create all output object tasks concurrently
-        output_tasks = [create_base_object(grid_output, obj) for obj in output_obj]
-        after_list = await asyncio.gather(*output_tasks)
-        object_creation_time = time.time() - object_creation_start
-        
-        pattern_finding_start = time.time()
-        pattern_params, counts = await unit_patterns(grid_input, grid_output, before_list, after_list)
-        pattern_finding_time = time.time() - pattern_finding_start
-        patterns.extend(pattern_params)
-        
-        # Accumulate counts from each training example
-        for pattern_name, count in counts.items():
-            if pattern_name not in all_counts:
-                all_counts[pattern_name] = 0
-            all_counts[pattern_name] += count
-        
-        iteration_time = time.time() - iteration_start
     
-    pattern_detection_time = time.time() - pattern_detection_start    
+    # Process training examples concurrently using asyncio.gather instead of ThreadPoolExecutor
+    # This avoids event loop conflicts with asyncio objects
+    print(f"Processing {len(json_data['train'])} training examples concurrently...")
+    
+    try:
+        # Create tasks for all training examples
+        tasks = [
+            process_single_training_example(i, json_data["train"][i]) 
+            for i in range(len(json_data["train"]))
+        ]
+        
+        # Process all training examples concurrently
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        
+        # Process results
+        completed = 0
+        for i, result in enumerate(results):
+            if isinstance(result, Exception):
+                print(f"Training example {i+1} failed: {result}")
+                continue
+                
+            pattern_params, counts, iteration_time = result
+            patterns.extend(pattern_params)
+            
+            # Accumulate counts from each training example
+            for pattern_name, count in counts.items():
+                if pattern_name not in all_counts:
+                    all_counts[pattern_name] = 0
+                all_counts[pattern_name] += count
+            
+            completed += 1
+            print(f"Completed {completed}/{len(json_data['train'])} training examples ({iteration_time:.2f}s)")
+            
+    except Exception as e:
+        print(f"Concurrent processing failed, falling back to sequential: {e}")
+        # Fallback to sequential processing if concurrent fails
+        for i in range(len(json_data["train"])):
+            try:
+                pattern_params, counts, iteration_time = await process_single_training_example(i, json_data["train"][i])
+                patterns.extend(pattern_params)
+                
+                # Accumulate counts from each training example
+                for pattern_name, count in counts.items():
+                    if pattern_name not in all_counts:
+                        all_counts[pattern_name] = 0
+                    all_counts[pattern_name] += count
+                
+                print(f"Completed {i+1}/{len(json_data['train'])} training examples ({iteration_time:.2f}s)")
+            except Exception as ex:
+                print(f"Training example {i+1} failed: {ex}")
+    
+    pattern_detection_time = time.time() - pattern_detection_start
+    print(f"All training examples processed in {pattern_detection_time:.2f}s")    
     # Aggregate patterns after processing all training examples
     aggregation_start = time.time()
     
@@ -279,36 +333,130 @@ async def get_hints(file_path):
     
     restructured_pattern_params, final_counts = await intersect(filtered_patterns)
     aggregation_time = time.time() - aggregation_start
-    
+    print("Aggregartion Done")
     # Get solved outputs and visualize
     hint = json.dumps(restructured_pattern_params)
     return hint
+
+def setup_logger_for_id(task_id):
+    """Set up a logger for a specific task ID"""
+    # Create e2e_logs directory if it doesn't exist
+    log_dir = "e2e_logs"
+    os.makedirs(log_dir, exist_ok=True)
+    
+    # Create logger
+    logger = logging.getLogger(f"e2e_{task_id}")
+    logger.setLevel(logging.INFO)
+    
+    # Clear any existing handlers
+    logger.handlers.clear()
+    
+    # Create temporary file handler (will rename after getting score)
+    temp_log_file = os.path.join(log_dir, f"{task_id}_temp.log")
+    file_handler = logging.FileHandler(temp_log_file, mode='w')
+    file_handler.setLevel(logging.INFO)
+    
+    # Create formatter
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    file_handler.setFormatter(formatter)
+    
+    # Add handler to logger
+    logger.addHandler(file_handler)
+    
+    return logger, temp_log_file
+
+def rename_log_file(temp_log_file, task_id, score_percentage):
+    """Rename the temporary log file to include the score"""
+    log_dir = "e2e_logs"
+    final_log_file = os.path.join(log_dir, f"{task_id}_score_{score_percentage:.1f}%.log")
+    
+    # Rename the file
+    if os.path.exists(temp_log_file):
+        os.rename(temp_log_file, final_log_file)
+    
+    return final_log_file
     
 # Example usage
 async def main():
     """E2E usage of the ARC solver."""
-    ids = []
-    ids = [f[:-5] for f in os.listdir('data') if f.endswith('.json')]
-    score = 0
-    count = 0
-    for id in ids:
-        file_path = f"data/{id}.json"
-        hint = await get_hints(file_path)
-        responses, ground_truth, exec_time = await solve_arc_task(
-            file_path=file_path,
-            hint=hint,
-            num_attempts=10,
-            visualize=False
-        )
-        if responses:
-            print(f"Successfully solved {len([r for r in responses if r is not None])} out of {len(responses)} test cases")
-        else:
-            print("No valid solutions found")
-        for i in range(len(responses)):
-            if responses[i]==ground_truth[i]:
-                score+=1
-            count+=1
-    print("Score: ", score/count*100)
+    ids = ["4c416de3"]
+    #ids = [f[:-5] for f in os.listdir('data') if f.endswith('.json')]
+    overall_score = 0
+    overall_count = 0
+    
+    for task_id in ids:
+        # Set up logging for this task
+        logger, temp_log_file = setup_logger_for_id(task_id)
+        
+        try:
+            logger.info(f"Starting processing for task {task_id}")
+            
+            file_path = f"data/{task_id}.json"
+            
+            # Get hints
+            logger.info("Getting hints...")
+            hint_start_time = time.time()
+            hint = await get_hints(file_path)
+            hint_time = time.time() - hint_start_time
+            logger.info(f"Hints completed in {hint_time:.2f}s")
+            logger.info(f"Generated hint: {hint[:200]}..." if len(hint) > 200 else f"Generated hint: {hint}")
+            
+            # Solve the task
+            logger.info("Solving task...")
+            solve_start_time = time.time()
+            responses, ground_truth, exec_time = await solve_arc_task(
+                file_path=file_path,
+                hint=hint,
+                num_attempts=5,
+                visualize=True
+            )
+            solve_time = time.time() - solve_start_time
+            logger.info(f"Task solving completed in {solve_time:.2f}s")
+            
+            # Calculate score for this task
+            task_score = 0
+            task_count = 0
+            
+            if responses:
+                solved_count = len([r for r in responses if r is not None])
+                logger.info(f"Successfully solved {solved_count} out of {len(responses)} test cases")
+                
+                for i in range(len(responses)):
+                    if responses[i] == ground_truth[i]:
+                        task_score += 1
+                        logger.info(f"Test case {i+1}: CORRECT")
+                    else:
+                        logger.info(f"Test case {i+1}: INCORRECT")
+                    task_count += 1
+            else:
+                logger.warning("No valid solutions found")
+            
+            # Calculate percentage for this task
+            task_percentage = (task_score / task_count * 100) if task_count > 0 else 0
+            logger.info(f"Task {task_id} Score: {task_score}/{task_count} ({task_percentage:.1f}%)")
+            logger.info(f"Total processing time: {hint_time + solve_time:.2f}s")
+            
+            # Update overall score
+            overall_score += task_score
+            overall_count += task_count
+            
+        except Exception as e:
+            logger.error(f"Error processing task {task_id}: {str(e)}")
+            task_percentage = 0
+        
+        finally:
+            # Close logger handlers
+            for handler in logger.handlers[:]:
+                handler.close()
+                logger.removeHandler(handler)
+            
+            # Rename log file with score
+            final_log_file = rename_log_file(temp_log_file, task_id, task_percentage)
+            print(f"Log saved to: {final_log_file}")
+    
+    # Print overall results
+    overall_percentage = (overall_score / overall_count * 100) if overall_count > 0 else 0
+    print(f"\nOverall Score: {overall_score}/{overall_count} ({overall_percentage:.1f}%)")
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -152,14 +152,22 @@ def process_single_test_case(prompt, num_attempts,critic=False):
         response = extract_matrix_from_response(raw_response)
         arr_response = matrix_to_arr(response)
         return raw_response, arr_response
-    
-    with ThreadPoolExecutor(max_workers=min(num_attempts, 5)) as executor:
-        futures = [executor.submit(get_single_response, prompt) for _ in range(num_attempts)]
-        responses = []
-        for future in futures:
-            raw_response, arr_response = future.result()
-            responses.append((raw_response, arr_response))
-        return responses
+    try:
+        with ThreadPoolExecutor(max_workers=min(num_attempts, 5)) as executor:
+            futures = [executor.submit(get_single_response, prompt) for _ in range(num_attempts)]
+            responses = []
+            for future in futures:
+                raw_response, arr_response = future.result()
+                responses.append((raw_response, arr_response))
+            return responses
+    except:
+        with ThreadPoolExecutor(max_workers=min(num_attempts, 1)) as executor:
+            futures = [executor.submit(get_single_response, prompt) for _ in range(num_attempts)]
+            responses = []
+            for future in futures:
+                raw_response, arr_response = future.result()
+                responses.append((raw_response, arr_response))
+            return responses
 
 async def get_solved_outputs_multiple_in_parallel(arc_input, hint, num_attempts, return_raw_responses=False, critic=False):
     """
