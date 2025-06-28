@@ -1,7 +1,7 @@
 import asyncio
 from dotenv import load_dotenv
 from arc_agi.src.patterns.pattern_detection_prompt import PROMPT
-from arc_agi.src.patterns.pattern_hint_prompt import HINT_PROMPT_TEMPLATE
+from arc_agi.src.patterns.detailed_hint_prompt import HINT_PROMPT_TEMPLATE
 import json
 from typing import List, Dict, Optional
 from pydantic import BaseModel
@@ -42,8 +42,12 @@ async def generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_
         output_grid_viz=output_grid_viz
     )
     try:
-        response = await get_completion(input_grid, output_grid, semaphore, str, prompt)
-        return response.strip()
+        response = await get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, prompt)
+        if response and hasattr(response, 'result') and response.result:
+            # Extract text from the structured response
+            return str(response.result[0].pattern_description if response.result[0].pattern_description else "Hint unavailable.")
+        else:
+            return "Hint unavailable."
     except Exception as e:
         print(f"Hint generation failed for {name}: {e}")
         return "Hint unavailable."
@@ -68,7 +72,7 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
             retain_json,
             pattern_data
         ))
-        prompts = prompts*3
+        prompts = prompts*5
         print(f"Processing {len(prompts)} patterns with {CONCURRENT_REQUESTS} concurrent requests...")
         tasks = [get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, p) for p in prompts]
         results = await asyncio.gather(*tasks, return_exceptions=True)

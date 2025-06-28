@@ -379,7 +379,7 @@ def rename_log_file(temp_log_file, task_id, score_percentage):
 # Example usage
 async def main():
     """E2E usage of the ARC solver."""
-    ids = ["4c416de3"]
+    ids = ["3e6067c3","0934a4d8","135a2760","1818057f","20a9e565","221dfab4","28a6681f","2ba387bc","2c181942","2d0172a1","3a25b0d8","332f06d7","446ef5d2","45a5af55","4e34c42c","53fb4810","58490d8a","58f5dbd5","5961cc34","64efde09","6e453dd6","71e489b6","7491f3cf","7666fa5d","7b0280bc","7b5033c1"]
     #ids = [f[:-5] for f in os.listdir('data') if f.endswith('.json')]
     overall_score = 0
     overall_count = 0
@@ -399,7 +399,7 @@ async def main():
             hint = await get_hints(file_path)
             hint_time = time.time() - hint_start_time
             logger.info(f"Hints completed in {hint_time:.2f}s")
-            logger.info(f"Generated hint: {hint[:200]}..." if len(hint) > 200 else f"Generated hint: {hint}")
+            logger.info(f"Generated hint: {hint}")
             
             # Solve the task
             logger.info("Solving task...")
@@ -408,7 +408,7 @@ async def main():
                 file_path=file_path,
                 hint=hint,
                 num_attempts=5,
-                visualize=True
+                visualize=False
             )
             solve_time = time.time() - solve_start_time
             logger.info(f"Task solving completed in {solve_time:.2f}s")

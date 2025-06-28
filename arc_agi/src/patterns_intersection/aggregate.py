@@ -1,7 +1,6 @@
 from collections import Counter
-from arc_agi.src.utils.llm_utils import summarize_reasons, get_completion
+from arc_agi.src.utils.llm_utils import summarize_reasons, summarize_hints
 from arc_agi.src.utils.visualization_utils import get_arr_viz
-from arc_agi.src.patterns.pattern_hint_prompt import HINT_PROMPT_TEMPLATE
 import asyncio
 
 CONCURRENT_REQUESTS = 5
@@ -20,32 +19,12 @@ def format_params_for_prompt(params):
         lines.append(f"- **{key}**: {values_list}")
     return "\n".join(lines)
 
-
-async def generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_grid_viz, name, description, reason, params):
-    params_formatted = format_params_for_prompt(params)
-
-    prompt = HINT_PROMPT_TEMPLATE.format(
-        pattern_name=name,
-        description=description,
-        reason=reason,
-        input_grid_viz=input_grid_viz,
-        output_grid_viz=output_grid_viz,
-        params=params_formatted  # ← now passed into the prompt
-    )
-
-    try:
-        response = await get_completion(input_grid, output_grid, semaphore, str, prompt)
-        return response.strip()
-    except Exception as e:
-        print(f"Hint generation failed for {name}: {e}")
-        return "Hint unavailable."
-
-
-async def intersect(results, input_grid, output_grid):
+async def intersect(results):
     counts = Counter()
     pattern_params = {}
     pattern_reasons = {}
     pattern_descriptions = {}
+    pattern_hints = {}
 
     for pattern_result in results:
         if isinstance(pattern_result, Exception):
@@ -65,6 +44,11 @@ async def intersect(results, input_grid, output_grid):
 
         if pattern_name not in pattern_descriptions:
             pattern_descriptions[pattern_name] = pattern_result.get('description', '')
+
+        if pattern_name not in pattern_hints:
+            pattern_hints[pattern_name] = []
+        if pattern_result.get('detailed_hint'):
+            pattern_hints[pattern_name].append(pattern_result['detailed_hint'])
 
         if pattern_name not in pattern_params:
             pattern_params[pattern_name] = {}
@@ -89,22 +73,18 @@ async def intersect(results, input_grid, output_grid):
         reasons = pattern_reasons.get(pattern_name, [])
         summarized_reasons[pattern_name] = await summarize_reasons(reasons)
 
-    # Visualizations for hint generation
-    input_grid_viz = get_arr_viz(input_grid)
-    output_grid_viz = get_arr_viz(output_grid)
+    summarized_hints = {}
+    for pattern_name in counts:
+        hints = pattern_hints.get(pattern_name, [])
+        summarized_hints[pattern_name] = await summarize_hints(hints)
 
     # Final restructure with hints
     restructured_pattern_params = []
-    for pattern_name in pattern_params:
+    for pattern_name in counts:
         pattern_description = pattern_descriptions.get(pattern_name, "")
         reason = summarized_reasons.get(pattern_name, "")
-        params = pattern_params[pattern_name]
-
-        detailed_hint = await generate_pattern_hint(
-            input_grid, output_grid,
-            input_grid_viz, output_grid_viz,
-            pattern_name, pattern_description, reason, params
-        )
+        params = pattern_params.get(pattern_name, {})
+        detailed_hint = summarized_hints.get(pattern_name, "")
 
         restructured_pattern_params.append({
             'name': pattern_name,
