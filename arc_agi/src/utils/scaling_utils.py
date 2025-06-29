@@ -1,11 +1,10 @@
-# TODO: Update this function to be able to scale across x and y axes with different scale factors
-
-
-from typing import List, Union, Tuple
+from typing import List, Union, Tuple, Dict, Any
 from collections import Counter
 
 Grid = List[List[Union[int, float]]]
-Metadata = List[List[List[Tuple[int, int, Union[int, float]]]]]
+
+# Enhanced metadata stores values and positions for each downscaled block
+EnhancedMetadata = List[List[Dict[str, Any]]]
 
 
 def scale_grid_simple(grid: Grid, scale_factor: float) -> Grid:
@@ -104,9 +103,7 @@ def _downscale_grid_simple(grid: Grid, new_rows: int, new_cols: int) -> Grid:
 
 
 def scale_grid_nearest_neighbor_simple(grid: Grid, scale_factor: float) -> Grid:
-    """
-    Scale a grid using nearest neighbor interpolation (simpler but faster).
-    """
+    """Scale a grid using nearest neighbor interpolation (simpler but faster)."""
     if not grid or not grid[0]:
         return []
 
@@ -134,18 +131,21 @@ def scale_grid_nearest_neighbor_simple(grid: Grid, scale_factor: float) -> Grid:
     return result
 
 
-def downscale_grid_with_metadata(grid: Grid, target_rows: int, target_cols: int) -> Tuple[Grid, Metadata]:
+def downscale_grid_with_metadata(grid: Grid, target_rows: int, target_cols: int) -> Tuple[Grid, EnhancedMetadata]:
     """
-    Downscale grid while preserving metadata that maps original positions to downscaled cells.
+    Downscale grid while preserving metadata that stores original values and positions for each block.
 
     Returns:
         - downscaled grid
-        - metadata[i][j] = list of (orig_r, orig_c, original_value)
+        - metadata[i][j] = {
+              "positions": List of (r, c),
+              "values": 2D block values from original grid
+          }
     """
     orig_rows = len(grid)
     orig_cols = len(grid[0])
     downscaled_grid = []
-    metadata: Metadata = [[[] for _ in range(target_cols)] for _ in range(target_rows)]
+    metadata: EnhancedMetadata = [[{} for _ in range(target_cols)] for _ in range(target_rows)]
 
     for i in range(target_rows):
         row = []
@@ -156,38 +156,64 @@ def downscale_grid_with_metadata(grid: Grid, target_rows: int, target_cols: int)
             end_j = int((j + 1) * orig_cols / target_cols)
 
             block = []
+            positions = []
             for r in range(start_i, end_i):
+                row_block = []
                 for c in range(start_j, end_j):
-                    val = grid[r][c]
-                    block.append(val)
-                    metadata[i][j].append((r, c, val))
+                    row_block.append(grid[r][c])
+                    positions.append((r, c))
+                block.append(row_block)
 
-            if not block:
+            # Store full block in metadata
+            metadata[i][j] = {
+                "positions": positions,
+                "values": block
+            }
+
+            # Compute summary value for the block
+            flat_vals = [val for row_b in block for val in row_b]
+            if not flat_vals:
                 row.append(0)
+            elif all(isinstance(x, int) for x in flat_vals):
+                counts = Counter(flat_vals)
+                chosen = min(counts.items(), key=lambda x: x[1])[0]
+                row.append(chosen)
             else:
-                if all(isinstance(x, int) for x in block):
-                    counts = Counter(block)
-                    chosen = min(counts.items(), key=lambda x: x[1])[0]
-                    row.append(chosen)
-                else:
-                    row.append(sum(block) / len(block))
+                row.append(sum(flat_vals) / len(flat_vals))
         downscaled_grid.append(row)
 
     return downscaled_grid, metadata
 
 
-def upscale_with_metadata(transformed_grid: Grid, metadata: Metadata, original_shape: Tuple[int, int]) -> Grid:
+def upscale_with_metadata(transformed_grid: Grid, downscaled_grid: Grid, metadata: EnhancedMetadata, original_shape: Tuple[int, int]) -> Grid:
     """
-    Upscale a transformed downscaled grid back to original size using stored metadata.
-    Each original cell is updated using the transformed value of the corresponding downscaled block.
+    Upscale a transformed downscaled grid back to original size using enhanced metadata.
+    If a transformed value is unchanged from the original downscaled value, restore the original block.
+    If changed, apply the transformed value to all original positions.
     """
     orig_rows, orig_cols = original_shape
     upscaled_grid = [[0 for _ in range(orig_cols)] for _ in range(orig_rows)]
 
     for i in range(len(transformed_grid)):
         for j in range(len(transformed_grid[0])):
-            new_val = transformed_grid[i][j]
-            for r, c, _ in metadata[i][j]:
-                upscaled_grid[r][c] = new_val
+            transformed_val = transformed_grid[i][j]
+            original_val = downscaled_grid[i][j]
+            positions = metadata[i][j]["positions"]
+            original_block = metadata[i][j]["values"]
+
+            if transformed_val == original_val:
+                # Restore original block
+                h = len(original_block)
+                w = len(original_block[0]) if h > 0 else 0
+                idx = 0
+                for bi in range(h):
+                    for bj in range(w):
+                        r, c = positions[idx]
+                        upscaled_grid[r][c] = original_block[bi][bj]
+                        idx += 1
+            else:
+                # Fill block with transformed value
+                for r, c in positions:
+                    upscaled_grid[r][c] = transformed_val
 
     return upscaled_grid
