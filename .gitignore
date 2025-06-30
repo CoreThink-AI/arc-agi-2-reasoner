@@ -48,6 +48,7 @@ logs/
 logs_parallel/
 testing/logs/
 logs_solver
+e2e_logs/
 
 # Local development settings
 local_settings.py

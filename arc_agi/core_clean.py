@@ -9,6 +9,7 @@ import time
 from collections import Counter
 from arc_agi.src.solver.solver import get_solved_outputs, get_solved_outputs_multiple_in_parallel
 from arc_agi.src.utils.visualization_utils import plot_grid
+from arc_agi.src.low_hanging.jigsaw import check_jigsaw, do_jigsaw
 import matplotlib.pyplot as plt
 
 async def get_consensus_response(json_data, hint, num_attempts=3,critic=False):
@@ -203,14 +204,18 @@ async def solve_arc_task(file_path, hint, num_attempts=3, visualize=True,critic=
 # Example usage
 async def main():
     """Example usage of the ARC solver."""
-    file_path = "data/28a6681f.json"
+    file_path = "data/981571dc.json"
     hint = "### Task: Gravity-Driven Cavity Filling with Blue Cells\n\n#### Color Index Reference\n- **Color 1 (Blue)** — Mobile filler cells that will “fall” into cavities under a gravity effect.\n- **Color 0 (Background/Voids)** — Empty space and cavities to be filled.\n- **Color 2+ (Other Colors)** — Immovable obstacles; define the boundaries of cavities.\n\n---\n\n#### Input  \nYou are given a 2D grid of size *H×W* containing:\n- **Blue cells (1):** A fixed number of filler cells that can move vertically under gravity.\n- **Void cells (0):** Empty spaces that represent cavities.\n- **Obstacle cells (≥2):** Walls or fixed regions that define cavity boundaries.\n\n---\n\n#### Objective  \n1. **Detect all vertical cavities** that are bounded on both left and right by obstacle cells (i.e., each row segment of zeros whose immediate neighbors on left and right are non-zero).\n2. **Simulate gravity** by letting Blue cells “fall” straight down into these cavities from above, filling from the bottom up.\n3. **Preserve the total count** of Blue cells; no Blue cell is created or destroyed.\n4. **Produce an updated grid** where voids within bounded cavities are filled as far as possible by Blue cells under gravity.\n\n---\n\n#### Step-by-Step Instructions\n\n1. **Initialize**  \n   - Read the input grid `G[H][W]`.  \n   - Prepare an output grid `H_grid ← G` for the final state.\n\n2. **Locate Bounded Cavities**  \n   - For each row *r* and each column segment `c_start…c_end` where `G[r][c] == 0` for all `c_start ≤ c ≤ c_end`, check that:  \n     - `G[r][c_start – 1] ≥ 2` (left obstacle) and  \n     - `G[r][c_end + 1] ≥ 2` (right obstacle).  \n   - Record all such row‐segments as “cavity cells.”\n\n3. **Count Blue Cells Above Cavities**  \n   - For each cavity cell `(r, c)` in a bounded segment, look upward in column *c* from row `0` to `r–1` and count all Blue cells (`1`) that are not already assigned to another cavity fill.  \n   - Aggregate these counts per cavity segment.\n\n4. **Simulate Gravity Filling**  \n   - For each cavity segment in bottom‐up order (largest *r* first):  \n     a. Let *k* = number of available Blue cells above that segment.  \n     b. For rows `r` down to `r – k + 1`, set `H_grid[row][c] = 1` to drop Blue cells into the lowest empty spots.  \n     c. Mark those *k* Blue cells in the source columns as “used” (so they won’t fall again).  \n     d. Leave any remaining voids (`0`) if Blue cells are exhausted.\n\n5. **Preserve Remaining Grid**  \n   - All non‐cavity zeros that aren’t bounded or that lie outside the simulated falls remain `0`.  \n   - Obstacle cells (≥2) remain unchanged.  \n   - Any Blue cells not used to fill cavities stay in their original positions in `H_grid`.\n\n6. **Finalize Output**  \n   - Return `H_grid`, now with gravity‐filled bounded cavities and the same total count of Blue cells as the input.\n\n---\n\n#### Constraints\n- Cavities must be strictly horizontally bounded by obstacle cells on both sides in the same row.\n- Gravity acts only downward; Blue cells do not move horizontally or upward.\n- Total number of Blue cells in the output must equal the input count.\n- Obstacle cells (colors ≥2) are fixed and impermeable.\n\n---\n\n#### Output  \nA 2D grid of size *H×W* in which all possible bounded cavities have been filled from the bottom up by Blue cells under gravity, with no change in total Blue‐cell count and all obstacle positions preserved."
-    responses, ground_truth, exec_time = await solve_arc_task(
-        file_path=file_path,
-        hint=hint,
-        num_attempts=10,
-        visualize=True
-    )
+    if check_jigsaw(file_path):
+        print("Doing Jigsaw")
+        responses, ground_truth,exec_time = do_jigsaw(file_path)
+    else:
+        responses, ground_truth, exec_time = await solve_arc_task(
+            file_path=file_path,
+            hint=hint,
+            num_attempts=10,
+            visualize=True
+        )
     print(exec_time)
     if responses:
         print(f"Successfully solved {len([r for r in responses if r is not None])} out of {len(responses)} test cases")

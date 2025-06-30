@@ -209,13 +209,14 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
     Multiple Explanations:
     {combined_reasons}
 
-    Please provide a step by step account of how the input image would go through the transformation to reach the output image:"""
+    Please provide a step by step account of how the input image would go through the transformation to reach the output image:
+    Give output in markdown syntax."""
 
     try:
         response = await openai_client.chat.completions.create(
             model=deployment,  
             messages=[{"role": "user", "content": prompt}],
-            max_completion_tokens=200
+            max_completion_tokens=2000
         )
         return response.choices[0].message.content.strip()
     except Exception as e:
@@ -238,7 +239,7 @@ async def summarize_hints(hint_list: List[str]) -> str:
         response = await openai_client.chat.completions.create(
             model=deployment,  
             messages=[{"role": "user", "content": prompt}],
-            max_completion_tokens=200
+            max_completion_tokens=2000
         )
         return response.choices[0].message.content.strip()
     except Exception as e:

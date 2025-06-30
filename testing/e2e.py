@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 from arc_agi.src.objects.base import Grid, BaseObject
 from arc_agi.src.patterns.find_patterns import unit_patterns
 from arc_agi.src.patterns_intersection.aggregate import intersect
+from arc_agi.src.low_hanging.jigsaw import do_jigsaw, check_jigsaw
 
 def create_base_object_sync(grid, coord_tuples):
     """
@@ -218,7 +219,54 @@ def visualize_results(responses, ground_truths, title_prefix="Test"):
     plt.tight_layout()
     plt.show()
 
-async def solve_arc_task(file_path, hint, num_attempts=3, visualize=True,critic=False):
+
+def save_results_as_png(responses, ground_truths, task_id, title_prefix="Test"):
+    """Save visualization as PNG file in e2e_logs folder."""
+    if not responses and not ground_truths:
+        print("No results to save")
+        return
+    
+    num_cases = max(len(responses) if responses else 0, 
+                   len(ground_truths) if ground_truths else 0)
+    
+    if num_cases == 0:
+        print("No test cases to save")
+        return
+    
+    # Create subplot layout: response and ground truth for each test case
+    fig, axes = plt.subplots(1, num_cases * 2, figsize=(5 * num_cases * 2, 5))
+    
+    # Handle single test case
+    if num_cases == 1:
+        axes = [axes] if num_cases * 2 == 1 else list(axes)
+    
+    for i in range(num_cases):
+        # Plot response
+        resp_idx = i * 2
+        if i < len(responses) and responses[i] is not None:
+            plot_grid(responses[i], f"{title_prefix} {i+1} - Response", axes[resp_idx])
+        else:
+            axes[resp_idx].set_title(f"{title_prefix} {i+1} - No Response")
+            axes[resp_idx].axis('off')
+        
+        # Plot ground truth
+        gt_idx = i * 2 + 1
+        if ground_truths and i < len(ground_truths) and ground_truths[i] is not None:
+            plot_grid(ground_truths[i], f"{title_prefix} {i+1} - Ground Truth", axes[gt_idx])
+        else:
+            axes[gt_idx].set_title(f"{title_prefix} {i+1} - No Ground Truth")
+            axes[gt_idx].axis('off')
+    
+    plt.tight_layout()
+    
+    # Save as PNG in e2e_logs folder
+    png_filename = f"e2e_logs/{task_id}_visualization.png"
+    plt.savefig(png_filename, dpi=150, bbox_inches='tight')
+    plt.close()  # Close the figure to free memory
+    print(f"Visualization saved to: {png_filename}")
+
+
+async def solve_arc_task(file_path, hint, num_attempts=3, visualize=True, critic=False, task_id=None):
     """
     Main function to solve an ARC task with given hint.
     
@@ -227,6 +275,8 @@ async def solve_arc_task(file_path, hint, num_attempts=3, visualize=True,critic=
         hint: Pattern hint for solving
         num_attempts: Number of consensus attempts
         visualize: Whether to show visualization
+        critic: Whether to use critic mode
+        task_id: Task ID for saving PNG files
         
     Returns:
         tuple: (consensus_responses, ground_truth, execution_time)
@@ -253,9 +303,12 @@ async def solve_arc_task(file_path, hint, num_attempts=3, visualize=True,critic=
     execution_time = time.time() - start_time
     print(f"Task solved in {execution_time:.2f} seconds")
     
-    # Visualize results
-    if visualize and (responses or ground_truth):
-        visualize_results(responses, ground_truth)
+    # Visualize results or save as PNG
+    if responses or ground_truth:
+        if visualize:
+            visualize_results(responses, ground_truth)
+        elif task_id:
+            save_results_as_png(responses, ground_truth, task_id)
     
     return responses, ground_truth, execution_time
 
@@ -325,7 +378,7 @@ async def get_hints(file_path):
     aggregation_start = time.time()
     
     # Get top 2 patterns with highest counts
-    top_2_patterns = sorted(all_counts.items(), key=lambda x: x[1], reverse=True)[:2]
+    top_2_patterns = sorted(all_counts.items(), key=lambda x: x[1], reverse=True)[:3]
     
     # Filter patterns to only include those in top 2
     top_pattern_names = {pattern[0] for pattern in top_2_patterns}
@@ -379,7 +432,7 @@ def rename_log_file(temp_log_file, task_id, score_percentage):
 # Example usage
 async def main():
     """E2E usage of the ARC solver."""
-    ids = ["3e6067c3","0934a4d8","135a2760","1818057f","20a9e565","221dfab4","28a6681f","2ba387bc","2c181942","2d0172a1","3a25b0d8","332f06d7","446ef5d2","45a5af55","4e34c42c","53fb4810","58490d8a","58f5dbd5","5961cc34","64efde09","6e453dd6","71e489b6","7491f3cf","7666fa5d","7b0280bc","7b5033c1"]
+    ids = ["0934a4d8"]
     #ids = [f[:-5] for f in os.listdir('data') if f.endswith('.json')]
     overall_score = 0
     overall_count = 0
@@ -392,25 +445,30 @@ async def main():
             logger.info(f"Starting processing for task {task_id}")
             
             file_path = f"data/{task_id}.json"
-            
-            # Get hints
-            logger.info("Getting hints...")
-            hint_start_time = time.time()
-            hint = await get_hints(file_path)
-            hint_time = time.time() - hint_start_time
-            logger.info(f"Hints completed in {hint_time:.2f}s")
-            logger.info(f"Generated hint: {hint}")
-            
-            # Solve the task
-            logger.info("Solving task...")
-            solve_start_time = time.time()
-            responses, ground_truth, exec_time = await solve_arc_task(
-                file_path=file_path,
-                hint=hint,
-                num_attempts=5,
-                visualize=False
-            )
-            solve_time = time.time() - solve_start_time
+            if check_jigsaw(file_path):
+                print("Doing Jigsaw")
+                responses, ground_truth,solve_time = do_jigsaw(file_path)
+                hint_time=0
+            else:
+                # Get hints
+                logger.info("Getting hints...")
+                hint_start_time = time.time()
+                hint = await get_hints(file_path)
+                hint_time = time.time() - hint_start_time
+                logger.info(f"Hints completed in {hint_time:.2f}s")
+                logger.info(f"Generated hint: {hint}")
+                
+                # Solve the task
+                logger.info("Solving task...")
+                solve_start_time = time.time()
+                responses, ground_truth, exec_time = await solve_arc_task(
+                    file_path=file_path,
+                    hint=hint,
+                    num_attempts=10,
+                    visualize=False,
+                    task_id=task_id
+                )
+                solve_time = time.time() - solve_start_time
             logger.info(f"Task solving completed in {solve_time:.2f}s")
             
             # Calculate score for this task
@@ -441,7 +499,9 @@ async def main():
             overall_count += task_count
             
         except Exception as e:
+            import traceback
             logger.error(f"Error processing task {task_id}: {str(e)}")
+            logger.error(f"Detailed error traceback:\n{traceback.format_exc()}")
             task_percentage = 0
         
         finally:
