@@ -81,11 +81,10 @@ async def intersect(results):
     # Final restructure with hints
     restructured_pattern_params = []
     for pattern_name in counts:
-        pattern_description = pattern_descriptions.get(pattern_name, "")
-        reason = summarized_reasons.get(pattern_name, "")
-        params = pattern_params.get(pattern_name, {})
-        detailed_hint = summarized_hints.get(pattern_name, "")
-
+        pattern_description = pattern_descriptions[pattern_name]
+        reason = summarized_reasons[pattern_name]
+        params = pattern_params[pattern_name]
+        detailed_hint = summarized_hints[pattern_name]
         restructured_pattern_params.append({
             'name': pattern_name,
             'description': pattern_description,
