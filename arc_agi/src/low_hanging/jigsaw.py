@@ -54,9 +54,10 @@ def find_symmetry(grid, blank_val=None):
 
     score_h, mid_h = score_axis(is_horizontal=True)
     score_v, mid_v = score_axis(is_horizontal=False)
+    b,f = compute_diagonal_symmetry_scores(grid,blank_val)
     print("horizontal ", score_h)
     print("vertical", score_v)
-    return mid_h, mid_v,max(score_h,score_v)
+    return mid_h, mid_v,max(score_h,score_v,b,f)
 
 def fill_blanks(grid, axis, mid, blank_val=None):
     rows, cols = len(grid), len(grid[0]) if grid else 0
@@ -110,7 +111,7 @@ def fill_by_forwardslash_symmetry(grid, blank_val):
                 grid[i][j] = grid[sym_i][sym_j]
     return grid
 
-def compute_symmetry_scores(grid, blank_val=None):
+def compute_diagonal_symmetry_scores(grid, blank_val=None):
     n = len(grid)
     total_pairs = 0
     match_backslash = 0
@@ -155,7 +156,7 @@ def solve(grid):
   axis_h,axis_v,_  = find_symmetry(grid, blank_val)
   filled = fill_blanks(grid, "horizontal",axis_h,blank_val)
   filled = fill_blanks(filled,"vertical",axis_v,blank_val)
-  b,f = compute_symmetry_scores(filled,blank_val)
+  b,f = compute_diagonal_symmetry_scores(filled,blank_val)
   print(b,f)
   if b>f:
     filled = fill_by_backwardslash_symmetry(filled,blank_val)
