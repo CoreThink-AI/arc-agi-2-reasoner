@@ -85,7 +85,6 @@ async def intersect(results):
         reason = summarized_reasons[pattern_name]
         params = pattern_params[pattern_name]
         detailed_hint = summarized_hints[pattern_name]
-
         restructured_pattern_params.append({
             'name': pattern_name,
             'description': pattern_description,
