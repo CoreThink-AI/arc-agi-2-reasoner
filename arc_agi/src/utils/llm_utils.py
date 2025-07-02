@@ -120,16 +120,24 @@ def call_llm(provider: str, prompt: str, model: str = None, temperature: float =
         return response.choices[0].message.content
 
     elif provider == "anthropic":
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        if not model:
-            model = "claude-3-opus-20240229"
-        response = client.messages.create(
-            model=model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=temperature,
-            max_tokens=max_tokens
-        )
-        return response.content[0].text
+        response_text = ""
+        with anthropic_client.messages.stream(
+                model="claude-opus-4-20250514",
+                max_tokens=32000,
+                thinking={
+                    "type": "enabled",
+                    "budget_tokens": 16000
+                },
+                messages=[{
+                    "role": "user",
+                    "content": prompt
+                }]
+        ) as stream:
+            for text in stream.text_stream:
+                # print(text, end="", flush=True)
+                response_text += text
+
+        return response_text
 
     elif provider == "together":
         if not model:
