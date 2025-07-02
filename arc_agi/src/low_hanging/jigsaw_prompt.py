@@ -1,12 +1,12 @@
 blank_prompt = """
-You are given a square 2D grid represented as a Python list of lists of integers, where each integer is a colour index. The grid should be perfectly symmetric (vertical, horizontal, rotational, or any combination), but one or more than one contiguous patch of same-coloured cells currently breaks that symmetry.
+You are given sample train examples which consist of Input and Output Grids. The transformation occuring between Input to Output is completing the symmetry of some patches in the input.
 
 Your task:
-1. Identify which colour patch is wrong.
+1. Compare Input and Output Grid and let me know which color patch needs to be completed from the input grid.
 2. Provide a detailed, step-by-step reasoning of how you located the patch and determined its correct colour.
 3. Finally, on a line by itself, output *only* the integer colour of the wrong patch, enclosed in triple backticks.
 
-Input Grid
+Training Examples
 {}
 """
 

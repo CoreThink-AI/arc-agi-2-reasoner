@@ -15,7 +15,8 @@ def find_symmetry(grid, blank_val=None):
     def score_axis(is_horizontal):
         length = rows if is_horizontal else cols
         # consider every possible axis position
-        mids = [i for i in range(length)] + [i + 0.5 for i in range(length - 1)]
+        half = int(length/2)
+        mids = [i for i in range(half-5,half+5)] + [i + 0.5 for i in range(half - 5, half + 5)]
         best = {'score': -1, 'mid': None}
 
         for mid in mids:
@@ -140,9 +141,9 @@ def compute_diagonal_symmetry_scores(grid, blank_val=None):
 
     return score_backslash, score_fwdslash
 
-def infer_blank_color(grid: List[List[Any]]) -> Any:
+def infer_blank_color(data) -> Any:
 
-  response = get_anthropic_response_stream(blank_prompt.format(get_arr_viz(grid)))
+  response = get_anthropic_response_stream(blank_prompt.format(get_formatted_examples(data["train"])))
   match = re.search(r"```[\s]*([0-9]+)[\s]*```",response)
   if match:
     num = int(match.group(1))
@@ -150,19 +151,15 @@ def infer_blank_color(grid: List[List[Any]]) -> Any:
   else:
     print("Match not found")
     return 0
-
-def solve(grid):
-  blank_val = infer_blank_color(grid)
+  
+def solve(grid,blank_val,data):
+  blank_val = infer_blank_color(data)
   axis_h,axis_v,_  = find_symmetry(grid, blank_val)
   filled = fill_blanks(grid, "horizontal",axis_h,blank_val)
   filled = fill_blanks(filled,"vertical",axis_v,blank_val)
-  b,f = compute_diagonal_symmetry_scores(filled,blank_val)
-  print(b,f)
-  if b>f:
-    filled = fill_by_backwardslash_symmetry(filled,blank_val)
-  else:
-    filled = fill_by_forwardslash_symmetry(filled,blank_val)
-  return filled, blank_val
+  filled = fill_by_backwardslash_symmetry(filled,blank_val)
+  #filled = fill_by_forwardslash_symmetry(filled,blank_val)
+  return filled,blank_val
 
 def find_background_color_simple(grid):
     """Simple rule-based background color detection without LLM"""
@@ -196,6 +193,58 @@ def find_background_color_simple(grid):
     
     return most_common_color
 
+from typing import List, Tuple
+
+Grid = List[List[int]]
+
+def extract_corresponding_patch(
+    input_grid: Grid,
+    output_grid: Grid,
+    target_color: int
+) -> Grid:
+    """
+    Finds the bounding box of all cells == target_color in input_grid,
+    and returns the subgrid of output_grid covering exactly that same box.
+    """
+    rows = len(input_grid)
+    cols = len(input_grid[0]) if rows else 0
+
+    # Collect coordinates of the patch in input
+    patch_coords: List[Tuple[int,int]] = [
+        (r, c)
+        for r in range(rows)
+        for c in range(cols)
+        if input_grid[r][c] == target_color
+    ]
+    if not patch_coords:
+        raise ValueError(f"No cells of color {target_color} found in input grid.")
+
+    # Determine bounding box
+    rs, cs = zip(*patch_coords)
+    min_r, max_r = min(rs), max(rs)
+    min_c, max_c = min(cs), max(cs)
+
+    # Slice the output grid
+    extracted: Grid = [
+        output_grid[r][min_c : max_c + 1]
+        for r in range(min_r, max_r + 1)
+    ]
+    return extracted
+
+def extract_jigsaw_output(file_path,i,full_grid,blank_val):
+
+  with open(file_path, 'r') as f:
+    data = json.load(f)
+  flag = 0
+  input_grid = data["test"][i]["input"]
+  for entry in data["train"]:
+    if len(entry["input"]) != len(entry["output"]) and len(entry["input"][0]) != len(entry["output"][0]):
+      flag=1
+  if flag==0:
+    return full_grid
+  else:
+    return extract_corresponding_patch(input_grid,full_grid,blank_val)
+  
 def check_jigsaw(file_path):
     with open(file_path, 'r') as f:
         data = json.load(f)
@@ -215,18 +264,12 @@ def do_jigsaw(file_path):
         data = json.load(f)
     tests = data["test"]
     arrs, gts = [],[]
-    for test in tests:
-        test_input = test["input"]
-        gt = test["output"]
-        gts.append(gt)
-        test_output,blank_val = solve(test_input)
-        print(blank_val)
-        sample = get_formatted_examples(data["train"])
-        test_input_viz = get_arr_viz(test_input)
-        test_output_viz = get_arr_viz(test_output)
-        response = get_anthropic_response_stream(prompt.format(sample,test_input_viz,str(blank_val),test_output_viz))
-        response = extract_matrix_from_response(response)
-        arr_response = matrix_to_arr(response)
+    for i,test in enumerate(tests):
+        print(i)
+        test_input = test["input"].copy()
+        gts.append(test["output"])
+        test_output,blank_val = solve(test_input,8,data)
+        arr_response = extract_jigsaw_output(file_path,i,test_output,blank_val)
         arrs.append(arr_response)
     
     return arrs, gts, time.time()-t1

@@ -1,0 +1,14 @@
+PROMPT = """
+You would be given training examples which would have Input and Output Grids. Your task is to find the transformation. To make your life easy, we have identified patterns. Your task is to give a consolidated explaination of what the transformation is and how it is happening
+**Training Examples**
+{}
+**Patterns**
+{}
+
+Sample Output:
+### Task: Match and Correct Pattern Deviations within Giant Objects\n\n#### Value Index Reference\n- **Any integer value** — Represents the repeating pattern elements inside each giant object.\n- **Deviant cells** — Cells whose value does not conform to the object’s internal pattern.\n\n---\n\n#### Input  \nYou are given a 2D grid of size *H×W* containing one or more “giant objects.”  Each object is a contiguous 8-connected region of non-zero values that follows a regular, repeating internal pattern (e.g. a checkerboard, stripe, or arithmetic progression).\n\n---\n\n#### Objective  \n1. **Detect each giant object** in the grid.  \n2. **Infer the object’s internal pattern** from its majority of cells.  \n3. **Identify deviant cells** whose values do not match the inferred pattern.  \n4. **Correct each deviant cell** by assigning it the expected value according to the pattern.\n\n---\n\n#### Step-by-Step Instructions\n\n1. **Initialize**  \n   - Read the input grid `G[H][W]`.  \n   - Prepare a copy `H_grid ← G` for corrections.\n\n2. **Locate Giant Objects**  \n   - Perform an 8-connected flood-fill over `G` to extract each non-zero component.  \n   - Store each object’s pixel coordinates as a list.\n\n3. **Infer Internal Pattern**  \n   For each object:  \n   - Collect its cell coordinates and original values.  \n   - Analyze relative positions (e.g. row+col parity, distance from centroid, or neighbor offsets) to hypothesize a repeating rule.  \n   - Validate the rule against the majority (>90%) of the object’s cells; record the expected value function `f(r,c)`.\n\n4. **Identify Deviant Cells**  \n   - For every pixel `(r,c)` in the object, compute `expected = f(r,c)`.  \n   - If `G[r][c] != expected`, mark `(r,c)` as deviant.\n\n5. **Correct Deviations**  \n   - For each marked deviant `(r,c)`, set `H_grid[r][c] = expected`.\n\n6. **Finalize Output**  \n   - After all objects are processed, return `H_grid`, with every interior cell now matching its object’s pattern.\n\n---\n\n#### Constraints  \n- Patterns may be based on coordinate functions (e.g. `(r+c)%k`), neighbor comparisons, or periodic tilings.  \n- An object’s pattern must hold for at least **90%** of its cells to be considered valid.  \n- Only correct cells within the object’s 8-connected region; do not alter background zeros or separate objects.\n\n---\n\n#### Output  \nA cleaned grid where every giant object’s internal pattern is perfectly consistent, and all out-of-pattern cells have been corrected to their inferred values.
+
+Keep the pattern similar to the Sample Output.
+
+Answer
+"""
