@@ -12,7 +12,7 @@ load_dotenv()
 
 # Initialize Grok client
 grok_client = OpenAI(
-    api_key="xai-QS7yozJGk7nVlZxuGBliKGGscJBteGifgDsVmrMyt8dtuA8G2WgWthj7GMdMGpHtvTNCXW13Nkb8mQEw",
+    api_key="",
     base_url="https://api.x.ai/v1",
     timeout=7200
 )
