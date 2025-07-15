@@ -285,7 +285,7 @@ async def solve_arc_task(file_path, hint, num_attempts=3, visualize=True, critic
     print(f"Solving ARC task: {file_path}")
     
     try:
-        with open(file_path) as f:
+        with open(file_path, 'r', encoding='utf-8') as f:
             json_data = json.load(f)
     except FileNotFoundError:
         print(f"Error: File {file_path} not found")
@@ -313,7 +313,7 @@ async def solve_arc_task(file_path, hint, num_attempts=3, visualize=True, critic
     return responses, ground_truth, execution_time
 
 async def get_hints(file_path):
-    with open(file_path) as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         json_data = json.load(f)
 
     patterns = []
@@ -432,7 +432,35 @@ def rename_log_file(temp_log_file, task_id, score_percentage):
 # Example usage
 async def main():
     """E2E usage of the ARC solver."""
-    ids = ["0934a4d8"]
+    ids = [
+        #"3e6067c3",
+        #"0934a4d8",
+        # "135a2760",
+        # "1818057f",
+        "20a9e565",
+        "221dfab4",
+        "28a6681f",
+        "2ba387bc",
+        "2c181942",
+        "2d0172a1",
+        "3a25b0d8",
+        "332f06d7",
+        "446ef5d2",
+        "45a5af55",
+        "4c416de3",
+        "4e34c42c",
+        "53fb4810",
+        "58490d8a",
+        "58f5dbd5",
+        "5961cc34",
+        "64efde09",
+        "6e453dd6",
+        "71e489b6",
+        "7491f3cf",
+        "7666fa5d",
+        "7b0280bc",
+        "7b5033c1"
+    ]
     #ids = [f[:-5] for f in os.listdir('data') if f.endswith('.json')]
     overall_score = 0
     overall_count = 0
