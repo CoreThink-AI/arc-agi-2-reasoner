@@ -446,7 +446,16 @@ def rename_log_file(temp_log_file, task_id, score_percentage):
 async def main(start, stop):
     """E2E usage of the ARC solver."""
     # ids = ["0934a4d8"]
-    ids = [f[start - 1:stop - 1] for f in os.listdir('data') if f.endswith('.json')]
+    # Get all .json files in data/ folder
+    all_files = [f.split(".")[0] for f in
+                 os.listdir(r'data') if
+                 f.endswith('.json')]
+
+    # Sort for consistent ordering
+    all_files.sort()
+
+    # Slice directly using start and stop (inclusive of .json)
+    ids = all_files[start - 1:stop]
     overall_score = 0
     overall_count = 0
 
