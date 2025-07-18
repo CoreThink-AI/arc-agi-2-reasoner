@@ -24,7 +24,11 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 endpoint = os.getenv("ENDPOINT_URL")
 deployment = os.getenv("DEPLOYMENT_NAME", "o4-mini")
 subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
-
+grok_client = OpenAI(
+    api_key=os.getenv("GROK_API_KEY"),
+    base_url="https://api.x.ai/v1",
+    timeout=7200
+)
 # Initialize Azure OpenAI client with key-based authentication
 #openai_client = AsyncAzureOpenAI(
 #    azure_endpoint=endpoint,
@@ -78,6 +82,23 @@ def get_anthropic_response_stream(prompt):
             response_text += text
     
     return response_text
+
+
+def get_grok_response_stream(prompt):
+    response_text = ""
+
+    with grok_client.chat.completions.create(
+        model="grok-4",
+        messages=[{"role": "user", "content": prompt}],
+        stream=True
+    ) as stream:
+        for chunk in stream:
+            content = chunk.choices[0].delta.content
+            if content:
+                response_text += content
+
+    return response_text
+
 
 def get_cerebras_response(prompt: str) -> str:
     response = cerebras_client.chat.completions.create(

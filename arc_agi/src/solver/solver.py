@@ -1,5 +1,5 @@
 from arc_agi.src.solver.solver_prompts import example_template, solver_prompt_template, new_solver_prompt, critic_prompt
-from arc_agi.src.utils.llm_utils import get_anthropic_response_stream, get_cerebras_response, parse_grid, call_llm
+from arc_agi.src.utils.llm_utils import get_anthropic_response_stream, get_cerebras_response, parse_grid, call_llm, get_grok_response_stream
 from arc_agi.src.utils.visualization_utils import get_arr_viz
 from arc_agi.src.objects.base import Grid, BaseObject
 import re, asyncio, json
@@ -112,21 +112,21 @@ def matrix_to_arr(matrix_str):
 async def get_solved_outputs(arc_input, hint, return_raw_responses=False):
     print("Creating the Prompt")
     prompt_arr, ground_truths_arr = await get_prompts(arc_input, hint)
-    #raw_responses = [get_anthropic_response_stream(prompt) for prompt in prompt_arr]
+    #raw_responses = [get_grok_response_stream(prompt) for prompt in prompt_arr]
     print("Started the LLM call")
-    raw_responses = [get_anthropic_response_stream(prompt) for prompt in prompt_arr]
+    raw_responses = [get_grok_response_stream(prompt) for prompt in prompt_arr]
     print(raw_responses)
     critic_prompts = []
     for i in range(len(raw_responses)):
         critic_prompts.append(critic_prompt.format(prompt_arr[i],raw_responses[i]))
-    raw_responses = [get_anthropic_response_stream(prompt) for prompt in critic_prompts]
+    raw_responses = [get_grok_response_stream(prompt) for prompt in critic_prompts]
     print(raw_responses)
     responses = [extract_matrix_from_response(response) for response in raw_responses]
     arr_responses = [matrix_to_arr(response) for response in responses]
     critic_prompts = []
     for i in range(len(raw_responses)):
         critic_prompts.append(critic_prompt.format(get_arr_viz(arr_responses[i]),raw_responses[i]))
-    raw_responses = [get_anthropic_response_stream(prompt) for prompt in critic_prompts]
+    raw_responses = [get_grok_response_stream(prompt) for prompt in critic_prompts]
     print(raw_responses)
     
     responses = [extract_matrix_from_response(response) for response in raw_responses]
@@ -141,14 +141,14 @@ def process_single_test_case(prompt, num_attempts,critic=False):
     Process a single test case with multiple attempts using ThreadPoolExecutor
     """
     def get_single_response(prompt):
-        raw_response = get_anthropic_response_stream(prompt)
+        raw_response = get_grok_response_stream(prompt)
         if critic:
             critic_prompt_text = critic_prompt.format(prompt, raw_response)
-            raw_response = get_anthropic_response_stream(critic_prompt_text)
+            raw_response = get_grok_response_stream(critic_prompt_text)
             response = extract_matrix_from_response(raw_response)
             arr_response = matrix_to_arr(response)
             critic_prompt_text = critic_prompt.format(get_arr_viz(arr_response), raw_response)
-            raw_response = get_anthropic_response_stream(critic_prompt_text)
+            raw_response = get_grok_response_stream(critic_prompt_text)
         response = extract_matrix_from_response(raw_response)
         arr_response = matrix_to_arr(response)
         return raw_response, arr_response
@@ -220,7 +220,7 @@ if __name__ == "__main__":
         
         #prompt_arr, ground_truths_arr = await get_prompts(arc_input, hint)
 
-        # res = get_anthropic_response_stream(prompt_arr[0])
+        # res = get_grok_response_stream(prompt_arr[0])
         
         #responses, arr_responses = await get_solved_outputs(arc_input, hint)
         
