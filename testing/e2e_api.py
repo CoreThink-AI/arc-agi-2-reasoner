@@ -30,10 +30,10 @@ def create_base_object_sync(grid, coord_tuples):
     """
     # BaseObject constructor expects Set[Tuple[int, int]] directly
     data = BaseObject(grid, coord_tuples).to_dict(
-        provider="openai",
-        model="gpt-4.1-mini",
+        provider="anthropic",
+        model="claude-opus-4-20250514",
         temperature=0.0,
-        max_tokens=4096
+        max_tokens=32000
     )
     del data["grid"]
     return data
@@ -62,9 +62,9 @@ async def process_single_training_example(i, train_example):
     grid_input = train_example["input"]
     grid_output = train_example["output"]
     grid_a = Grid(grid_input)
-    input_obj = grid_a.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
+    input_obj = grid_a.find_objects_in_grid('anthropic', 'claude-opus-4-20250514', 0.0, 32000)
     grid_b = Grid(grid_output)
-    output_obj = grid_b.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
+    output_obj = grid_b.find_objects_in_grid('anthropic', 'claude-opus-4-20250514', 0.0, 32000)
 
     # Create all input object tasks concurrently
     input_tasks = [create_base_object(grid_input, obj) for obj in input_obj]

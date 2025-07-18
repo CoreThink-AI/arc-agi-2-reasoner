@@ -1,7 +1,7 @@
 import os
 import openai
 from openai import OpenAI
-from openai import AsyncAzureOpenAI, AzureOpenAI
+# from openai import AsyncAzureOpenAI, AzureOpenAI
 from pydantic import BaseModel
 from typing import List
 import anthropic
@@ -123,11 +123,11 @@ def call_llm(provider: str, prompt: str, model: str = None, temperature: float =
         str: The generated response from the LLM.
     """
     provider = provider.lower()
-    client = AzureOpenAI(
-    azure_endpoint=endpoint,
-    api_key=subscription_key,
-    api_version="2025-03-01-preview",
-    )
+    # client = AzureOpenAI(
+    # azure_endpoint=endpoint,
+    # api_key=subscription_key,
+    # api_version="2025-03-01-preview",
+    # )
     if provider == "openai":
         #client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         #if not model:
@@ -278,26 +278,26 @@ async def summarize_hints(hint_list: List[str]) -> str:
 class GridModel(BaseModel):
     grid: List[List[int]]
 
-def parse_grid(response):
-    client = AzureOpenAI(
-    azure_endpoint=endpoint,
-    api_key=subscription_key,
-    api_version="2025-03-01-preview",
-)
-    response = client.responses.parse(
-        model=deployment,
-        input=[
-            {"role": "system", "content": "Extract the 2D grid from the description."},
-            {
-                "role": "user",
-                "content": f"{response}",
-            },
-        ],
-        text_format=GridModel,
-    )
-
-    gm: GridModel = response.output_parsed
-    return [gm.grid]
+# def parse_grid(response):
+#     client = AzureOpenAI(
+#     azure_endpoint=endpoint,
+#     api_key=subscription_key,
+#     api_version="2025-03-01-preview",
+# )
+#     response = client.responses.parse(
+#         model=deployment,
+#         input=[
+#             {"role": "system", "content": "Extract the 2D grid from the description."},
+#             {
+#                 "role": "user",
+#                 "content": f"{response}",
+#             },
+#         ],
+#         text_format=GridModel,
+#     )
+#
+#     gm: GridModel = response.output_parsed
+#     return [gm.grid]
 
 
 
