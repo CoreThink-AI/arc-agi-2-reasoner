@@ -50,7 +50,7 @@ async def process_single_training_example(i, train_example):
         tuple: (pattern_params, counts) for this training example
     """
     iteration_start = time.time()
-    
+    print("Finding Object")
     grid_input = train_example["input"]
     grid_output = train_example["output"]
     grid_a = Grid(grid_input)
@@ -64,7 +64,7 @@ async def process_single_training_example(i, train_example):
     # Create all output object tasks concurrently
     output_tasks = [create_base_object(grid_output, obj) for obj in output_obj]
     after_list = await asyncio.gather(*output_tasks)
-    
+    print("Finding Patterns")
     pattern_params, counts = await unit_patterns(grid_input, grid_output, before_list, after_list)
     
     iteration_time = time.time() - iteration_start
@@ -437,19 +437,19 @@ async def main():
         #"0934a4d8",
         # "135a2760",
         # "1818057f",
-        "20a9e565",
-        "221dfab4",
-        "28a6681f",
-        "2ba387bc",
-        "2c181942",
-        "2d0172a1",
-        "3a25b0d8",
-        "332f06d7",
-        "446ef5d2",
-        "45a5af55",
-        "4c416de3",
-        "4e34c42c",
-        "53fb4810",
+        #"20a9e565",
+        #"221dfab4",
+        #"28a6681f",
+        #"2ba387bc",
+        #"2c181942",
+        #"2d0172a1",
+        #"3a25b0d8",
+        #"332f06d7",
+        #"446ef5d2",
+        #"45a5af55",
+        #"4c416de3",
+        #"4e34c42c",
+        #"53fb4810",
         "58490d8a",
         "58f5dbd5",
         "5961cc34",
@@ -492,7 +492,7 @@ async def main():
                 responses, ground_truth, exec_time = await solve_arc_task(
                     file_path=file_path,
                     hint=hint,
-                    num_attempts=10,
+                    num_attempts=3,
                     visualize=False,
                     task_id=task_id
                 )

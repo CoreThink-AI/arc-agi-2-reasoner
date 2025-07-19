@@ -58,7 +58,7 @@ def find_symmetry(grid, blank_val=None):
     b,f = compute_diagonal_symmetry_scores(grid,blank_val)
     print("horizontal ", score_h)
     print("vertical", score_v)
-    return mid_h, mid_v,max(score_h,score_v,b,f)
+    return mid_h, mid_v,max(score_h,score_v)
 
 def fill_blanks(grid, axis, mid, blank_val=None):
     rows, cols = len(grid), len(grid[0]) if grid else 0
@@ -113,33 +113,52 @@ def fill_by_forwardslash_symmetry(grid, blank_val):
     return grid
 
 def compute_diagonal_symmetry_scores(grid, blank_val=None):
+    """
+    Returns (backslash_score, forward_slash_score), each as a percentage:
+      backslash_score  = symmetry across the main diagonal (i,j) ↔ (j,i)
+      forward_slash_score = symmetry across the anti‐diagonal (i,j) ↔ (n-1-j, m-1-i)
+    
+    Works with non‐square grids by only pairing cells whose “mirror” actually exists.
+    """
     n = len(grid)
-    total_pairs = 0
-    match_backslash = 0
-    match_fwdslash = 0
+    if n == 0:
+        return 0.0, 0.0
+    m = len(grid[0])
+    # for main‐diagonal, only indices 0 ≤ i<j < min(n,m) pair up
+    min_nm = min(n, m)
 
+    total_back = match_back = 0
+    for i in range(min_nm):
+        for j in range(i + 1, min_nm):
+            a = grid[i][j]
+            b = grid[j][i]
+            if a != blank_val and b != blank_val:
+                total_back += 1
+                if a == b:
+                    match_back += 1
+
+    # for anti‐diagonal, map (i,j) → (i2,j2) = (n-1-j, m-1-i)
+    total_fwd = match_fwd = 0
     for i in range(n):
-        for j in range(n):
-            # skip diagonal for backslash, skip antidiagonal for forward-slash
-            if i != j:
-                a, b = grid[i][j], grid[j][i]
-                if a != blank_val and b != blank_val:
-                    total_pairs += 1
-                    if a == b:
-                        match_backslash += 1
-
-            if i + j != n - 1:
-                a, b = grid[i][j], grid[n - 1 - j][n - 1 - i]
-                if a != blank_val and b != blank_val:
-                    if i != n - 1 - j or j != n - 1 - i:  # not center
-                        total_pairs += 1
+        for j in range(m):
+            i2 = n - 1 - j
+            j2 = m - 1 - i
+            # check the target is in‐bounds
+            if 0 <= i2 < n and 0 <= j2 < m:
+                # only count each pair once: (i,j) < (i2,j2) lexicographically
+                if (i, j) < (i2, j2):
+                    a = grid[i][j]
+                    b = grid[i2][j2]
+                    if a != blank_val and b != blank_val:
+                        total_fwd += 1
                         if a == b:
-                            match_fwdslash += 1
+                            match_fwd += 1
 
-    score_backslash = (match_backslash / total_pairs) * 100 if total_pairs else 0
-    score_fwdslash = (match_fwdslash / total_pairs) * 100 if total_pairs else 0
+    score_back = (match_back / total_back * 100) if total_back else 0.0
+    score_fwd  = (match_fwd  / total_fwd  * 100) if total_fwd  else 0.0
 
-    return score_backslash, score_fwdslash
+    return score_back, score_fwd
+
 
 def infer_blank_color(data) -> Any:
 
