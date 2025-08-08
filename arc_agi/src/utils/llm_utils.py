@@ -1,137 +1,39 @@
 import os
-import openai
-from openai import OpenAI
-# from openai import AsyncAzureOpenAI, AzureOpenAI
-from pydantic import BaseModel
-from typing import List
-import anthropic
 import asyncio
 import random
-import requests
-from openai import AsyncOpenAI
 from typing import List
+from pydantic import BaseModel
 from dotenv import load_dotenv
-from cerebras.cloud.sdk import Cerebras
+from openai import OpenAI
 from arc_agi.src.patterns.detailed_hint_prompt import HINT_SUMMARY_PROMPT
-load_dotenv()
-
 from .visualization_utils import array_to_base64_image
+import openai
+from openai import OpenAI,AsyncOpenAI
 
-anthropic_client = anthropic.Anthropic()
-openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-cerebras_client = Cerebras(api_key=os.getenv("CEREBRAS_API_KEY"))
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-endpoint = os.getenv("ENDPOINT_URL")
-deployment = os.getenv("DEPLOYMENT_NAME", "o4-mini")
-subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
+load_dotenv()
+deployment="o4-mini"
+# Initialize Grok client
 grok_client = OpenAI(
-    api_key=os.getenv("GROK_API_KEY"),
+    api_key=os.environ.get("XAI_API_KEY"),
     base_url="https://api.x.ai/v1",
     timeout=7200
 )
-# Initialize Azure OpenAI client with key-based authentication
-#openai_client = AsyncAzureOpenAI(
-#    azure_endpoint=endpoint,
-#    api_key=subscription_key,
-#    api_version="2025-03-01-preview",
-#)
-#client = AzureOpenAI(
-#    azure_endpoint=endpoint,
-#    api_key=subscription_key,
-#    api_version="2025-03-01-preview",
-#)
 
-def get_anthropic_response(prompt):
-    response = anthropic_client.messages.create(
-        model="claude-opus-4-20250514",
-        max_tokens=32000,
-        thinking={
-            "type": "enabled",
-            "budget_tokens": 16000
-        },
-        messages=[{
-            "role": "user",
-            "content": prompt
-        }]
-    )
-
-    # The response will contain summarized thinking blocks and text blocks
-    for block in response.content:
-        if block.type == "thinking":
-            print(f"\nThinking summary: {block.thinking}")
-        elif block.type == "text":
-            print(f"\nResponse: {block.text}")
-
-
-def get_anthropic_response_stream(prompt):
-    response_text = ""
-    with anthropic_client.messages.stream(
-        model="claude-opus-4-20250514",
-        max_tokens=32000,
-        thinking={
-            "type": "enabled",
-            "budget_tokens": 16000
-        },
-        messages=[{
-            "role": "user",
-            "content": prompt
-        }]
-    ) as stream:
-        for text in stream.text_stream:
-            # print(text, end="", flush=True)
-            response_text += text
-    
-    return response_text
-
-
-def get_grok_response_stream(prompt):
-    response_text = ""
-
-    with grok_client.chat.completions.create(
-        model="grok-4",
-        messages=[{"role": "user", "content": prompt}],
-        stream=True
-    ) as stream:
-        for chunk in stream:
-            content = chunk.choices[0].delta.content
-            if content:
-                response_text += content
-
-    return response_text
-
-
-def get_cerebras_response(prompt: str) -> str:
-    response = cerebras_client.chat.completions.create(
-        model="qwen-3-32b",
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return response.choices[0].message.content
-
+# =====================================
+# Unified LLM call function (Grok only)
+# =====================================
+openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 4096) -> str:
     """
-    Generic function to call different LLM providers.
-
-    Args:
-        provider (str): One of 'openai', 'anthropic', or 'together'
-        prompt (str): The prompt to send to the LLM.
-        model (str): Model name (required for OpenAI and Together).
-        temperature (float): Sampling temperature.
-        max_tokens (int): Maximum tokens to generate.
-
-    Returns:
-        str: The generated response from the LLM.
+    Unified function but now Grok-only.
+    Ignores 'provider' and always calls Grok.
     """
+    sys_prompt = "You are an expert at solving grid-based reasoning problems. Use markdown output. Enclose code or grids in ```."
+
     provider = provider.lower()
-    # client = AzureOpenAI(
-    # azure_endpoint=endpoint,
-    # api_key=subscription_key,
-    # api_version="2025-03-01-preview",
-    # )
     if provider == "openai":
-        #client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        #if not model:
-        model = deployment
+        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         response = client.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": prompt}],
@@ -140,46 +42,68 @@ def call_llm(provider: str, prompt: str, model: str = None, temperature: float =
         )
         return response.choices[0].message.content
 
-    elif provider == "anthropic":
-        response_text = ""
-        with anthropic_client.messages.stream(
-                model="claude-opus-4-20250514",
-                max_tokens=32000,
-                thinking={
-                    "type": "enabled",
-                    "budget_tokens": 16000
-                },
-                messages=[{
-                    "role": "user",
-                    "content": prompt
-                }]
-        ) as stream:
-            for text in stream.text_stream:
-                # print(text, end="", flush=True)
-                response_text += text
+    try:
+        response = grok_client.chat.completions.create(
+            model="grok-4",
+            messages=[
+                {"role": "system", "content": sys_prompt},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        return response.choices[0].message.content.strip()
 
-        return response_text
+    except Exception as e:
+        return f"Error: {e}"
 
-    elif provider == "together":
-        if not model:
-            model = "mistralai/Mixtral-8x7B-Instruct-v0.1"
-        headers = {
-            "Authorization": f"Bearer {os.getenv('TOGETHER_API_KEY')}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "model": model,
-            "prompt": prompt,
-            "max_tokens": max_tokens,
-            "temperature": temperature,
-        }
-        response = requests.post("https://api.together.xyz/v1/completions", headers=headers, json=payload)
-        response.raise_for_status()
-        return response.json()["choices"][0]["text"]
+# =====================================
+# Replace get_anthropic_response
+# =====================================
 
-    else:
-        raise ValueError(f"Unsupported provider: {provider}")
-    
+def get_anthropic_response(prompt):
+    """
+    Replaced with Grok.
+    """
+    return call_llm("grok", prompt)
+
+# =====================================
+# Replace get_anthropic_response_stream
+# =====================================
+
+def get_anthropic_response_stream(prompt):
+    """
+    Stream Grok response.
+    """
+    final_response = ""
+    try:
+        stream = grok_client.chat.completions.create(
+            model="grok-4",
+            messages=[
+                {"role": "system", "content": "You are an expert reasoner."},
+                {"role": "user", "content": prompt}
+            ],
+            stream=True
+        )
+        for chunk in stream:
+            if chunk.choices[0].delta.content:
+                final_response += chunk.choices[0].delta.content
+        return final_response
+    except Exception as e:
+        return f"Error: {e}"
+
+# =====================================
+# Replace get_cerebras_response
+# =====================================
+
+def get_cerebras_response(prompt: str) -> str:
+    """
+    Now uses Grok instead of Cerebras.
+    """
+    return call_llm("grok", prompt)
+
+# =====================================
+# Pattern Detection with retry (Grok)
+# =====================================
+
 async def get_completion_with_retry(img1,img2,semaphore, PatternDetectionResponse, prompt: str, max_retries: int = 3):
     """Get completion with retry logic and rate limiting using OpenAI"""
     async with semaphore:  # Limit concurrent requests
@@ -218,10 +142,10 @@ async def get_completion_with_retry(img1,img2,semaphore, PatternDetectionRespons
                     print(f"Attempt {attempt + 1} failed: {e}, retrying...")
                     await asyncio.sleep(random.uniform(1.0, 2.0))  # Longer delay before retry
 
-async def get_completion(grid1,grid2,semaphore,PatternDetectionResponse,prompt: str):
+async def get_completion(grid1, grid2, semaphore, PatternDetectionResponse, prompt: str):
     img1 = array_to_base64_image(grid1)
     img2 = array_to_base64_image(grid2)
-    return await get_completion_with_retry(img1,img2,semaphore,PatternDetectionResponse,prompt)
+    return await get_completion_with_retry(img1, img2, semaphore, PatternDetectionResponse, prompt)
 
 async def summarize_reasons(reasons_list: List[str]) -> str:
     """Summarize multiple reasons using GPT-4.1"""
@@ -275,29 +199,28 @@ async def summarize_hints(hint_list: List[str]) -> str:
         print(f"Error summarizing reasons: {e}")
         return combined_hints[0] 
 
+# =====================================
+# Grid Parsing
+# =====================================
+
 class GridModel(BaseModel):
     grid: List[List[int]]
 
-# def parse_grid(response):
-#     client = AzureOpenAI(
-#     azure_endpoint=endpoint,
-#     api_key=subscription_key,
-#     api_version="2025-03-01-preview",
-# )
-#     response = client.responses.parse(
-#         model=deployment,
-#         input=[
-#             {"role": "system", "content": "Extract the 2D grid from the description."},
-#             {
-#                 "role": "user",
-#                 "content": f"{response}",
-#             },
-#         ],
-#         text_format=GridModel,
-#     )
-#
-#     gm: GridModel = response.output_parsed
-#     return [gm.grid]
+def parse_grid(response_text: str):
+    prompt = f"""
+You are given a description that includes a 2D grid.
+Extract the 2D integer grid and return it as a Python list of lists.
+Only output the grid enclosed in triple backticks.
 
+Input:
+{response_text}
+"""
+    raw_output = call_llm("grok", prompt)
 
-
+    try:
+        grid_text = raw_output.split("```")[1]
+        grid = eval(grid_text)
+        return grid
+    except Exception as e:
+        print(f"Failed to parse grid: {e}")
+        return None
