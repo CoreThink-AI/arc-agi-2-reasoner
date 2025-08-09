@@ -250,10 +250,7 @@ def extract_corresponding_patch(
     ]
     return extracted
 
-def extract_jigsaw_output(file_path,i,full_grid,blank_val):
-
-  with open(file_path, 'r') as f:
-    data = json.load(f)
+def extract_jigsaw_output(data,i,full_grid,blank_val):
   flag = 0
   input_grid = data["test"][i]["input"]
   for entry in data["train"]:
@@ -264,9 +261,7 @@ def extract_jigsaw_output(file_path,i,full_grid,blank_val):
   else:
     return extract_corresponding_patch(input_grid,full_grid,blank_val)
   
-def check_jigsaw(file_path):
-    with open(file_path, 'r') as f:
-        data = json.load(f)
+def check_jigsaw(data):
     tests = data["test"]
     for test in tests:
         test_input = test["input"]
@@ -277,10 +272,8 @@ def check_jigsaw(file_path):
         else:
             return False
         
-def do_jigsaw(file_path):
+def do_jigsaw(data):
     t1 = time.time()
-    with open(file_path, 'r') as f:
-        data = json.load(f)
     tests = data["test"]
     arrs, gts = [],[]
     for i,test in enumerate(tests):
@@ -288,7 +281,7 @@ def do_jigsaw(file_path):
         test_input = test["input"].copy()
         gts.append(test["output"])
         test_output,blank_val = solve(test_input,8,data)
-        arr_response = extract_jigsaw_output(file_path,i,test_output,blank_val)
+        arr_response = extract_jigsaw_output(data,i,test_output,blank_val)
         arrs.append(arr_response)
     
     return arrs, gts, time.time()-t1

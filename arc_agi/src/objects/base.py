@@ -141,7 +141,7 @@ class Grid:
         else:
             plt.close(fig)
 
-    def find_background(self, provider: str, model: str, temperature: float, max_tokens: int) -> int:
+    async def find_background(self, provider: str, model: str, temperature: float, max_tokens: int) -> int:
         """
         Use an LLM to determine the background color and its coordinates in the grid.
         Returns:
@@ -188,32 +188,29 @@ class Grid:
             self.background_color = -1
             return self.background_color
 
-    def find_objects_in_grid(self, provider: str, model: str, temperature: float, max_tokens: int) -> List[Set[Tuple[int, int]]]:
+    async def find_objects_in_grid(self, provider: str, model: str, temperature: float, max_tokens: int) -> List[Set[Tuple[int, int]]]:
         """
             Rule-based method to find objects in the grid
             :returns List of objects found
         """
-        self.objects = find_objects(self.grid.tolist(), self.find_background(provider, model, temperature, max_tokens))
+        background_color = await self.find_background(provider, model, temperature, max_tokens)
+        self.objects = find_objects(self.grid.tolist(), background_color)
         return self.objects
 
-    def objects_concatenator(self, provider: str, model: str, temperature: float, max_tokens: int) -> List[Set[Tuple[int, int]]]:
+    async def objects_concatenator(self, provider: str, model: str, temperature: float, max_tokens: int) -> List[Set[Tuple[int, int]]]:
         """
             Concatenation layer for the objects detected
             :returns
         """
         try:
             concatenated_objects = group_and_merge_adjacent_objects(self.objects)
-            valid_objects = extract_valid_objects(self.grid.tolist(), concatenated_objects, provider, model,
-                                                  temperature, max_tokens)
-            # Flatten valid object coordinates into a set
+            valid_objects = await extract_valid_objects(self.grid.tolist(), concatenated_objects, provider, model,
+                                                        temperature, max_tokens)
             valid_coords = set(coord for obj in valid_objects for coord in obj)
-            # Filter out self.objects that intersect with any valid_object
             filtered_original_objects = [
                 obj for obj in self.objects if obj.isdisjoint(valid_coords)
             ]
-            # Combine the filtered original objects with valid objects
             combined = filtered_original_objects + valid_objects
-            # Deduplicate
             unique = list({frozenset(obj) for obj in combined})
             self.objects = [set(obj) for obj in unique]
             return self.objects
@@ -327,7 +324,7 @@ class BaseObject:
         self.is_single_color = len(self.colors) == 1
         self.color = self.colors[0] if self.is_single_color else None
 
-    def _analyze_shape(self, provider: str, model: str, temperature: float, max_tokens: int) -> None:
+    async def _analyze_shape(self, provider: str, model: str, temperature: float, max_tokens: int) -> None:
         """Get insights on the shape of the object using an LLM."""
         try:
             # Convert grid to string format
@@ -375,7 +372,7 @@ class BaseObject:
         """Get the size of the object's grid (width, height)."""
         return (self.width, self.height)
 
-    def get_cavities(self, provider: str, model: str, temperature: float, max_tokens: int) -> List[List[Tuple]]:
+    async def get_cavities(self, provider: str, model: str, temperature: float, max_tokens: int) -> List[List[Tuple]]:
         """Detect enclosed cavities within the object using LLM assistance."""
         try:
             # Convert the full grid into string form
@@ -438,10 +435,10 @@ class BaseObject:
         """Get the top-right coordinate of the object."""
         return Coordinates(self.x2, self.y1)
 
-    def to_dict(self, provider: str, model: str, temperature: float, max_tokens: int) -> Dict[str, Any]:
-        """Convert object properties to a dictionary."""
-        self._analyze_shape(provider, model, temperature, max_tokens)
-        self.get_cavities(provider, model, temperature, max_tokens)
+    async def to_dict(self, provider: str, model: str, temperature: float, max_tokens: int) -> Dict[str, Any]:
+        """Convert object properties to a dictionary (async)."""
+        await self._analyze_shape(provider, model, temperature, max_tokens)
+        cavities = await self.get_cavities(provider, model, temperature, max_tokens)
         return {
             "grid": self.grid,
             "colors": self.colors,
@@ -457,7 +454,7 @@ class BaseObject:
             "y2": self.y2,
             "placement": self.get_placement().to_tuple(),
             "centroid": self.centroid.to_tuple(),
-            "cavities": [cavity for cavity in self.get_cavities(provider, model, temperature, max_tokens)],
+            "cavities": cavities,
             "bottom_left": self.get_bottom_left().to_tuple(),
             "top_right": self.get_top_right().to_tuple()
         }

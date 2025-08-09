@@ -39,7 +39,7 @@ def get_formatted_examples(example_inputs):
 async def get_objects(grid_input):
 
     grid_a = Grid(grid_input)
-    input_obj = grid_a.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
+    input_obj = await grid_a.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
     #input_obj = grid_a.objects_concatenator('openai', 'gpt-4.1-mini', 0.0, 4096)
     input_tasks = [create_base_object(grid_input, obj) for obj in input_obj]
     before_list = await asyncio.gather(*input_tasks)
@@ -193,12 +193,12 @@ async def get_solved_outputs_multiple_in_parallel(arc_input, hint, num_attempts,
     print("Started the LLM call")
     
     # Process each test case with multiple attempts in parallel
-    all_responses = []
-    for i, prompt in enumerate(prompt_arr):
-        print(f"Getting {num_attempts} responses for test case {i+1}")
-        test_case_responses = process_single_test_case(prompt, num_attempts,critic)
-        all_responses.append(test_case_responses)
-    
+    tasks = [
+        asyncio.to_thread(process_single_test_case, prompt, num_attempts, critic)
+        for prompt in prompt_arr
+    ]
+    all_responses = await asyncio.gather(*tasks)
+
     print(f"Completed {num_attempts} attempts for each test case")
     
     if return_raw_responses:
