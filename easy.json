@@ -1,0 +1,138 @@
+[
+    {
+      "id": "3e6067c3",
+      "hints": "The idea is to look at the unit blocks at the bottom of the grid which will give the sequence of the connecting bridges. The width/height of the bridge is the same as the cavity inside the bigger blocks. The bridge can go from left to right, right to left, top to bottom or bottom to top depending upon the sequence of the unit blocks.",
+      "pattern": "Connecting Bridges"
+    },
+    {
+      "id": "0934a4d8",
+      "hints": "The idea is to match the pattern. We can find a symmetry across a horizontal and vertical axis. Essentially, we have a radial symmetry",
+      "pattern": "Pattern Matching Fill"
+    },
+    {
+      "id": "135a2760",
+      "hints": "Inside of the every giant object, there is some pattern and few of the cells are not following it, match that pattern for the once which are not following.",
+      "pattern": "Pattern Matching Fill"
+    },
+    {
+      "id": "1818057f",
+      "hints": "Find Plus in the input image and color it with the Cyan. Do it for all the Plus.",
+      "pattern": "Find Objects in the Image and color them"
+    },
+    {
+      "id": "20a9e565",
+      "hints": "",
+      "pattern": ""
+    },
+    {
+      "id": "221dfab4",
+      "hints": "The patterns are from top to bottom or vice versa. The pattern is added alternatively. Two Yellow one Green. The straps are completely filled with Green and Yellow. Any object cells in the window are removed. For the green strap, the object cells in the horizontal are also filled with the green which might be away from the window.",
+      "pattern": "Pattern Matching Fill"
+    },
+    {
+      "id": "28a6681f",
+      "hints": "The Blue Cells would fill the cavities so that the cavities start getting filled. The number of Blue cells remains the same. The idea is to fill those cavities which have left and right edges.",
+      "pattern": "Gravity Effect"
+    },
+    {
+      "id": "2ba387bc",
+      "hints": "The Solid Objects are reproduced in the Outputs to the right and the objects which have cavity on the left. The Vertical Sequence in which objects occurs is maintained.",
+      "pattern": "Rearrange the Objects in the Output in a particular Sequence"
+    },
+    {
+      "id": "2c181942",
+      "hints": "There is a central figure which has 4 sides of different colors. The floating object, if matched with one of the sides, gets attached to the central object in head on fashion. If the floating object doesn’t have the same color as one of the central figure walls, it disappears.",
+      "pattern": "Get Attached to Similar Object"
+    },
+    {
+      "id": "2d0172a1",
+      "hints": "Every Line in the input is replaced with a unit cells in the output. Do it for all the lines and figures in the input image.",
+      "pattern": "Replace the Objects in the Input"
+    },
+    {
+      "id": "3a25b0d8",
+      "hints": "The input has 2 objects, one is colored and other isn't. Copy the color from the colored objects and similary match it to the uncolored object and retun the uncolored object by coloring it.",
+      "pattern": "Find Objects in the Image and Color them"
+    },
+    {
+      "id": "332f06d7",
+      "hints": "The black cavity travels from left to right or top to bottom or vice-versa. While travelling, if it comes across an insufficient path, it stops. The goal of the trip is to reach the red object. If it reaches there, then it replaces the red object.",
+      "pattern": "Object Translation Based on Goal"
+    },
+    {
+      "id": "446ef5d2",
+      "hints": "The object which is not rectangular in nature, stays at the sample place. The other rectangles moves such the we complete the puzzle and form a big rectangle.",
+      "pattern": "Rearrange the Objects in the Output in a particular Sequence"
+    },
+    {
+      "id": "45a5af55",
+      "hints": "Pattern in the Horizontal direction is given, we need to complete the pattern in the 4 side and give the final output image.",
+      "pattern": "Creating Pattern based on starting Object"
+    },
+    {
+      "id": "4c416de3",
+      "hints": "In the object, there is a protruding pattern, it needs to be copied for all the single colored cells based on the symmetry.",
+      "pattern": "Pattern Matching Fill / Remove"
+    },
+    {
+      "id": "4e34c42c",
+      "hints": "There is an object which is repeating. Out of the 2, one which has other things attached to it, we need to bring the no repeating object near it and complete the pattern.",
+      "pattern": "Rearrange the Objects in the Output in a particular Sequence"
+    },
+    {
+      "id": "53fb4810",
+      "hints": "From the blue objects, a pattern starts towards one of the edges. You need to continue that pattern till the edge.",
+      "pattern": "Pattern Matching Fill"
+    },
+    {
+      "id": "58490d8a",
+      "hints": "We need to count the number of objects in the image. The objects are of different colors and shapes, but we need to count them all and fill the couting the Color 0 box correspondingly with the new cells to the existing cells.",
+      "pattern": "Couting the Objects in the Image"
+    },
+    {
+      "id": "58f5dbd5",
+      "hints": "We take all the Squares in the Input Image and trace the same colors objects into it by creating a void. Return only the early filled squares now with a void in them.",
+      "pattern": "Find Objects in the Image and Color them"
+    },
+    {
+      "id": "5961cc34",
+      "hints": "Look for the object where one color is different while the rest are the same. Extend that element in the direction of the different color using the main color until you hit another object or until you reach the other edge. If you hit another object, then color the whole object with your base color, and then identify the different color in that object, start extending in that direction using the base color of the original object, and keep doing it until you hit the edge. Then remove any object whose color doesn't match the base color or who has not been hit by the original object yet.",
+      "pattern": "Ray Cast"
+    },
+    {
+      "id": "64efde09",
+      "hints": "There would be 3 unit cells. For every object, we need to extend those 3 unit cell lines in the direction of the object. The lines should be extended until they hit another object or the edge of the image",
+      "pattern": "Ray Cast"
+    },
+    {
+      "id": "6e453dd6",
+      "hints": "The objects with black boundary hit the grey line, and red lines will go from the grey line to the edge with the y-axis of the bigger island in the objects.",
+      "pattern": "Rearrange the Objects in the Output in a particular Sequence and Add New Objects"
+    },
+    {
+      "id": "71e489b6",
+      "hints": "Wherever there are voids in the blue areas (with no islands), surround the void with orange boundary. Then remove the blue unit objects that are ruining the perfection of the result.",
+      "pattern": "Find Objects in the Image and Color them"
+    },
+    {
+      "id": "7491f3cf",
+      "hints": "The input has 4 images. We need to fill the final image. First image gives the split. Second and third image we need to replace in the final based on the split of the first.",
+      "pattern": "Rearrange the Objects in the Output in a particular Sequence"
+    },
+    {
+      "id": "7666fa5d",
+      "hints": "From one diagonal object to another, cover the middle area with red diagonal objects such that the resulting red area has the highest area and touches the diagonal objects.",
+      "pattern": "Find Objects in the Image and Color them"
+    },
+    {
+      "id": "7b0280bc",
+      "hints": "There will be two squares among all of them that have a different color. Connect those using the shortest intermediary path in the image. The intermediary path should be grey, and it should turn any square object it touches to green.",
+      "pattern": "Find Objects in the Image and Color them"
+    },
+    {
+      "id": "7b5033c1",
+      "hints": "Just straighten the object in the input image and return it as output image as a vertical line. Left to right become top to bottom.",
+      "pattern": "Rearrange the Objects in the Output in a particular Sequence"
+    }
+  ]
+  
