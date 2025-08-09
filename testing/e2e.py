@@ -294,6 +294,10 @@ async def solve_arc_task(file_path, hint, num_attempts=3, visualize=True, critic
         print(f"Error: Invalid JSON in {file_path}")
         return None, None, 0
     
+    if check_jigsaw(file_path):
+            print("Doing Jigsaw")
+            responses, ground_truth,solve_time = do_jigsaw(file_path)
+            return responses, ground_truth, solve_time
     print(f"Task has {len(json_data.get('train', []))} training examples and "
           f"{len(json_data.get('test', []))} test examples")
     
@@ -473,30 +477,26 @@ async def main():
             logger.info(f"Starting processing for task {task_id}")
             
             file_path = f"data/{task_id}.json"
-            if check_jigsaw(file_path):
-                print("Doing Jigsaw")
-                responses, ground_truth,solve_time = do_jigsaw(file_path)
-                hint_time=0
-            else:
-                # Get hints
-                logger.info("Getting hints...")
-                hint_start_time = time.time()
-                hint = await get_hints(file_path)
-                hint_time = time.time() - hint_start_time
-                logger.info(f"Hints completed in {hint_time:.2f}s")
-                logger.info(f"Generated hint: {hint}")
-                
-                # Solve the task
-                logger.info("Solving task...")
-                solve_start_time = time.time()
-                responses, ground_truth, exec_time = await solve_arc_task(
-                    file_path=file_path,
-                    hint=hint,
-                    num_attempts=3,
-                    visualize=False,
-                    task_id=task_id
-                )
-                solve_time = time.time() - solve_start_time
+           
+            # Get hints
+            logger.info("Getting hints...")
+            hint_start_time = time.time()
+            hint = await get_hints(file_path)
+            hint_time = time.time() - hint_start_time
+            logger.info(f"Hints completed in {hint_time:.2f}s")
+            logger.info(f"Generated hint: {hint}")
+            
+            # Solve the task
+            logger.info("Solving task...")
+            solve_start_time = time.time()
+            responses, ground_truth, exec_time = await solve_arc_task(
+                file_path=file_path,
+                hint=hint,
+                num_attempts=3,
+                visualize=False,
+                task_id=task_id
+            )
+            solve_time = time.time() - solve_start_time
             logger.info(f"Task solving completed in {solve_time:.2f}s")
             
             # Calculate score for this task
