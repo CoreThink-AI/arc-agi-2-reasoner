@@ -30,7 +30,7 @@ grok_client = OpenAI(
 # =====================================
 
 # Configure Async OpenAI client with explicit timeout and retries
-DEFAULT_OPENAI_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "7200"))
+DEFAULT_OPENAI_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "72000"))
 OPENAI_MAX_RETRIES = int(os.getenv("OPENAI_MAX_RETRIES", "3"))
 
 _httpx_async_client = httpx.AsyncClient(timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS)
@@ -41,7 +41,7 @@ openai_client = AsyncOpenAI(
     http_client=_httpx_async_client,
 )
 
-def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 4096) -> str:
+def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 40096) -> str:
     """
     Unified function but now Grok-only.
     Ignores 'provider' and always calls Grok.
@@ -205,7 +205,7 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
         response = await openai_client.chat.completions.create(
             model=deployment,
             messages=[{"role": "user", "content": prompt}],
-            max_completion_tokens=2000,
+            max_completion_tokens=20000,
             timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
         )
         return response.choices[0].message.content.strip()
@@ -232,7 +232,7 @@ async def summarize_hints(hint_list: List[str]) -> str:
         response = await openai_client.chat.completions.create(
             model=deployment,
             messages=[{"role": "user", "content": prompt}],
-            max_completion_tokens=2000,
+            max_completion_tokens=20000,
             timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
         )
         return response.choices[0].message.content.strip()

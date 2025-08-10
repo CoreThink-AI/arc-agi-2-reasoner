@@ -489,7 +489,7 @@ async def process_task_get_hints(task_id):
 # Example usage
 async def main():
     ids = find_task_ids("arc-agi_test_challenges.json")
-    ids= ids[:51]  # Limit to first 10 tasks for testing
+    ids= ids[:30]  
     print(len(ids))
 
     async def process_and_solve(task_id):

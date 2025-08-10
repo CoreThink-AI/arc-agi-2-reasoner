@@ -13,10 +13,10 @@ from arc_agi.src.patterns.object_comparison import compare_object_lists
 
 load_dotenv()
 # Make concurrency configurable to reduce OpenAI timeouts under load
-CONCURRENT_REQUESTS = int(os.getenv("OPENAI_CONCURRENCY", "3"))
+CONCURRENT_REQUESTS = int(os.getenv("OPENAI_CONCURRENCY", "30"))
 semaphore = asyncio.Semaphore(CONCURRENT_REQUESTS)
 REPEAT_COUNT = int(os.getenv("PATTERN_DETECTION_REPETITIONS", "3"))
-OPENAI_TASK_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TASK_TIMEOUT_SECONDS", "7200"))
+OPENAI_TASK_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TASK_TIMEOUT_SECONDS", "72000"))
 
 
 class PatternDetectionResult(BaseModel):
@@ -96,9 +96,11 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
         pattern_reasons = {}
         pattern_descriptions = {}
 
+        failed_requests = 0
         for r in results:
             if isinstance(r, Exception):
-                print(f"Request failed: {r}")
+                failed_requests += 1
+                print(f"Pattern detection request failed: {r}")
                 continue
             if r is not None and hasattr(r, 'result'):
                 for pattern_result in r.result:
@@ -148,5 +150,8 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
                 'params': params,
                 'detailed_hint': detailed_hint
             })
+
+        if failed_requests:
+            print(f"Pattern detection requests failed: {failed_requests}/{len(results)}")
 
         return restructured_pattern_params, counts
