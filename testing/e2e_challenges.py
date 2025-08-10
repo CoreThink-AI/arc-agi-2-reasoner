@@ -63,11 +63,13 @@ async def create_base_object_dict(grid: List[List[int]], coords: List[Tuple[int,
     It is intentionally kept in a thread to avoid blocking the event loop.
     """
     def _sync_to_dict() -> Dict[str, Any]:
-        data = BaseObject(grid, coords).to_dict(
-            provider="openai",
-            model="gpt-4.1-mini",
-            temperature=0.0,
-            max_tokens=4096,
+        data = asyncio.run(
+            BaseObject(grid, coords).to_dict(
+                provider="openai",
+                model="gpt-4.1-mini",
+                temperature=0.0,
+                max_tokens=4096,
+            )
         )
         # The object dictionaries passed to pattern comparison don't need the full grid
         if "grid" in data:

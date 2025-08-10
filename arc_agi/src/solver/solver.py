@@ -1,5 +1,5 @@
 from arc_agi.src.solver.solver_prompts import example_template, solver_prompt_template, new_solver_prompt, critic_prompt
-from arc_agi.src.utils.llm_utils import get_anthropic_response_stream, get_cerebras_response, call_llm, get_grok_response_stream
+from arc_agi.src.utils.llm_utils import get_grok_response_stream
 from arc_agi.src.utils.visualization_utils import get_arr_viz
 from arc_agi.src.objects.base import Grid, BaseObject
 import re, asyncio, json
@@ -11,11 +11,14 @@ def create_base_object_sync(grid, coord_tuples):
     construct a BaseObject synchronously.
     """
     # BaseObject constructor expects Set[Tuple[int, int]] directly
-    data = BaseObject(grid, coord_tuples).to_dict(
-        provider="openai", 
-        model="gpt-4.1-mini", 
-        temperature=0.0, 
-        max_tokens=4096
+    # to_dict is async; run it to completion in this thread
+    data = asyncio.run(
+        BaseObject(grid, coord_tuples).to_dict(
+            provider="openai", 
+            model="gpt-4.1-mini", 
+            temperature=0.0, 
+            max_tokens=4096
+        )
     )
     del data["grid"]
     return data

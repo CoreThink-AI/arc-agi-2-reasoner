@@ -69,7 +69,7 @@ def get_anthropic_response(prompt):
 # Replace get_anthropic_response_stream
 # =====================================
 
-def get_anthropic_response_stream(prompt):
+def get_grok_response_stream(prompt):
     """
     Stream Grok response.
     """

@@ -3,7 +3,7 @@ from collections import Counter
 from typing import Any, List
 import re, json
 from arc_agi.src.low_hanging.jigsaw_prompt import blank_prompt, prompt
-from arc_agi.src.utils.llm_utils import get_anthropic_response_stream
+from arc_agi.src.utils.llm_utils import get_grok_response_stream
 from arc_agi.src.utils.visualization_utils import get_arr_viz
 from arc_agi.src.solver.solver import get_formatted_examples,extract_matrix_from_response, matrix_to_arr
 
@@ -162,7 +162,7 @@ def compute_diagonal_symmetry_scores(grid, blank_val=None):
 
 def infer_blank_color(data) -> Any:
 
-  response = get_anthropic_response_stream(blank_prompt.format(get_formatted_examples(data["train"])))
+  response = get_grok_response_stream(blank_prompt.format(get_formatted_examples(data["train"])))
   match = re.search(r"```[\s]*([0-9]+)[\s]*```",response)
   if match:
     num = int(match.group(1))
