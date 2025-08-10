@@ -131,7 +131,7 @@ async def get_consensus_response(json_data, hint, num_attempts=3, critic=False):
         num_attempts: Number of solver attempts for consensus
 
     Returns:
-        tuple: (consensus_responses, ground_truth_responses)
+        list: consensus_responses
     """
     # Run solver attempts concurrently
     # tasks = [get_solved_outputs(json_data, hint) for _ in range(num_attempts)]
@@ -141,28 +141,25 @@ async def get_consensus_response(json_data, hint, num_attempts=3, critic=False):
 
     # Extract valid responses
     valid_responses = []
-    ground_truth = None
 
     for i, result in enumerate(results):
         if isinstance(result, Exception):
             print(f"Attempt {i + 1} failed: {result}")
             continue
 
-        response, gt = result
+        response, _ = result
         if response and all(test_attempts for test_attempts in response):
             valid_responses.append(response)
-            if ground_truth is None:
-                ground_truth = gt
 
     if not valid_responses:
         print("No valid responses received")
-        return [], ground_truth
+        return []
 
     # Single-stage prints handled in caller
 
     # Generate consensus for each test case
     if not valid_responses or not valid_responses[0]:
-        return [], ground_truth
+        return []
 
     num_test_cases = len(valid_responses[0])
     consensus_responses = []
@@ -179,6 +176,7 @@ async def get_consensus_response(json_data, hint, num_attempts=3, critic=False):
 
         if not valid_grids:
             consensus_responses.append(None)
+            print(f"Test case {test_idx + 1} has no valid grids")
             continue
 
         # Use first grid if all attempts agree, otherwise apply majority voting
@@ -188,7 +186,8 @@ async def get_consensus_response(json_data, hint, num_attempts=3, critic=False):
             consensus_grid = _get_majority_vote_grid(valid_grids)
             consensus_responses.append(consensus_grid)
 
-    return consensus_responses, ground_truth
+    print(f"Consensus responses generated for {len(consensus_responses)} test cases")
+    return consensus_responses
 
 
 def _is_valid_grid(grid):
@@ -227,83 +226,57 @@ def _get_majority_vote_grid(grids):
     return consensus_grid
 
 
-def visualize_results(responses, ground_truths, title_prefix="Test"):
-    """Visualize response and ground truth grids side by side."""
-    if not responses and not ground_truths:
+def visualize_results(responses, title_prefix="Test"):
+    """Visualize response grids."""
+    if not responses:
         print("No results to visualize")
         return
 
-    num_cases = max(len(responses) if responses else 0,
-                    len(ground_truths) if ground_truths else 0)
+    num_cases = len(responses)
 
     if num_cases == 0:
         print("No test cases to visualize")
         return
 
-    # Create subplot layout: response and ground truth for each test case
-    fig, axes = plt.subplots(1, num_cases * 2, figsize=(5 * num_cases * 2, 5))
+    fig, axes = plt.subplots(1, num_cases, figsize=(5 * num_cases, 5))
 
-    # Handle single test case
     if num_cases == 1:
-        axes = [axes] if num_cases * 2 == 1 else list(axes)
+        axes = [axes]
 
     for i in range(num_cases):
-        # Plot response
-        resp_idx = i * 2
         if i < len(responses) and responses[i] is not None:
-            plot_grid(responses[i], f"{title_prefix} {i + 1} - Response", axes[resp_idx])
+            plot_grid(responses[i], f"{title_prefix} {i + 1} - Response", axes[i])
         else:
-            axes[resp_idx].set_title(f"{title_prefix} {i + 1} - No Response")
-            axes[resp_idx].axis('off')
-
-        # Plot ground truth
-        gt_idx = i * 2 + 1
-        if ground_truths and i < len(ground_truths) and ground_truths[i] is not None:
-            plot_grid(ground_truths[i], f"{title_prefix} {i + 1} - Ground Truth", axes[gt_idx])
-        else:
-            axes[gt_idx].set_title(f"{title_prefix} {i + 1} - No Ground Truth")
-            axes[gt_idx].axis('off')
+            axes[i].set_title(f"{title_prefix} {i + 1} - No Response")
+            axes[i].axis('off')
 
     plt.tight_layout()
     plt.show()
 
 
-def save_results_as_png(responses, ground_truths, task_id, title_prefix="Test"):
+def save_results_as_png(responses, task_id, title_prefix="Test"):
     """Save visualization as PNG file in e2e_logs folder."""
-    if not responses and not ground_truths:
+    if not responses:
         print("No results to save")
         return
 
-    num_cases = max(len(responses) if responses else 0,
-                    len(ground_truths) if ground_truths else 0)
+    num_cases = len(responses)
 
     if num_cases == 0:
         print("No test cases to save")
         return
 
-    # Create subplot layout: response and ground truth for each test case
-    fig, axes = plt.subplots(1, num_cases * 2, figsize=(5 * num_cases * 2, 5))
+    fig, axes = plt.subplots(1, num_cases, figsize=(5 * num_cases, 5))
 
-    # Handle single test case
     if num_cases == 1:
-        axes = [axes] if num_cases * 2 == 1 else list(axes)
+        axes = [axes]
 
     for i in range(num_cases):
-        # Plot response
-        resp_idx = i * 2
         if i < len(responses) and responses[i] is not None:
-            plot_grid(responses[i], f"{title_prefix} {i + 1} - Response", axes[resp_idx])
+            plot_grid(responses[i], f"{title_prefix} {i + 1} - Response", axes[i])
         else:
-            axes[resp_idx].set_title(f"{title_prefix} {i + 1} - No Response")
-            axes[resp_idx].axis('off')
-
-        # Plot ground truth
-        gt_idx = i * 2 + 1
-        if ground_truths and i < len(ground_truths) and ground_truths[i] is not None:
-            plot_grid(ground_truths[i], f"{title_prefix} {i + 1} - Ground Truth", axes[gt_idx])
-        else:
-            axes[gt_idx].set_title(f"{title_prefix} {i + 1} - No Ground Truth")
-            axes[gt_idx].axis('off')
+            axes[i].set_title(f"{title_prefix} {i + 1} - No Response")
+            axes[i].axis('off')
 
     plt.tight_layout()
 
@@ -327,14 +300,14 @@ async def solve_arc_task(json_data, hint, num_attempts=3, visualize=True, critic
         task_id: Task ID for saving PNG files
 
     Returns:
-        tuple: (consensus_responses, ground_truth, execution_time)
+        tuple: (consensus_responses, execution_time)
     """
     start_time = time.time()
 
     if check_jigsaw(json_data):
         print("Doing Jigsaw")
-        responses, ground_truth, solve_time = do_jigsaw(json_data)
-        return responses, ground_truth, solve_time
+        responses, _, solve_time = do_jigsaw(json_data)
+        return responses, solve_time
     if VERBOSE_PROGRESS:
         print(
             f"Task has {len(json_data.get('train', []))} training examples and "
@@ -345,7 +318,7 @@ async def solve_arc_task(json_data, hint, num_attempts=3, visualize=True, critic
     if VERBOSE_PROGRESS:
         print(f"Running Consensus with {num_attempts} attempts...")
     consensus_start = time.time()
-    responses, ground_truth = await get_consensus_response(json_data, hint, num_attempts, critic)
+    responses = await get_consensus_response(json_data, hint, num_attempts, critic)
     consensus_time = time.time() - consensus_start
     if VERBOSE_PROGRESS:
         print(f"Consensus took {consensus_time:.2f}s")
@@ -354,13 +327,13 @@ async def solve_arc_task(json_data, hint, num_attempts=3, visualize=True, critic
     # Overall solve time print removed to keep single print per stage
 
     # Visualize results or save as PNG
-    if responses or ground_truth:
+    if responses:
         if visualize:
-            visualize_results(responses, ground_truth)
+            visualize_results(responses)
         elif task_id:
-            save_results_as_png(responses, ground_truth, task_id)
+            save_results_as_png(responses, task_id)
 
-    return responses, ground_truth, execution_time
+    return responses, execution_time
 
 
 async def get_hints(json_data):
@@ -458,7 +431,7 @@ def setup_logger_for_id(task_id):
     # Clear any existing handlers
     logger.handlers.clear()
 
-    # Create temporary file handler (will rename after getting score)
+    # Create temporary file handler (will rename after processing)
     temp_log_file = os.path.join(log_dir, f"{task_id}_temp.log")
     file_handler = logging.FileHandler(temp_log_file, mode='w')
     file_handler.setLevel(logging.INFO)
@@ -473,10 +446,10 @@ def setup_logger_for_id(task_id):
     return logger, temp_log_file
 
 
-def rename_log_file(temp_log_file, task_id, correct, total):
-    """Rename the temporary log file to include the score as correct/total"""
+def rename_log_file(temp_log_file, task_id):
+    """Rename the temporary log file to final name without score."""
     log_dir = "e2e_logs"
-    final_log_file = os.path.join(log_dir, f"{task_id}_score_{correct}_of_{total}.log")
+    final_log_file = os.path.join(log_dir, f"{task_id}.log")
 
     # Rename the file
     if os.path.exists(temp_log_file):
@@ -516,9 +489,8 @@ async def process_task_get_hints(task_id):
 # Example usage
 async def main():
     ids = find_task_ids("arc-agi_test_challenges.json")
+    ids= ids[:51]  # Limit to first 10 tasks for testing
     print(len(ids))
-    overall_score = 0
-    overall_count = 0
 
     async def process_and_solve(task_id):
         logger, temp_log_file = setup_logger_for_id(task_id)
@@ -530,11 +502,12 @@ async def main():
 
             # Generate hint
             _, hint = await process_task_get_hints(task_id)
-
+            print(task_id)
+            
             # Solve as soon as hint is ready
             logger.info(f"Solving task {task_id}")
             start_solve = time.time()
-            responses, ground_truth, _ = await solve_arc_task(
+            responses, _ = await solve_arc_task(
                 json_data=task_json_data,
                 hint=hint,
                 num_attempts=5,
@@ -543,35 +516,21 @@ async def main():
             )
             logger.info(f"Solved in {time.time() - start_solve:.2f}s")
 
-            # Score calculation
-            task_score, task_count = 0, 0
-            if responses:
-                for r, gt in zip(responses, ground_truth):
-                    if r == gt:
-                        task_score += 1
-                    task_count += 1
-            task_percentage = (task_score / task_count * 100) if task_count else 0
-
-            # Logging & overall stats
-            logger.info(f"Task {task_id} Score: {task_score}/{task_count} ({task_percentage:.1f}%)")
-            return task_score, task_count, temp_log_file, task_id, task_percentage
+            # No ground truth; return just log info
+            return temp_log_file, task_id
 
         except Exception as e:
-            logger.error(f"Task {task_id} failed: {e}")
-            return 0, 0, temp_log_file, task_id, 0
+            logger.exception(f"Task {task_id} failed")
+            return temp_log_file, task_id
 
     # Create and run all tasks concurrently, solve each immediately after hint
     process_tasks = [asyncio.create_task(process_and_solve(task_id)) for task_id in ids]
 
     for coro in asyncio.as_completed(process_tasks):
-        task_score, task_count, temp_log_file, task_id, task_percentage = await coro
+        temp_log_file, task_id = await coro
         # Safe file rename here
-        rename_log_file(temp_log_file, task_id, task_score, task_count)
-        overall_score += task_score
-        overall_count += task_count
+        rename_log_file(temp_log_file, task_id)
 
-    overall_percentage = (overall_score / overall_count * 100) if overall_count > 0 else 0
-    print(f"\nOverall Score: {overall_score}/{overall_count} ({overall_percentage:.1f}%)")
 
 
 

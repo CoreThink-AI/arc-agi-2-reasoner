@@ -1,3 +1,4 @@
+import os
 import asyncio
 from dotenv import load_dotenv
 from arc_agi.src.patterns.pattern_detection_prompt import PROMPT
@@ -11,8 +12,11 @@ from arc_agi.src.utils.llm_utils import get_completion, summarize_reasons
 from arc_agi.src.patterns.object_comparison import compare_object_lists
 
 load_dotenv()
-CONCURRENT_REQUESTS = 5
+# Make concurrency configurable to reduce OpenAI timeouts under load
+CONCURRENT_REQUESTS = int(os.getenv("OPENAI_CONCURRENCY", "3"))
 semaphore = asyncio.Semaphore(CONCURRENT_REQUESTS)
+REPEAT_COUNT = int(os.getenv("PATTERN_DETECTION_REPETITIONS", "3"))
+OPENAI_TASK_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TASK_TIMEOUT_SECONDS", "7200"))
 
 
 class PatternDetectionResult(BaseModel):
@@ -42,7 +46,10 @@ async def generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_
         output_grid_viz=output_grid_viz
     )
     try:
-        response = await get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, prompt)
+        response = await asyncio.wait_for(
+            get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, prompt),
+            timeout=OPENAI_TASK_TIMEOUT_SECONDS,
+        )
         if response and hasattr(response, 'result') and response.result:
             # Extract text from the structured response
             return str(response.result[0].pattern_description if response.result[0].pattern_description else "Hint unavailable.")
@@ -72,9 +79,15 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
             retain_json,
             pattern_data
         ))
-        prompts = prompts*5
+        prompts = prompts * REPEAT_COUNT
         print(f"Processing {len(prompts)} patterns with {CONCURRENT_REQUESTS} concurrent requests...")
-        tasks = [get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, p) for p in prompts]
+        tasks = [
+            asyncio.wait_for(
+                get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, p),
+                timeout=OPENAI_TASK_TIMEOUT_SECONDS,
+            )
+            for p in prompts
+        ]
         results = await asyncio.gather(*tasks, return_exceptions=True)
 
         counts = Counter()

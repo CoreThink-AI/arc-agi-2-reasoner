@@ -154,6 +154,7 @@ def process_single_test_case(prompt, num_attempts,critic=False):
             raw_response = get_grok_response_stream(critic_prompt_text)
         response = extract_matrix_from_response(raw_response)
         arr_response = matrix_to_arr(response)
+
         return raw_response, arr_response
     try:
         with ThreadPoolExecutor(max_workers=min(num_attempts, 5)) as executor:

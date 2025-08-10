@@ -8,21 +8,38 @@ from openai import OpenAI
 from arc_agi.src.patterns.detailed_hint_prompt import HINT_SUMMARY_PROMPT
 from .visualization_utils import array_to_base64_image
 import openai
-from openai import OpenAI,AsyncOpenAI
+from openai import OpenAI, AsyncOpenAI
+import httpx
+from openai import (
+    APIConnectionError,
+    APITimeoutError,
+    RateLimitError,
+)
 
 load_dotenv()
-deployment="o4-mini"
+deployment = "o4-mini"
 # Initialize Grok client
 grok_client = OpenAI(
     api_key=os.environ.get("XAI_API_KEY"),
     base_url="https://api.x.ai/v1",
-    timeout=7200
+    timeout=7200,
 )
 
 # =====================================
 # Unified LLM call function (Grok only)
 # =====================================
-openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+# Configure Async OpenAI client with explicit timeout and retries
+DEFAULT_OPENAI_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TIMEOUT_SECONDS", "7200"))
+OPENAI_MAX_RETRIES = int(os.getenv("OPENAI_MAX_RETRIES", "3"))
+
+_httpx_async_client = httpx.AsyncClient(timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS)
+openai_client = AsyncOpenAI(
+    api_key=os.getenv("OPENAI_API_KEY"),
+    timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+    max_retries=OPENAI_MAX_RETRIES,
+    http_client=_httpx_async_client,
+)
 
 def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 4096) -> str:
     """
@@ -101,46 +118,65 @@ def get_cerebras_response(prompt: str) -> str:
     return call_llm("grok", prompt)
 
 # =====================================
-# Pattern Detection with retry (Grok)
+# Pattern Detection with retry (OpenAI async)
 # =====================================
 
-async def get_completion_with_retry(img1,img2,semaphore, PatternDetectionResponse, prompt: str, max_retries: int = 3):
-    """Get completion with retry logic and rate limiting using OpenAI"""
+async def get_completion_with_retry(
+    img1,
+    img2,
+    semaphore,
+    PatternDetectionResponse,
+    prompt: str,
+    max_retries: int = None,
+):
+    """Get completion with retry logic, timeouts, and rate limiting using OpenAI."""
+    retry_limit = max_retries or OPENAI_MAX_RETRIES
     async with semaphore:  # Limit concurrent requests
-        for attempt in range(max_retries):
+        for attempt in range(retry_limit):
             try:
-                # Add small delay to avoid hitting rate limits
+                # Small jitter to avoid herd behavior
                 await asyncio.sleep(random.uniform(0.2, 0.8))
-                
+
                 response = await openai_client.beta.chat.completions.parse(
                     model=deployment,
-                    messages=[{
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": prompt},
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{img1}"},
-                    },
-                    {
-                        "type": "image_url",
-                        "image_url": {"url": f"data:image/jpeg;base64,{img2}"},
-                    }
-                ],
-            }],
+                    messages=[
+                        {
+                            "role": "user",
+                            "content": [
+                                {"type": "text", "text": prompt},
+                                {
+                                    "type": "image_url",
+                                    "image_url": {"url": f"data:image/jpeg;base64,{img1}"},
+                                },
+                                {
+                                    "type": "image_url",
+                                    "image_url": {"url": f"data:image/jpeg;base64,{img2}"},
+                                },
+                            ],
+                        }
+                    ],
                     response_format=PatternDetectionResponse,
+                    timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
                 )
-                print(len(prompt))
                 result = response.choices[0].message.parsed
                 return result
-                    
+
+            except (APITimeoutError, APIConnectionError, RateLimitError) as e:
+                is_last = attempt == retry_limit - 1
+                if is_last:
+                    print(f"[OpenAI timeout/connection/rate-limit] Giving up after {retry_limit} attempts: {e}")
+                    return None
+                backoff_seconds = min(2 ** attempt + random.uniform(0, 0.5), 8.0)
+                print(f"[OpenAI retryable error] attempt {attempt + 1}/{retry_limit} failed: {e} — backing off {backoff_seconds:.2f}s")
+                await asyncio.sleep(backoff_seconds)
             except Exception as e:
-                if attempt == max_retries - 1:
-                    print(f"Failed after {max_retries} attempts: {e}")
-                    return None  # Return None when all retries fail
-                else:
-                    print(f"Attempt {attempt + 1} failed: {e}, retrying...")
-                    await asyncio.sleep(random.uniform(1.0, 2.0))  # Longer delay before retry
+                is_last = attempt == retry_limit - 1
+                if is_last:
+                    print(f"[OpenAI fatal error] Failed after {retry_limit} attempts: {e}")
+                    return None
+                backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                print(f"[OpenAI error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
+                await asyncio.sleep(backoff_seconds)
 
 async def get_completion(grid1, grid2, semaphore, PatternDetectionResponse, prompt: str):
     img1 = array_to_base64_image(grid1)
@@ -167,11 +203,15 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
 
     try:
         response = await openai_client.chat.completions.create(
-            model=deployment,  
+            model=deployment,
             messages=[{"role": "user", "content": prompt}],
-            max_completion_tokens=2000
+            max_completion_tokens=2000,
+            timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
         )
         return response.choices[0].message.content.strip()
+    except (APITimeoutError, APIConnectionError, RateLimitError) as e:
+        print(f"OpenAI summarize_reasons timeout/connection/rate-limit: {e}")
+        return combined_reasons
     except Exception as e:
         print(f"Error summarizing reasons: {e}")
         return combined_reasons 
@@ -190,14 +230,18 @@ async def summarize_hints(hint_list: List[str]) -> str:
 
     try:
         response = await openai_client.chat.completions.create(
-            model=deployment,  
+            model=deployment,
             messages=[{"role": "user", "content": prompt}],
-            max_completion_tokens=2000
+            max_completion_tokens=2000,
+            timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
         )
         return response.choices[0].message.content.strip()
+    except (APITimeoutError, APIConnectionError, RateLimitError) as e:
+        print(f"OpenAI summarize_hints timeout/connection/rate-limit: {e}")
+        return hint_list[0] if hint_list else ""
     except Exception as e:
         print(f"Error summarizing reasons: {e}")
-        return combined_hints[0] 
+        return hint_list[0] if hint_list else ""
 
 # =====================================
 # Grid Parsing
