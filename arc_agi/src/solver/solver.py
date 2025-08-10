@@ -1,5 +1,5 @@
 from arc_agi.src.solver.solver_prompts import example_template, solver_prompt_template, new_solver_prompt, critic_prompt
-from arc_agi.src.utils.llm_utils import get_grok_response_stream
+from arc_agi.src.utils.llm_utils import get_grok_response_stream, aget_grok_response_stream
 from arc_agi.src.utils.visualization_utils import get_arr_viz
 from arc_agi.src.objects.base import Grid, BaseObject
 import re, asyncio, json
@@ -115,21 +115,23 @@ def matrix_to_arr(matrix_str):
 async def get_solved_outputs(arc_input, hint, return_raw_responses=False):
     print("Creating the Prompt")
     prompt_arr, ground_truths_arr = await get_prompts(arc_input, hint)
-    #raw_responses = [get_grok_response_stream(prompt) for prompt in prompt_arr]
     print("Started the LLM call")
-    raw_responses = [get_grok_response_stream(prompt) for prompt in prompt_arr]
+    raw_tasks = [aget_grok_response_stream(prompt) for prompt in prompt_arr]
+    raw_responses = await asyncio.gather(*raw_tasks)
     print(raw_responses)
     critic_prompts = []
     for i in range(len(raw_responses)):
         critic_prompts.append(critic_prompt.format(prompt_arr[i],raw_responses[i]))
-    raw_responses = [get_grok_response_stream(prompt) for prompt in critic_prompts]
+    raw_tasks = [aget_grok_response_stream(prompt) for prompt in critic_prompts]
+    raw_responses = await asyncio.gather(*raw_tasks)
     print(raw_responses)
     responses = [extract_matrix_from_response(response) for response in raw_responses]
     arr_responses = [matrix_to_arr(response) for response in responses]
     critic_prompts = []
     for i in range(len(raw_responses)):
         critic_prompts.append(critic_prompt.format(get_arr_viz(arr_responses[i]),raw_responses[i]))
-    raw_responses = [get_grok_response_stream(prompt) for prompt in critic_prompts]
+    raw_tasks = [aget_grok_response_stream(prompt) for prompt in critic_prompts]
+    raw_responses = await asyncio.gather(*raw_tasks)
     print(raw_responses)
     
     responses = [extract_matrix_from_response(response) for response in raw_responses]
@@ -173,6 +175,27 @@ def process_single_test_case(prompt, num_attempts,critic=False):
                 responses.append((raw_response, arr_response))
             return responses
 
+async def process_single_test_case_async(prompt, num_attempts, critic=False):
+    """
+    Async version: run multiple attempts concurrently using the async Grok stream.
+    Returns list of (raw_response, arr_response) per attempt.
+    """
+    async def get_single_response_async(prompt_local: str):
+        raw_response = await aget_grok_response_stream(prompt_local)
+        if critic:
+            critic_prompt_text = critic_prompt.format(prompt_local, raw_response)
+            raw_response = await aget_grok_response_stream(critic_prompt_text)
+            response = extract_matrix_from_response(raw_response)
+            arr_response = matrix_to_arr(response)
+            critic_prompt_text = critic_prompt.format(get_arr_viz(arr_response), raw_response)
+            raw_response = await aget_grok_response_stream(critic_prompt_text)
+        response = extract_matrix_from_response(raw_response)
+        arr_response = matrix_to_arr(response)
+        return raw_response, arr_response
+
+    tasks = [get_single_response_async(prompt) for _ in range(num_attempts)]
+    return await asyncio.gather(*tasks)
+
 async def get_solved_outputs_multiple_in_parallel(arc_input, hint, num_attempts, return_raw_responses=False, critic=False):
     """
     Same as get_solved_outputs but will be getting multiple responses in parallel for self-consistency
@@ -196,11 +219,8 @@ async def get_solved_outputs_multiple_in_parallel(arc_input, hint, num_attempts,
     
     print("Started the LLM call")
     
-    # Process each test case with multiple attempts in parallel
-    tasks = [
-        asyncio.to_thread(process_single_test_case, prompt, num_attempts, critic)
-        for prompt in prompt_arr
-    ]
+    # Process each test case with multiple attempts in parallel (true async)
+    tasks = [process_single_test_case_async(prompt, num_attempts, critic) for prompt in prompt_arr]
     all_responses = await asyncio.gather(*tasks)
 
     print(f"Completed {num_attempts} attempts for each test case")

@@ -97,19 +97,19 @@ async def process_single_training_example(i, train_example):
     grid_input = train_example["input"]
     grid_output = train_example["output"]
     grid_a = Grid(grid_input)
-    input_obj =  await grid_a.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096)
     grid_b = Grid(grid_output)
-    output_obj = await grid_b.find_objects_in_grid( 'openai', 'gpt-4.1-mini', 0.0, 4096)
-
-    # Create all input object tasks concurrently
-    before_list = await asyncio.gather(
-        *[create_base_object(grid_input, obj) for obj in input_obj]
+    # Run object detection for input and output concurrently
+    input_obj, output_obj = await asyncio.gather(
+        grid_a.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096),
+        grid_b.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096),
     )
 
-    # Create all output object tasks concurrently
-    after_list = await asyncio.gather(
-        *[create_base_object(grid_output, obj) for obj in output_obj]
-    )
+    # Create all base object tasks concurrently across input and output
+    input_tasks = [create_base_object(grid_input, obj) for obj in input_obj]
+    output_tasks = [create_base_object(grid_output, obj) for obj in output_obj]
+    combined_results = await asyncio.gather(*(input_tasks + output_tasks))
+    before_list = combined_results[: len(input_tasks)]
+    after_list = combined_results[len(input_tasks) :]
 
     objects_stage_time = time.time() - objects_stage_start
 
@@ -488,8 +488,11 @@ async def process_task_get_hints(task_id):
 
 # Example usage
 async def main():
+    # Start time for the overall run
+    main_start = time.time()
+    print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
     ids = find_task_ids("arc-agi_test_challenges.json")
-    ids= ids[:30]  
+    ids= ids[-30:]  
     print(len(ids))
 
     async def process_and_solve(task_id):
@@ -530,6 +533,11 @@ async def main():
         temp_log_file, task_id = await coro
         # Safe file rename here
         rename_log_file(temp_log_file, task_id)
+
+    # End time for the overall run
+    main_end = time.time()
+    print(f"Main end: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_end))}")
+    print(f"Main duration: {main_end - main_start:.2f}s")
 
 
 

@@ -41,6 +41,16 @@ openai_client = AsyncOpenAI(
     http_client=_httpx_async_client,
 )
 
+# Async Grok client (x.ai) mirroring the OpenAI async setup
+_httpx_async_client_xai = httpx.AsyncClient(timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS)
+grok_async_client = AsyncOpenAI(
+    api_key=os.environ.get("XAI_API_KEY"),
+    base_url="https://api.x.ai/v1",
+    timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+    max_retries=OPENAI_MAX_RETRIES,
+    http_client=_httpx_async_client_xai,
+)
+
 def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 40096) -> str:
     """
     Unified function but now Grok-only.
@@ -106,6 +116,44 @@ def get_grok_response_stream(prompt):
         return final_response
     except Exception as e:
         return f"Error: {e}"
+
+async def aget_grok_response_stream(prompt: str) -> str:
+    """
+    Async streaming Grok response using the async OpenAI client (x.ai base_url).
+    Falls back to a non-streaming completion on streaming errors.
+    """
+    final_response = ""
+    try:
+        stream = await grok_async_client.chat.completions.create(
+            model="grok-4",
+            messages=[
+                {"role": "system", "content": "You are an expert reasoner."},
+                {"role": "user", "content": prompt},
+            ],
+            stream=True,
+        )
+        async for chunk in stream:
+            try:
+                content = chunk.choices[0].delta.content
+                if content:
+                    final_response += content
+            except Exception:
+                # Ignore malformed chunks
+                continue
+        return final_response
+    except Exception:
+        # Fallback to non-streaming async request
+        try:
+            response = await grok_async_client.chat.completions.create(
+                model="grok-4",
+                messages=[
+                    {"role": "system", "content": "You are an expert reasoner."},
+                    {"role": "user", "content": prompt},
+                ],
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            return f"Error: {e}"
 
 # =====================================
 # Replace get_cerebras_response
