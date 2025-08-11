@@ -117,17 +117,24 @@ def get_grok_response_stream(prompt):
     except Exception as e:
         return f"Error: {e}"
 
-async def aget_grok_response_stream(prompt: str) -> str:
+async def aget_grok_response_stream(prompt: str, system_prompt: str = "", XAI_API_KEY: str = "") -> str:
     """
     Async streaming Grok response using the async OpenAI client (x.ai base_url).
     Falls back to a non-streaming completion on streaming errors.
     """
+    grok_async_client = AsyncOpenAI(
+        api_key=XAI_API_KEY or os.environ.get("XAI_API_KEY"),
+        base_url="https://api.x.ai/v1",
+        timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+        max_retries=OPENAI_MAX_RETRIES,
+        http_client=_httpx_async_client_xai,
+    )
     final_response = ""
     try:
         stream = await grok_async_client.chat.completions.create(
             model="grok-4",
             messages=[
-                {"role": "system", "content": "You are an expert reasoner."},
+                {"role": "system", "content": f"You are an expert reasoner. {system_prompt}"},
                 {"role": "user", "content": prompt},
             ],
             stream=True,
