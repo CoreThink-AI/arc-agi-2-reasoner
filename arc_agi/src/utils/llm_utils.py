@@ -117,20 +117,43 @@ def get_grok_response_stream(prompt):
     except Exception as e:
         return f"Error: {e}"
 
-async def aget_grok_response_stream(prompt: str, system_prompt: str = "", XAI_API_KEY: str = "") -> str:
+
+async def aget_grok_response_stream(
+        prompt: str,
+        system_prompt: str = "",
+        XAI_API_KEY: str = ""
+) -> str:
     """
-    Async streaming Grok response using the async OpenAI client (x.ai base_url).
-    Falls back to a non-streaming completion on streaming errors.
+    Async streaming Grok (x.ai) response.
+    Falls back to a normal non-streaming response if streaming fails.
+
+    Args:
+        prompt (str): The main user prompt.
+        system_prompt (str): Optional system-level instructions.
+        XAI_API_KEY (str): Optional API key (defaults to env var `XAI_API_KEY`).
+
+    Returns:
+        str: The full response text, or an error message on failure.
     """
+
+    # Resolve API key
+    api_key = XAI_API_KEY or os.environ.get("XAI_API_KEY")
+    if not api_key:
+        raise ValueError("Missing XAI API key. Please provide it as an argument or set it in the environment.")
+
+    # Create async client
     grok_async_client = AsyncOpenAI(
-        api_key=XAI_API_KEY or os.environ.get("XAI_API_KEY"),
+        api_key=api_key,
         base_url="https://api.x.ai/v1",
         timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
         max_retries=OPENAI_MAX_RETRIES,
         http_client=_httpx_async_client_xai,
     )
+
     final_response = ""
+
     try:
+        # Streaming request
         stream = await grok_async_client.chat.completions.create(
             model="grok-4",
             messages=[
@@ -139,28 +162,28 @@ async def aget_grok_response_stream(prompt: str, system_prompt: str = "", XAI_AP
             ],
             stream=True,
         )
+
         async for chunk in stream:
-            try:
-                content = chunk.choices[0].delta.content
-                if content:
-                    final_response += content
-            except Exception:
-                # Ignore malformed chunks
-                continue
-        return final_response
-    except Exception:
-        # Fallback to non-streaming async request
+            content = getattr(chunk.choices[0].delta, "content", None)
+            if content:
+                final_response += content
+
+        return final_response.strip()
+
+    except Exception as e:
+        # Fallback to non-streaming request
         try:
             response = await grok_async_client.chat.completions.create(
                 model="grok-4",
                 messages=[
-                    {"role": "system", "content": "You are an expert reasoner."},
+                    {"role": "system", "content": f"You are an expert reasoner. {system_prompt}"},
                     {"role": "user", "content": prompt},
                 ],
             )
             return response.choices[0].message.content.strip()
-        except Exception as e:
-            return f"Error: {e}"
+
+        except Exception as e2:
+            return f"Error: {e2}"
 
 # =====================================
 # Replace get_cerebras_response

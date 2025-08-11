@@ -335,13 +335,32 @@ async def solve_arc_task(json_data, hint, num_attempts=3, visualize=True, critic
 
     return responses, execution_time
 
+
 async def solve_arc_task_2(json_data, objects):
     from arc_agi.src.utils.llm_utils import aget_grok_response_stream
     from arc_agi.src.solver.solver_2_utils import get_prompts
-    system_prompt = "You are an expert at solving grid based problems. You are given a grid and a format to write the solution to the problem. You will use the provided format to write the solution to the problem and enclose your code within '```'."
-    prompt = get_prompts(json_data, objects)
-    response = await aget_grok_response_stream(prompt, system_prompt, "xai-tuFUWaAPdVfkZX0adYLevUKczDgaHrIUtVoS5cF6wpITShAtfhZv4s4lbm9PsHklRPrVChtjD0LnSJjv")
-    return response
+
+    api_key = os.getenv("XAI_API_KEY_FLOW_2")
+    if not api_key:
+        raise ValueError("Missing XAI API key for flow 2. Set it as environment variable 'XAI_API_KEY_FLOW_2'.")
+
+    system_prompt = (
+        "You are an expert at solving grid-based problems. "
+        "You are given a grid and a format to write the solution. "
+        "Always use the provided format and enclose your code within triple backticks."
+    )
+
+    prompts = get_prompts(json_data, objects)
+
+    # Support both single prompt or list of prompts
+    if isinstance(prompts, str):
+        return await aget_grok_response_stream(prompts, system_prompt, api_key)
+
+    # Run all prompts in parallel
+    results = await asyncio.gather(
+        *(aget_grok_response_stream(p, system_prompt, api_key) for p in prompts)
+    )
+    return results
 
 
 async def get_hints(json_data):
@@ -514,7 +533,7 @@ async def main():
     main_start = time.time()
     print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
     ids = find_task_ids("arc-agi_test_challenges.json")
-    for i in range(1):
+    for i in range(8):
         ids = find_task_ids("arc-agi_test_challenges.json")
         ids = ids[30*i:30*(i+1)]
         async def process_and_solve(task_id):
