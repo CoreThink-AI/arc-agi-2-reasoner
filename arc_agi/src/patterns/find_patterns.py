@@ -8,7 +8,7 @@ from typing import List, Dict, Optional
 from pydantic import BaseModel
 from collections import Counter
 from arc_agi.src.utils.visualization_utils import get_arr_viz
-from arc_agi.src.utils.llm_utils import get_completion, summarize_reasons
+from arc_agi.src.utils.llm_utils import get_completion, summarize_reasons, get_completion_grok
 from arc_agi.src.patterns.object_comparison import compare_object_lists
 
 load_dotenv()
@@ -48,7 +48,7 @@ async def generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_
     )
     try:
         response = await asyncio.wait_for(
-            get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, prompt),
+            get_completion_grok(input_grid, output_grid, semaphore, PatternDetectionResponse, prompt),
             timeout=OPENAI_TASK_TIMEOUT_SECONDS,
         )
         if response and hasattr(response, 'result') and response.result:
@@ -84,7 +84,7 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
         print(f"Processing {len(prompts)} patterns with {CONCURRENT_REQUESTS} concurrent requests...")
         tasks = [
             asyncio.wait_for(
-                get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, p),
+                get_completion_grok(input_grid, output_grid, semaphore, PatternDetectionResponse, p),
                 timeout=OPENAI_TASK_TIMEOUT_SECONDS,
             )
             for p in prompts

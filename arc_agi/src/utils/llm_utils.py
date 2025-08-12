@@ -4,7 +4,6 @@ import random
 from typing import List
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from openai import OpenAI
 from arc_agi.src.patterns.detailed_hint_prompt import HINT_SUMMARY_PROMPT
 from .visualization_utils import array_to_base64_image
 import openai
@@ -256,10 +255,75 @@ async def get_completion_with_retry(
                 print(f"[OpenAI error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
                 await asyncio.sleep(backoff_seconds)
 
+async def get_completion_with_retry_grok(
+    img1,
+    img2,
+    semaphore,
+    PatternDetectionResponse,
+    prompt: str,
+    max_retries: int = None,
+):
+    """Get completion with retry logic, timeouts, and rate limiting using OpenAI."""
+    api_key = os.environ.get("XAI_API_KEY_FLOW_2")
+    if not api_key:
+        raise ValueError("Missing XAI API key. Please set XAI_API_KEY_FLOW_2 in the environment.")
+
+    grok_async_client_2 = AsyncOpenAI(
+        api_key=api_key,
+        base_url="https://api.x.ai/v1",
+        timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+        max_retries=OPENAI_MAX_RETRIES,
+        http_client=_httpx_async_client_xai,
+    )
+    retry_limit = max_retries or OPENAI_MAX_RETRIES
+    async with semaphore:  # Limit concurrent requests
+        for attempt in range(retry_limit):
+            try:
+                # Small jitter to avoid herd behavior
+                await asyncio.sleep(random.uniform(0.2, 0.8))
+
+                response = await grok_async_client_2.beta.chat.completions.parse(
+                    model='grok-4',
+                    messages=[
+                        {
+                            "role": "user",
+                            "content": [
+                                {"type": "text", "text": prompt}
+                            ],
+                        }
+                    ],
+                    response_format=PatternDetectionResponse,
+                    timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+                )
+                result = response.choices[0].message.parsed
+                return result
+
+            except (APITimeoutError, APIConnectionError, RateLimitError) as e:
+                is_last = attempt == retry_limit - 1
+                if is_last:
+                    print(f"[Grok timeout/connection/rate-limit] Giving up after {retry_limit} attempts: {e}")
+                    return None
+                backoff_seconds = min(2 ** attempt + random.uniform(0, 0.5), 8.0)
+                print(f"[Grok retryable error] attempt {attempt + 1}/{retry_limit} failed: {e} — backing off {backoff_seconds:.2f}s")
+                await asyncio.sleep(backoff_seconds)
+            except Exception as e:
+                is_last = attempt == retry_limit - 1
+                if is_last:
+                    print(f"[Grok fatal error] Failed after {retry_limit} attempts: {e}")
+                    return None
+                backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                print(f"[Grok error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
+                await asyncio.sleep(backoff_seconds)
+
 async def get_completion(grid1, grid2, semaphore, PatternDetectionResponse, prompt: str):
     img1 = array_to_base64_image(grid1)
     img2 = array_to_base64_image(grid2)
     return await get_completion_with_retry(img1, img2, semaphore, PatternDetectionResponse, prompt)
+
+async def get_completion_grok(grid1, grid2, semaphore, PatternDetectionResponse, prompt: str):
+    img1 = array_to_base64_image(grid1)
+    img2 = array_to_base64_image(grid2)
+    return await get_completion_with_retry_grok(img1, img2, semaphore, PatternDetectionResponse, prompt)
 
 async def summarize_reasons(reasons_list: List[str]) -> str:
     """Summarize multiple reasons using GPT-4.1"""

@@ -532,8 +532,8 @@ async def main():
     # Start time for the overall run
     main_start = time.time()
     print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
-    ids = find_task_ids("arc-agi_test_challenges.json")
     for i in range(8):
+        print(f"Running batch {i + 1}")
         ids = find_task_ids("arc-agi_test_challenges.json")
         ids = ids[30*i:30*(i+1)]
         async def process_and_solve(task_id):
