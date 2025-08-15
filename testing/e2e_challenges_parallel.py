@@ -554,11 +554,11 @@ async def main():
     # Start time for the overall run
     main_start = time.time()
     print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
-    for i in range(20):
+    for i in range(60):
         # print(f"Running batch {i + 1}")
         ids = find_task_ids("arc-agi_test_challenges.json")
-        j = 6
-        ids = ids[12*(i) + j : 12*(i) + j + 1]
+        j = 0
+        ids = ids[4*(i) + j : 4*(i) + j + 1]
         async def process_and_solve(task_id):
             logger, temp_log_file = setup_logger_for_id(task_id)
             try:
