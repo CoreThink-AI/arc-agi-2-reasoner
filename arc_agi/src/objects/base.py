@@ -172,7 +172,7 @@ class Grid:
             )
 
             # Call LLM
-            response = call_llm(
+            response = await call_llm(
                 provider=provider,
                 prompt=prompt,
                 model=model,
@@ -348,7 +348,7 @@ class BaseObject:
             )
 
             # Call the LLM
-            self.shape_type = call_llm(
+            self.shape_type = await call_llm(
                 provider=provider,
                 prompt=prompt,
                 model=model,
@@ -400,7 +400,7 @@ class BaseObject:
             )
 
             # Call the LLM
-            raw_response = call_llm(
+            raw_response = await call_llm(
                 provider=provider,
                 prompt=prompt,
                 model=model,

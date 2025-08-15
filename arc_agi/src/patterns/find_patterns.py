@@ -8,14 +8,14 @@ from typing import List, Dict, Optional
 from pydantic import BaseModel
 from collections import Counter
 from arc_agi.src.utils.visualization_utils import get_arr_viz
-from arc_agi.src.utils.llm_utils import get_completion, summarize_reasons, get_completion_grok
+from arc_agi.src.utils.llm_utils import get_completion, summarize_reasons, get_completion_grok, get_completion_groq
 from arc_agi.src.patterns.object_comparison import compare_object_lists
 
 load_dotenv()
 # Make concurrency configurable to reduce OpenAI timeouts under load
 CONCURRENT_REQUESTS = int(os.getenv("OPENAI_CONCURRENCY", "5"))
 semaphore = asyncio.Semaphore(CONCURRENT_REQUESTS)
-REPEAT_COUNT = int(os.getenv("PATTERN_DETECTION_REPETITIONS", "5"))
+REPEAT_COUNT = int(os.getenv("PATTERN_DETECTION_REPETITIONS", "3"))
 OPENAI_TASK_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TASK_TIMEOUT_SECONDS", "72000"))
 SUMMARY_CONCURRENT_REQUESTS = int(os.getenv("OPENAI_SUMMARY_CONCURRENCY", "60"))
 
@@ -89,7 +89,9 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
             )
             for p in prompts
         ]
+        print("preparing pattern results......")
         results = await asyncio.gather(*tasks, return_exceptions=True)
+        print("pattern results prepared...")
 
         counts = Counter()
         all_detected_patterns = []
@@ -133,6 +135,7 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
             for param_key in pattern_params[pattern_name]:
                 pattern_params[pattern_name][param_key] = list(pattern_params[pattern_name][param_key])
 
+        print("starting summarization...")
         # Summarize reasons for all detected patterns concurrently (bounded)
         summarized_reasons = {}
         if counts:
@@ -151,6 +154,8 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
             for name, res in zip(pattern_names_for_summary, summary_results):
                 summarized_reasons[name] = res if not isinstance(res, Exception) else ""
 
+        print("finished summarizing...")
+        print("starting hints generation...")
         # Generate detailed hints for all patterns concurrently (bounded by global semaphore inside LLM call)
         restructured_pattern_params = []
         if pattern_params:
@@ -173,6 +178,7 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
             ]
 
             hint_results = await asyncio.gather(*hint_tasks, return_exceptions=True)
+            print("finished hints generation...")
 
             for name, hint_text in zip(pattern_names_for_hints, hint_results):
                 pattern_description = pattern_descriptions.get(name, "")

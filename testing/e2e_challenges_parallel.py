@@ -73,6 +73,20 @@ def create_base_object_sync(grid, coord_tuples):
     del data["grid"]
     return data
 
+async def create_base_object_async(grid, coord_tuples):
+    """
+    Async helper: given a 2D list (or array) and a set of (x, y) tuples,
+    construct a BaseObject asynchronously.
+    """
+    # Await the async to_dict method directly
+    data = await BaseObject(grid, coord_tuples).to_dict(
+        provider="openai",
+        model="gpt-4.1-mini",
+        temperature=0.0,
+        max_tokens=4096
+    )
+    del data["grid"]
+    return data
 
 async def create_base_object(grid, coord_tuples):
     """
@@ -99,15 +113,18 @@ async def process_single_training_example(i, train_example):
     grid_a = Grid(grid_input)
     grid_b = Grid(grid_output)
     # Run object detection for input and output concurrently
+    print("finding objects ....")
     input_obj, output_obj = await asyncio.gather(
         grid_a.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096),
         grid_b.find_objects_in_grid('openai', 'gpt-4.1-mini', 0.0, 4096),
     )
-
+    print("creating base objects ...")
     # Create all base object tasks concurrently across input and output
-    input_tasks = [create_base_object(grid_input, obj) for obj in input_obj]
-    output_tasks = [create_base_object(grid_output, obj) for obj in output_obj]
+    input_tasks = [create_base_object_async(grid_input, obj) for obj in input_obj]
+    output_tasks = [create_base_object_async(grid_output, obj) for obj in output_obj]
+    print("combining tasks ...")
     combined_results = await asyncio.gather(*(input_tasks + output_tasks))
+    print("task combined ...")
     before_list = combined_results[: len(input_tasks)]
     after_list = combined_results[len(input_tasks) :]
 
@@ -115,8 +132,10 @@ async def process_single_training_example(i, train_example):
 
     # Measure patterns stage
     patterns_stage_start = time.time()
+    print("finding patterns ....")
     pattern_params, counts = await unit_patterns(grid_input, grid_output, before_list, after_list)
     patterns_stage_time = time.time() - patterns_stage_start
+    print("patterns found .....")
 
     return pattern_params, counts, objects_stage_time, patterns_stage_time, input_obj, output_obj
 
@@ -383,6 +402,7 @@ async def get_hints(json_data):
                 await process_single_training_example(i, example)
             return pattern_params, counts, objects_time, patterns_time, [i, input_obj, output_obj]
 
+        print("starting pattern post processing...")
         tasks = []
         for i, example in enumerate(json_data["train"]):
             # create a task that keeps all required data
@@ -411,6 +431,8 @@ async def get_hints(json_data):
             # accumulate time
             total_objects_time += objects_time
             total_patterns_time += patterns_time
+
+        print("Finished pattern post processing.")
 
     except Exception as e:
         print(f"Concurrent processing failed, falling back to sequential: {e}")
@@ -532,10 +554,11 @@ async def main():
     # Start time for the overall run
     main_start = time.time()
     print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
-    for i in range(8):
-        print(f"Running batch {i + 1}")
+    for i in range(20):
+        # print(f"Running batch {i + 1}")
         ids = find_task_ids("arc-agi_test_challenges.json")
-        ids = ids[30*i:30*(i+1)]
+        j = 6
+        ids = ids[12*(i) + j : 12*(i) + j + 1]
         async def process_and_solve(task_id):
             logger, temp_log_file = setup_logger_for_id(task_id)
             try:

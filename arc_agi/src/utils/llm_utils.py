@@ -50,33 +50,55 @@ grok_async_client = AsyncOpenAI(
     http_client=_httpx_async_client_xai,
 )
 
-def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 40096) -> str:
+"""Get completion with retry logic, timeouts, and rate limiting using OpenAI."""
+grok_api_key_2 = os.environ.get("XAI_API_KEY_FLOW_2")
+if not grok_api_key_2:
+    raise ValueError("Missing XAI API key. Please set XAI_API_KEY_FLOW_2 in the environment.")
+
+grok_async_client_2 = AsyncOpenAI(
+        api_key=grok_api_key_2,
+        base_url="https://api.x.ai/v1",
+        timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+        max_retries=OPENAI_MAX_RETRIES,
+        http_client=_httpx_async_client_xai,
+    )
+
+groq_api_key = os.environ.get("GROQ_API_KEY")
+if not groq_api_key:
+    raise ValueError("Missing GROQ API key. Please set GROQ_API_KEY in the environment.")
+groq_async_client = AsyncOpenAI(
+        api_key=groq_api_key,
+        base_url="https://api.groq.com/openai/v1",
+        timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+        max_retries=OPENAI_MAX_RETRIES,
+        http_client=_httpx_async_client,
+    )
+
+async def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 40096) -> str:
     """
     Unified function but now Grok-only.
     Ignores 'provider' and always calls Grok.
     """
     sys_prompt = "You are an expert at solving grid-based reasoning problems. Use markdown output. Enclose code or grids in ```."
 
-    provider = provider.lower()
-    if provider == "openai":
-        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-        response = client.chat.completions.create(
-            model=model,
-            messages=[{"role": "user", "content": prompt}],
-            #temperature=temperature,
-            #max_tokens=max_tokens
-        )
-        return response.choices[0].message.content
-
+    provider = "groq"
     try:
-        response = grok_client.chat.completions.create(
-            model="grok-4",
-            messages=[
-                {"role": "system", "content": sys_prompt},
-                {"role": "user", "content": prompt}
-            ]
-        )
-        return response.choices[0].message.content.strip()
+        if provider == "openai":
+            response = await openai_client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                #temperature=temperature,
+                #max_tokens=max_tokens
+            )
+            return response.choices[0].message.content
+        elif provider == "groq":
+            response = await groq_async_client.chat.completions.create(
+                model="openai/gpt-oss-120b",
+                messages=[{"role": "user", "content": prompt}],
+            )
+            return response.choices[0].message.content
+        else:
+            return await aget_grok_response_stream(prompt)
 
     except Exception as e:
         return f"Error: {e}"
@@ -263,24 +285,13 @@ async def get_completion_with_retry_grok(
     prompt: str,
     max_retries: int = None,
 ):
-    """Get completion with retry logic, timeouts, and rate limiting using OpenAI."""
-    api_key = os.environ.get("XAI_API_KEY_FLOW_2")
-    if not api_key:
-        raise ValueError("Missing XAI API key. Please set XAI_API_KEY_FLOW_2 in the environment.")
 
-    grok_async_client_2 = AsyncOpenAI(
-        api_key=api_key,
-        base_url="https://api.x.ai/v1",
-        timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
-        max_retries=OPENAI_MAX_RETRIES,
-        http_client=_httpx_async_client_xai,
-    )
     retry_limit = max_retries or OPENAI_MAX_RETRIES
     async with semaphore:  # Limit concurrent requests
         for attempt in range(retry_limit):
             try:
                 # Small jitter to avoid herd behavior
-                await asyncio.sleep(random.uniform(0.2, 0.8))
+                await asyncio.sleep(random.uniform(0.05, 0.1))
 
                 response = await grok_async_client_2.beta.chat.completions.parse(
                     model='grok-4',
@@ -315,6 +326,87 @@ async def get_completion_with_retry_grok(
                 print(f"[Grok error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
                 await asyncio.sleep(backoff_seconds)
 
+async def get_completion_with_retry_groq(
+    img1,
+    img2,
+    semaphore,
+    PatternDetectionResponse,
+    prompt: str,
+    max_retries: int = None,
+):
+
+    retry_limit = max_retries or OPENAI_MAX_RETRIES
+    async with semaphore:  # Limit concurrent requests
+        for attempt in range(retry_limit):
+            try:
+                # Small jitter to avoid herd behavior
+                await asyncio.sleep(random.uniform(0.05, 0.1))
+                response = await groq_async_client.beta.chat.completions.parse(
+                    model='moonshotai/kimi-k2-instruct',
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": (
+                                """You are a pattern detection engine. 
+                    Respond ONLY with JSON in the following format:
+                    {
+                      "result": [
+                        {
+                          "reason": "Short explanation of why this pattern is or isn't detected",
+                          "pattern_detected": true,
+                          "pattern_name": "Exact pattern name",
+                          "pattern_description": "Detailed description of the detected pattern",
+                          "params": {
+                            "param_key1": ["string_value1", "string_value2"],
+                            "param_key2": ["string_value3"]
+                          }
+                        },
+                        {
+                          "reason": "Another reason here",
+                          "pattern_detected": false,
+                          "pattern_name": "Another pattern name",
+                          "pattern_description": "Description here",
+                          "params": null
+                        }
+                      ]
+                    }
+    
+                    Rules:
+                    - Always include the "result" key.
+                    - "result" is an array of one or more pattern detection results.
+                    - "params" can be either an object with string array values, or null if there are no parameters.
+                    - Do not include any text, markdown, or explanations outside the JSON.
+                    - Ensure all boolean values are true or false (not strings).
+                    """
+                            ),
+                        },
+                        {"role": "user", "content": prompt}
+                    ],
+                    response_format=PatternDetectionResponse,
+                    timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+                    # reasoning_effort="high"
+                )
+                result = response.choices[0].message.parsed
+                return result
+
+
+            except (APITimeoutError, APIConnectionError, RateLimitError) as e:
+                is_last = attempt == retry_limit - 1
+                if is_last:
+                    print(f"[Groq timeout/connection/rate-limit] Giving up after {retry_limit} attempts: {e}")
+                    return None
+                backoff_seconds = min(2 ** attempt + random.uniform(0, 0.5), 8.0)
+                print(f"[Groq retryable error] attempt {attempt + 1}/{retry_limit} failed: {e} — backing off {backoff_seconds:.2f}s")
+                await asyncio.sleep(backoff_seconds)
+            except Exception as e:
+                is_last = attempt == retry_limit - 1
+                if is_last:
+                    print(f"[Groq fatal error] Failed after {retry_limit} attempts: {e}")
+                    return None
+                backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                print(f"[Groq error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
+                await asyncio.sleep(backoff_seconds)
+
 async def get_completion(grid1, grid2, semaphore, PatternDetectionResponse, prompt: str):
     img1 = array_to_base64_image(grid1)
     img2 = array_to_base64_image(grid2)
@@ -324,6 +416,11 @@ async def get_completion_grok(grid1, grid2, semaphore, PatternDetectionResponse,
     img1 = array_to_base64_image(grid1)
     img2 = array_to_base64_image(grid2)
     return await get_completion_with_retry_grok(img1, img2, semaphore, PatternDetectionResponse, prompt)
+
+async def get_completion_groq(grid1, grid2, semaphore, PatternDetectionResponse, prompt: str):
+    img1 = array_to_base64_image(grid1)
+    img2 = array_to_base64_image(grid2)
+    return await get_completion_with_retry_groq(img1, img2, semaphore, PatternDetectionResponse, prompt)
 
 async def summarize_reasons(reasons_list: List[str]) -> str:
     """Summarize multiple reasons using GPT-4.1"""
@@ -344,8 +441,8 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
     Give output in markdown syntax."""
 
     try:
-        response = await openai_client.chat.completions.create(
-            model=deployment,
+        response = await groq_async_client.chat.completions.create(
+            model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": prompt}],
             max_completion_tokens=20000,
             timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
@@ -371,8 +468,8 @@ async def summarize_hints(hint_list: List[str]) -> str:
     prompt = HINT_SUMMARY_PROMPT.format(combined_hints)
 
     try:
-        response = await openai_client.chat.completions.create(
-            model=deployment,
+        response = await groq_async_client.chat.completions.create(
+            model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": prompt}],
             max_completion_tokens=20000,
             timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
