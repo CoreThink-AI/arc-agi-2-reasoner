@@ -3,6 +3,7 @@ ARC-AGI Core Processing Module
 Handles task solving with pattern-based hints and consensus from multiple attempts.
 """
 
+import argparse
 import json, os
 import asyncio
 import time
@@ -550,14 +551,13 @@ async def process_task_get_hints(task_id):
 
 
 # Example usage
-async def main():
+async def main(j):
     # Start time for the overall run
     main_start = time.time()
     print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
     for i in range(60):
         # print(f"Running batch {i + 1}")
         ids = find_task_ids("arc-agi_test_challenges.json")
-        j = 0
         ids = ids[4*(i) + j : 4*(i) + j + 1]
         async def process_and_solve(task_id):
             logger, temp_log_file = setup_logger_for_id(task_id)
@@ -637,4 +637,7 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--j', type=int, default=0, help='Value of j for task slicing')
+    args = parser.parse_args()
+    asyncio.run(main(args.j))
