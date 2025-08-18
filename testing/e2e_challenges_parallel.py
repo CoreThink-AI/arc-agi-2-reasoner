@@ -555,10 +555,10 @@ async def main(j):
     # Start time for the overall run
     main_start = time.time()
     print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
-    for i in range(48):
+    for i in range(int(240/j)):
         print(f"Running batch {i + 1}")
         ids = find_task_ids("arc-agi_test_challenges.json")
-        ids = ids[i*5 : i*5 + 5]
+        ids = ids[i*j : i*j + j]
         async def process_and_solve(task_id):
             logger, temp_log_file = setup_logger_for_id(task_id)
             try:
@@ -638,6 +638,6 @@ async def main(j):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--j', type=int, default=0, help='Value of j for task slicing')
+    parser.add_argument('--batch_size', type=int, default=0, help='batch size')
     args = parser.parse_args()
-    asyncio.run(main(args.j))
+    asyncio.run(main(args.batch_size))
