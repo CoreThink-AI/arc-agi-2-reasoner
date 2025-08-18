@@ -555,10 +555,10 @@ async def main(j):
     # Start time for the overall run
     main_start = time.time()
     print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
-    for i in range(60):
-        # print(f"Running batch {i + 1}")
+    for i in range(24):
+        print(f"Running batch {i + 1}")
         ids = find_task_ids("arc-agi_test_challenges.json")
-        ids = ids[4*(i) + j : 4*(i) + j + 1]
+        ids = ids[i*10 : i*10 + 10]
         async def process_and_solve(task_id):
             logger, temp_log_file = setup_logger_for_id(task_id)
             try:
@@ -578,7 +578,7 @@ async def main(j):
                     responses, _ = await solve_arc_task(
                         json_data=task_json_data,
                         hint=hint,
-                        num_attempts=5,
+                        num_attempts=3,
                         visualize=False,
                         task_id=task_id
                     )

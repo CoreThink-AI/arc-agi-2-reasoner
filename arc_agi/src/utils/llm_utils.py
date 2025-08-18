@@ -1,6 +1,7 @@
 import os
 import asyncio
 import random
+import json
 from typing import List
 from pydantic import BaseModel
 from dotenv import load_dotenv
@@ -307,6 +308,9 @@ async def get_completion_with_retry_grok(
                     timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
                 )
                 result = response.choices[0].message.parsed
+                print("***********************************")
+                print(result)
+                print("***********************************")
                 return result
 
             except (APITimeoutError, APIConnectionError, RateLimitError) as e:
@@ -326,6 +330,31 @@ async def get_completion_with_retry_grok(
                 print(f"[Grok error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
                 await asyncio.sleep(backoff_seconds)
 
+def flatten_lists_in_params(params):
+    if params is None:
+        return params
+    new_params = {}
+    for k, v in params.items():
+        # If it's a list of lists, flatten it
+        if isinstance(v, list) and any(isinstance(i, list) for i in v):
+            # Flatten one level if all elements are lists
+            flat = []
+            for i in v:
+                if isinstance(i, list):
+                    flat.extend(i)
+                else:
+                    flat.append(i)
+            new_params[k] = flat
+        else:
+            new_params[k] = v
+    return new_params
+
+def fix_result_dict(data):
+    for result in data.get("result", []):
+        if "params" in result:
+            result["params"] = flatten_lists_in_params(result["params"])
+    return data
+
 async def get_completion_with_retry_groq(
     img1,
     img2,
@@ -342,53 +371,128 @@ async def get_completion_with_retry_groq(
                 # Small jitter to avoid herd behavior
                 await asyncio.sleep(random.uniform(0.05, 0.1))
                 response = await groq_async_client.beta.chat.completions.parse(
-                    model='moonshotai/kimi-k2-instruct',
+                    model='openai/gpt-oss-120b',
                     messages=[
                         {
                             "role": "system",
                             "content": (
-                                """You are a pattern detection engine. 
-                    Respond ONLY with JSON in the following format:
-                    {
-                      "result": [
-                        {
-                          "reason": "Short explanation of why this pattern is or isn't detected",
-                          "pattern_detected": true,
-                          "pattern_name": "Exact pattern name",
-                          "pattern_description": "Detailed description of the detected pattern",
-                          "params": {
-                            "param_key1": ["string_value1", "string_value2"],
-                            "param_key2": ["string_value3"]
-                          }
-                        },
-                        {
-                          "reason": "Another reason here",
-                          "pattern_detected": false,
-                          "pattern_name": "Another pattern name",
-                          "pattern_description": "Description here",
-                          "params": null
-                        }
-                      ]
-                    }
-    
-                    Rules:
-                    - Always include the "result" key.
-                    - "result" is an array of one or more pattern detection results.
-                    - "params" can be either an object with string array values, or null if there are no parameters.
-                    - Do not include any text, markdown, or explanations outside the JSON.
-                    - Ensure all boolean values are true or false (not strings).
-                    """
+                                """
+                                You are a pattern detection engine.
+                                Respond ONLY with the output JSON, enclosed in a markdown code block (triple backticks) and formatted as specified below.
+                
+                                The JSON must follow this exact schema:
+                                {
+                                  "result": [
+                                    {
+                                      "reason": "Short, precise explanation of why this pattern is or isn’t detected",
+                                      "pattern_detected": true, // or false
+                                      "pattern_name": "Exact pattern name",
+                                      "pattern_description": "Detailed description of the detected pattern and its nature",
+                                      "params": {
+                                        "param_key1": ["string_value1", "string_value2"],
+                                        "param_key2": ["string_value3"]
+                                      }
+                                    },
+                                    {
+                                      "reason": "Explanation for another pattern result",
+                                      "pattern_detected": false,
+                                      "pattern_name": "Another pattern name",
+                                      "pattern_description": "Description here",
+                                      "params": null
+                                    }
+                                  ]
+                                }
+                
+                                Rules:
+                                - Always include the root key \"result\". Its value is an array containing one or more pattern detection result objects.
+                                - For each object:
+                                    - \"reason\": Provide a concise explanation.
+                                    - \"pattern_detected\": Boolean value only (true or false).
+                                    - \"pattern_name\": Use a specific, descriptive name.
+                                    - \"pattern_description\": Give a detailed, informative description of the pattern or absence thereof.
+                                    - \"params\": If relevant, give a dictionary mapping string keys to lists of strings; otherwise, use null.
+                                - NEVER add any text, annotation, or explanation outside the markdown code block.
+                                - Only output raw JSON, and ONLY within the markdown code block.
+                                - Ensure output is strict, valid JSON and matches the given schema.
+                
+                                Good Example:
+                                {
+                                  \"result\": [
+                                    {
+                                      \"reason\": \"Date in DD/MM/YYYY format found in the input.\",
+                                      \"pattern_detected\": true,
+                                      \"pattern_name\": \"Date Pattern\",
+                                      \"pattern_description\": \"Looks for sequences like '17/08/2025' or '03-12-2024'.\",
+                                      \"params\": {
+                                        \"matches\": [\"17/08/2025\", \"03-12-2024\"]
+                                      }
+                                    },
+                                    {
+                                      \"reason\": \"No email addresses matched the regex.\",
+                                      \"pattern_detected\": false,
+                                      \"pattern_name\": \"Email Pattern\",
+                                      \"pattern_description\": \"Detects standard email addresses in provided input.\",
+                                      \"params\": null
+                                    }
+                                  ]
+                                }
+                
+                                Good Example:
+                                {
+                                  \"result\": [
+                                    {
+                                      \"reason\": \"Faces detected in both images.\",
+                                      \"pattern_detected\": true,
+                                      \"pattern_name\": \"Face Detection\",
+                                      \"pattern_description\": \"Identifies human faces present in photographs using computer vision.\",
+                                      \"params\": {
+                                        \"coordinates_img1\": [\"(245,120)\", \"(320,98)\"],
+                                        \"coordinates_img2\": [\"(130,97)\"]
+                                      }
+                                    }
+                                  ]
+                                }
+                
+                                Bad Examples:
+                                - Outputting anything before or after the code block.
+                                - Using string instead of boolean for \"pattern_detected\".
+                                - Omitting the \"result\" root key.
+                                - Including extra keys, comments, or text.
+                
+                                Do not add explanations, comments, or markdown outside the JSON code block.
+                                """
                             ),
                         },
                         {"role": "user", "content": prompt}
                     ],
-                    response_format=PatternDetectionResponse,
+                    # response_format=PatternDetectionResponse,
                     timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
-                    # reasoning_effort="high"
+                    reasoning_effort="high"
                 )
-                result = response.choices[0].message.parsed
-                return result
+                model_output = response.choices[0].message.content
+                model_output_ = model_output.split("```")
+                raw_json = model_output_[1][5:].strip()
+                try:
+                    parsed = json.loads(raw_json)
+                except json.JSONDecodeError as e:
+                    raise ValueError(f"Failed to decode JSON: {e}\nRaw: {raw_json}")
 
+                # Always return dict with 'result' key
+                if isinstance(parsed, list):
+                    result = {"result": parsed}
+                elif isinstance(parsed, dict) and "result" in parsed:
+                    result = parsed
+                else:
+                    raise ValueError("JSON must be a dict with 'result' or a list.")
+
+                result = fix_result_dict(result)
+
+                obj = PatternDetectionResponse.parse_obj(result)
+                print("***********************************")
+                print(obj)
+                print("***********************************")
+
+                return obj
 
             except (APITimeoutError, APIConnectionError, RateLimitError) as e:
                 is_last = attempt == retry_limit - 1
