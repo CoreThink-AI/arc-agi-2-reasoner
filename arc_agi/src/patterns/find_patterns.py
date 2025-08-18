@@ -15,7 +15,7 @@ load_dotenv()
 # Make concurrency configurable to reduce OpenAI timeouts under load
 CONCURRENT_REQUESTS = int(os.getenv("OPENAI_CONCURRENCY", "5"))
 semaphore = asyncio.Semaphore(CONCURRENT_REQUESTS)
-REPEAT_COUNT = int(os.getenv("PATTERN_DETECTION_REPETITIONS", "3"))
+REPEAT_COUNT = int(os.getenv("PATTERN_DETECTION_REPETITIONS", "2"))
 OPENAI_TASK_TIMEOUT_SECONDS = float(os.getenv("OPENAI_TASK_TIMEOUT_SECONDS", "72000"))
 SUMMARY_CONCURRENT_REQUESTS = int(os.getenv("OPENAI_SUMMARY_CONCURRENCY", "60"))
 

@@ -578,7 +578,7 @@ async def main(j):
                     responses, _ = await solve_arc_task(
                         json_data=task_json_data,
                         hint=hint,
-                        num_attempts=3,
+                        num_attempts=2,
                         visualize=False,
                         task_id=task_id
                     )
