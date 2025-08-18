@@ -274,7 +274,8 @@ async def get_completion_with_retry(
                 if is_last:
                     print(f"[OpenAI fatal error] Failed after {retry_limit} attempts: {e}")
                     return None
-                backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                # backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                backoff_seconds = 0.1
                 print(f"[OpenAI error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
                 await asyncio.sleep(backoff_seconds)
 
@@ -326,7 +327,8 @@ async def get_completion_with_retry_grok(
                 if is_last:
                     print(f"[Grok fatal error] Failed after {retry_limit} attempts: {e}")
                     return None
-                backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                # backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                backoff_seconds = 0.1
                 print(f"[Grok error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
                 await asyncio.sleep(backoff_seconds)
 
@@ -507,7 +509,8 @@ async def get_completion_with_retry_groq(
                 if is_last:
                     print(f"[Groq fatal error] Failed after {retry_limit} attempts: {e}")
                     return None
-                backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                # backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                backoff_seconds = 0.1
                 print(f"[Groq error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
                 await asyncio.sleep(backoff_seconds)
 
