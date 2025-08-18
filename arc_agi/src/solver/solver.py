@@ -5,6 +5,9 @@ from arc_agi.src.objects.base import Grid, BaseObject
 import re, asyncio, json
 from concurrent.futures import ThreadPoolExecutor
 
+from openai import api_key
+
+
 def create_base_object_sync(grid, coord_tuples):
     """
     Helper: given a 2D list (or array) and a set of (x, y) tuples,
@@ -181,7 +184,20 @@ async def process_single_test_case_async(prompt, num_attempts, critic=False):
     Returns list of (raw_response, arr_response) per attempt.
     """
     async def get_single_response_async(prompt_local: str):
-        raw_response = await aget_grok_response_stream(prompt_local)
+        import random
+        import os
+
+        api_keys_str = os.environ.get("XAI_API_KEYS", "")
+        api_keys = api_keys_str.split(",")  # assuming keys separated by commas
+
+        number = random.choice([0, 1, 2, 3, 4])
+
+        if number < len(api_keys):
+            api_key = api_keys[number]
+        else:
+            raise IndexError("Selected index exceeds available API keys.")
+
+        raw_response = await aget_grok_response_stream(prompt_local, api_key)
         if critic:
             critic_prompt_text = critic_prompt.format(prompt_local, raw_response)
             raw_response = await aget_grok_response_stream(critic_prompt_text)
