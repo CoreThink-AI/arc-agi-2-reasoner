@@ -551,14 +551,28 @@ async def process_task_get_hints(task_id):
 
 
 # Example usage
-async def main(j):
+import asyncio
+import time
+import argparse
+import multiprocessing
+
+async def main(j, process_index=0, total_processes=1):
     # Start time for the overall run
     main_start = time.time()
     print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
-    for i in range(int(240/j)):
-        print(f"Running batch {i + 1}")
-        ids = find_task_ids("arc-agi_test_challenges.json")
-        ids = ids[i*j : i*j + j]
+
+    all_ids = find_task_ids("arc-agi_test_challenges.json")
+    total_batches = int(len(all_ids) / j)
+
+    # Partition batches among processes
+    for i in range(total_batches):
+        # Only process batches assigned to this process
+        if i % total_processes != process_index:
+            continue
+
+        print(f"Process {process_index}: Running batch {i + 1}")
+        ids = all_ids[i * j: i * j + j]
+
         async def process_and_solve(task_id):
             logger, temp_log_file = setup_logger_for_id(task_id)
             try:
@@ -628,16 +642,29 @@ async def main(j):
             # Safe file rename here
             rename_log_file(temp_log_file, task_id)
 
-        # End time for the overall run
-        main_end = time.time()
-        print(f"Main end: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_end))}")
-        print(f"Main duration: {main_end - main_start:.2f}s")
+    # End time for the overall run
+    main_end = time.time()
+    print(f"Main end: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_end))}")
+    print(f"Main duration: {main_end - main_start:.2f}s")
 
-
+def run_process(batch_size, process_index, total_processes):
+    asyncio.run(main(batch_size, process_index, total_processes))
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size', type=int, default=0, help='batch size')
+    parser.add_argument('--process_index', type=int, default=0, help='index of this process')
+    parser.add_argument('--total_processes', type=int, default=1, help='total number of parallel processes')
     args = parser.parse_args()
-    asyncio.run(main(args.batch_size))
+    total_processes = 4
+    processes = []
+
+    for i in range(total_processes):
+        p = multiprocessing.Process(target=run_process, args=(args.batch_size, i, total_processes))
+        p.start()
+        processes.append(p)
+
+    for p in processes:
+        p.join()
+

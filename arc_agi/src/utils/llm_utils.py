@@ -75,6 +75,17 @@ groq_async_client = AsyncOpenAI(
         http_client=_httpx_async_client,
     )
 
+together_api_key = os.environ.get("TOGETHER_API_KEY")
+if not together_api_key:
+    raise ValueError("Missing TOGETHER API key. Please set TOGETHER_API_KEY in the environment.")
+together_async_client = AsyncOpenAI(
+        api_key=together_api_key,
+        base_url="https://api.together.xyz/v1",
+        timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+        max_retries=OPENAI_MAX_RETRIES,
+        http_client=_httpx_async_client,
+    )
+
 async def call_llm(provider: str, prompt: str, model: str = None, temperature: float = 0.0, max_tokens: int = 40096) -> str:
     """
     Unified function but now Grok-only.
@@ -82,7 +93,7 @@ async def call_llm(provider: str, prompt: str, model: str = None, temperature: f
     """
     sys_prompt = "You are an expert at solving grid-based reasoning problems. Use markdown output. Enclose code or grids in ```."
 
-    provider = "groq"
+    provider = "together"
     try:
         if provider == "openai":
             response = await openai_client.chat.completions.create(
@@ -96,6 +107,13 @@ async def call_llm(provider: str, prompt: str, model: str = None, temperature: f
             response = await groq_async_client.chat.completions.create(
                 model="openai/gpt-oss-120b",
                 messages=[{"role": "user", "content": prompt}],
+            )
+            return response.choices[0].message.content
+        elif provider == "together":
+            response = await together_async_client.chat.completions.create(
+                model="openai/gpt-oss-120b",
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=100000,
             )
             return response.choices[0].message.content
         else:
@@ -501,7 +519,8 @@ async def get_completion_with_retry_groq(
                 if is_last:
                     print(f"[Groq timeout/connection/rate-limit] Giving up after {retry_limit} attempts: {e}")
                     return None
-                backoff_seconds = min(2 ** attempt + random.uniform(0, 0.5), 8.0)
+                # backoff_seconds = min(2 ** attempt + random.uniform(0, 0.5), 8.0)
+                backoff_seconds = 0.1
                 print(f"[Groq retryable error] attempt {attempt + 1}/{retry_limit} failed: {e} — backing off {backoff_seconds:.2f}s")
                 await asyncio.sleep(backoff_seconds)
             except Exception as e:
@@ -512,6 +531,167 @@ async def get_completion_with_retry_groq(
                 # backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
                 backoff_seconds = 0.1
                 print(f"[Groq error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
+                await asyncio.sleep(backoff_seconds)
+
+
+async def get_completion_with_retry_together(
+        img1,
+        img2,
+        semaphore,
+        PatternDetectionResponse,
+        prompt: str,
+        max_retries: int = None,
+):
+    retry_limit = max_retries or OPENAI_MAX_RETRIES
+    async with semaphore:  # Limit concurrent requests
+        for attempt in range(retry_limit):
+            try:
+                # Small jitter to avoid herd behavior
+                await asyncio.sleep(random.uniform(0.05, 0.1))
+                response = await together_async_client.beta.chat.completions.parse(
+                    model='openai/gpt-oss-120b',
+                    messages=[
+                        {
+                            "role": "system",
+                            "content": (
+                                """
+                                You are a pattern detection engine.
+                                Respond ONLY with the output JSON, enclosed in a markdown code block (triple backticks) and formatted as specified below.
+
+                                The JSON must follow this exact schema:
+                                {
+                                  "result": [
+                                    {
+                                      "reason": "Short, precise explanation of why this pattern is or isn’t detected",
+                                      "pattern_detected": true, // or false
+                                      "pattern_name": "Exact pattern name",
+                                      "pattern_description": "Detailed description of the detected pattern and its nature",
+                                      "params": {
+                                        "param_key1": ["string_value1", "string_value2"],
+                                        "param_key2": ["string_value3"]
+                                      }
+                                    },
+                                    {
+                                      "reason": "Explanation for another pattern result",
+                                      "pattern_detected": false,
+                                      "pattern_name": "Another pattern name",
+                                      "pattern_description": "Description here",
+                                      "params": null
+                                    }
+                                  ]
+                                }
+
+                                Rules:
+                                - Always include the root key \"result\". Its value is an array containing one or more pattern detection result objects.
+                                - For each object:
+                                    - \"reason\": Provide a concise explanation.
+                                    - \"pattern_detected\": Boolean value only (true or false).
+                                    - \"pattern_name\": Use a specific, descriptive name.
+                                    - \"pattern_description\": Give a detailed, informative description of the pattern or absence thereof.
+                                    - \"params\": If relevant, give a dictionary mapping string keys to lists of strings; otherwise, use null.
+                                - NEVER add any text, annotation, or explanation outside the markdown code block.
+                                - Only output raw JSON, and ONLY within the markdown code block.
+                                - Ensure output is strict, valid JSON and matches the given schema.
+
+                                Good Example:
+                                {
+                                  \"result\": [
+                                    {
+                                      \"reason\": \"Date in DD/MM/YYYY format found in the input.\",
+                                      \"pattern_detected\": true,
+                                      \"pattern_name\": \"Date Pattern\",
+                                      \"pattern_description\": \"Looks for sequences like '17/08/2025' or '03-12-2024'.\",
+                                      \"params\": {
+                                        \"matches\": [\"17/08/2025\", \"03-12-2024\"]
+                                      }
+                                    },
+                                    {
+                                      \"reason\": \"No email addresses matched the regex.\",
+                                      \"pattern_detected\": false,
+                                      \"pattern_name\": \"Email Pattern\",
+                                      \"pattern_description\": \"Detects standard email addresses in provided input.\",
+                                      \"params\": null
+                                    }
+                                  ]
+                                }
+
+                                Good Example:
+                                {
+                                  \"result\": [
+                                    {
+                                      \"reason\": \"Faces detected in both images.\",
+                                      \"pattern_detected\": true,
+                                      \"pattern_name\": \"Face Detection\",
+                                      \"pattern_description\": \"Identifies human faces present in photographs using computer vision.\",
+                                      \"params\": {
+                                        \"coordinates_img1\": [\"(245,120)\", \"(320,98)\"],
+                                        \"coordinates_img2\": [\"(130,97)\"]
+                                      }
+                                    }
+                                  ]
+                                }
+
+                                Bad Examples:
+                                - Outputting anything before or after the code block.
+                                - Using string instead of boolean for \"pattern_detected\".
+                                - Omitting the \"result\" root key.
+                                - Including extra keys, comments, or text.
+
+                                Do not add explanations, comments, or markdown outside the JSON code block.
+                                """
+                            ),
+                        },
+                        {"role": "user", "content": prompt}
+                    ],
+                    # response_format=PatternDetectionResponse,
+                    timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+                    reasoning_effort="high",
+                    max_tokens=100000
+                )
+                model_output = response.choices[0].message.content
+                model_output_ = model_output.split("```")
+                raw_json = model_output_[1][5:].strip()
+                try:
+                    parsed = json.loads(raw_json)
+                except json.JSONDecodeError as e:
+                    raise ValueError(f"Failed to decode JSON: {e}\nRaw: {raw_json}")
+
+                # Always return dict with 'result' key
+                if isinstance(parsed, list):
+                    result = {"result": parsed}
+                elif isinstance(parsed, dict) and "result" in parsed:
+                    result = parsed
+                else:
+                    raise ValueError("JSON must be a dict with 'result' or a list.")
+
+                result = fix_result_dict(result)
+
+                obj = PatternDetectionResponse.parse_obj(result)
+                print("***********************************")
+                print(obj)
+                print("***********************************")
+
+                return obj
+
+            except (APITimeoutError, APIConnectionError, RateLimitError) as e:
+                is_last = attempt == retry_limit - 1
+                if is_last:
+                    print(f"[Together timeout/connection/rate-limit] Giving up after {retry_limit} attempts: {e}")
+                    return None
+                # backoff_seconds = min(2 ** attempt + random.uniform(0, 0.5), 8.0)
+                backoff_seconds = 0.1
+                print(
+                    f"[Together retryable error] attempt {attempt + 1}/{retry_limit} failed: {e} — backing off {backoff_seconds:.2f}s")
+                await asyncio.sleep(backoff_seconds)
+            except Exception as e:
+                is_last = attempt == retry_limit - 1
+                if is_last:
+                    print(f"[Together fatal error] Failed after {retry_limit} attempts: {e}")
+                    return None
+                # backoff_seconds = min(1.5 ** (attempt + 1) + random.uniform(0, 0.25), 6.0)
+                backoff_seconds = 0.1
+                print(
+                    f"[Together error] attempt {attempt + 1}/{retry_limit} failed: {e} — retrying in {backoff_seconds:.2f}s")
                 await asyncio.sleep(backoff_seconds)
 
 async def get_completion(grid1, grid2, semaphore, PatternDetectionResponse, prompt: str):
@@ -528,6 +708,11 @@ async def get_completion_groq(grid1, grid2, semaphore, PatternDetectionResponse,
     img1 = array_to_base64_image(grid1)
     img2 = array_to_base64_image(grid2)
     return await get_completion_with_retry_groq(img1, img2, semaphore, PatternDetectionResponse, prompt)
+
+async def get_completion_together(grid1, grid2, semaphore, PatternDetectionResponse, prompt: str):
+    img1 = array_to_base64_image(grid1)
+    img2 = array_to_base64_image(grid2)
+    return await get_completion_with_retry_together(img1, img2, semaphore, PatternDetectionResponse, prompt)
 
 async def summarize_reasons(reasons_list: List[str]) -> str:
     """Summarize multiple reasons using GPT-4.1"""
