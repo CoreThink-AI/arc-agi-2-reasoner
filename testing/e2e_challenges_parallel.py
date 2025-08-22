@@ -556,116 +556,142 @@ import time
 import argparse
 import multiprocessing
 
-async def main(j, process_index=0, total_processes=1):
-    # Start time for the overall run
-    main_start = time.time()
-    print(f"Main start: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_start))}")
+# 🚩 Phase 1: Only generate hints
+async def process_generate_hints(task_id):
+    logger, temp_log_file = setup_logger_for_id(task_id)
+    try:
+        logger.info(f"Generating hint for task {task_id}")
+        task_json_data = get_task_data(task_id, "arc-agi_test_challenges.json")
 
+        # Only generate hint
+        _, hint, objects_train = await process_task_get_hints(task_id)
+
+        # Save just hints
+        output_file = f"hints/task_hints_{task_id}.json"
+        with open(output_file, "w", encoding="utf-8") as f:
+            import json
+            json.dump(
+                {
+                    "task_id": task_id,
+                    "hint": hint,
+                    "objects_train": objects_train,
+                },
+                f,
+                ensure_ascii=False,
+                indent=2
+            )
+        logger.info(f"Hints saved to {output_file}")
+
+        return temp_log_file, task_id
+
+    except Exception as e:
+        logger.exception(f"Hint gen failed for {task_id}")
+        return temp_log_file, task_id
+
+# 🚩 Phase 2: Run flow1 + flow2 using saved hints
+async def process_solve(task_id):
+    logger, temp_log_file = setup_logger_for_id(task_id)
+    try:
+        # Load stored hints
+        import json
+        with open(f"hints/task_hints_{task_id}.json", "r", encoding="utf-8") as f:
+            hint_data = json.load(f)
+        hint = hint_data["hint"]
+        objects_train = hint_data["objects_train"]
+
+        task_json_data = get_task_data(task_id, "arc-agi_test_challenges.json")
+
+        # Flow 1
+        async def run_flow1():
+            logger.info(f"Solving task {task_id} - flow 1")
+            start = time.time()
+            responses, _ = await solve_arc_task(task_json_data, hint, 2, False, task_id)
+            logger.info(f"Solved in {time.time() - start:.2f}s - flow 1")
+            return responses
+
+        # Flow 2
+        async def run_flow2():
+            logger.info(f"Solving task {task_id} - flow 2")
+            start = time.time()
+            response = await solve_arc_task_2(task_json_data, objects_train)
+            logger.info(f"Solved in {time.time() - start:.2f}s - flow 2")
+            return response
+
+        # Run both flows in parallel
+        responses, response = await asyncio.gather(run_flow1(), run_flow2())
+
+        # Save outputs
+        output_file = f"outputs/task_results_{task_id}.json"
+        with open(output_file, "w", encoding="utf-8") as f:
+            json.dump(
+                {
+                    "task_id": task_id,
+                    "flow1_responses": responses,
+                    "flow2_response": response
+                },
+                f,
+                ensure_ascii=False,
+                indent=2
+            )
+        logger.info(f"Results saved to {output_file}")
+
+        return temp_log_file, task_id
+
+    except Exception:
+        logger.exception(f"Solving failed for {task_id}")
+        return temp_log_file, task_id
+
+async def process_batch(task_ids, processor_fn):
+    process_tasks = [asyncio.create_task(processor_fn(task_id)) for task_id in task_ids]
+    results = []
+    for coro in asyncio.as_completed(process_tasks):
+        temp_log_file, task_id = await coro
+        # Optionally rename log file or handle logging here
+        rename_log_file(temp_log_file, task_id)
+        results.append((temp_log_file, task_id))
+    return results
+
+def run_hints(batch_size, process_index, total_processes):
+    asyncio.run(main_phase(batch_size, process_index, total_processes, process_generate_hints))
+
+def run_solving(batch_size, process_index, total_processes):
+    asyncio.run(main_phase(batch_size, process_index, total_processes, process_solve))
+
+async def main_phase(batch_size, process_index, total_processes, processor_fn):
     all_ids = find_task_ids("arc-agi_test_challenges.json")
-    total_batches = int(len(all_ids) / j)
+    total_batches = int(len(all_ids) / batch_size)
 
-    # Partition batches among processes
     for i in range(total_batches):
-        # Only process batches assigned to this process
         if i % total_processes != process_index:
             continue
 
-        print(f"Process {process_index}: Running batch {i + 1}")
-        ids = all_ids[i * j: i * j + j]
-
-        async def process_and_solve(task_id):
-            logger, temp_log_file = setup_logger_for_id(task_id)
-            try:
-                logger.info(f"Starting processing for task {task_id}")
-                task_json_data = get_task_data(
-                    task_id, "arc-agi_test_challenges.json"
-                )
-
-                # Generate hint
-                _, hint, objects_train = await process_task_get_hints(task_id)
-                print(task_id)
-
-                # # Solve as soon as hint is ready (flow-1)
-                # async def run_flow1():
-                #     logger.info(f"Solving task {task_id} - flow 1")
-                #     start_solve = time.time()
-                #     responses, _ = await solve_arc_task(
-                #         json_data=task_json_data,
-                #         hint=hint,
-                #         num_attempts=2,
-                #         visualize=False,
-                #         task_id=task_id
-                #     )
-                #     logger.info(f"Solved in {time.time() - start_solve:.2f}s - flow 1")
-                #     return responses
-
-                # # Solve as soon as hint is ready (flow-2)
-                # async def run_flow2():
-                #     logger.info(f"Solving task {task_id} - flow 2")
-                #     start_solve = time.time()
-                #     print(len(objects_train))
-                #     response = await solve_arc_task_2(task_json_data, objects_train)
-                #     logger.info(f"Solved in {time.time() - start_solve:.2f}s - flow 2")
-                #     return response
-
-                # # Run both flows concurrently and wait for both to complete
-                # responses, response = await asyncio.gather(run_flow1(), run_flow2())
-
-                # ✅ Write results to a file
-                output_file = f"outputs/task_results_{task_id}.json"
-                with open(output_file, "w", encoding="utf-8") as f:
-                    import json
-                    json.dump(
-                        {
-                            "task_id": task_id,
-                            # "flow1_responses": responses,
-                            # "flow2_response": response
-                            "hint": hint,
-                        },
-                        f,
-                        ensure_ascii=False,
-                        indent=2
-                    )
-                logger.info(f"Results saved to {output_file}")
-
-                # No ground truth; return just log info
-                return temp_log_file, task_id
-
-            except Exception as e:
-                logger.exception(f"Task {task_id} failed")
-                return temp_log_file, task_id
-
-        # Create and run all tasks concurrently, solve each immediately after hint
-        process_tasks = [asyncio.create_task(process_and_solve(task_id)) for task_id in ids]
-
-        for coro in asyncio.as_completed(process_tasks):
-            temp_log_file, task_id = await coro
-            # Safe file rename here
-            rename_log_file(temp_log_file, task_id)
-
-    # End time for the overall run
-    main_end = time.time()
-    print(f"Main end: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(main_end))}")
-    print(f"Main duration: {main_end - main_start:.2f}s")
-
-def run_process(batch_size, process_index, total_processes):
-    asyncio.run(main(batch_size, process_index, total_processes))
-
+        task_ids = all_ids[i * batch_size : (i + 1) * batch_size]
+        print(f"Process {process_index} running batch {i+1} with {len(task_ids)} tasks")
+        await process_batch(task_ids, processor_fn)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--batch_size', type=int, default=0, help='batch size')
-    parser.add_argument('--process_index', type=int, default=0, help='index of this process')
-    parser.add_argument('--total_processes', type=int, default=1, help='total number of parallel processes')
+    parser.add_argument('--phase', type=int, default=1, help='1=hint gen, 2=solving')
+    parser.add_argument('--process_index', type=int, default=0)
+    parser.add_argument('--total_processes', type=int, default=1)
     args = parser.parse_args()
+
     total_processes = 4
     processes = []
 
+    if args.phase == 1:
+        target_fn = run_hints   # wrapper around process_generate_hints
+    else:
+        target_fn = run_solving # wrapper around process_solve
+
     for i in range(total_processes):
-        p = multiprocessing.Process(target=run_process, args=(args.batch_size, i, total_processes))
+        p = multiprocessing.Process(target=target_fn, args=(args.batch_size, i, total_processes))
         p.start()
         processes.append(p)
 
     for p in processes:
         p.join()
+
+
 
