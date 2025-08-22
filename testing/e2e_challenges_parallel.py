@@ -585,31 +585,31 @@ async def main(j, process_index=0, total_processes=1):
                 _, hint, objects_train = await process_task_get_hints(task_id)
                 print(task_id)
 
-                # Solve as soon as hint is ready (flow-1)
-                async def run_flow1():
-                    logger.info(f"Solving task {task_id} - flow 1")
-                    start_solve = time.time()
-                    responses, _ = await solve_arc_task(
-                        json_data=task_json_data,
-                        hint=hint,
-                        num_attempts=2,
-                        visualize=False,
-                        task_id=task_id
-                    )
-                    logger.info(f"Solved in {time.time() - start_solve:.2f}s - flow 1")
-                    return responses
+                # # Solve as soon as hint is ready (flow-1)
+                # async def run_flow1():
+                #     logger.info(f"Solving task {task_id} - flow 1")
+                #     start_solve = time.time()
+                #     responses, _ = await solve_arc_task(
+                #         json_data=task_json_data,
+                #         hint=hint,
+                #         num_attempts=2,
+                #         visualize=False,
+                #         task_id=task_id
+                #     )
+                #     logger.info(f"Solved in {time.time() - start_solve:.2f}s - flow 1")
+                #     return responses
 
-                # Solve as soon as hint is ready (flow-2)
-                async def run_flow2():
-                    logger.info(f"Solving task {task_id} - flow 2")
-                    start_solve = time.time()
-                    print(len(objects_train))
-                    response = await solve_arc_task_2(task_json_data, objects_train)
-                    logger.info(f"Solved in {time.time() - start_solve:.2f}s - flow 2")
-                    return response
+                # # Solve as soon as hint is ready (flow-2)
+                # async def run_flow2():
+                #     logger.info(f"Solving task {task_id} - flow 2")
+                #     start_solve = time.time()
+                #     print(len(objects_train))
+                #     response = await solve_arc_task_2(task_json_data, objects_train)
+                #     logger.info(f"Solved in {time.time() - start_solve:.2f}s - flow 2")
+                #     return response
 
-                # Run both flows concurrently and wait for both to complete
-                responses, response = await asyncio.gather(run_flow1(), run_flow2())
+                # # Run both flows concurrently and wait for both to complete
+                # responses, response = await asyncio.gather(run_flow1(), run_flow2())
 
                 # ✅ Write results to a file
                 output_file = f"outputs/task_results_{task_id}.json"
@@ -618,8 +618,9 @@ async def main(j, process_index=0, total_processes=1):
                     json.dump(
                         {
                             "task_id": task_id,
-                            "flow1_responses": responses,
-                            "flow2_response": response
+                            # "flow1_responses": responses,
+                            # "flow2_response": response
+                            "hint": hint,
                         },
                         f,
                         ensure_ascii=False,
