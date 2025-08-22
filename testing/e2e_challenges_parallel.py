@@ -659,6 +659,7 @@ def run_solving(batch_size, process_index, total_processes):
 
 async def main_phase(batch_size, process_index, total_processes, processor_fn):
     all_ids = find_task_ids("arc-agi_test_challenges.json")
+    all_ids = all_ids[:40]
     total_batches = int(len(all_ids) / batch_size)
 
     for i in range(total_batches):
