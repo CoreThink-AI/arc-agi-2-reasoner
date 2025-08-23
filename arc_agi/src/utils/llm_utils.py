@@ -93,7 +93,7 @@ async def call_llm(provider: str, prompt: str, model: str = None, temperature: f
     """
     sys_prompt = "You are an expert at solving grid-based reasoning problems. Use markdown output. Enclose code or grids in ```."
 
-    provider = "together"
+    provider = "groq"
     try:
         if provider == "openai":
             response = await openai_client.chat.completions.create(
@@ -104,6 +104,17 @@ async def call_llm(provider: str, prompt: str, model: str = None, temperature: f
             )
             return response.choices[0].message.content
         elif provider == "groq":
+            api_keys_str = os.environ.get("GROQ_API_KEYS", "")
+            api_keys = api_keys_str.split(",")  # assuming keys separated by commas
+            groq_api_key = random.choice(api_keys)
+
+            groq_async_client = AsyncOpenAI(
+                api_key=groq_api_key,
+                base_url="https://api.groq.com/openai/v1",
+                timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+                max_retries=OPENAI_MAX_RETRIES,
+                http_client=_httpx_async_client,
+            )
             response = await groq_async_client.chat.completions.create(
                 model="openai/gpt-oss-120b",
                 messages=[{"role": "user", "content": prompt}],
@@ -181,9 +192,13 @@ async def aget_grok_response_stream(
     if not api_key:
         raise ValueError("Missing XAI API key. Please provide it as an argument or set it in the environment.")
 
+    api_keys_str = os.environ.get("XAI_API_KEYS", "")
+    api_keys = api_keys_str.split(",")  # assuming keys separated by commas
+    xai_api_key = random.choice(api_keys)
+
     # Create async client
     grok_async_client = AsyncOpenAI(
-        api_key=api_key,
+        api_key=xai_api_key,
         base_url="https://api.x.ai/v1",
         timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
         max_retries=OPENAI_MAX_RETRIES,
@@ -383,6 +398,17 @@ async def get_completion_with_retry_groq(
     prompt: str,
     max_retries: int = None,
 ):
+    api_keys_str = os.environ.get("GROQ_API_KEYS", "")
+    api_keys = api_keys_str.split(",")  # assuming keys separated by commas
+    groq_api_key = random.choice(api_keys)
+
+    groq_async_client = AsyncOpenAI(
+        api_key=groq_api_key,
+        base_url="https://api.groq.com/openai/v1",
+        timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+        max_retries=OPENAI_MAX_RETRIES,
+        http_client=_httpx_async_client,
+    )
 
     retry_limit = max_retries or OPENAI_MAX_RETRIES
     async with semaphore:  # Limit concurrent requests
@@ -733,6 +759,17 @@ async def summarize_reasons(reasons_list: List[str]) -> str:
     Give output in markdown syntax."""
 
     try:
+        api_keys_str = os.environ.get("GROQ_API_KEYS", "")
+        api_keys = api_keys_str.split(",")  # assuming keys separated by commas
+        groq_api_key = random.choice(api_keys)
+
+        groq_async_client = AsyncOpenAI(
+            api_key=groq_api_key,
+            base_url="https://api.groq.com/openai/v1",
+            timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+            max_retries=OPENAI_MAX_RETRIES,
+            http_client=_httpx_async_client,
+        )
         response = await groq_async_client.chat.completions.create(
             model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": prompt}],
@@ -760,6 +797,17 @@ async def summarize_hints(hint_list: List[str]) -> str:
     prompt = HINT_SUMMARY_PROMPT.format(combined_hints)
 
     try:
+        api_keys_str = os.environ.get("GROQ_API_KEYS", "")
+        api_keys = api_keys_str.split(",")  # assuming keys separated by commas
+        groq_api_key = random.choice(api_keys)
+
+        groq_async_client = AsyncOpenAI(
+            api_key=groq_api_key,
+            base_url="https://api.groq.com/openai/v1",
+            timeout=DEFAULT_OPENAI_TIMEOUT_SECONDS,
+            max_retries=OPENAI_MAX_RETRIES,
+            http_client=_httpx_async_client,
+        )
         response = await groq_async_client.chat.completions.create(
             model="openai/gpt-oss-120b",
             messages=[{"role": "user", "content": prompt}],
