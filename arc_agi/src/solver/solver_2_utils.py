@@ -21,17 +21,9 @@ Input:
 ```
 {input_viz}
 ```
-Input Objects:
-```
-{input_objects}
-```
 Output:
 ```
 {output_viz}
-```
-Output Objects:
-```
-{output_objects}
 ```
 """
 
@@ -49,10 +41,11 @@ def get_formatted_examples(example_inputs, objects_train):
 
     for i, entry in enumerate(example_inputs):
         input_viz = get_arr_viz(entry["input"])
-        input_objects = objects_train[i][1]
+        # input_objects = objects_train[i][1]
         output_viz = get_arr_viz(entry["output"])
-        output_objects = objects_train[i][2]
-        examples_str += example_template.format(i=i + 1, input_viz=input_viz, output_viz=output_viz, input_objects=input_objects, output_objects=output_objects) + "\n"
+        # output_objects = objects_train[i][2]
+        # examples_str += example_template.format(i=i + 1, input_viz=input_viz, output_viz=output_viz, input_objects=input_objects, output_objects=output_objects) + "\n"
+        examples_str += example_template.format(i=i + 1, input_viz=input_viz, output_viz=output_viz) + "\n"
 
     return examples_str.strip()
 

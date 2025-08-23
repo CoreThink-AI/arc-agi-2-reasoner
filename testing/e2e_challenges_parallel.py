@@ -157,7 +157,7 @@ async def get_consensus_response(json_data, hint, num_attempts=3, critic=False):
     # tasks = [get_solved_outputs(json_data, hint) for _ in range(num_attempts)]
     # results = await asyncio.gather(*tasks, return_exceptions=True)
 
-    results = await get_solved_outputs_multiple_in_parallel(json_data, hint, num_attempts, critic)
+    results = await get_solved_outputs_multiple_in_parallel(json_data, hint, num_attempts, False, critic)
 
     # Extract valid responses
     valid_responses = []
@@ -557,6 +557,20 @@ import argparse
 import multiprocessing
 
 # 🚩 Phase 1: Only generate hints
+import json
+
+def convert_to_serializable(obj):
+    # Convert numpy arrays and tuples to lists, and recursively convert inside dicts/lists
+    import numpy as np
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    if isinstance(obj, (list, tuple)):
+        return [convert_to_serializable(i) for i in obj]
+    if isinstance(obj, dict):
+        return {k: convert_to_serializable(v) for k, v in obj.items()}
+    # Add more conversions if needed, else return as is
+    return obj
+
 async def process_generate_hints(task_id):
     logger, temp_log_file = setup_logger_for_id(task_id)
     try:
@@ -566,15 +580,17 @@ async def process_generate_hints(task_id):
         # Only generate hint
         _, hint, objects_train = await process_task_get_hints(task_id)
 
+        # Convert objects_train to JSON-serializable
+        serializable_objects_train = convert_to_serializable(objects_train)
+
         # Save just hints
         output_file = f"hints/task_hints_{task_id}.json"
         with open(output_file, "w", encoding="utf-8") as f:
-            import json
             json.dump(
                 {
                     "task_id": task_id,
                     "hint": hint,
-                    "objects_train": objects_train,
+                    "objects_train": [],
                 },
                 f,
                 ensure_ascii=False,
@@ -585,8 +601,9 @@ async def process_generate_hints(task_id):
         return temp_log_file, task_id
 
     except Exception as e:
-        logger.exception(f"Hint gen failed for {task_id}")
+        logger.exception(f"Hint gen failed for {task_id}: {e}")
         return temp_log_file, task_id
+
 
 # 🚩 Phase 2: Run flow1 + flow2 using saved hints
 async def process_solve(task_id):
@@ -605,7 +622,7 @@ async def process_solve(task_id):
         async def run_flow1():
             logger.info(f"Solving task {task_id} - flow 1")
             start = time.time()
-            responses, _ = await solve_arc_task(task_json_data, hint, 2, False, task_id)
+            responses, _ = await solve_arc_task(task_json_data, hint, 2, False, False, task_id)
             logger.info(f"Solved in {time.time() - start:.2f}s - flow 1")
             return responses
 
