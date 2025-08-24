@@ -47,8 +47,12 @@ async def generate_pattern_hint(input_grid, output_grid, input_grid_viz, output_
         output_grid_viz=output_grid_viz
     )
     try:
+        # response = await asyncio.wait_for(
+        #     get_completion_groq(input_grid, output_grid, semaphore, PatternDetectionResponse, prompt),
+        #     timeout=OPENAI_TASK_TIMEOUT_SECONDS,
+        # )
         response = await asyncio.wait_for(
-            get_completion_groq(input_grid, output_grid, semaphore, PatternDetectionResponse, prompt),
+            get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, prompt),
             timeout=OPENAI_TASK_TIMEOUT_SECONDS,
         )
         if response and hasattr(response, 'result') and response.result:
@@ -83,8 +87,12 @@ async def unit_patterns(input_grid, output_grid, before_list: List, after_list: 
         prompts = prompts * REPEAT_COUNT
         print(f"Processing {len(prompts)} patterns with {CONCURRENT_REQUESTS} concurrent requests...")
         tasks = [
+            # asyncio.wait_for(
+            #     get_completion_groq(input_grid, output_grid, semaphore, PatternDetectionResponse, p),
+            #     timeout=OPENAI_TASK_TIMEOUT_SECONDS,
+            # )
             asyncio.wait_for(
-                get_completion_groq(input_grid, output_grid, semaphore, PatternDetectionResponse, p),
+                get_completion(input_grid, output_grid, semaphore, PatternDetectionResponse, p),
                 timeout=OPENAI_TASK_TIMEOUT_SECONDS,
             )
             for p in prompts

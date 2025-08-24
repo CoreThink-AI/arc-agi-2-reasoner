@@ -17,7 +17,7 @@ from openai import (
 )
 
 load_dotenv()
-deployment = "o4-mini"
+deployment = "o4-mini-2025-04-16"
 # Initialize Grok client
 grok_client = OpenAI(
     api_key=os.environ.get("XAI_API_KEY"),
