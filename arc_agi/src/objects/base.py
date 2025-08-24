@@ -396,7 +396,9 @@ class BaseObject:
                 "Cavity 2 : <List of coordinates of Cavity 2 >\n"
                 ".....................\n"
                 "Cavity n : <List of coordinates of Cavity n>\n"
-                "where 'n' is the number of cavities you detected. Return the coordinates only, don't give any explanation. "
+                "where 'n' is the number of cavities you detected. Return the coordinates only, don't give any explanation.\n"
+                "Use only plain ASCII characters, standard spaces, parentheses, and commas exactly as shown. "
+                "Do not include any special Unicode spaces or extra formatting."
             )
 
             # Call the LLM
