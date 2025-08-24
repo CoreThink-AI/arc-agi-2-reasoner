@@ -45,7 +45,14 @@ You are given a set of **Input–Output Examples** and a detailed list of **Tran
 
 1. Present your **full reasoning**, detailing how each step from the hint maps to the transformation operations you perform.
 2. Do **not** invent any new rules or skip any hint steps. Ensure the Test Output reflects the same behavior demonstrated by the examples.
-3. Embed the Final output in ``` ``` and use \n for new row and | as column separator.
+3. Embed the Final output in triple backticks ``` ``` and use \n for new row and | as column separator.
+- Use the character `\n` (a literal backslash followed by n) to separate rows.  
+- Use the pipe character `|` to separate columns within each row.  
+- Represent each cell with an integer digit only (0, 1, 2, 3, 4, 5, 6, 7, 8, 9). 
+- Do NOT include spaces, dots, letters, or any other characters inside the matrix output.  
+- This exact formatting will ensure your output can be parsed without errors.
+- Here is an example of the Final output which is a 4x4 matrix within triple backticks:
+```0|1|2|3\n4|5|6|7\n8|9|1|2\n3|4|5|6```
 4. I want you to solve this puzzle **step by step**. First, restate the problem. Then outline your plan. Then execute each step, numbering them, and finally give your answer.
 **Test Output:**
 

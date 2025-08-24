@@ -622,7 +622,7 @@ async def process_solve(task_id):
         async def run_flow1():
             logger.info(f"Solving task {task_id} - flow 1")
             start = time.time()
-            responses, _ = await solve_arc_task(task_json_data, hint, 2, False, False, task_id)
+            responses, _ = await solve_arc_task(task_json_data, hint, 5, False, False, task_id)
             logger.info(f"Solved in {time.time() - start:.2f}s - flow 1")
             return responses
 
