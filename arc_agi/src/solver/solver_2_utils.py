@@ -2,12 +2,12 @@ import re
 import os
 import json
 
-original_prompt_template = """Find the common rule that maps an input grid to an output grid, given the examples below.
+original_prompt_template = """Below is a list of input and output pairs with a pattern. Your goal is to identify the pattern or transformation in the training examples that maps the input to the output, then apply that pattern to the test input to give a final output.
 
 {examples}
 
 
-Below is a test input grid. Predict the corresponding output grid by applying the rule you found. Your final answer should just be the text output grid itself.
+Below is the test input grid. Predict the corresponding output grid by applying the rule you found. Respond in the format of the training output examples.  Your final answer should just be the text output grid itself. 
 
 Input:
 {test_input_viz}

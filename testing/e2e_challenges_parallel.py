@@ -356,7 +356,7 @@ async def solve_arc_task(json_data, hint, num_attempts=3, visualize=True, critic
     return responses, execution_time
 
 
-async def solve_arc_task_2(json_data, objects):
+async def solve_arc_task_2(json_data, objects, num_attempts=1):
     from arc_agi.src.utils.llm_utils import aget_grok_response_stream
     from arc_agi.src.solver.solver_2_utils import get_prompts
 
@@ -365,20 +365,26 @@ async def solve_arc_task_2(json_data, objects):
         raise ValueError("Missing XAI API key for flow 2. Set it as environment variable 'XAI_API_KEY_FLOW_2'.")
 
     system_prompt = (
-        "You are an expert at solving grid-based problems. "
-        "You are given a grid and a format to write the solution. "
-        "Always use the provided format and enclose your code within triple backticks."
+        "You are participating in a puzzle solving competition. You are an expert at solving puzzles."
+        "Always use the provided format and enclose your output within triple backticks."
     )
 
     prompts = get_prompts(json_data, objects)
+    async def process_prompt(prompt):
+        # Run num_attempts in parallel for this single prompt
+        tasks = [aget_grok_response_stream(prompt, system_prompt, api_key) for _ in range(num_attempts)]
+        responses = await asyncio.gather(*tasks)
+        # Majority vote
+        counted = Counter(responses)
+        majority_response, _ = counted.most_common(1)
+        return majority_response
 
-    # Support both single prompt or list of prompts
     if isinstance(prompts, str):
-        return await aget_grok_response_stream(prompts, system_prompt, api_key)
+        return await process_prompt(prompts)
 
-    # Run all prompts in parallel
+    # For multiple prompts, gather all majority responses
     results = await asyncio.gather(
-        *(aget_grok_response_stream(p, system_prompt, api_key) for p in prompts)
+        *(process_prompt(p) for p in prompts)
     )
     return results
 
@@ -630,7 +636,7 @@ async def process_solve(task_id):
         async def run_flow2():
             logger.info(f"Solving task {task_id} - flow 2")
             start = time.time()
-            response = await solve_arc_task_2(task_json_data, objects_train)
+            response = await solve_arc_task_2(task_json_data, objects_train, 5)
             logger.info(f"Solved in {time.time() - start:.2f}s - flow 2")
             return response
 
