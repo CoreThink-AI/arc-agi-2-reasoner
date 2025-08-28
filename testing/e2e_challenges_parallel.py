@@ -7,6 +7,7 @@ import argparse
 import json, os
 import asyncio
 import time
+import random
 import logging
 from collections import Counter
 from arc_agi.src.solver.solver import get_solved_outputs_multiple_in_parallel
@@ -370,23 +371,27 @@ async def solve_arc_task_2(json_data, objects, num_attempts=1):
     )
 
     prompts = get_prompts(json_data, objects)
-    async def process_prompt(prompt):
-        # Run num_attempts in parallel for this single prompt
+
+    async def process_prompt(prompt: str) -> str:
         tasks = [aget_grok_response_stream(prompt, system_prompt, api_key) for _ in range(num_attempts)]
-        responses = await asyncio.gather(*tasks)
-        # Majority vote
+        responses = await asyncio.gather(*tasks, return_exceptions=True)
+
+        # Drop failed attempts
+        responses = [r for r in responses if not isinstance(r, Exception)]
+        if not responses:
+            raise RuntimeError("All attempts failed for prompt")
+
+        # Majority vote (tie → random choice)
         counted = Counter(responses)
-        majority_response, _ = counted.most_common(1)
-        return majority_response
+        most_common = counted.most_common()
+        max_count = most_common[0][1]
+        winners = [resp for resp, c in most_common if c == max_count]
+        return random.choice(winners)
 
     if isinstance(prompts, str):
-        return await process_prompt(prompts)
+        return [await process_prompt(prompts)]
 
-    # For multiple prompts, gather all majority responses
-    results = await asyncio.gather(
-        *(process_prompt(p) for p in prompts)
-    )
-    return results
+    return await asyncio.gather(*(process_prompt(p) for p in prompts))
 
 
 async def get_hints(json_data):
@@ -636,7 +641,7 @@ async def process_solve(task_id):
         async def run_flow2():
             logger.info(f"Solving task {task_id} - flow 2")
             start = time.time()
-            response = await solve_arc_task_2(task_json_data, objects_train, 5)
+            response = await solve_arc_task_2(task_json_data, objects_train, 3)
             logger.info(f"Solved in {time.time() - start:.2f}s - flow 2")
             return response
 
