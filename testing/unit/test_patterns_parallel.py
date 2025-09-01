@@ -55,11 +55,13 @@ def create_base_object_sync(grid, coord_tuples):
     Helper: given a 2D list (or array) and a set of (x, y) tuples,
     construct a BaseObject synchronously.
     """
-    data = BaseObject(grid, coord_tuples).to_dict(
-        provider="openai", 
-        model="gpt-4.1-mini", 
-        temperature=0.0, 
-        max_tokens=4096
+    data = asyncio.run(
+        BaseObject(grid, coord_tuples).to_dict(
+            provider="openai", 
+            model="gpt-4.1-mini", 
+            temperature=0.0, 
+            max_tokens=4096
+        )
     )
     return data
 

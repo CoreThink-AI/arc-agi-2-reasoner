@@ -55,11 +55,13 @@ def create_base_object_sync(grid, coord_tuples):
     construct a BaseObject synchronously.
     """
     # BaseObject constructor expects Set[Tuple[int, int]] directly
-    data = BaseObject(grid, coord_tuples).to_dict(
-        provider="openai", 
-        model="gpt-4.1", 
-        temperature=0.0, 
-        max_tokens=4096
+    data = asyncio.run(
+        BaseObject(grid, coord_tuples).to_dict(
+            provider="openai", 
+            model="gpt-4.1", 
+            temperature=0.0, 
+            max_tokens=4096
+        )
     )
     return data
 
