@@ -26,9 +26,10 @@ async def intersect(results):
     pattern_descriptions = {}
     pattern_hints = {}
 
+    failed_results = 0
     for pattern_result in results:
         if isinstance(pattern_result, Exception):
-            print(f"Request failed: {pattern_result}")
+            failed_results += 1
             continue
 
         pattern_name = pattern_result.get('name')
@@ -92,5 +93,8 @@ async def intersect(results):
             'params': params,
             'detailed_hint': detailed_hint
         })
+
+    if failed_results:
+        print(f"Aggregation inputs failed: {failed_results}/{len(results)}")
 
     return restructured_pattern_params, counts

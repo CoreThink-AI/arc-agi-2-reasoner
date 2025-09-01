@@ -15,8 +15,10 @@ class SpatialRelations:
         self.max_tokens = None
 
     def get_metadata(self, provider: str, model: str, temperature: float, max_tokens: int) -> None:
-        self.object_a_metadata = self.object_a.to_dict(provider, model, temperature, max_tokens)
-        self.object_b_metadata = self.object_b.to_dict(provider, model, temperature, max_tokens)
+        # to_dict is async; run to completion synchronously
+        import asyncio
+        self.object_a_metadata = asyncio.run(self.object_a.to_dict(provider, model, temperature, max_tokens))
+        self.object_b_metadata = asyncio.run(self.object_b.to_dict(provider, model, temperature, max_tokens))
         self.provider = provider
         self.model = model
         self.temperature = temperature
