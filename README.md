@@ -23,7 +23,7 @@ The ARC-AGI 2 Reasoner is designed to tackle the Abstraction and Reasoning Corpu
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/arc-agi-2-reasoner.git
+git clone https://github.com/CoreThink-AI/arc-agi-2-reasoner.git
 cd arc-agi-2-reasoner
 ```
 
