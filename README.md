@@ -43,6 +43,12 @@ For development, install with additional dependencies:
 pip install -e ".[dev]"
 ```
 
+4. Create hints and outputs directory for your run
+```bash
+mkdir outputs
+mkdir hints
+```
+
 ## Environment Setup
 
 1. Copy the environment template:
@@ -51,8 +57,16 @@ cp env_template.txt .env
 ```
 
 2. Edit `.env` and add your API keys for:
-- OpenAI
-- Anthropic
+```bash
+XAI_API_KEY_FLOW_2=<1 xAI key>
+XAI_API_KEY=<1 xAI key>
+XAI_API_KEYS=<6 xAI keys separated by commas>
+OPENAI_API_KEY=<1 OpenAI key>
+GROQ_API_KEY=<1 Groq API key>
+GROQ_API_KEYS=<3 Groq API keys>
+TOGETHER_API_KEY=<1 Together API key>
+PYTHONPATH=f"{os.getcwd()}:{os.environ.get('PYTHONPATH', '')}"
+```
 
 ## Project Structure
 
@@ -61,43 +75,55 @@ arc-agi-2-reasoner/
 ├── arc_agi/
 │   ├── __init__.py
 │   ├── core.py
+│   ├── core_clean.py
 │   └── src/
 │       ├── solver/           # Core solving logic
 │       ├── patterns/         # Pattern recognition modules
 │       ├── patterns_intersection/  # Pattern intersection logic
 │       ├── objects/          # Object definitions and utilities
-│       └── utils/            # Utility functions
+│       ├── utils/            # Utility functions
+│       ├── low_hanging/      # Low-hanging fruit solutions
+│       └── low_hanging_fruits/ # Additional low-hanging fruit modules
 ├── data/                     # Training and test data (JSON files)
 ├── testing/
 │   ├── unit/                # Unit tests
-│   └── samples/             # Sample test cases
+│   ├── samples/             # Sample test cases
+│   ├── e2e.py               # End-to-end testing
+│   ├── e2e_api.py           # API end-to-end testing
+│   ├── e2e_challenges.py    # Challenge end-to-end testing
+│   └── e2e_challenges_parallel.py # Parallel challenge testing
+├── e2e_logs/                # End-to-end test logs and visualizations
+├── arc_agi.egg-info/        # Package metadata
 ├── requirements.txt
 ├── setup.py
 ├── env_template.txt
+├── experiments.ipynb        # Jupyter notebook for experiments
+├── debug_test.py            # Debug testing script
+├── target.txt               # Target data file
+├── results.json             # Results data
+├── arc-agi_test_challenges.json # Test challenges data
+├── easy.json                # Easy test cases
+├── grids_side_by_side.png   # Visualization image
+├── LICENSE
+├── .gitignore
 └── README.md
 ```
 
 ## Usage
 
-[Usage examples will be added as the project develops]
-
-## Development
-
-The project uses several development tools:
-- `pytest` for testing
-- `black` for code formatting
-- `flake8` for linting
-- `mypy` for type checking
-
-Run tests:
+1. Generate hints for the solver
 ```bash
-pytest
+python -u testing/e2e_challenges_parallel.py --batch_size 10 --phase 1 
 ```
 
-Format code:
+2. Generate solved outputs using the hints
 ```bash
-black .
+python -u testing/e2e_challenges_parallel.py --batch_size 5 --phase 2
 ```
+
+The solved responses are stored in the `outputs/` directory. The test entries are taken from `arc-agi-test_challenges.json`.
+
+
 
 ## License
 
