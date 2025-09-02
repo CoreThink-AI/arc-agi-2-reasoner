@@ -51,12 +51,7 @@ mkdir hints
 
 ## Environment Setup
 
-1. Copy the environment template:
-```bash
-cp env_template.txt .env
-```
-
-2. Edit `.env` and add your API keys for:
+1. Create `.env` in the following manner:
 ```bash
 XAI_API_KEY_FLOW_2=<1 xAI key>
 XAI_API_KEY=<1 xAI key>
