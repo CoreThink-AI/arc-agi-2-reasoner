@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of castle/fortress objects decreased from three in the input image to two in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThis transformation involves the deletion of one castle/fortress object from the scene. The input image contains three castle or fortress structures, while the output image displays only two of these structures, representing a reduction of one object. The visual change is straightforward: one of the three castle structures present in the original image has been completely removed, leaving the remaining two castles intact in their original positions.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

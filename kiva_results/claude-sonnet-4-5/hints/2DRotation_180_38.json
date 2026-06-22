@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The kayak has been rotated 180 degrees, with the front and back ends swapped positions while maintaining the same orientation of the paddles.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe kayak undergoes a 180-degree rotation around its central axis, effectively reversing its orientation so that the front and back ends exchange positions. During this transformation, the kayak's body is flipped end-to-end while the paddles maintain their original orientation relative to the viewer. The result is a complete reversal of the kayak's directional positioning, with what was previously the bow now appearing where the stern was located, and vice versa.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

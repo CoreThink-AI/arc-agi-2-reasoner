@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of baby bottles increased from three in the input image to four in the output image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "The transformation is a **replication**. The number of baby bottles increased by one, from three in the input to four in the output. A new baby bottle was added to the image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The submarine is mirror-flipped along the vertical axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a vertical reflection. The submarine is flipped along the vertical axis, resulting in a mirrored image where the left and right sides of the submarine swap positions. The overall shape and orientation remain unchanged, but the details are reversed horizontally.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

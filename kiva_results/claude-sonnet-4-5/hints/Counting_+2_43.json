@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 5 lightbulb objects while the input image contains 3 lightbulb objects, showing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Duplication**\n\nThis transformation duplicates lightbulb objects in the image, increasing the count from 3 to 5 by adding 2 additional lightbulbs. The visual change involves replicating existing lightbulb elements and positioning them within the scene, resulting in a total of 5 lightbulbs in the output image compared to the original 3 in the input. The duplication maintains the visual characteristics of the lightbulbs while expanding their quantity in the composition.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

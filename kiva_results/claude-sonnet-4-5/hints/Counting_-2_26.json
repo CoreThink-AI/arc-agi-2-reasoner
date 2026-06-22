@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of cactus objects decreased from 5 in the input image to 3 in the output image.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation involves removing 2 cactus objects from the scene, reducing the total count from 5 cacti in the input image to 3 cacti in the output image. This is a selective deletion operation where specific cactus instances are eliminated while the remaining 3 cacti are preserved in their original positions. The visual change results in a less populated desert scene with 40% fewer cactus objects than the original composition.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

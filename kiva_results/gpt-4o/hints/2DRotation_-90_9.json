@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The cup has been rotated 90 degrees clockwise, changing the orientation of the handle and latte art.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** of the cup by **90 degrees clockwise**. Visually, this changes the orientation of the handle, which shifts from its original position to a new location 90 degrees clockwise around the cup's axis. Additionally, the latte art inside the cup rotates correspondingly, maintaining its alignment with the cup's new orientation.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

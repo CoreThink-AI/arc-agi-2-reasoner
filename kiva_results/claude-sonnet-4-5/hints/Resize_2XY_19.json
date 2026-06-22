@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The helmet object in the output image is approximately twice the size of the helmet in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Scale/Enlargement by a factor of 2×**\n\nThe helmet object undergoes a uniform scaling transformation where its dimensions are doubled relative to the input image. Both the width and height of the helmet increase proportionally by approximately 200%, resulting in an output image where the helmet appears twice as large while maintaining its original proportions and aspect ratio. This enlargement transformation preserves the helmet's shape and visual characteristics while simply increasing its overall size by a factor of two.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

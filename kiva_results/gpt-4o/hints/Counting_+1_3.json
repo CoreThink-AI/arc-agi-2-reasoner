@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One additional coffee cup appears in the output image compared to the input image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "The transformation type is *incremental addition*. Specifically, the parameter value is +1 coffee cup. In the visual change, the output image is created by adding exactly one coffee cup to the scene depicted in the input image, while all other elements remain unchanged.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

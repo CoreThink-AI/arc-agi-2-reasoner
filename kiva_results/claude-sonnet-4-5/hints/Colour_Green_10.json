@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The purple and blue cake slice with strawberries has changed to green and brown/olive tones throughout.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThis transformation applies a systematic hue shift that remaps the original color palette of a cake slice image. Specifically, the purple tones are converted to green, while the blue elements shift to brown or olive tones, affecting all components of the dessert including the cake layers and strawberry garnishes. The transformation maintains the original structure and composition while completely altering the color scheme from cool purple-blue tones to warmer green-brown/olive tones throughout the entire image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

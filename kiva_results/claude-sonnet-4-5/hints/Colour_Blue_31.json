@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The toy train has changed from red/orange/brown colors to various shades of blue throughout all its components.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Color Shift Transformation (Red-Orange to Blue-Purple Spectrum)**\n\nThe transformation applies a systematic color replacement across the entire toy train, converting all warm-toned elements (reds, oranges, and browns) to cool-toned equivalents (blues and purples). Each component of the train—including the engine body, wheels, cargo sections, and decorative details—undergoes this hue shift while maintaining the original brightness and saturation levels. The result is a complete recoloring where the train's original red-orange color scheme is uniformly replaced with a blue-purple palette, preserving the toy's structural details and shading but fundamentally altering its color identity from warm to cool tones.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

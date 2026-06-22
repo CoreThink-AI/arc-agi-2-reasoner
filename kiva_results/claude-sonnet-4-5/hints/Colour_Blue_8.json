@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red bowl in the input image has changed to a blue bowl in the output image, with all other features remaining the same.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\n**Parameter: Red → Blue (Hue shift of approximately 240° or RGB channel modification)**\n\nThe transformation applies a selective color change to a specific object in the image—namely, the bowl. The bowl's color is modified from red to blue while preserving all other visual elements, including the bowl's shape, position, texture, lighting, shadows, and the entire surrounding scene unchanged. This is a targeted object-level color substitution that affects only the bowl's surface color properties.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

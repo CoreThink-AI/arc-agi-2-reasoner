@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of objects decreased from four to three, with one object removed from the right side.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThe transformation involves removing one object from a collection, specifically decreasing the total count from four objects to three. The removed object is positioned on the right side of the arrangement. This results in a visual change where the rightmost element is eliminated while the remaining three objects on the left maintain their original positions.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

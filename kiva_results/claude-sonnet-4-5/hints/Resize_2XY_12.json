@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The duck has been horizontally flipped, with its beak now pointing to the left instead of right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe image has undergone a horizontal flip transformation, creating a mirror reflection across a vertical axis through the center of the image. This transformation reverses the left-right orientation of the duck, causing the beak to point leftward instead of rightward while maintaining all other visual properties such as size, color, and vertical positioning. The result is a complete lateral inversion where every pixel at position (x, y) is mapped to position (width - x, y).",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

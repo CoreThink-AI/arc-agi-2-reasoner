@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of camel objects increased from 3 in the input image to 5 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Multiplication\n\n**Parameter Value:** The camel count increased from 3 to 5 objects (an addition of 2 camels, representing a 67% increase).\n\n**Visual Change:** In the input image, three camel objects are present in the scene. Through the transformation process, two additional camel objects are added to the composition, resulting in a total of five camels visible in the output image. The transformation maintains the camel as the object type while increasing the quantity distributed within the frame.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

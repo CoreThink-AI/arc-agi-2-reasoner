@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The croissant has been flipped vertically, with the pointed end moving from left to right and the overall orientation mirrored along a vertical axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Horizontal Reflection (Flip)**\n\nThe transformation is a horizontal reflection (also called a vertical axis flip) where the croissant image is mirrored across a vertical axis running through its center. This causes the pointed end of the croissant to move from the left side to the right side, while the curved, layered body reverses its orientation. The result is a mirror image where all spatial relationships are inverted left-to-right, but the croissant maintains its original vertical positioning and size.",
+  "concept_votes": {
+    "Reflect": 2
+  },
+  "param_votes": {
+    "Y": 2
+  },
+  "confidence": 1.0
+}

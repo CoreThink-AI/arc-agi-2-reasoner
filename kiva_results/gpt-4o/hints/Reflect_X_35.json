@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The shark is flipped horizontally, as its left and right sides are mirrored.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "The transformation is a horizontal reflection. The shark is flipped along its vertical axis, resulting in its left and right sides being mirrored. Visually, features on the left side of the shark now appear on the right, and vice versa, creating a reversed orientation.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

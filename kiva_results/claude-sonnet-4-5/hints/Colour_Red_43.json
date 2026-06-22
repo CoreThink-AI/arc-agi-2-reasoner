@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green croissant-shaped object in the input image has changed to a red/orange color in the output image while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a color change to a croissant-shaped object, shifting it from green to red/orange while preserving all other visual properties. Specifically, the hue is modified from the green spectrum (approximately 120° on the color wheel) to the red-orange spectrum (approximately 0-30°), while the object's shape, size, position, and orientation remain completely unchanged. This is a selective color replacement that targets only the croissant object without affecting the background or any other elements in the image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

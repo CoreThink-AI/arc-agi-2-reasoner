@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of bread objects increased from two in the input image to four in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The transformation is a **replication**. The number of bread objects **doubled**, increasing from two in the input to four in the output. This was achieved by creating an identical copy of each of the two original bread objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

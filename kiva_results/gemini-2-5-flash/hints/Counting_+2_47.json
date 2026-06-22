@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "Two more baskets were added to the image, increasing the total count from four to six.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The transformation is an **addition**. Two baskets were added to the image, increasing the total count from four to six.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

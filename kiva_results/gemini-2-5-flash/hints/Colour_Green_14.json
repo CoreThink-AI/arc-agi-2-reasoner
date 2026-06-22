@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The color of the Spider-Man figure changed from predominantly red and blue to predominantly green and orange.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **color change**. The Spider-Man figure's color scheme shifts from its original red and blue to a new combination of green and orange. This alteration affects the primary colors of the figure, replacing the iconic red with green and the blue with orange.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

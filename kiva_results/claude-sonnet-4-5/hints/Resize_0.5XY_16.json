@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The key object has been reduced to half its original size while maintaining its proportions and orientation.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Uniform Scaling (50% reduction)**\n\nThe transformation applies a uniform scale reduction of 50% (scale factor of 0.5) to the key object. The key's dimensions are reduced to exactly half of its original size in both width and height, while maintaining its original proportions, aspect ratio, and orientation. This results in a smaller version of the key that preserves all geometric relationships and visual characteristics of the original, with only the overall size being affected.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The rose is mirror-flipped across the vertical axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection across the vertical axis. The rose is flipped such that its left and right sides are swapped, creating a mirror image. All elements of the rose are symmetrically reversed along the central vertical line.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

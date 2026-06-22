@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The camel has been rotated 180 degrees, appearing upside down in the output image compared to its upright position in the input image.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation.** The image undergoes a complete half-turn rotation where the camel, originally positioned upright in the input image, is flipped to appear upside down in the output image. This rotation pivots the entire image around its center point by exactly 180 degrees, inverting both the vertical and horizontal orientation so that what was at the top is now at the bottom and vice versa.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

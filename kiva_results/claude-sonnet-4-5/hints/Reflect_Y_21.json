@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The lion has been horizontally flipped, with the head now facing right instead of left while maintaining the same pose and orientation.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe image has undergone a horizontal flip transformation, creating a mirror reflection across a vertical axis through the center of the image. This transformation reverses the left-right orientation of the lion, causing the head to face right instead of its original left-facing direction. All other aspects of the lion's pose, body position, and proportions remain identical, with only the horizontal directionality inverted.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

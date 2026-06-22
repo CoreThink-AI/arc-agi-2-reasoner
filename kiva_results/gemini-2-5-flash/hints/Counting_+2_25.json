@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of roosters increased from two in the input image to four in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **multiplication**. The number of roosters is multiplied by a factor of **2**. Initially, there are two roosters, and after the transformation, the count increases to four roosters.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

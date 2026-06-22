@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green cake slice with brown strawberries has changed to a red/orange cake slice with red strawberries.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThis transformation applies a systematic color change to a cake slice illustration, where the base cake color shifts from green to red/orange, and the strawberry toppings change from brown to red. The modification affects all colored elements of the object while maintaining the original shape, structure, and composition of the cake slice. This represents a complete recoloring of the dessert item, likely achieved through a hue adjustment or color replacement filter that remaps the original green and brown tones to warmer red and orange tones.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

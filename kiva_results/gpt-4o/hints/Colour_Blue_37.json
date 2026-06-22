@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object's wheels changed color from purple to blue.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "The transformation type is a **color change**. Specifically, the wheels of the object changed color from **purple to blue**. Visually, the purple hue of the wheels was replaced entirely by a blue hue, while the rest of the object remained unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

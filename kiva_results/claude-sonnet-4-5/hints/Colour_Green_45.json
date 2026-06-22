@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red mug in the input image has changed to a green mug in the output image, while maintaining the same size, orientation, and decorative pattern.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement (Hue Shift)**\n\nThe transformation applies a selective color replacement to the mug object, changing its base color from red to green while preserving all other attributes. Specifically, the red hue values are shifted to green hue values across the mug's surface, maintaining the original saturation levels, brightness, size, spatial orientation, and decorative pattern details. This results in an identical mug in terms of form and design, with only the primary color altered from red to green.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

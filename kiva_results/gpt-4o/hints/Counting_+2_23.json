@@ -1,0 +1,10 @@
+{
+  "name": "Unknown",
+  "description": "Detection failed for all attempts.",
+  "reason": "",
+  "params": {},
+  "detailed_hint": "Could not determine the transformation.",
+  "concept_votes": {},
+  "param_votes": {},
+  "confidence": 0.0
+}

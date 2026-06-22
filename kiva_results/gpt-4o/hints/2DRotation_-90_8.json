@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated 90 degrees clockwise from its original upright position.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** of **90 degrees clockwise**. Starting from its original upright position, the object is turned to the right by a quarter turn, resulting in its orientation being shifted such that its top now points to what was previously its right side.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The purple/blue bunny toy and its base have changed to green color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a complete color change to the bunny toy and its base, converting them from purple/blue to green while preserving all other visual properties. The shape, size, position, and orientation of both the bunny figure and its base remain identical throughout the transformation. This is a selective hue replacement that targets only the bunny object, leaving the surrounding environment unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

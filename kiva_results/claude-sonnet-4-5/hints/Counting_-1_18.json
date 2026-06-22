@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains four lion objects while the output image contains only three lion objects, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes exactly one lion object from the scene, reducing the total count from four lions in the input image to three lions in the output image. This is a straightforward deletion operation where a single instance of the lion object is eliminated while the remaining three lions are preserved in their original positions and appearances.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

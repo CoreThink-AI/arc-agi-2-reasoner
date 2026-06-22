@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The L-shaped sofa has been rotated 90 degrees clockwise, changing its orientation in the image plane.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation**\n\nThe L-shaped sofa undergoes a 90-degree clockwise rotation within the image plane, pivoting around a central point to reorient its position. This rotation causes the longer segment of the L-shape to shift from its original alignment to a perpendicular orientation, while the shorter segment correspondingly adjusts to maintain the L-configuration. The transformation preserves the sofa's size and proportions but fundamentally changes which edges face each cardinal direction in the frame.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

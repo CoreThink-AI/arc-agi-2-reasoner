@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The LEGO brick has doubled in size, showing both increased width and height while maintaining the same proportions and color.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Uniform scaling (enlargement)\n\n**Parameter Value:** 2× (200% or scale factor of 2)\n\n**Visual Description:** The LEGO brick undergoes a uniform scaling transformation where both its width and height are doubled simultaneously. The brick expands proportionally from its original size to twice its dimensions while preserving its aspect ratio, structural proportions, and color scheme, resulting in a larger version that maintains the exact same shape and appearance as the original.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

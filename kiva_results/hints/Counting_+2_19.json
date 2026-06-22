@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of basketballs increased from three to four.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "The visual transformation is an **addition**. The number of basketballs increased from three to four, indicating that **one basketball was added** to the image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green toolbox/case has changed to a red/pink colored toolbox while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a color change to the toolbox object, specifically shifting its hue from green to red/pink while preserving all other visual properties. The toolbox maintains its exact shape, size, position, and orientation throughout the transformation—only the surface color is modified. This represents a selective recoloring operation where the hue parameter is adjusted approximately 120-150 degrees on the color wheel (from green spectrum to red/pink spectrum) while saturation and brightness values remain relatively constant.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

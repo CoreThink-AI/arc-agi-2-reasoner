@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of objects increased from 2 groups of circles in the input to 4 groups of circles in the output.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Horizontal and Vertical Reflection (Mirroring)**\n\n**Parameter: 2x2 grid arrangement (mirrored across both axes)**\n\nThe transformation takes the original 2 groups of circles and creates a 2x2 grid pattern by reflecting them across both horizontal and vertical axes. The input configuration is duplicated and mirrored to the right (horizontal reflection), then both the original and horizontally-mirrored versions are mirrored downward (vertical reflection), resulting in 4 groups of circles arranged symmetrically in quadrants. This creates a kaleidoscope-like effect where the original pattern appears in all four corners with appropriate reflections.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

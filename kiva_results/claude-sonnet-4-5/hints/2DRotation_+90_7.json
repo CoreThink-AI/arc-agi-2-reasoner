@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The cake slice has been flipped vertically, with the strawberries moving from the top-right to the bottom-right and the entire object mirrored along a vertical axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Vertical Flip (180° rotation around horizontal axis)**\n\nThe cake slice undergoes a vertical flip, mirroring the image along a horizontal axis through its center. In this transformation, elements that were at the top move to the bottom and vice versa, while left-right positioning remains unchanged. Specifically, the strawberries that were originally positioned at the top-right of the slice relocate to the bottom-right, and the pointed end of the cake slice (originally at bottom) moves to the top, creating a complete vertical inversion of the original image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

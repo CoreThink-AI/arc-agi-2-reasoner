@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The deer has been horizontally flipped, with its orientation reversed from facing left to facing right while maintaining the same vertical position.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Horizontal Flip Transformation**: The image undergoes a horizontal flip (also called a mirror or reflection across the vertical axis), reversing the deer's left-right orientation by 180 degrees. The deer, which originally faces left in the source image, is mirrored to face right in the transformed version while maintaining its exact vertical position and all other spatial properties. This transformation creates a mirror image where every pixel's horizontal coordinate is inverted around the central vertical axis of the image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

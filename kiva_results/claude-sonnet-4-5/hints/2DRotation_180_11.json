@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The hat has been flipped horizontally, with the top and bottom portions swapped while maintaining left-right orientation.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation: Vertical Flip (Reflection across horizontal axis)**\n\nThe image undergoes a vertical flip where the hat is reflected across a horizontal axis running through its center. This transformation swaps the top and bottom portions of the hat—what was originally at the top moves to the bottom position and vice versa—while the left-right orientation remains unchanged. The result is an upside-down version of the original hat, with all vertical relationships inverted but horizontal relationships preserved.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

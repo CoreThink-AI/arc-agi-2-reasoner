@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The number '2' on the object has been horizontally flipped, indicating a reflection across the Y-axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a reflection. Specifically, the object has been reflected across the Y-axis. This results in the number '2' on the object appearing as a horizontal mirror image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

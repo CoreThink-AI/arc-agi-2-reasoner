@@ -1,0 +1,19 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The object is mirror-flipped across the vertical axis, as seen in the reversed number on the red body.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection across the vertical axis. The object is flipped such that all elements are mirrored horizontally. This is evident in the reversed orientation of the number '2' on the red body, which now appears as a backward '2'.",
+  "concept_votes": {
+    "Reflect": 2,
+    "2DRotation": 1
+  },
+  "param_votes": {
+    "Y": 2
+  },
+  "confidence": 0.67
+}

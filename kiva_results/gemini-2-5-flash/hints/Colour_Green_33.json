@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red couch in the input image has changed to a green couch in the output image.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **color change**. The red couch in the input image has been changed to a green couch in the output image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

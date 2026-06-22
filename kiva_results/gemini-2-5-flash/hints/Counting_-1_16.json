@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of camels decreased from five in the input image to four in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "The transformation is a **deletion**. One camel was removed from the input image, resulting in a decrease in the total count from five to four camels in the output.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

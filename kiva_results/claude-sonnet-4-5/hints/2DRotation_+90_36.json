@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The toy car with the snowman character has been rotated 90 degrees clockwise, changing from a front-facing view to a top-down view.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation**\n\nThe toy car featuring a snowman character undergoes a 90-degree clockwise rotation around its horizontal axis. Initially shown in a front-facing view where the snowman and car details are visible from the front perspective, the object rotates to reveal a top-down view. This rotation repositions the viewer's perspective from looking at the front of the car to looking directly down onto its upper surface, fundamentally changing which surfaces and features of the toy are visible.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The donut object in the output image is twice the size of the donut in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "The transformation is a **scaling operation**. The donut object is scaled by a factor of **2**, resulting in an output image where the donut is twice the size of the input donut.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

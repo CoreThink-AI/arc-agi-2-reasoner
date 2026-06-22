@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "Two additional objects were added to the scene, increasing the total count from two to four.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The transformation is an *addition* of objects. Specifically, two rooster objects were added to the scene, increasing the total count from two to four. Visually, the output image contains the original two objects along with two new rooster objects, resulting in a total of four objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

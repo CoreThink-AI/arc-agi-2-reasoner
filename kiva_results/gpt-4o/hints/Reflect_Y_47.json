@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated by 180°, as the orientation of the cabinet and door has flipped completely.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** of **180°**. The object has been turned upside down, resulting in the cabinet and door flipping their orientation completely. This means the top and bottom of the object have swapped positions, creating a reversed visual alignment.",
+  "concept_votes": {
+    "2DRotation": 2,
+    "Reflect": 1
+  },
+  "param_votes": {
+    "180": 2
+  },
+  "confidence": 0.67
+}

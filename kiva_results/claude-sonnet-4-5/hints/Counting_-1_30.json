@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of beach balls decreased from three in the input image to two in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThe transformation involves removing one beach ball from the scene, reducing the total count from three to two. Specifically, one of the three beach balls present in the input image is deleted, while the remaining two beach balls retain their original positions and appearances. This is a straightforward object removal operation where a single instance of a repeated element is eliminated from the composition.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

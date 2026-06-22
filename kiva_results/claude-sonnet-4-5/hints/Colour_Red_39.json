@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The butterfly changed from blue/purple coloring to red/orange coloring while maintaining the same size, orientation, and position.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe butterfly undergoes a complete color transformation where its blue/purple coloring is replaced with red/orange coloring. All other visual properties—including size, orientation, and position—remain unchanged throughout the transformation. This represents a hue shift of approximately 180-240 degrees on the color wheel, moving from cool tones (blue/purple spectrum) to warm tones (red/orange spectrum) while preserving the butterfly's form and spatial attributes.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

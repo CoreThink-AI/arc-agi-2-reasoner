@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains one additional row of four chess pieces below the original row, increasing the total count from 4 to 8 pieces.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Vertical Duplication**\n\nThe transformation duplicates the original row of four chess pieces by creating an identical copy directly below it, resulting in two rows with a total of eight pieces. The parameter value is 2× vertical replication (or 1 additional row). Visually, the single horizontal row of chess pieces in the input is mirrored downward, maintaining the same left-to-right sequence and spacing, effectively doubling the vertical extent of the image while preserving the original arrangement.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

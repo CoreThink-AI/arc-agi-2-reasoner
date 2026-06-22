@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The hot dog character has been rotated 180 degrees, appearing upside down in the output image compared to the input.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe image undergoes a 180-degree rotation around its center point, causing the hot dog character to appear completely inverted. In the output, what was originally at the top is now at the bottom and vice versa, with the character's orientation flipped upside down. This rotation maintains the image's dimensions and content while reversing both the vertical and horizontal positioning of all elements.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

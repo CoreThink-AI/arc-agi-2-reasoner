@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The brown rectangular object with serrated edges has shrunk to approximately half its original size in both dimensions.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Uniform Scaling (Reduction)**\n\nThe brown rectangular object with serrated edges undergoes a uniform scale reduction to approximately 50% of its original size in both width and height dimensions. This scaling transformation maintains the object's aspect ratio and proportions while reducing its overall footprint to roughly one-quarter of its original area. The serrated edge pattern remains intact but proportionally smaller, with the object appearing as a miniaturized version of its initial state.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 5 deer objects while the input image contains 4 deer objects, showing an increase of one object.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication**\n\n**Parameter Value: +1 deer object (25% increase)**\n\nThe transformation adds exactly one deer object to the scene, increasing the total count from 4 deer in the input image to 5 deer in the output image. This duplication operation creates a copy of one existing deer and places it within the composition, resulting in a single additional instance of the object while maintaining the visual characteristics of the original deer elements.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

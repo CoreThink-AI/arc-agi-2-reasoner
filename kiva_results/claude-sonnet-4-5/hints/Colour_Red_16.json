@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green coffee cup with latte art has changed to a red coffee cup with the same design and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a hue shift that changes the coffee cup's color from green to red while preserving all other visual properties. Specifically, the cup's base color is shifted approximately 240 degrees along the color wheel (from green hues around 120° to red hues around 0°/360°). The latte art design, cup shape, orientation, and all other structural elements remain identical, with only the primary color of the cup being modified from green to red.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

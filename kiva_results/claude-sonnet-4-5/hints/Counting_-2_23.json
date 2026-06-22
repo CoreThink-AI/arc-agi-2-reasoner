@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 rabbit objects while the output image contains 3 rabbit objects, showing a reduction of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThis transformation reduces the number of rabbit objects in the image from 5 to 3, removing exactly 2 rabbits. The visual change involves selectively eliminating two rabbit objects from the original composition while preserving the remaining three rabbits in their positions. The result is a simplified scene with 40% fewer objects than the input image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One additional camel appears in the output image compared to the input image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "The transformation type is *object addition*. The exact parameter value is the addition of one camel. Visually, the input image is modified by introducing one additional camel, resulting in the output image containing one more camel than the input image. No other elements in the scene are altered.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

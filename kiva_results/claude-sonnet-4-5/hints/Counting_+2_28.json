@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of robot objects increased from 3 in the input image to 5 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication/Addition**\n\nThe transformation adds 2 additional robot objects to the scene, increasing the total count from 3 robots in the input image to 5 robots in the output image. The newly added robots are positioned alongside the existing ones, maintaining the same visual style and characteristics as the original robot objects. This represents a straightforward duplication operation where the robot count is increased by approximately 67% (from 3 to 5 objects).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

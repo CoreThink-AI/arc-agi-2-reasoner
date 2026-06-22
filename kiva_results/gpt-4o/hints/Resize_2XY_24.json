@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The object has grown to double its original size.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "The transformation is a scaling transformation with a parameter value of 2. The object has been uniformly scaled, increasing its dimensions to twice their original size. From the left image to the right image, the object appears larger, with all proportions maintained while its overall size doubles.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

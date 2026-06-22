@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green and brown cake slice with strawberries has changed to blue and purple colors throughout.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThis transformation applies a systematic color replacement to a cake slice illustration, where the original green tones are shifted to blue and the brown tones are shifted to purple, while the strawberry elements remain unchanged. The modification affects all instances of the specified colors uniformly throughout the image, creating a cohesive recolored version of the dessert. This is a global color mapping transformation that remaps specific hue ranges (green→blue, brown→purple) while preserving the image's structure, texture, and other color elements.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

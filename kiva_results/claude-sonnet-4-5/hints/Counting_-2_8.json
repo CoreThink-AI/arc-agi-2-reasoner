@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains three fish objects while the output image contains only one fish object, representing a decrease of two objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThe transformation reduces the number of fish objects from three in the input image to one in the output image, removing exactly two fish objects. This represents a quantitative decrease where two-thirds of the original objects are eliminated, leaving only a single fish remaining in the final composition.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

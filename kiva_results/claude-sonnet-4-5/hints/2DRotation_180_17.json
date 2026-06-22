@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The entire object has been flipped horizontally, with the orange tree structure that was on the top-left now appearing on the bottom-left, and the green oval base maintaining its position but mirrored.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Horizontal Flip (Mirror Reflection)**\n\nThe object has been flipped along a vertical axis, creating a mirror image where left and right are reversed. The orange tree structure, originally positioned on the top-left, now appears on the top-right, while the green oval base with rocks is mirrored horizontally, reversing the positions of all elements from left to right while maintaining their vertical positions.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

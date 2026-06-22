@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of objects decreased from five to four.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "The transformation type is \"object removal.\" Specifically, one object has been removed, reducing the total number of objects from five to four. Visually, this involves starting with a group of five objects and eliminating one, leaving a group of four objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

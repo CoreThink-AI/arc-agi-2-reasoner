@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of identical objects decreased from 4 in the input image to 3 in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal/Deletion**\n\nThe transformation involves removing one object from a group of identical items, reducing the total count from 4 objects in the input image to 3 objects in the output image. Visually, this means one of the four identical objects present in the original image is deleted or eliminated, leaving three remaining objects in the same or similar arrangement. The specific parameter is a reduction of 1 object (or 25% of the original set).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

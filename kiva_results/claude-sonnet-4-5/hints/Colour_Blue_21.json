@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The rose and its leaves changed from green/olive tones to blue/purple tones.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Hue Shift Transformation (approximately +180° to +210°)**\n\nThis transformation applies a hue shift that rotates the color spectrum, converting the rose and its leaves from their original green/olive color palette to blue/purple tones. The shift moves colors approximately 180-210 degrees around the color wheel, systematically replacing warm green hues with cool blue and purple equivalents while maintaining the original brightness and saturation levels. All elements of the image—including the rose petals, stems, and foliage—undergo this uniform color remapping, resulting in a cohesive blue-purple aesthetic throughout the composition.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

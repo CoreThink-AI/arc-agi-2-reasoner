@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The color of the cake and strawberries changed from green to blue/purple.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "The transformation is a **hue shift**. The color of the cake and strawberries changed from green to blue/purple. This corresponds to a hue shift of approximately **-60 degrees** (or +300 degrees) on the color wheel, moving from the green spectrum towards blue and purple.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

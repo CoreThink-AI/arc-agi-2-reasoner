@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The rubber duck has been rotated 180 degrees, with the head now pointing downward and to the right instead of upward and to the left.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe rubber duck undergoes a 180-degree rotation around its center point, effectively flipping the image upside down. Initially, the duck's head points upward and to the left, while after the transformation, the head points downward and to the right, with the entire figure inverted to the opposite orientation. This half-turn rotation reverses both the vertical and horizontal positioning of all features while maintaining the duck's overall shape and proportions.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

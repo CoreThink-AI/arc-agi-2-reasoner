@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of dark rectangular objects decreased from three in the input image to two in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThis transformation involves the deletion of one dark rectangular object from the scene. Starting with three dark rectangular objects in the input image, the transformation removes exactly one of these objects, resulting in two dark rectangular objects remaining in the output image. The visual change is a straightforward reduction in the count of dark rectangular elements, with the removed object leaving the remaining two objects intact in their positions.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

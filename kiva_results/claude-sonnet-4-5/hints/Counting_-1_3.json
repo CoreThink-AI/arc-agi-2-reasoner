@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 coffee cups while the output image shows 4 coffee cups, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThe transformation involves removing one coffee cup from the scene, reducing the total count from 5 cups in the input image to 4 cups in the output image. This is a straightforward object deletion operation where a single instance of the coffee cup object has been eliminated from the composition while the remaining four cups are preserved in their original positions.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

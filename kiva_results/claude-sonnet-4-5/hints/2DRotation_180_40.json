@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The clownfish has been flipped vertically, with its head and tail positions swapped from upper-right/lower-left to upper-left/lower-right orientation.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Vertical Flip (Reflection across horizontal axis)\n\nThe clownfish image has been flipped vertically along a horizontal axis running through its center. This reflection causes the fish's orientation to reverse: the head, which was originally positioned in the upper-right area, moves to the upper-left, while the tail shifts from the lower-left to the lower-right. The result is a mirror image where top and bottom elements exchange positions, creating the opposite diagonal orientation of the fish.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

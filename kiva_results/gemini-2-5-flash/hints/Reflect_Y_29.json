@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The bicycle object has been flipped horizontally across the Y-axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a horizontal flip. The bicycle object has been mirrored across the Y-axis. This means that the left side of the bicycle is now on the right, and the right side is now on the left, effectively reversing its orientation horizontally.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The toy train object changed from blue/purple color to green color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe toy train object undergoes a complete color transformation from blue/purple to green while all other visual properties remain unchanged. The shape, size, position, and orientation of the train are preserved exactly as they were before the transformation. This is a straightforward hue substitution where only the color attribute is modified, with the green replacing the original blue/purple coloring uniformly across the entire object.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

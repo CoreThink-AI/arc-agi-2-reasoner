@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The castle structure has doubled in size, with all components appearing proportionally larger in the output image compared to the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Scale/Resize transformation with a scaling factor of 2× (200%). The castle structure undergoes uniform enlargement where every component—including towers, walls, and architectural details—is proportionally magnified to twice its original dimensions in both width and height. This results in the output image displaying the same castle design at double the size while maintaining the original aspect ratio and relative positioning of all elements.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

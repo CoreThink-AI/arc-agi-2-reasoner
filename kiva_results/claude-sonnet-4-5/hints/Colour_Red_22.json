@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green sponge-like object in the input image has changed to a red sponge-like object in the output image, with the same shape and size but different color.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement (Hue Shift)**\n\nThe transformation applies a color replacement specifically to the sponge-like object, changing it from green to red while preserving all other attributes including shape, size, orientation, and texture. The parameter involves a hue shift of approximately 120 degrees on the color wheel (from green at ~120° to red at ~0°), or alternatively a direct color substitution from green (RGB: ~0,255,0) to red (RGB: ~255,0,0). All other elements in the image, including the background and any surrounding objects, remain unchanged, making this a selective object-level color transformation.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

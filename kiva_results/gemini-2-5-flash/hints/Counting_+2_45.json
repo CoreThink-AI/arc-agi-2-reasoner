@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of blimp objects increased from 2 to 4.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **duplication**. The number of blimp objects increased from 2 to 4. This means that each of the original 2 blimps was duplicated once, resulting in a total of 4 blimps.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

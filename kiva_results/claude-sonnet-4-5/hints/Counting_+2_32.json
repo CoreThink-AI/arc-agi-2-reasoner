@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 robot objects arranged in two rows, while the input image contains only 4 robot objects in a single row.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication and Rearrangement**\n\nThe transformation increases the number of robot objects from 4 to 6 and reorganizes their layout from a single horizontal row into a two-row grid configuration. Specifically, the original 4 robots are supplemented with 2 additional robot objects, and all 6 robots are then distributed across two rows (likely 3 robots per row). This creates a more compact, vertically-stacked arrangement compared to the linear single-row layout of the input image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

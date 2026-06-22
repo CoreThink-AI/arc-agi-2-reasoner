@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of knife objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Multiplication**\n\nThe transformation doubles the quantity of knife objects present in the scene, specifically increasing the count from 2 knives in the input image to 4 knives in the output image. This multiplication operation preserves the visual characteristics of the knife objects while replicating them to achieve the doubled quantity. The result is a scene with twice as many knife instances as the original, maintaining their appearance and properties while expanding their numerical presence.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The sofa object has been rotated 90 degrees clockwise.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a rotation. The sofa object has been rotated 90 degrees clockwise. This means that if you were to trace the outline of the sofa and then rotate that tracing 90 degrees in a clockwise direction around its center, it would perfectly align with the new position of the sofa.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

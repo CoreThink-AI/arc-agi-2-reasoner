@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green cabinet/shelf object has changed to a blue color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color change (hue shift)\n\n**Parameter Value:** Green to blue (approximately a 120-degree hue rotation in HSL color space, or a shift from RGB green values to blue values)\n\n**Visual Description:** The cabinet/shelf object undergoes a complete color transformation from green to blue while all other properties remain unchanged. The object's shape, size, position, and orientation are preserved throughout the transformation, with only the surface color shifting from green hues to blue hues, resulting in an identical geometric form rendered in a different color.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

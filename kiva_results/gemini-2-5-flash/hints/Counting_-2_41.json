@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of objects decreased from five in the input image to three in the output image.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "The transformation is a **reduction in the number of objects**. The parameter value is **2**, as the count decreased from five objects in the input to three objects in the output. This results in the removal of two objects from the original set.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue candy-shaped object has changed to a red/pink colored version while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution to a candy-shaped object, changing it from blue to red/pink while preserving all other visual properties. The object's shape, size, position, and orientation remain completely unchanged throughout the transformation. This is a simple recoloring operation that affects only the hue/color channel of the specific object, leaving its geometric properties and spatial relationships intact.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

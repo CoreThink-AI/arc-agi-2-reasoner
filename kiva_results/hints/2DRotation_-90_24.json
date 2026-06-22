@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The sofa in the output image has rotated 90 degrees counter-clockwise compared to the input image.",
+  "params": {
+    "parameter": [
+      "-90"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **rotation**. The sofa has been rotated **90 degrees counter-clockwise** around its center. This means the top of the sofa in the input image now points to the left in the output image.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "-90": 3
+  },
+  "confidence": 1.0
+}

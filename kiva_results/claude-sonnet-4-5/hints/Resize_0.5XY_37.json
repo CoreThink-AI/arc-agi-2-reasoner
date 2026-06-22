@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The Android robot icon in the output image is approximately half the size of the input image in both width and height.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Uniform Scaling (50% reduction)**\n\nThe image undergoes a uniform downscaling transformation where both the width and height dimensions are reduced by approximately 50%, resulting in the Android robot icon appearing at half its original size. This proportional scaling maintains the aspect ratio of the icon while decreasing its overall footprint to one-quarter of the original area. The transformation applies equally to both horizontal and vertical dimensions, preserving the visual integrity and recognizability of the Android robot while making it significantly smaller.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

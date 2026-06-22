@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The cactus is mirror-flipped across the vertical axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection across the vertical axis. The cactus is flipped horizontally, resulting in a mirrored version where the left side of the original image now appears on the right, and the right side appears on the left. The overall shape and orientation are reversed along the vertical axis.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

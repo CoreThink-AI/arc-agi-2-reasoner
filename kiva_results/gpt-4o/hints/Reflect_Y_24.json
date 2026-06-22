@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated by 180°, flipping its orientation completely.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** of **180°**. The object is turned around its center point, resulting in its orientation being flipped completely. Every part of the object is now positioned directly opposite to its original location, creating an inverted appearance.",
+  "concept_votes": {
+    "Reflect": 1,
+    "2DRotation": 2
+  },
+  "param_votes": {
+    "180": 2
+  },
+  "confidence": 0.67
+}

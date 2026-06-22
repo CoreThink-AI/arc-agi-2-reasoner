@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows three identical lion objects, while the output image shows only one lion object, indicating two objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes two of the three identical lion objects from the input image, reducing the count from three lions to one lion in the output. The three lions are initially arranged horizontally in the input, and after the removal operation, only a single lion object remains visible in the output image. This represents a reduction of two objects, leaving approximately 33% of the original object count.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The submarine has been horizontally flipped, with the conning tower and propeller switching sides from right to left.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Reflection across vertical axis)**\n\nThe submarine image has been reflected across a vertical axis, creating a mirror image of the original. In this transformation, all elements that were on the right side now appear on the left side and vice versa—specifically, the conning tower and propeller have switched their positions from the right side to the left side of the submarine's body. This 180-degree horizontal flip preserves the submarine's shape and proportions while reversing its left-right orientation.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

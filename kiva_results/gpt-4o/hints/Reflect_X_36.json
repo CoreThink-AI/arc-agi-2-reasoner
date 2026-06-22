@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated upside down, indicating a 180° rotation.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** with a parameter value of **180°**. The object is rotated around its center point, turning it upside down. This results in the top of the object moving to the bottom and the bottom moving to the top, effectively inverting its orientation.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

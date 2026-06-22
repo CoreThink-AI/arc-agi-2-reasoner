@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of cookies decreased from three to two.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "This transformation is a *deletion*. Specifically, one cookie is removed, reducing the total number of cookies from three to two. Visually, the scene changes step by step as one of the three cookies disappears, leaving only two cookies remaining.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The Spiderman figure is mirror-flipped across the vertical Y-axis, changing which hand is extended.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection across the vertical Y-axis. The Spiderman figure is mirror-flipped, resulting in its extended hand switching from the right to the left side of the figure.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,8 @@
+{
+  "prompt_tokens": 7472213,
+  "completion_tokens": 130909,
+  "total_tokens": 7603122,
+  "model": "openai/gpt-4o-2024-11-20",
+  "tasks_completed": 700,
+  "elapsed_s": 2920.9
+}

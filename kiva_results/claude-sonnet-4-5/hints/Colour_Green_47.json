@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red step ladder object has changed to a green step ladder while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color change (hue shift)\n\n**Parameter Value:** Red to green (approximately 0° to 120° hue rotation in HSL color space)\n\n**Visual Description:** The step ladder object undergoes a complete color transformation from red to green while all other visual properties remain unchanged. The shape, size, position, and orientation of the ladder are preserved exactly, with only the hue value being modified from red to green, resulting in an otherwise identical object with a different color appearance.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

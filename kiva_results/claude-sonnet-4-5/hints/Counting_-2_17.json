@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of cow objects decreased from 4 in the input image to 2 in the output image.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThis transformation reduces the number of cow objects in the image by half, from 4 cows in the input to 2 cows in the output. The visual change involves removing exactly 2 cow objects from the scene while retaining the remaining 2 cows. This results in a less populated image with 50% fewer cow instances compared to the original.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

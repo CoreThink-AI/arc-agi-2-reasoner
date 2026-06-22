@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The character in the output image is twice as large as the character in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Scale/Enlargement**\n\nThe transformation applies a 2× (200%) uniform scaling to the character. The character's dimensions are doubled in both width and height, making it appear twice as large in the output image compared to the input image. This proportional enlargement maintains the character's aspect ratio while increasing its overall size by a factor of two.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

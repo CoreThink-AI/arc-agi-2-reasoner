@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The camel in the output image is approximately twice the size of the camel in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Scale/Resize (2x magnification)**\n\nThe transformation applies a uniform scaling operation with a scale factor of approximately 2.0 to the camel image. This doubles both the width and height dimensions of the camel, making it appear twice as large in the output compared to the input. The enlargement maintains the original aspect ratio and proportions of the camel while increasing its overall size by a factor of four in total area (2× width × 2× height).",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

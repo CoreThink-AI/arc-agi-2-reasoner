@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated 90 degrees clockwise, as evidenced by the change in orientation of the wheels and the number '2'.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a 90-degree clockwise rotation. Visually, this results in the entire object shifting orientation so that elements such as the wheels and the number '2' are repositioned accordingly, aligning with the new rotated perspective. The object's features maintain their relative positions but are now oriented to face 90 degrees to the right of their original alignment.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

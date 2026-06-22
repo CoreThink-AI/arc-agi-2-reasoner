@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The toy car with the character has been horizontally flipped, as evidenced by the number '2' becoming a reversed '2' (mirror image) on the character's body.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a **horizontal flip (mirror reflection across the vertical axis)**. The toy car and character are reflected left-to-right, causing the number '2' on the character's chest to appear as a reversed mirror image in the output. The car's orientation changes so that elements previously on the left side now appear on the right side and vice versa, while the vertical positioning remains unchanged.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

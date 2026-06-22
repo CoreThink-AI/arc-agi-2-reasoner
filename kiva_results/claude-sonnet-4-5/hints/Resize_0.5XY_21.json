@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The fire hydrant object in the output image is approximately half the size of the input image in both width and height.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Uniform Scaling (50% reduction)**\n\nThe fire hydrant object undergoes a uniform downscaling transformation where both its width and height are reduced to approximately 50% of their original dimensions. This proportional reduction maintains the aspect ratio of the object while decreasing its overall size by half in each dimension, resulting in a fire hydrant that occupies roughly one-quarter of its original area in the output image.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

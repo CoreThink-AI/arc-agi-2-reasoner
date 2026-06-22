@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of cupcakes decreased from four to three.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "This transformation is a *decrease in quantity* with a parameter value of -1. Visually, the number of cupcakes reduces step by step, starting with four cupcakes and ending with three. One cupcake is removed during the transformation.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

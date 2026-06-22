@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The sheep toy has been flipped horizontally, with the head and tail switching sides from left to right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection)**\n\nThe image undergoes a horizontal flip transformation, creating a mirror reflection across a vertical axis. In this transformation, the sheep toy's orientation is reversed: the head, which was originally positioned on one side (left or right), moves to the opposite side, and similarly the tail switches from its original side to the other. This results in a complete left-to-right reversal of the entire image, where all spatial relationships are inverted along the horizontal plane while maintaining the vertical positions of all elements.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

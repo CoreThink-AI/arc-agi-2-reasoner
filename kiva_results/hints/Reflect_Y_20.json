@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The object is mirror-flipped across the vertical (Y) axis, changing its orientation from facing slightly right to slightly left.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection across the Y-axis. The object is mirror-flipped, resulting in a change of orientation from facing slightly right to facing slightly left.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

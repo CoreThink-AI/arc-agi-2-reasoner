@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue hat in the input image has changed to a green hat in the output image, with all other features remaining identical.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Substitution**\n\nThis transformation involves a targeted color replacement where the blue hat present in the input image is recolored to green in the output image. The change is isolated specifically to the hat object, with its shape, position, and all other visual elements in the image remaining completely unchanged. This represents a selective hue modification applied only to a single object while preserving the integrity of all other features in the scene.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

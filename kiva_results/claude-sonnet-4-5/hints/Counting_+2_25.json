@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of rooster objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Multiplication**\n\nThe transformation doubles the quantity of rooster objects present in the scene, specifically increasing the count from 2 roosters in the input image to 4 roosters in the output image. This duplication maintains the visual characteristics of the original rooster objects while adding two additional instances to the composition. The parameter value for this multiplication transformation is 2× (or +2 objects), resulting in a total of 4 roosters displayed in the final output.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

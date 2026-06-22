@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The knight character has been horizontally flipped, with the sword/weapon on the arms switching from left to right side.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Horizontal Flip (Mirror Reflection)**\n\nThe image undergoes a horizontal flip transformation across the vertical axis, creating a mirror reflection of the original knight character. In this process, the knight's orientation is reversed from left-facing to right-facing (or vice versa), causing the sword or weapon held in the character's arms to switch from one side to the other—specifically moving from the left side to the right side of the composition. This bilateral reflection preserves all visual elements while inverting their horizontal positions.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

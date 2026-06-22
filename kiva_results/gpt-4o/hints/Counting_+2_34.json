@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of butterflies increased from two to four.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The transformation is a duplication. The exact parameter value is a doubling, as the number of butterflies increased from two to four. Visually, two additional butterflies identical to the original two were added, resulting in a total of four butterflies.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

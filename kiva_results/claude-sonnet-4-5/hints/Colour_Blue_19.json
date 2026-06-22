@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red basketball changed to a blue basketball while maintaining the same size, position, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution where the basketball's hue is changed from red to blue while all other visual properties remain constant. Specifically, the red color value is replaced with blue, affecting only the ball's surface color. The basketball's size, spatial position, orientation, and structural details (such as the characteristic line patterns) are preserved exactly as they were in the original image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

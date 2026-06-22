@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated 90 degrees clockwise as seen from the change in orientation of the tree and base.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a **90-degree clockwise rotation**. The visual change involves the entire object, including the tree and its base (or ground), shifting orientation such that elements previously aligned vertically now appear horizontally, rotated to the right. This is evident from the tree and base reorienting in a clockwise direction.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

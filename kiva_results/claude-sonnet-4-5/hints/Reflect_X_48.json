@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The submarine has been flipped horizontally, with the conning tower moving from the top to the bottom of the hull.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation or vertical axis reflection)**\n\nThe submarine undergoes a horizontal flip across its vertical axis, effectively rotating the image 180 degrees or reflecting it vertically. This transformation causes the conning tower (superstructure) to move from its original position on the top of the hull to the bottom, while the overall left-right orientation of the submarine remains unchanged. The result is an inverted version of the original submarine, as if it has been turned upside down.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

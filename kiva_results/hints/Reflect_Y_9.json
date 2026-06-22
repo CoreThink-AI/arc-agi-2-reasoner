@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The coffee cup and its latte art are mirror-flipped across the vertical Y-axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a reflection. The coffee cup and its latte art are mirror-flipped across the vertical Y-axis. This results in the image appearing as if viewed in a mirror, with the left and right sides of the cup and art interchanged.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

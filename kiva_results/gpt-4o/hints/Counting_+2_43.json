@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of lightbulbs increased from 3 to 5.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The transformation is an *increase in quantity*. Specifically, the number of lightbulbs increased from 3 to 5. Visually, two additional lightbulbs were added to the original set of three, resulting in a total of five lightbulbs.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

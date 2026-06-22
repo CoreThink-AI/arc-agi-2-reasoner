@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The boat has been flipped upside down across a horizontal axis, with the hull now at the top and the smokestack pointing downward.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Horizontal Reflection (Flip across horizontal axis)\n\n**Parameter Value:** 180° rotation around the horizontal axis passing through the center of the image\n\n**Visual Description:** The boat undergoes a horizontal flip where the entire image is reflected across a horizontal axis running through its center. As a result, the hull that was originally at the bottom is now positioned at the top, while the smokestack that pointed upward now points downward, creating a complete vertical inversion of the boat's orientation.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

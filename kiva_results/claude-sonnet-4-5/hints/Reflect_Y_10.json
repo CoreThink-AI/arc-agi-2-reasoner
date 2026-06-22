@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The gun has been horizontally flipped, with the barrel now pointing left instead of right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation along vertical axis)**\n\nThe image undergoes a horizontal flip, also known as a mirror reflection across the vertical axis. In this transformation, the gun's barrel, which originally pointed to the right, is now oriented to the left, while all other elements maintain their relative positions but are reversed left-to-right. This creates a mirror image of the original, with the gun's directionality completely inverted along the horizontal plane.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

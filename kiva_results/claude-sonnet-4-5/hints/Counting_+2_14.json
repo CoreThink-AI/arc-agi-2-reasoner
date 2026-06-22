@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of dog objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Multiplication**\n\nThe transformation doubles the quantity of dog objects present in the scene, specifically increasing the count from 2 dogs in the input image to 4 dogs in the output image. This multiplication operation preserves the visual characteristics of the original dog objects while creating exact duplicates, resulting in twice the number of identical or similar dog instances visible in the final composition.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

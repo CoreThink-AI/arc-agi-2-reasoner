@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green shark plush toy in the input image has changed to a red shark plush toy in the output image, with all other features remaining identical.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color replacement (hue shift)\n\n**Parameter Value:** Green to red (approximately 120° to 0° hue shift)\n\n**Visual Description:** This transformation applies a selective color replacement to the shark plush toy, changing its body color from green to red while preserving all other visual elements including the toy's shape, texture, shading, and surrounding environment. The modification targets only the shark's primary color channel, leaving details such as the white teeth, eye features, and fabric texture completely unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

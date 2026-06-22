@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 fish objects while the output image shows 4 fish objects, indicating one fish has been removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Removal\n\n**Parameter Value:** 1 object removed (from 5 fish to 4 fish)\n\n**Visual Change Description:** The transformation involves removing a single fish object from the input image. Starting with an input containing 5 fish objects, one fish is deleted, resulting in an output image that displays the remaining 4 fish objects in the scene.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

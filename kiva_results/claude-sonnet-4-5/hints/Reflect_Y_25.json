@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The stroller object has been horizontally flipped, with the handle moving from the right side to the left side.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a **horizontal flip (reflection across the vertical axis)**. The stroller object has been mirrored left-to-right, causing the handle to switch from the right side of the image to the left side while maintaining the same vertical position and size. This creates a mirror image where all horizontal positions are reversed, but the stroller's overall shape and proportions remain unchanged.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The camel in the output image is approximately half the size of the camel in the input image.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Uniform Scaling (50% reduction)**\n\nThe image undergoes a uniform downscaling transformation where the camel is reduced to approximately 50% of its original dimensions. Both the width and height are proportionally decreased by half, maintaining the camel's aspect ratio while creating a smaller version of the subject. This scaling operation preserves all visual details and proportions of the camel, simply rendering it at half the original size in the output image.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

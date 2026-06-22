@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The dinosaur object has been flipped horizontally, with its orientation reversed from left-facing to right-facing while maintaining the same vertical position.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Horizontal Flip Transformation (180° rotation around vertical axis):** The dinosaur object undergoes a horizontal flip, also known as a mirror reflection across a vertical axis. This transformation reverses the object's left-right orientation, changing it from left-facing to right-facing while preserving its vertical position and size. The result is a mirror image where all horizontal coordinates are inverted relative to the object's center, but the vertical alignment remains unchanged.",
+  "concept_votes": {
+    "Reflect": 2
+  },
+  "param_votes": {
+    "X": 2
+  },
+  "confidence": 1.0
+}

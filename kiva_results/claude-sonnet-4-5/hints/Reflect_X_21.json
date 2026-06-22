@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The lion has been flipped horizontally across the X-axis, appearing upside down with its legs pointing upward instead of downward.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation: Vertical Flip (180° rotation across the horizontal X-axis)**\n\nThe image has undergone a vertical flip, where the lion is reflected across a horizontal axis running through the center of the image. This transformation inverts the lion's orientation so that what was originally at the top is now at the bottom and vice versa, resulting in the lion appearing upside down with its legs pointing upward instead of downward and its head positioned at the bottom of the frame. The left-right positioning remains unchanged, but the entire vertical arrangement is reversed.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

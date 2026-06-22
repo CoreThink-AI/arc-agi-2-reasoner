@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The rose has been horizontally flipped, with the flower and leaves now mirrored across a vertical axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection)**\n\nThe image has undergone a horizontal flip transformation, where all elements are mirrored across a vertical axis running through the center of the image. This creates a left-to-right reversal, causing the rose, stem, and leaves to appear as mirror images of their original positions—elements that were on the left side now appear on the right side and vice versa. The transformation preserves all other properties such as size, color, and orientation relative to the horizontal plane, while completely reversing the lateral positioning of every pixel.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

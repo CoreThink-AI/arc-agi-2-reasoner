@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of objects increased from 2 to 4.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The transformation type is duplication. The exact parameter value is a doubling of the number of objects. Visually, the initial set of 2 objects is duplicated, resulting in a total of 4 objects. Each original object is replicated once, maintaining the same appearance and arrangement.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

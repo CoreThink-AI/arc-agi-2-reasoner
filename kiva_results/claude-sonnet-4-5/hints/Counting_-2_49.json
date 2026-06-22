@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 knife objects while the output image shows 3 knife objects, indicating 2 objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThis transformation removes exactly 2 knife objects from the scene, reducing the total count from 5 knives in the input image to 3 knives in the output image. The removal process selectively eliminates two of the five original knife objects while preserving the remaining three knives in their positions. This represents a straightforward object deletion operation that decreases the object count by 40% of the original quantity.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

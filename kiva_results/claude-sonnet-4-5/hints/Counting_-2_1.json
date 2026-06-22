@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of bowl objects decreased from 4 in the input image to 2 in the output image.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThe transformation reduces the number of bowl objects in the image by half, from 4 bowls in the input to 2 bowls in the output. This represents a 50% decrease in the quantity of bowl objects present in the scene. The specific bowls that remain versus those that are removed follow a systematic selection pattern, resulting in exactly 2 bowls being retained in the final output image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The coffee cup has rotated 90 degrees counter-clockwise.",
+  "params": {
+    "parameter": [
+      "-90"
+    ]
+  },
+  "detailed_hint": "The image shows a rotation transformation. The coffee cup has been rotated 90 degrees counter-clockwise around its center. This means the cup, initially upright, now lies on its side with the handle pointing upwards and to the left.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "-90": 2,
+    "+90": 1
+  },
+  "confidence": 1.0
+}

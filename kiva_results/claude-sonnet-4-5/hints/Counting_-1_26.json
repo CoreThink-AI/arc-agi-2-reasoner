@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 cactus objects while the output image shows 4 cactus objects, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes exactly one cactus object from the scene, reducing the total count from 5 cacti in the input image to 4 cacti in the output image. This is a deletion operation where a single instance of the cactus object is eliminated while the remaining four cacti are preserved in their original positions and appearances.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

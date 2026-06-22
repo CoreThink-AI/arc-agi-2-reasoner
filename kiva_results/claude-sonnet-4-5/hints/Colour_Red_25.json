@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The purple/blue colored object in the input image has changed to a red/orange colored object in the output image.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\nThis transformation applies a color substitution where all purple/blue colored objects in the input image are systematically replaced with red/orange colored objects in the output image. The spatial position, shape, and size of the objects remain unchanged; only the color values are modified. Specifically, pixels within the purple/blue color range are mapped to corresponding red/orange hues while preserving all other visual properties of the scene.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

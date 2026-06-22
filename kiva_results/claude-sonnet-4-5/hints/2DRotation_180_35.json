@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The shark plush toy has been flipped vertically, with the head and tail positions swapped from right-to-left to left-to-right orientation.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation around vertical axis)**\n\nThe shark plush toy undergoes a horizontal flip, mirroring its orientation from right-facing to left-facing. Initially, the shark's head points toward the right side of the frame with its tail on the left; after the transformation, the head moves to the left side while the tail shifts to the right. This mirror reflection reverses the toy's left-right positioning while maintaining its top-bottom orientation, creating a complete lateral inversion of the original image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The airplane has been rotated 90 degrees clockwise, changing from a horizontal orientation (nose pointing right) to a vertical orientation (nose pointing up).",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation.** The airplane undergoes a rotational transformation of exactly 90 degrees in the clockwise direction around its center point. Initially, the airplane is positioned horizontally with its nose pointing toward the right side of the frame. After the rotation is applied, the airplane assumes a vertical orientation with its nose pointing upward, while maintaining its original size and proportions.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

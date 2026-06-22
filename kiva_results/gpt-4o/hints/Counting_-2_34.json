@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of butterflies decreased from four to two.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "This transformation is a *reduction in quantity*. The parameter value is a decrease in the number of butterflies from 4 to 2. Visually, two butterflies are removed, leaving only two remaining in the scene.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

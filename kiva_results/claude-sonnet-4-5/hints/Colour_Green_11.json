@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object changed from red/pink tones to green/teal tones while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a hue shift that converts all red/pink tones in the object to green/teal tones, approximately a 120-180 degree rotation on the color wheel. The object's shape, size, position, and orientation remain completely unchanged throughout this process. This is a pure color remapping transformation where only the hue channel is modified while preserving all spatial and structural properties of the original object.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

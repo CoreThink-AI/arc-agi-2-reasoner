@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The step ladder has been rotated 90 degrees clockwise, changing from an upright position to lying on its side.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation**\n\nThe step ladder undergoes a 90-degree clockwise rotation around its center point. Initially positioned upright with its base at the bottom and steps ascending vertically, the ladder rotates a quarter turn to the right, resulting in it lying horizontally on its side. After the transformation, what was previously the top of the ladder now points to the right, while the base points to the left, with the steps oriented perpendicular to their original vertical alignment.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

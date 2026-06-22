@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows three identical objects arranged horizontally, while the output image shows only one object, indicating two objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThe transformation removes two out of three identical objects from a horizontal arrangement, reducing the count from three objects to one. Specifically, two objects are deleted while one object is retained in the output image. This results in a visual change where the horizontal array of three evenly-spaced identical items is simplified to display only a single instance of that object.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The reddish-brown hat in the input image has changed to a blue hat in the output image, with all other features remaining the same.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\nThe transformation applies a color replacement specifically to the hat object, changing it from a reddish-brown/red-brown color to blue while preserving all other attributes. The hat maintains its exact shape, size, position, and orientation throughout the change. All other elements in the image remain completely unchanged, with only the hat's color being modified from the warm red-brown tone to a cool blue tone.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

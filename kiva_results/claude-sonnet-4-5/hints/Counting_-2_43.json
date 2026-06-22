@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 lightbulb objects while the output image contains only 3 lightbulb objects, indicating 2 objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes exactly 2 lightbulb objects from the scene, reducing the total count from 5 lightbulbs in the input image to 3 lightbulbs in the output image. The visual change involves the deletion of two specific lightbulb instances while preserving the remaining three lightbulbs in their original positions and appearances. This selective removal maintains the overall composition while simplifying the scene by decreasing the object count by 40%.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

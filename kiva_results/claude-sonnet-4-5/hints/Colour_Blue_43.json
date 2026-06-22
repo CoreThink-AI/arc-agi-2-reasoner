@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The croissant-shaped object changed from red/orange to blue/purple while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color change (hue shift)\n\n**Parameter Value:** Hue shifted approximately 180-240 degrees (from red/orange spectrum to blue/purple spectrum)\n\n**Visual Description:** The croissant-shaped object undergoes a complete color transformation from warm red/orange tones to cool blue/purple tones while all other visual properties remain unchanged. The shape, size, position, and orientation of the object are preserved throughout the transformation, with only the hue value being modified across the entire object uniformly.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

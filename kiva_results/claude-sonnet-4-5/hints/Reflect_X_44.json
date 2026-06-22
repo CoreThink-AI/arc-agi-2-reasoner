@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The mug has been rotated 180 degrees, with the handle moving from the right side to the right side but the decorative pattern appearing upside down.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe mug undergoes a 180-degree rotation around its vertical axis. While the handle remains positioned on the right side in both views, the decorative pattern on the mug's surface becomes inverted, appearing upside down in the final orientation. This rotation effectively flips the mug's front-facing design while maintaining the handle's relative position, creating a mirror-like transformation of the visual elements.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

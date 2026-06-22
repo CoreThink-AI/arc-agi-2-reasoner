@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The cake slice has been flipped horizontally, with the strawberries moving from the top to the bottom and the entire image mirrored across a horizontal axis.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Horizontal Flip (Reflection across a vertical axis)\n\nThe image has been mirrored along a vertical axis running through its center, creating a left-to-right reflection of the original cake slice. All elements maintain their vertical positions but swap horizontal sides—features that were on the left now appear on the right and vice versa. This transformation preserves the size and proportions of the cake slice while reversing its lateral orientation, making it appear as though viewed in a mirror.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

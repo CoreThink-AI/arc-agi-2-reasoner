@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows three bottle-shaped objects while the output image shows only one bottle-shaped object, indicating two objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes two of the three bottle-shaped objects from the input image, leaving only a single bottle-shaped object visible in the output image. Specifically, two bottles are deleted from the scene while one bottle is retained in its original position. This results in a simplified composition where the object count is reduced from three bottles to one bottle.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

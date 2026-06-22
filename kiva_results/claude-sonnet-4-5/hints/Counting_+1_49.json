@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of knife objects increased from 3 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication**\n\nThe transformation involves duplicating one of the knife objects, increasing the total count from 3 to 4 knives in the output image. Visually, an additional knife appears in the scene while maintaining the same orientation and style as the existing knives. The original three knives remain in their positions, and the fourth knife is added to create the final composition with four identical or similar knife objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

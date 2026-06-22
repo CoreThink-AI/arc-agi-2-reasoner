@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The bread loaf object has been horizontally flipped, with the yellow cut face moving from the left side to the right side of the image.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe bread loaf undergoes a horizontal flip, creating a mirror image of the original orientation. Specifically, the yellow cut face, which was initially positioned on the left side of the loaf, moves to the right side after the transformation. This reflection preserves all other visual properties of the object (size, color, texture) while reversing its left-right orientation across a vertical axis of symmetry.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object changed from red/pink tones to blue while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a complete hue shift from red/pink tones to blue tones while preserving all other visual properties. The object's shape, size, position, and orientation remain identical throughout the transformation—only the color values are modified. This represents a straightforward color replacement or hue adjustment where warm tones (red/pink) are systematically converted to cool tones (blue) across the entire object.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

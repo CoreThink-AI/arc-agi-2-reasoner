@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The coffee cup rotated 90 degrees clockwise, moving the handle from the right to the bottom.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation**. The coffee cup was rotated **90 degrees clockwise**. This moved the handle from its initial position on the right side of the cup to the bottom.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "-90": 1,
+    "+90": 2
+  },
+  "confidence": 1.0
+}

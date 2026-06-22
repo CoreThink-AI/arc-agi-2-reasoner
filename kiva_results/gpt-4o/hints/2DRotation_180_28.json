@@ -1,0 +1,19 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The object is flipped horizontally across the X-axis, resulting in an upside-down appearance.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection across the X-axis. This flips the object horizontally, inverting its vertical orientation and resulting in an upside-down appearance. Each point of the object is mirrored to the opposite side of the X-axis, maintaining its horizontal position while reversing its vertical position.",
+  "concept_votes": {
+    "Reflect": 2,
+    "2DRotation": 1
+  },
+  "param_votes": {
+    "X": 2
+  },
+  "confidence": 0.67
+}

@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The shark plush toy has been rotated 90 degrees clockwise, changing from a horizontal orientation to a vertical orientation with the head pointing upward.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation.** The shark plush toy undergoes a rotational transformation where it pivots 90 degrees in a clockwise direction around its center point. Initially positioned horizontally with its length extending left to right, the toy rotates so that its head moves upward and its tail moves downward, resulting in a vertical orientation. This transformation changes the toy's alignment from lying flat to standing upright while maintaining its original size and proportions.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of basketballs increased from three to five.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The transformation type is an *increase in quantity*. The exact parameter value is an increase from 3 basketballs to 5 basketballs. Visually, two additional basketballs are added to the original group of three, resulting in a total of five basketballs.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

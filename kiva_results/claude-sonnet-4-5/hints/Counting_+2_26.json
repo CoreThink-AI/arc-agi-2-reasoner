@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 cactus objects arranged in two rows, while the input image contains only 4 cactus objects in a single row.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Grid Duplication with Extension**\n\nThe transformation takes the original single row of 4 cactus objects and creates a 2-row by 3-column grid containing 6 cactus objects total. Specifically, the original 4 cacti are preserved in their relative positions while 2 additional cactus objects are added to complete a rectangular grid arrangement. This results in the cacti being reorganized from a horizontal linear sequence into a compact 2×3 matrix layout, effectively duplicating some elements and restructuring the spatial distribution from one row to two rows.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

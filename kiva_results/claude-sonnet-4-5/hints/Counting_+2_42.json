@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 bottle objects while the input image contains 4 bottle objects, showing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Duplication (Addition of 2 Objects)**\n\nThis transformation increases the number of bottle objects in the scene from 4 to 6, adding exactly 2 additional bottles. The visual change involves duplicating or inserting two more bottle instances into the composition while maintaining the overall scene structure. The result is a quantitative expansion where the output displays 6 bottles compared to the original 4 bottles in the input image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

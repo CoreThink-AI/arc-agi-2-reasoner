@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red and brown colors of the popsicle in the input image have changed to shades of green in the output image.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **color hue shift**. The red and brown colors of the popsicle in the input image have been shifted to shades of green in the output image. This indicates a hue rotation of approximately +120 degrees (or -240 degrees) on the color wheel, mapping the original red/orange hues to green.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

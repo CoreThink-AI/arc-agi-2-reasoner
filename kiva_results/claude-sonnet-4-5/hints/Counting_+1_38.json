@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains five circular objects arranged in two rows (4 on top, 1 on bottom) while the input image contains only four circular objects in a single row.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication with Rearrangement**\n\nThe transformation duplicates one of the four circular objects from the input image, increasing the total count from four to five circles. The spatial arrangement changes from a single horizontal row of four circles to a two-row layout with four circles positioned in the top row and one circle placed in the bottom row. This represents both a quantitative change (adding one additional object) and a structural reorganization of the layout from a linear to a stacked configuration.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

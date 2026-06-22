@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The rooster has been rotated 180 degrees, with its head now pointing to the right instead of left and the entire image flipped upside down.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe image has been rotated exactly 180 degrees around its center point. This transformation flips the entire image upside down, causing the rooster's orientation to reverse completely—its head, which originally pointed to the left, now points to the right, and what was at the top of the image is now at the bottom. The result is an inverted version of the original image where all elements maintain their relative positions to each other but appear upside down and horizontally mirrored.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green castle structure has changed to blue while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Color Substitution Transformation**: The transformation applies a color replacement where all green pixels in the castle structure are changed to blue. The castle maintains its exact shape, size, position, and orientation throughout the process—only the color value is modified from green to blue while all other visual properties remain unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

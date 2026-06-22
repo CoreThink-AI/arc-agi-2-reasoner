@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One additional object (dolphin) appears in the output image compared to the input image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "The transformation type is *object addition*. Specifically, one dolphin is added to the scene. In the output image, compared to the input image, a single new object—a dolphin—appears, while all other elements remain unchanged.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

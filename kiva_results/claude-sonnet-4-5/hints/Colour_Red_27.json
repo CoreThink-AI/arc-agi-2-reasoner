@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The soccer ball changed from blue/purple tones to red/pink tones while maintaining the same size, orientation, and structure.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color/Hue Shift\n\nThe transformation applies a hue adjustment that shifts the soccer ball's color palette from cool blue/purple tones to warm red/pink tones. The ball's geometric structure, size, position, and orientation remain completely unchanged throughout the process. This is a pure color transformation where only the hue values are modified while preserving all spatial and structural properties of the original image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

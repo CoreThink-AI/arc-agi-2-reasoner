@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The cake slice with strawberries has been rotated 90 degrees counter-clockwise, with the pointed end now facing left instead of down.",
+  "params": {
+    "parameter": [
+      "-90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree counter-clockwise rotation.** The cake slice with strawberries undergoes a rotational transformation where it pivots 90 degrees in a counter-clockwise direction around its center point. Initially, the pointed end of the triangular slice faces downward, but after the rotation, this pointed end is repositioned to face left while the wider, curved edge that was originally at the top now faces right.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "-90": 3
+  },
+  "confidence": 1.0
+}

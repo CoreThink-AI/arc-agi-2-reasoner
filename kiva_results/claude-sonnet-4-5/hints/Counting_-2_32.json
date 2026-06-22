@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 robot objects while the output image contains only 3 robot objects, showing a reduction of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThis transformation reduces the number of robot objects in the scene from 5 to 3, removing exactly 2 objects. The visual change involves selectively eliminating two of the five robots present in the input image, resulting in an output image that displays only three robots while maintaining the positions and appearances of the remaining objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

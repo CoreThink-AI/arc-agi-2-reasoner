@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue deer object has changed to a red color while maintaining the same size, orientation, and position.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution to a deer-shaped object, changing it from blue to red while preserving all other attributes. The object's size, spatial position, and orientation remain completely unchanged throughout the process. This is a simple recoloring operation that modifies only the hue property of the deer object from blue to red.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

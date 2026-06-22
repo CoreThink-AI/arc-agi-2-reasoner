@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 bottle objects while the output image shows 4 bottle objects, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Removal\n\n**Parameter Value:** 1 object removed (5 bottles reduced to 4 bottles)\n\n**Visual Change Description:** The transformation involves removing one bottle object from the input image. Starting with an initial configuration of 5 bottles, the operation deletes a single bottle, resulting in a final output displaying 4 bottles. The specific bottle removed and its position would determine which of the remaining 4 bottles are visible in the output image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

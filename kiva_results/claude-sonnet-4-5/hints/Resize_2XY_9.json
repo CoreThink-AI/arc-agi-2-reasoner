@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The dark green rectangular object has doubled in both width and height, becoming twice as large in the output image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Uniform Scaling (Enlargement)**\n\nThe dark green rectangular object undergoes a 2× scale transformation, doubling in both width and height dimensions. This uniform scaling causes the object to become four times larger in total area while maintaining its original proportions and aspect ratio. The transformation results in a visually larger version of the same rectangular shape, with all linear dimensions precisely doubled from the input to the output image.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

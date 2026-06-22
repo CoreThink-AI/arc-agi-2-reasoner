@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The elephant in the output image is approximately half the size of the elephant in the input image.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Uniform scaling (reduction)\n\n**Parameter Value:** 0.5× or 50% scale factor\n\n**Visual Change:** The elephant in the output image has been uniformly scaled down to approximately half its original dimensions in both width and height. This reduction transformation maintains the elephant's proportions and aspect ratio while decreasing its overall size by a factor of two, making it occupy roughly one-quarter of its original area in the image.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

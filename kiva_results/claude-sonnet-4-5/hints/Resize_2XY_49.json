@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The blimp/airship object in the output image is twice as large in both dimensions compared to the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Uniform scaling (enlargement)\n\n**Parameter Value:** 2× scale factor in both horizontal and vertical dimensions\n\n**Visual Description:** The blimp/airship object undergoes a uniform scaling transformation where its size is doubled in both width and height, resulting in an object that appears twice as large in the output image compared to the input image. This proportional enlargement maintains the original aspect ratio and shape of the airship while increasing its overall dimensions by a factor of two in each direction.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 clownfish objects while the input image contains 4 clownfish objects, showing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Duplication**\n\nThis transformation increases the number of clownfish objects from 4 to 6, adding exactly 2 additional clownfish to the scene. The duplication process maintains the visual characteristics of the original clownfish while expanding the total count in the output image. The parameter value for this transformation is +2 objects, representing a 50% increase in the number of clownfish present.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

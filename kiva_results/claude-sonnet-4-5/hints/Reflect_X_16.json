@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The deer figure has been rotated 180 degrees, appearing upside down in the output image compared to its upright position in the input image.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation.** The deer figure undergoes a half-turn rotation around its center point, flipping it completely upside down. In the input image, the deer appears in its normal upright orientation, while in the output image, the same deer figure is inverted with its antlers pointing downward and legs pointing upward, maintaining the same size and position but reversed top-to-bottom.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

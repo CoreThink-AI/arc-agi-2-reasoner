@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of barn objects increased from 2 in the input image to 3 in the output image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication**\n\nThe transformation involves duplicating a barn object, increasing the total count from 2 barns in the input image to 3 barns in the output image. Specifically, one additional barn instance is added to the scene, resulting in a net increase of one barn object. This duplication maintains the visual characteristics of the existing barns while expanding the total number of these structures present in the image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

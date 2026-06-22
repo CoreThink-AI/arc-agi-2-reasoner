@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The rocking horse has been rotated 90 degrees clockwise, changing from an upright position to lying on its side with the rockers now pointing to the right.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation.** The rocking horse undergoes a quarter-turn rotation in the clockwise direction around its center point. Initially positioned upright with the rockers forming a horizontal base beneath the horse, the image rotates so that the entire object lies on its side, with the rockers now oriented vertically and pointing toward the right edge of the frame.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 objects (4 in the top row and 2 in the bottom row) while the input image contains only 4 objects in a single row.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication with Rearrangement**\n\nThe transformation duplicates 2 of the 4 original objects, increasing the total count from 4 to 6 objects. The spatial arrangement changes from a single horizontal row of 4 objects in the input to a two-row layout in the output, with 4 objects positioned in the top row and 2 objects in the bottom row. This represents a combined operation of selective duplication (adding 2 new objects) and grid reorganization (converting from a 1×4 to a 4+2 two-tier structure).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

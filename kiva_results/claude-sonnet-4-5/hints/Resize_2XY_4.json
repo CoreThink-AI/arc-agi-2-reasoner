@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The boat object in the output image is twice as large as the boat in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Scale/Enlargement\n\n**Parameter Value:** 2× (200% or scale factor of 2)\n\n**Description:** This transformation applies a uniform scaling operation that doubles the size of the boat object. The boat's dimensions (width and height) are multiplied by a factor of 2, making the output boat twice as large as the input boat while maintaining its original proportions and aspect ratio. All features of the boat are enlarged proportionally, resulting in a visually identical object at double the scale.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

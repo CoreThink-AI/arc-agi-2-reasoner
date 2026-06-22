@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The Spider-Man figure has been horizontally flipped, with the raised hand switching from the right side to the left side of the image.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe image undergoes a horizontal flip transformation, creating a mirror reflection of the original Spider-Man figure across a vertical axis. In this process, the figure's raised hand switches from appearing on the right side of the frame to the left side, while all other elements of the pose are correspondingly reversed. This 180-degree horizontal reflection maintains the figure's proportions and details but inverts the left-right orientation of the entire composition.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The clownfish has been rotated 180 degrees, with its head and tail positions completely reversed while maintaining the same orange, white, and black coloring.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe clownfish undergoes a 180-degree rotation around its center point, causing the head and tail positions to completely swap sides. The fish's orientation is inverted so that what was previously facing one direction now faces the opposite direction, while all visual features—including the orange body, white stripes, and black markings—remain unchanged in their relative positions on the fish itself. This rotation maintains the fish's appearance and coloring but reverses its directional orientation in the frame.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

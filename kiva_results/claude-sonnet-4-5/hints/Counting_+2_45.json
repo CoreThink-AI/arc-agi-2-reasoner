@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of fish-shaped objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Multiplication**\n\n**Parameter Value: 2× (doubling)**\n\nThe transformation duplicates the fish-shaped objects in the image, increasing their count from 2 to 4. This multiplication operation creates exact copies of the original fish objects while maintaining their visual properties, effectively doubling the total number of fish present in the output compared to the input.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

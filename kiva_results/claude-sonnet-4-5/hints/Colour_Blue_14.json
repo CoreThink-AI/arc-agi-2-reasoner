@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The figure's color scheme changed from green/brown/teal tones to predominantly blue/purple tones.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color scheme adjustment (hue shift)\n\n**Parameter Value:** Approximately +180° to +210° hue rotation (shifting from green/brown/teal spectrum to blue/purple spectrum)\n\n**Visual Description:** The transformation applies a systematic hue shift across the entire figure, rotating all colors along the color wheel from warm green, brown, and teal tones to cooler blue and purple tones. This color remapping preserves the relative contrast and luminosity relationships between elements while fundamentally altering the overall color palette from an earth-toned scheme to a cool, blue-violet scheme.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

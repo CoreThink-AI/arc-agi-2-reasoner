@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 4 hyena objects while the output image shows 2 hyena objects, indicating 2 objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThis transformation removes exactly 2 objects from the original image, reducing the total count from 4 to 2. The objects being removed are canine animals (described variably as hyenas or dogs across observations). The visual change results in a sparser composition with half the number of animal subjects present in the final output compared to the input image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The cabinet has been flipped vertically, with the door that was on the left side now appearing on the right side, and the entire object is inverted top-to-bottom.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Vertical Flip (180° rotation around horizontal axis)**\n\nThe cabinet has undergone a vertical flip, inverting the image top-to-bottom around a horizontal axis through its center. In this transformation, the top of the cabinet becomes the bottom and vice versa, while the door that originally appeared on the left side now appears on the right side due to the complete inversion. This creates a mirror image where all vertical relationships are reversed, effectively turning the cabinet upside down.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

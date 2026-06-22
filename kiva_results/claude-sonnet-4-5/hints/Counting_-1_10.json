@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows three bread loaves while the output image shows two bread loaves, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Removal\n\nThe transformation involves removing one bread loaf from the original image containing three loaves, resulting in a final image with two loaves. The specific loaf that was deleted appears to be one of the three visible in the input, with the remaining two loaves maintaining their original positions and appearance. This is a straightforward object deletion operation where the parameter is the removal of exactly one instance (1 loaf) from the scene.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

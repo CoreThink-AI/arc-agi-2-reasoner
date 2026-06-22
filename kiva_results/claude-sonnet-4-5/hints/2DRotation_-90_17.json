@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The entire object (green base with orange tree-like structure) has been rotated 90 degrees clockwise from the left image to the right image.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation**\n\nThe visual transformation is a 90-degree clockwise rotation of the entire object, which consists of a green rectangular base with an orange tree-like branching structure on top. In the left image, the green base is positioned horizontally at the bottom with the orange structure extending upward. After the rotation, the right image shows the green base now oriented vertically on the left side, with the orange branching structure extending to the right, demonstrating that every element of the composite object has been rotated together as a single unit around its center point.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

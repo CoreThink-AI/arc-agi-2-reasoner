@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows three dinosaur objects while the output image shows only one dinosaur object, indicating two objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes two of the three dinosaur objects from the input image, leaving only a single dinosaur object visible in the output image. This is a selective deletion operation where the number of dinosaur instances is reduced from three to one, while the remaining dinosaur maintains its original appearance and properties. The specific dinosaurs removed and the one retained would depend on their positions or other distinguishing characteristics in the original image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

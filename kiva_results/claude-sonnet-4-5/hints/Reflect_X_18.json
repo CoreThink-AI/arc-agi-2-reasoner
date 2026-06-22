@@ -1,0 +1,19 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The airplane has been flipped horizontally, with the propeller moving from left to right side and the entire image mirrored along a vertical axis.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Horizontal Reflection (180° flip across vertical axis)**: The airplane image undergoes a horizontal flip, where the entire image is mirrored along a central vertical axis. This transformation causes the propeller to switch from the left side to the right side of the frame, while all other elements of the airplane are correspondingly reversed in their left-right positions, creating a mirror image of the original.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 2,
+    "Y": 1
+  },
+  "confidence": 1.0
+}

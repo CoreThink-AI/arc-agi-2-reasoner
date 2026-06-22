@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 2 identical objects while the output image shows 4 of the same objects, indicating 2 additional objects were added.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Duplication (2x multiplication)**\n\nThe transformation duplicates the existing objects in the scene, specifically doubling the count from 2 to 4 identical objects. The original 2 objects remain in their positions while 2 additional copies are added to the image, maintaining the same appearance and characteristics as the originals. This results in a final composition containing 4 identical objects arranged in the output image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

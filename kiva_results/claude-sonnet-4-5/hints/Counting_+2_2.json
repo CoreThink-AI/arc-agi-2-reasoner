@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 battery objects while the input image contains 4 battery objects, showing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Multiplication**\n\nThis transformation increases the number of battery objects in the image from 4 to 6, adding exactly 2 additional batteries. The visual change involves duplicating battery objects while maintaining their appearance and style, resulting in a final composition that contains 50% more batteries than the original. The added batteries are integrated into the scene to create a larger collection of the same object type.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

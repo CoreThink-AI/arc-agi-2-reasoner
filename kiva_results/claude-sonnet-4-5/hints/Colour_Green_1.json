@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue fan object in the input image has changed to a green fan object in the output image, with all other features remaining identical.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color substitution or hue shift\n\n**Parameter Value:** Blue to green (approximately a 60-120° hue rotation in HSV color space)\n\n**Visual Description:** This transformation applies a selective color change to a fan object in the image, converting it from blue to green while preserving all other visual attributes including shape, size, position, and the appearance of surrounding elements. The modification targets only the fan object's color channel, leaving texture, lighting, and all non-fan components completely unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

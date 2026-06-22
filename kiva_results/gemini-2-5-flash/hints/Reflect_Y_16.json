@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The deer object is mirror-flipped across the vertical Y-axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a **reflection**. The deer object is **mirror-flipped across the vertical Y-axis**. This means that each point in the original image is mapped to a new point such that the Y-axis acts as the perpendicular bisector of the segment connecting the original and new points, effectively creating a mirror image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

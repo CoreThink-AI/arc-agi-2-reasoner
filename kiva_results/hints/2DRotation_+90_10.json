@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has rotated 90 degrees clockwise.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation**. The object has been rotated **90 degrees clockwise**. This means that each point of the object has moved along a circular path, with the center of rotation being the center of the object, such that its final position is 90 degrees clockwise from its initial position.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "-90": 1,
+    "+90": 2
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 camel objects while the output image contains 3 camel objects, showing a reduction of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThe transformation reduces the number of camel objects in the scene from 5 to 3, removing exactly 2 camels. Visually, this means that two of the five camels present in the input image are eliminated in the output image, while the remaining three camels are preserved in their positions. The specific camels removed and their original locations would determine which objects disappear from the scene.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

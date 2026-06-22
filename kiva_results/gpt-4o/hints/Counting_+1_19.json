@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One additional basketball appears in the output image compared to the input image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "The transformation is an *addition operation*. Specifically, one basketball is added to the scene. Starting with the input image, the output image is created by introducing exactly one new basketball, increasing the total count by one. No other elements in the image are altered.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

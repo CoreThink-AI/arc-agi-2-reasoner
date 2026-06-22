@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The cake slice rotated 90 degrees clockwise.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **rotation**. The cake slice has been rotated **90 degrees clockwise**. This means that each point on the cake slice moved along a circular path, with the center of rotation likely being the tip of the slice, such that its final orientation is 90 degrees to the right of its original position.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

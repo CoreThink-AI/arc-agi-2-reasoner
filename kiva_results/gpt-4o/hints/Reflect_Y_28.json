@@ -1,0 +1,19 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The object is mirror-flipped across the vertical axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection across the vertical axis. The object is flipped horizontally, such that its left and right sides are swapped, creating a mirror image along the vertical axis.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 2,
+    "X": 1
+  },
+  "confidence": 1.0
+}

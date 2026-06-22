@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green toy train in the input image has been changed to a red toy train in the output image, with all other features remaining identical.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement/Hue Shift**\n\nThe transformation applies a selective color change to the toy train, converting it from green to red while preserving all other visual elements including the train's shape, position, shadows, and background. This is achieved by targeting the specific green hue of the train object and replacing it with a red hue, maintaining the same saturation and brightness levels to ensure the train retains its original texture and dimensional appearance. All surrounding elements in the image remain completely unaltered, making this a precise, object-specific color substitution.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

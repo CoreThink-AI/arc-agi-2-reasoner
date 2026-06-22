@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The toy robot changed from blue/purple colors to red/pink colors while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a hue shift that recolors the toy robot from blue/purple tones to red/pink tones while preserving all other attributes. Specifically, the color palette is shifted approximately 180-210 degrees along the color wheel, converting cool blue hues to warm red/pink hues. The robot's shape, size, position, and orientation remain completely unchanged—only the color values are modified, resulting in a visually identical object with an opposite color temperature.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

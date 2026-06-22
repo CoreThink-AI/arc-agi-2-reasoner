@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The mug rotated 90 degrees counter-clockwise, moving the handle from the right side to the top.",
+  "params": {
+    "parameter": [
+      "-90"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** of **90 degrees counter-clockwise**. Initially, the mug is upright with its handle on the right side. After the rotation, the mug is lying on its side, and its handle is pointing upwards.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "-90": 3
+  },
+  "confidence": 1.0
+}

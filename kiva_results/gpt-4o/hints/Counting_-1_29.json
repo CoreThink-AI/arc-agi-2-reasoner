@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One object has been removed from the row of objects.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "The transformation is a *removal*. Specifically, one object has been removed, reducing the total number of objects in the row from four to three. Visually, the row initially contained four objects, but after the transformation, one object is no longer present, leaving three objects evenly spaced in the row.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

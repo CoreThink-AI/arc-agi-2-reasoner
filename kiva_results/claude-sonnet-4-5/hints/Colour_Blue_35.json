@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The shark object changed from red/pink color to blue color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color change (recoloring)\n\n**Parameter Value:** Red/pink to blue\n\n**Visual Description:** The shark object undergoes a color transformation where its fill color changes from red/pink to blue while all other properties remain constant. The shape's geometry, dimensions, position, and orientation are preserved throughout the transformation, with only the color attribute being modified.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The green dinosaur/lizard object has been rotated 90 degrees clockwise, changing from an upright standing position to lying on its side.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation.** The green dinosaur/lizard object undergoes a rotational transformation of exactly 90 degrees in the clockwise direction around its center point. Initially, the object is positioned upright in a standing orientation with its head at the top and feet at the bottom. After the transformation, the object lies horizontally on its side, with what was previously the top (head) now pointing to the right and the bottom (feet) pointing to the left.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

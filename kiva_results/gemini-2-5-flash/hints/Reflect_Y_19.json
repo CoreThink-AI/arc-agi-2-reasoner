@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The elephant in the output image is a mirror reflection of the input image across the vertical Y-axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection. The input image has been reflected across the vertical Y-axis, resulting in a mirror image. The elephant, initially facing one direction, now faces the opposite direction, as if viewed in a mirror.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object's color changed to red, but it was already red, so there is no visual change.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "The transformation is a **color change**. The object's color changed from a slightly desaturated red to a more saturated red. Although both colors are considered red, the visual change is a subtle increase in the intensity of the red hue.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

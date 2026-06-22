@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The submarine-shaped object has been flipped horizontally, with the tail section moving from the right side to the left side.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation around the vertical axis)**\n\nThe submarine-shaped object undergoes a horizontal flip, also known as a mirror reflection across a vertical axis. In this transformation, the front and back ends of the submarine swap positions: the tail section, originally positioned on the right side, moves to the left side, while the front section simultaneously moves from left to right. This creates a mirror image of the original object, with all horizontal positions reversed while vertical positions remain unchanged.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

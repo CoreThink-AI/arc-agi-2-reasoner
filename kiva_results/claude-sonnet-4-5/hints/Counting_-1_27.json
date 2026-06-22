@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 objects while the output image contains 4 objects, showing one object has been removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThis transformation involves the deletion of one object from the scene, reducing the total count from 5 objects in the input image to 4 objects in the output image. The visual change is straightforward: one specific object that was present in the original image has been completely removed, while the remaining 4 objects retain their positions and appearances unchanged. The exact identity and location of the removed object would need to be determined by comparing the input and output images directly.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

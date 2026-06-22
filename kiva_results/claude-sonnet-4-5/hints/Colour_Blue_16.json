@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red coffee cup with latte art has changed to a blue coffee cup while maintaining the same shape, size, orientation, and spiral pattern.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a color change from red to blue to the coffee cup while preserving all other visual properties. Specifically, the cup's exterior color is shifted from red to blue, while the cup's shape, size, position, orientation, and the spiral latte art pattern on the surface remain completely unchanged. This is a pure hue modification that affects only the cup's base color value without altering any structural, spatial, or textural elements of the image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

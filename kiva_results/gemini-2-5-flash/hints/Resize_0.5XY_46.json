@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The baby bottle in the output image is half the size of the baby bottle in the input image.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "This is a **scaling** transformation. The baby bottle has been scaled down by a factor of **0.5**. As a result, the baby bottle in the output image is half the size of the baby bottle in the input image.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

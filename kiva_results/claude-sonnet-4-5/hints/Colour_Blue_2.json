@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green rocking horse toy has changed to a blue color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color change (hue shift)\n\n**Parameter Value:** Green to blue (approximately 120° to 240° hue rotation in HSL color space)\n\n**Visual Description:** The rocking horse toy undergoes a complete color transformation from green to blue while all other visual properties remain unchanged. The object's shape, size, position, orientation, and structural details are preserved exactly, with only the surface color shifting from green to blue across the entire toy uniformly.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

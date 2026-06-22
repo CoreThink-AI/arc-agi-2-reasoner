@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object changed from blue to red while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution where the object's fill color is changed from blue to red while all other properties remain constant. The object's shape, size, position, and orientation are preserved exactly as they were before the transformation. This is a simple color replacement operation that affects only the chromatic property of the object, leaving its geometric and spatial characteristics unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

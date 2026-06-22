@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The rocking horse has been horizontally flipped, with the horse now facing the opposite direction (left to right becomes right to left).",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation around the vertical axis)**\n\nThe rocking horse image undergoes a horizontal flip, also known as a mirror reflection across the vertical axis. In this transformation, the horse's orientation is reversed so that it now faces the opposite direction—what was originally facing left now faces right, or vice versa. Every pixel is mapped to its corresponding position on the opposite side of the vertical centerline, creating a mirror image where left and right are swapped while the vertical positioning remains unchanged.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 bottle objects while the output image shows only 3 bottle objects, indicating 2 objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThis transformation involves the deletion of exactly 2 bottle objects from the original scene, reducing the total count from 5 bottles in the input image to 3 bottles in the output image. The removal process selectively eliminates two specific bottle instances while preserving the remaining three bottles in their original positions and appearances. This represents a straightforward object-level editing operation where the parameter value is the removal of 2 objects (40% reduction in object count).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

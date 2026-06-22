@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green outdoor swing chair has changed to a blue color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change (Hue Shift)**\n\nThe transformation applies a color replacement to the outdoor swing chair, specifically changing its hue from green to blue while preserving all other attributes. The chair's physical properties—including its woven texture, curved shape, suspended orientation, and dimensional proportions—remain completely unchanged throughout the transformation. Only the base color value is modified, resulting in a blue swing chair that is otherwise identical to the original green version in terms of form, size, and spatial positioning.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}
