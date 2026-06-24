@@ -1,0 +1,78 @@
+{
+  "Counting": {
+    "description": "The number of discrete objects in the scene changes by a fixed integer delta between input and output.",
+    "cross_domain_label": "Number of objects",
+    "params": {
+      "delta": ["+1", "+2", "-1", "-2"]
+    },
+    "detection_cues": [
+      "Count discrete objects in input and output images",
+      "Delta is always a small integer: +1, +2, -1, or -2",
+      "Object identity (shape, color) is preserved; only quantity changes"
+    ],
+    "self_consistency_role": "Majority vote over repeated counts stabilises the delta estimate when object boundaries are ambiguous",
+    "hint_role": "Confirmed delta eliminates 3 of 4 within-domain choices before the MCQ stage"
+  },
+
+  "Resize": {
+    "description": "All objects are uniformly scaled along one or both spatial axes by a fixed factor.",
+    "cross_domain_label": "Size of objects",
+    "params": {
+      "scale": ["0.5XY", "2XY", "0.5X", "0.5Y"]
+    },
+    "detection_cues": [
+      "Compare bounding-box dimensions of the same object across input and output",
+      "0.5XY = halved in both axes; 2XY = doubled in both axes",
+      "0.5X / 0.5Y = halved along one axis only (aspect ratio changes)"
+    ],
+    "self_consistency_role": "Multiple vision calls reduce errors from perspective or rendering artefacts",
+    "hint_role": "Scale factor directly determines the correct within-domain MCQ option"
+  },
+
+  "Colour": {
+    "description": "The fill color of all objects is replaced with a single target color; shape and count are unchanged.",
+    "cross_domain_label": "Color of objects",
+    "params": {
+      "target_color": ["Red", "Green", "Blue"]
+    },
+    "detection_cues": [
+      "Object shape and count are identical in input and output",
+      "Identify the dominant hue of output objects",
+      "Background color is not changed"
+    ],
+    "self_consistency_role": "Majority vote resolves ambiguous hues under different rendering conditions",
+    "hint_role": "Named color collapses the within-domain MCQ to a single-step color match"
+  },
+
+  "Reflect": {
+    "description": "Objects are mirrored across a specified axis of symmetry (X = horizontal flip, Y = vertical flip).",
+    "cross_domain_label": "Orientation of objects",
+    "params": {
+      "axis": ["X", "Y"]
+    },
+    "detection_cues": [
+      "Shape is preserved but orientation is mirrored",
+      "X-axis reflection: top and bottom are swapped (vertical mirror)",
+      "Y-axis reflection: left and right are swapped (horizontal mirror)",
+      "Asymmetric features in the object reveal the flip direction"
+    ],
+    "self_consistency_role": "Repeated calls reduce confusion between X and Y flips for near-symmetric objects",
+    "hint_role": "Axis label halves the MCQ search space for within-domain and constrains extrapolation orientation"
+  },
+
+  "2DRotation": {
+    "description": "Objects are rotated in-plane about their center by a fixed angle.",
+    "cross_domain_label": "Orientation of objects",
+    "params": {
+      "angle": ["+90", "-90", "180"]
+    },
+    "detection_cues": [
+      "+90 = counter-clockwise quarter turn; -90 = clockwise quarter turn",
+      "180 = half turn (upside down)",
+      "Track an asymmetric feature (e.g. a notch or color gradient) across the rotation",
+      "Background and object count are unchanged"
+    ],
+    "self_consistency_role": "Multiple attempts guard against sign confusion (+90 vs -90) on ambiguous objects",
+    "hint_role": "Confirmed angle directly maps to the correct extrapolation choice"
+  }
+}

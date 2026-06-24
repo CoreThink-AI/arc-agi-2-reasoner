@@ -1,0 +1,8 @@
+{
+  "prompt_tokens": 807328,
+  "completion_tokens": 143805,
+  "total_tokens": 951133,
+  "model": "gemini-2.5-flash",
+  "tasks_completed": 167,
+  "elapsed_s": 121.7
+}

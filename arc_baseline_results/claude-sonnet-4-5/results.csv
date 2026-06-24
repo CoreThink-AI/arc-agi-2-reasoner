@@ -1,0 +1,1772 @@
+task_id,correct,predicted_rows,gt_rows,elapsed_s,raw_response
+a251c730,False,20,9,11.28,"Looking at the examples, I need to identify the pattern:
+
+Example 1: There are two rectangular regions with borders (one with 6s, one with 3s) containing patterns with 1s, 2s, and 8s. The output combines/overlays these patterns.
+
+Example 2: There are two rectangular regions with borders (one with 1s, one with 3s) containing patterns with 2s/4s and 8s/1s. The output overlays these patterns.
+
+The rule appears to be:
+1. Identify rectangular bordered regions in the input
+2. Extract the content from "
+88e364bc_0,False,30,20,13.32,"Looking at the examples, I need to identify the transformation rule.
+
+In each example, there are:
+1. Colored regions (5s, 7s, 1s) forming closed shapes
+2. The number 4 appears in certain locations
+3. A small pattern with 1s and 2s in a corner region
+
+The rule appears to be: **Move each 4 to the nearest edge of its containing colored region** (the boundary formed by the non-zero values).
+
+Let me trace through the test input and identify where each 4 should move:
+
+1. Row 3, Col 11: 4 is inside a r"
+88e364bc_1,False,31,20,13.45,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there are closed shapes made of non-zero colors (5, 7, or 3) that contain the number 4. The rule appears to be: move each 4 to touch the nearest edge of its containing shape.
+
+Let me trace through the test input:
+- There are shapes made of 3s and 6s
+- I need to find each 4 and move it to the nearest edge of its containing shape
+
+Finding the 4s and their containing shapes:
+1. Row 5, col 16: 4 inside a 6-shape →"
+9385bd28_1,False,25,13,13.48,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a special marker region (bottom-left area) that contains pairs of colors in a column
+2. These color pairs define which colors should be connected/filled
+3. The algorithm finds regions of these colors in the grid and fills the space between them with a specific color
+
+Let me analyze the test input:
+- Marker region at bottom-left (rows 7-11, cols 2-3):
+  - Row 7: 3, 4
+  - Row 8: 6, 8
+  - Row 9: 7, 1
+  - Row 10: 8, 2
+ "
+9385bd28_0,False,28,19,13.83,"Let me analyze the pattern from the examples:
+
+1. There's a ""key"" row near the bottom that contains multiple non-background colors in close proximity
+2. This key defines which colors should fill rectangular regions bounded by matching colored shapes
+3. The filling color comes from the key row's pairing
+
+Looking at the test input:
+- Row 17 (0-indexed): `9 1 4 9 9 4 9 9 2 9 9 9 9`
+- Row 18 (0-indexed): `9 4 6 9 4 4 9 2 2 9 9 9 9`
+
+The key appears to be in rows 17-18, with the pattern showing:
+- 1,"
+409aa875,False,27,16,14.0,"Let me analyze the pattern from the examples:
+
+Example 1: There's a small pattern of 9s in the upper area (rows 3-4), and a repeating pattern of 9s at the bottom (rows 14-15). The transformation places a single 1 at a specific location that appears to be related to the alignment between these patterns.
+
+Example 2: There's a pattern of 0s at the bottom (rows 10-15), and the transformation adds 9s above it at specific positions that seem to mirror or relate to the 0 pattern.
+
+Example 3: There's a "
+abc82100,False,36,20,15.7,"Looking at the examples, I need to identify the transformation rule:
+
+1. In each example, there's a line of 8s that acts as a divider or reference
+2. Non-zero, non-8 values appear scattered in the input
+3. The output seems to replace certain values and create patterns based on the 8s' positions
+
+Let me analyze more carefully:
+- Example 1: The 8s form a horizontal line at top. The 1s below form a diagonal pattern. Output shows 2s (from the input's single 2) filling the diagonal pattern area.
+- Ex"
+da515329,False,32,26,17.26,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each input has a small pattern of 8s forming a cross/plus shape
+2. The output creates a recursive fractal-like pattern where the cross shape is repeatedly nested at different scales
+3. The pattern fills the grid with alternating 8s and 0s in a specific recursive structure
+
+For the test input, the cross pattern is centered at approximately row 12, column 10:
+- Vertical line: rows 8-16, column 10
+- Horizontal line: row 12, co"
+e12f9a14_0,False,38,30,20.12,"Looking at the examples, I need to identify the pattern:
+
+1. Each puzzle has rectangular shapes outlined with a specific color (3 or 8) containing a colored fill
+2. The fill color extends diagonally from the shape towards other shapes with the same outline color
+3. The diagonal lines connect shapes that share the same outline color
+
+For the test input:
+- There are 3 shapes outlined with 8
+- Shape 1 (top right): contains color 2, at rows 6-9, cols 22-25
+- Shape 2 (left): contains color 3, at rows"
+a6f40cea,False,21,8,20.71,"Looking at the examples, I need to identify the pattern:
+
+1. There are rectangular frames (made of one color) in the input
+2. There are filled rectangles (made of another color) inside or overlapping these frames
+3. There are small patterns/shapes (made of other colors) scattered around
+4. The output extracts the interior of the filled rectangle and overlays/combines it with the small patterns
+
+Let me trace through the test input:
+
+- There's a frame made of 3's (rows 5-14, cols 5-16)
+- Inside is"
+e12f9a14_1,False,43,30,21.13,"Looking at the examples, I need to identify the pattern:
+
+1. Each puzzle has multiple rectangular regions bounded by 3s with a colored interior
+2. For each region, a diagonal line of that interior color extends from the region outward
+3. The diagonal extends from the ""open"" corner (where the 3-border is incomplete)
+4. The diagonal goes at 45° toward the top-left or similar direction
+
+Let me identify the regions in the test input:
+- Region 1 (rows 4-7, cols 3-6): color 2, open at top-left
+- Regio"
+d59b0160,False,30,16,25.59,"Let me analyze the pattern from the examples.
+
+In each example, I notice:
+1. There's a row with ""3 3 3 3"" that acts as a divider
+2. There's a column of 3's that acts as a divider
+3. The grid is divided into quadrants by these dividers
+4. In the output, certain quadrants are filled with 7's
+
+Looking more carefully:
+- The quadrant that contains the ""3 3 3 3"" row marker and the column of 3's (top-left) is preserved
+- Other quadrants that contain non-7, non-0 values in specific patterns get cleared "
+b9e38dc0,False,38,15,26.65,"Looking at the examples, I need to identify the pattern:
+
+Example 1:
+- There's a shape made of 3s (a closed loop)
+- There's a 9 inside the loop
+- There are 5s (two cells) outside the loop
+- The output fills the inside of the 3-loop with 9s, and extends 9s outward from the 5s in a triangular/expanding pattern
+
+Example 2:
+- There's a shape made of 5s (a closed loop)
+- There's a 4 inside the loop
+- The output fills the inside of the 5-loop with 4s, and extends 4s outward to the left/top in an expan"
+62593bfd_1,False,31,19,28.04,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- The input has several colored shapes scattered across a grid
+- The output moves these shapes to the top and bottom edges of the grid
+- Shapes are repositioned while maintaining their relative horizontal positions
+
+In Example 2:
+- Similar pattern - shapes are moved to the top and bottom rows
+- The shapes maintain their structure and relative positions
+
+The rule appears to be:
+1. Identify all non-background color"
+62593bfd_0,False,35,25,28.63,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- There are several colored shapes scattered across the grid
+- The output shows these shapes rearranged to the top rows, maintaining their relative positions
+- The bottom portion mirrors this arrangement
+
+In Example 2:
+- Multiple colored shapes are distributed across the grid
+- The output compresses them to the top rows
+- The bottom rows show a similar mirrored arrangement
+
+The rule appears to be:
+1. Identify all"
+2b83f449,False,31,19,31.44,"Let me analyze the transformation rule by studying the examples.
+
+In Example 1 and 2, I notice:
+1. Rows with ""3"" at the edges seem to mark special rows
+2. ""7 7 7"" patterns in rows with all 0s indicate column positions
+3. The ""7 7 7"" creates vertical lines of ""6"" in the output, centered on the middle ""7""
+4. Where vertical lines intersect rows with ""3"" markers, the ""3"" values change
+5. ""0"" values in rows of 8s seem to mark intersections
+
+Let me trace the pattern:
+- Find all ""7 7 7"" patterns and no"
+eee78d87,False,27,16,33.31,"Let me analyze the pattern from the examples:
+
+1. The output is always 16×16 (input is 6×6, scaled up)
+2. The input grid is divided into 2×2 blocks, creating a checkerboard pattern
+3. Where there's a non-7 pattern in the input, it gets highlighted with 9s in the output
+4. The background alternates between 0 and 7 in a checkerboard pattern
+
+Looking at the test input, the non-7 pattern (2s) forms:
+- Row 0: positions (2,4) 
+- Row 2: positions (2,4)
+
+This creates a vertical pattern at columns 2 and "
+64efde09,False,42,29,36.52,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- There are rectangular patterns with borders (made of 4s, 2s, 3s)
+- There are isolated colored pixels (1, 5, 6) in the background
+- The rule extends lines from these isolated pixels through the entire grid, creating horizontal or vertical lines that pass through the rectangular patterns
+
+In Example 2:
+- Similar rectangular patterns exist
+- Isolated colored pixels (3, 6, 9) create horizontal lines extending from "
+9aaea919,False,46,30,37.23,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there's a row near the bottom with several colored shapes (cross patterns). These shapes appear to define a ""template"" that gets replicated upward in the grid.
+
+The key observations:
+1. The bottom row(s) contain ""reference"" shapes that don't follow the regular pattern
+2. Above these, there are regular repeating patterns of cross-shaped objects
+3. The transformation replaces certain colors in the regular patter"
+67e490f4,False,15,7,39.25,"Looking at the examples, I need to identify the transformation rule:
+
+Example 1: The input has a large rectangular region filled with a pattern (the 4s forming a grid pattern), and scattered colored shapes (2x2 blocks and cross shapes) outside this region. The output is the pattern from that rectangular region, but with the scattered colored shapes inserted into it at corresponding positions.
+
+Example 2: Similar structure - there's a rectangular pattern region (the 1s forming a grid), and scatte"
+db695cfb,False,33,25,39.61,"Looking at the examples, I need to identify the transformation rule:
+
+1. The grid contains cells with values: a background color (5, 8, 4, 3), value 1, and value 6
+2. For each pair of 1 and 6, a diagonal line of the opposite value is drawn between them
+3. The diagonal connects from one position to another, moving one step diagonally per row/column
+
+Let me trace the pattern:
+- When there's a 1 and a 6, draw a diagonal line between them
+- If 1 is above-left of 6: draw 1s diagonally down-right from"
+6e4f6532_1,False,44,30,42.54,"Looking at the examples, I need to identify the transformation rule.
+
+In Example 1:
+- The grid has borders (1s, 2s, 4s on edges)
+- There are scattered patterns with 8s, 9s, and other numbers
+- In the output, these patterns seem to be consolidated/moved to specific locations
+
+In Example 2:
+- Similar border structure
+- Multiple scattered patterns with 8s and 9s
+- Output shows these patterns consolidated into fewer, more organized locations
+
+The rule appears to be:
+1. Identify all distinct pattern "
+195c6913_0,False,39,30,43.58,"Looking at the examples, I need to identify the transformation rule:
+
+1. There are two regions: one filled with a background color (3, 2, 1) and another with a different color (0, 8, 4, 7)
+2. In the background region, there are small colored patterns (2x2 blocks)
+3. There are also isolated marker cells (single cells with unique colors)
+4. The rule appears to:
+   - Find diagonal lines connecting marker cells
+   - Along these diagonals, create a repeating pattern based on the colored blocks found "
+195c6913_1,False,39,30,44.6,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a diagonal boundary between two colors (like 3 and 0, 2 and 8, 1 and 4, 8 and 9)
+2. Small colored patterns appear in corners of each region
+3. The transformation creates lines perpendicular to the diagonal boundary
+4. These lines alternate between the pattern colors and extend from markers (single cells) to the boundary
+5. At the ends of these lines, there are special markers
+
+Let me trace the pattern in the test in"
+e87109e9,False,33,24,47.09,"Looking at the examples, I need to identify the transformation rule:
+
+1. The top section (rows 0-5) contains a pattern with colored columns separated by 5s
+2. The bottom section contains a large grid with:
+   - Various colored rectangular regions
+   - A small 2x2 or 3x3 region marked with 8s
+   - The output removes the top section and transforms the bottom section
+
+The rule appears to be:
+- Find the small 8-marked region in the input
+- Extend lines (both horizontal and vertical) from this region"
+581f7754_0,False,32,14,47.81,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there are patterns made of a non-background color with a special marker (a different color) inside or near them. The rule appears to be:
+1. Find patterns/shapes with a marker color
+2. Align these patterns to be centered on the marker color's column/row
+3. The marker acts as an anchor point for alignment
+
+Let me trace through Example 1:
+- There are several 8-patterns with 4 as markers
+- The isolated 4 at bottom"
+6e4f6532_0,False,42,30,47.89,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- The grid has a vertical divider (column of 4s) and horizontal borders (rows of 1s and 2s)
+- There are scattered patterns with 8s, 9s, and other numbers
+- In the output, these patterns are consolidated and moved to specific locations
+
+In Example 2:
+- Similar structure with borders and dividers
+- Scattered patterns are consolidated and repositioned
+
+The rule appears to be:
+1. The grid is divided into quadrants by"
+581f7754_1,False,27,11,49.66,"Let me analyze the transformation rule by studying the examples.
+
+In Example 1:
+- There are patterns made of 8s with a 4 inside them
+- There are isolated 4s in the grid
+- The patterns seem to align horizontally with the isolated 4s
+
+In Example 2:
+- There are patterns made of 3s with a 1 inside them
+- There are vertical lines of 4s and isolated 6s and 1s
+- The patterns align horizontally with certain markers
+
+In Example 3:
+- There are patterns made of 1s with a 2 inside them
+- There are isolated "
+97d7923e,False,14,10,50.66,"Let me analyze the pattern from the examples:
+
+In each example, I notice there are vertical columns that contain a pattern starting with a ""marker"" value (like 2, 1, etc.) followed by other values, and ending with the marker value again at the bottom.
+
+The transformation rule appears to be:
+- For each vertical column that has a marker at the top and bottom (forming a column pattern)
+- Replace all the intermediate values between the top and bottom markers with the marker value itself
+- Keep the f"
+1ae2feb7_0,False,19,10,54.81,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a vertical line of 2s (or 4s in the test) that acts as a divider
+2. For rows that contain non-zero colored values (excluding the divider) on the left side, those colors extend to the right side of the divider
+3. The pattern of extension follows the non-zero positions in the left side
+
+Let me analyze the pattern more carefully:
+- When a row has colored cells on the left, those colors repeat on the right in a specific"
+1ae2feb7_1,False,20,8,56.14,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a vertical line of 2s (or 3s in the test) that acts as a divider
+2. For rows that contain non-zero colored values (other than the divider) on the left side of the divider:
+   - The pattern extends to the right side of the divider
+   - The extension follows a specific repeating pattern based on the colors present in that row
+
+Let me analyze the pattern more carefully:
+
+In Example 1:
+- Row with `1 1 1 1 0` extends as "
+16de56c4_0,False,18,9,56.74,"Let me analyze the pattern from the examples:
+
+In Example 1:
+- Row 1 has pattern ""1 0 0 1"" which gets extended with ""1"" at position 6
+- Row 4 has ""1 1"" which gets extended across the entire row
+- Row 8 has ""9 0 9"" and ""6"" which becomes ""6 0 6 0 6 0 6""
+- Row 11 has ""8 8"" and ""3"" which becomes ""3 3 3 3 3 3 3 3""
+
+In Example 2:
+- The last row contains the complete pattern
+- This pattern is replicated to fill other rows based on column positions
+
+In Example 3:
+- The last row contains the complete pat"
+a25697e4_1,False,42,30,57.01,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there are several colored shapes scattered across the grid. The transformation appears to:
+1. Identify all non-background colored regions
+2. Move/consolidate them to a specific location
+3. Arrange them in a compact formation where they meet/overlap
+
+Let me trace through Example 1:
+- Color 2 (red) forms an L-shape on the left
+- Color 3 (green) forms a diagonal pattern on the right
+- Color 4 (yellow) forms a ver"
+58f5dbd5,False,37,19,57.31,"Looking at the examples, I need to identify the pattern:
+
+1. The input has a grid with rectangular blocks of solid colors and small scattered patterns
+2. The output takes the large solid rectangular blocks and fills them with patterns based on the small scattered shapes found elsewhere in the input
+3. The small patterns act as ""templates"" that get scaled/applied to the corresponding colored blocks
+
+Let me identify the solid blocks and their corresponding small patterns in the test input:
+
+Solid "
+a25697e4_0,False,39,30,58.09,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there are colored shapes (non-1 or non-4 values) scattered in the grid. The transformation appears to:
+1. Find the bounding boxes of different colored shapes
+2. Move/rearrange these shapes so they meet at a common point or region
+3. The shapes are repositioned to be adjacent to each other
+
+Let me analyze the test input:
+- There's a shape made of 2's in the upper left (rows 0-4, cols 0-6)
+- There's a shape made"
+16de56c4_1,False,26,9,60.62,"Looking at the examples, I need to identify the transformation rule:
+
+Example 1: The last row contains the most non-zero values. This row becomes a template that gets repeated/extended across the grid.
+
+Example 2: The last row (row 8) has the most non-zero values and serves as the template.
+
+Example 3: The last row (row 6) has the most non-zero values and serves as the template.
+
+The pattern is:
+1. Find the row with the most non-zero values (the ""template row"")
+2. For each column, if there's a n"
+1ae2feb7_2,False,21,8,61.1,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a vertical line of 2s (or 3s in the test) that acts as a divider
+2. For rows with non-zero colored cells on the left side of the divider, those colors extend to the right side
+3. The pattern on the right follows the structure of the colored cells on the left
+
+Let me analyze the pattern more carefully:
+- When a row has colored cells on the left, they create a repeating pattern on the right
+- The pattern seems to alte"
+b5ca7ac4,False,31,22,63.24,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input contains rectangular frames (borders) with filled interiors
+2. These frames come in two types: ones with border color 8, and ones with border color 2
+3. The transformation moves these frames to align them to specific edges of the grid
+4. Frames with border 8 move to the left edge
+5. Frames with border 2 move to the right edge
+6. The vertical positions are preserved
+7. When frames touch or overlap, they merge/conne"
+291dc1e1,False,39,18,63.55,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input has a border (marked with 0, 1, 2) that indicates orientation
+2. The main grid contains 8s (background) and colored rectangular blocks
+3. The output extracts and rearranges these colored blocks
+
+Let me analyze the pattern:
+- The border tells us the orientation (where 0 is located relative to 1s and 2s)
+- Blocks are identified as non-8 colored regions
+- Blocks seem to be rearranged based on their positions and the "
+dd6b8c4b_0,False,21,11,67.41,"Let me analyze the pattern from the examples:
+
+In each example, there's a 3x3 region with a center marked by `2`, surrounded by `3`s. The transformation rule appears to:
+1. Find scattered `9`s in the grid
+2. Replace certain `3`s in the 3x3 pattern with `9`s based on the positions of `9`s elsewhere
+3. Clean up some scattered `9`s (replace them with `7`)
+
+Looking more carefully at the examples:
+- Example 1: The 3x3 pattern gets some `9`s in the top row, and scattered `9`s outside get cleaned up
+- "
+38007db0_0,False,40,29,67.73,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1, the input is a 19×19 grid divided into a 3×3 arrangement of blocks (each block is 7×7 including borders). The output is a 19×7 grid showing one column of blocks.
+
+In Example 2, the input is a 19×25 grid divided into a 3×4 arrangement of blocks (each block is 7×7 including borders). The output is a 19×7 grid showing one column of blocks.
+
+The pattern appears to be:
+1. The input contains multiple repeated blocks ar"
+dd6b8c4b_1,False,25,11,68.2,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each puzzle has a 3×3 region with a center cell containing ""2"" surrounded by ""3""s
+2. There are ""9""s scattered around the grid
+3. There are regions bounded by ""6""s
+
+The pattern appears to be:
+- Find the 3×3 region with center ""2""
+- Look at the distribution of ""9""s in the grid
+- The ""9""s seem to indicate which part of the 3×3 region should be filled with ""9""s
+- The transformation replaces certain ""3""s with ""9""s based on where"
+28a6681f,False,19,10,68.79,"Let me analyze the pattern from the examples.
+
+In each example, I notice:
+1. There are colored regions forming diagonal/staircase patterns
+2. There's a transformation that affects certain cells
+3. The pattern seems to involve filling in gaps in diagonal structures
+
+Looking more carefully:
+- Example 1: The diagonal pattern of 3s and 1s has gaps filled with 1s
+- Example 2: The diagonal pattern has gaps filled with 1s
+- Example 3: The diagonal pattern has gaps filled with 1s
+
+The rule appears to be"
+446ef5d2_1,False,28,20,69.48,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1, there are several small rectangular regions with patterns of 7s, 0s, and 2s scattered around the grid. The output shows these patterns merged into one larger rectangular region.
+
+In Example 2, there are small rectangular regions with patterns of 3s and 9s. The output merges them into one consolidated rectangular region.
+
+The rule appears to be:
+1. Identify all rectangular regions containing non-8 values
+2. Find t"
+446ef5d2_0,False,33,26,70.1,"Looking at the examples, I need to identify the transformation rule:
+
+Example 1: Multiple rectangular regions with borders (7) and internal patterns (0, 2) are consolidated into a single centered rectangle.
+
+Example 2: Multiple rectangular regions with borders (3) and internal patterns (9) are consolidated into a single centered rectangle.
+
+The rule appears to be:
+1. Identify all rectangular regions that share the same border color and internal pattern colors
+2. Merge them into a single rectangl"
+38007db0_1,False,51,25,71.46,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1, the input is a 19×19 grid divided into a 3×3 arrangement of blocks (each block is 6×6 with 1-pixel borders). The output is a 19×7 grid showing one column of blocks.
+
+In Example 2, the input is a 19×25 grid divided into a 3×4 arrangement of blocks (each block is 6×6 with 1-pixel borders). The output is a 19×7 grid showing one column of blocks.
+
+The pattern appears to be:
+1. The input contains multiple repeated blo"
+edb79dae,False,31,21,76.99,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a rectangular region bounded by 5s in the input
+2. Inside this region, there are blocks of repeated numbers (like 3x3 or 4x5 blocks)
+3. In the top-left corner, there are small 2x2 or 3x3 patterns with different numbers
+4. The output is the bounded region where each block inside gets replaced by the corresponding pattern from the top-left corner
+
+Let me trace through the test input:
+- The 5-bounded region is from row"
+8b7bacbf_1,False,28,22,77.85,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a special marker cell (a unique color like 7, 4, or 3) that appears once in the grid
+2. There are several enclosed shapes made of the same color (2, 3, 5, 6, 8, 9, etc.)
+3. The rule fills the interior of these enclosed shapes with the marker color
+
+In the test input:
+- The marker is 4 (appears at position row 21, col 0)
+- There are multiple enclosed shapes made of different colors (2, 5, 6, 8, 9)
+- I need to fill th"
+4c3d4a41_1,False,19,8,79.03,"Looking at the examples, I need to identify the transformation rule.
+
+In Example 1:
+- The left side has a pattern of 5s forming a shape
+- The right side (columns 9-19) contains a grid with 5s as borders and various numbers inside
+- The transformation seems to clear the left pattern and modify the right grid
+
+In Example 2:
+- Similar structure: left pattern of 5s, right grid with borders and numbers
+- The transformation clears the left pattern and modifies the right grid
+
+Key observation: The left"
+4c3d4a41_0,False,19,8,79.05,"Looking at the examples, I need to identify the transformation rule.
+
+In Example 1:
+- The left side has a pattern of 5s forming a shape
+- The right side (columns 9-19) contains a grid with 5s as borders and various numbers inside
+- The transformation seems to clear the left pattern and modify the right grid
+
+In Example 2:
+- Similar structure: left pattern of 5s, right grid with borders and numbers
+- The transformation clears the left side and modifies the right grid
+
+Key observation: The left si"
+8b7bacbf_0,False,40,30,79.73,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a special marker cell (different color from the main patterns)
+2. There are rectangular shapes made of one color (like 2, 3, 9)
+3. The interior of these rectangles gets filled with the marker color
+
+In the examples:
+- Example 1: Marker is 7, rectangles of 2, 3, and 5 get filled with 7
+- Example 2: Marker is 4, rectangles of 2 get filled with 4
+- Example 3: Marker is 4, rectangles of 2 and 3 get filled with 4
+- Examp"
+31f7f899,False,34,17,80.56,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a horizontal line of 6s that acts as a ""mirror axis""
+2. Colored vertical lines (non-8, non-6 values) extend from this axis
+3. The transformation makes these vertical lines symmetric around the 6-line by reflecting them
+
+In Example 1:
+- Row 6 has the 6s (the axis)
+- Vertical lines of colors 5, 2, 7, 1 extend above the axis
+- After transformation, they extend symmetrically both above and below
+
+In Example 2:
+- Row 7 h"
+fc7cae8d,False,22,20,81.61,"Looking at the examples, I need to identify the pattern:
+
+1. Each input has a rectangular region marked by certain boundary colors
+2. The output extracts and rotates/transforms this region
+3. The region is bounded by specific marker colors that form a rectangle
+
+Let me analyze the test input:
+- There's a rectangular region bounded by color 2 (left), color 3 (right), color 2 (top), and color 3 (bottom)
+- The region appears to be from rows 4-15, columns 3-23
+- Looking at the content, I need to ext"
+6e453dd6,False,38,25,85.47,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a vertical line of 5s that divides the grid into left and right sections
+2. On the left side, there are patterns made of 0s forming rectangular shapes
+3. The rule appears to be:
+   - Move/shift the 0-patterns to align them to the right (just before the 5-line)
+   - When a pattern has a specific structure (rectangular frame with some internal 0s forming a cross or H-shape), mark the corresponding rows on the right si"
+89565ca0,False,14,5,88.82,"Looking at the examples, I need to identify the pattern:
+
+Each example has several rectangular regions bounded by different colors (1, 2, 3, 4, 8, etc.) and scattered 5s or 7s or 9s (noise values) throughout.
+
+The output appears to be a grid where:
+- Each row represents one of the bounded rectangular regions
+- The values in each row indicate the boundary color and count how many times the noise value appears in specific positions within that rectangle
+
+Let me analyze the test input:
+- There are "
+de809cff,False,43,30,89.42,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- There are two regions: one with 3s and one with 4s
+- Where they overlap/meet, the boundary is marked
+- Isolated 0s within regions get filled with the region's color
+- Where a 3-region cell is adjacent to a 4-region cell, special marking occurs
+
+In Example 2:
+- There are two regions: one with 1s and one with 2s
+- Similar transformation occurs at boundaries
+- The number 8 appears at certain boundary intersections"
+898e7135,False,49,30,91.73,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- There's a large irregular shape made of 2s in the upper left
+- Several colored rectangular blocks (8s, 1s, 3s) scattered around
+- Marker 7s scattered throughout
+- Output: A rectangular grid filled with 2s, with the colored blocks positioned within it
+
+In Example 2:
+- There's a large irregular shape made of 3s on the right side
+- Several colored rectangular blocks (1s, 5s, 4s, 6s) scattered around
+- Marker 8s sc"
+e8686506,False,28,8,94.25,"Let me analyze the pattern from the examples.
+
+In Example 1:
+- There's a pattern made of 3s (a shape)
+- There are scattered markers: 4s, 6s, and 1s
+- The output is a 5x5 grid that combines these elements
+
+In Example 2:
+- There are patterns made of 1s and 2s (shapes)
+- There are scattered markers: 4s, 5s, 6s, and 8s
+- The output is an 8x5 grid that combines these elements
+
+The rule appears to be:
+1. Identify the main shape patterns (non-background colors)
+2. Identify the scattered single markers
+"
+53fb4810,False,40,25,94.58,"Let me analyze the pattern from the examples:
+
+In Example 1:
+- There's a cross-shaped pattern made of 1s at two locations
+- Each cross has a marker (4,2) or (2,3) pattern nearby
+- The pattern extends vertically between the two crosses, alternating 2 and 4
+
+In Example 2:
+- There's a diamond/cross pattern made of 1s at two locations
+- Each has a marker (4,2) or (2,3) pattern
+- The pattern extends vertically between them, repeating 4,2
+
+The rule appears to be:
+1. Find cross/diamond patterns made of"
+c4d067a0,False,37,27,95.5,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there's a small pattern in the top-left corner (a grid of colored cells) and larger rectangular blocks elsewhere. The rule appears to be:
+1. The small pattern acts as a ""key"" showing which colors map to which
+2. The larger blocks get replicated based on the pattern structure
+3. Each color in the pattern corresponds to creating blocks of that color in positions that mirror the pattern's structure
+
+Let me analyz"
+8698868d,False,33,14,95.53,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- The input has a 6×6 grid in the top-left with color 1 (with some 8s as noise)
+- The input has a 6×6 grid in the top-middle with color 4 (with some 8s as noise)
+- Below are rectangular patterns with colors 2 and 3 on a background of 8s
+- The output is a 6×12 grid where the patterns from below are inserted into the top grids
+
+In Example 2:
+- Similar pattern: rectangular regions at the top with noise pixels
+- Rect"
+8b9c3697,False,37,23,96.57,"Let me analyze the pattern from the examples:
+
+1. There are structures made of a non-background color (1, 4, or 8 in examples)
+2. There are scattered 2s (markers)
+3. Some 2s that form 2x2 blocks get replaced with the marker (2) and a trail of 0s
+4. The trail of 0s extends from the 2x2 block toward the nearest structure
+5. One cell in the structure gets replaced with 2 where the trail would connect
+
+Looking at the test input:
+- Background is 3
+- Structures are made of 4
+- There are several 2x2 bl"
+20270e3b_0,False,21,5,98.62,"Looking at the examples, I need to identify the pattern:
+
+1. The input grids contain cells with values 1, 4, and 7
+2. The 7s appear to mark special positions
+3. The transformation seems to involve using the 7s as reference points to combine or overlay parts of the grid
+
+Let me analyze the test input:
+- There are two 7s: one at position (1,7) and one at position (6,3)
+- The grid appears to have two distinct regions that need to be combined
+
+Looking at the pattern more carefully:
+- The 7s seem to "
+20270e3b_1,False,24,8,100.36,"Let me analyze the pattern in the examples.
+
+Looking at the examples, I need to identify what happens:
+- The input grids contain cells with values 1, 4, and 7
+- The 7s seem to mark regions or boundaries
+- The output is a transformed/cropped version
+
+Let me examine Example 1 more carefully:
+- Input: 7x13 grid with 7s appearing at specific positions
+- Output: 7x8 grid
+- The 7s seem to indicate regions to merge or overlay
+
+After analyzing all examples, the pattern appears to be:
+1. The grid is divi"
+e3721c99_1,False,36,30,102.38,"Looking at the examples, I need to identify the transformation rule:
+
+In both examples, there's a vertical line of 1s and a horizontal line of 1s that divide the grid into sections. In the top-left area, there are colored rectangular patterns (with colors like 2, 3, 4, 7). The rest of the grid contains regions filled with 5s.
+
+The rule appears to be: Replace all 5s in the grid with the appropriate color from the pattern shown in the top-left, based on which section/quadrant the 5s appear in rela"
+e3721c99_0,False,38,30,102.4,"Looking at the examples, I need to identify the transformation rule:
+
+In both examples, there's a reference pattern in the top-left area showing different colored shapes (colors 1, 2, 3, 4, etc.) with specific patterns. There's also a vertical or horizontal line of 1s that acts as a divider.
+
+The rule appears to be: Replace all instances of color 5 in the grid with the appropriate colors from the reference patterns based on their spatial relationship to the divider line.
+
+In the test input:
+- Th"
+7491f3cf,False,20,7,104.7,"Let me analyze the pattern from the examples.
+
+Looking at the examples, I can see that:
+1. The grid is divided into 5 columns by vertical separators (value matching the border)
+2. Each column contains a 5×5 pattern
+3. The rightmost column (column 5) starts empty
+4. The transformation combines patterns from columns 2, 3, and 4 into column 5
+
+The rule appears to be:
+- Column 5 output = overlay of patterns from columns 2, 3, and 4
+- Where column 2 has a non-background value, use it
+- Where column 3"
+35ab12c3,False,40,21,104.72,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there are pairs of the same non-zero number that define rectangular regions. The rule appears to be:
+1. Find pairs of the same number
+2. Draw lines/fill patterns connecting these pairs
+3. The pattern depends on the specific number
+
+Let me trace the key patterns:
+
+Example 1:
+- Pairs of 6s create diagonal lines
+- Pairs of 3s create diagonal lines  
+- Pairs of 8s create a rectangular filled region
+- Pairs of 4s c"
+7b80bb43,False,42,29,109.81,"Looking at the examples, I need to identify the transformation rule.
+
+In Example 1:
+- There are lines of 6s (both horizontal and vertical)
+- Some scattered 6s appear to be ""noise""
+- The output shows clean, continuous lines where the main structural lines should be
+
+In Example 2:
+- Similar pattern with 3s forming lines
+- Scattered 3s are cleaned up
+- Main structural lines (horizontal and vertical) are made continuous
+
+The rule appears to be:
+1. Identify the main structural lines (long continuous "
+88bcf3b4_0,False,39,22,110.59,"Let me analyze the pattern from the examples:
+
+In each example, there are typically 3 distinct colored regions (non-background):
+1. A vertical or horizontal line (acts as an axis)
+2. A scattered pattern on one side
+3. Another scattered pattern on another side
+
+The transformation appears to:
+- Keep one line intact (usually the most linear/continuous one)
+- Straighten/align the scattered patterns along diagonal or straight paths
+- The patterns seem to ""flow"" or ""straighten"" toward or away from int"
+dfadab01,False,34,20,111.54,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input contains a pattern/shape (made of non-zero, non-marker values) and marker values (like 2, 3, 5, 8)
+2. The pattern gets replicated at positions marked by specific marker values
+3. Different marker values get replaced by different colors in the output
+4. The original pattern location gets cleared (set to 0)
+
+In the test input:
+- There's a pattern made of 7s at rows 5-8, columns 4-7 (a diamond/cross shape)
+- Marker v"
+3dc255db,False,22,12,111.94,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there are two distinct colored shapes, each with a few cells of a different ""marker"" color inside them.
+
+The rule appears to be:
+1. Identify the marker color cells within each shape
+2. Find the direction from the marker cells to the edge/boundary of their shape
+3. Extend those marker colors in that direction beyond the shape's boundary
+
+Let me trace through Example 1:
+- Shape 1 (4s) has marker color 6 inside i"
+88bcf3b4_1,False,39,27,112.33,"Let me analyze the pattern from the examples:
+
+1. Each puzzle has two perpendicular lines (one vertical, one horizontal or diagonal)
+2. There's a scattered pattern of one color that needs to be ""straightened""
+3. The scattered pattern gets aligned along a diagonal path connecting the two lines
+4. The two lines remain mostly intact, with the scattered pattern forming a diagonal bridge between them
+
+For the test input:
+- Vertical line of 3s at column 13 (rows 0-5)
+- Vertical line of 9s at column 13"
+6ffbe589,False,21,13,113.34,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each input contains a rectangular region bordered by one color (3, 3, 1 in examples)
+2. Inside this border is a pattern with another color (8, 5, 4 in examples)
+3. Outside the main region, there are scattered pixels of these same colors
+4. The output extracts and crops the bordered rectangular region
+5. The border pattern from outside the region appears to wrap around or modify the edges
+
+Let me trace Example 1:
+- Main regi"
+faa9f03d,False,21,12,114.82,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each puzzle has rectangular regions marked by a specific color (acting as boundaries)
+2. These regions contain another color and have markers (different colors) at corners/edges
+3. The transformation extends lines/patterns to complete rectangles, replacing the corner markers
+
+Let me analyze the test input:
+- There are vertical lines of 7s forming columns
+- Row 3 has: `4 2 7 7 2 0 0 2 7 7 2 0` - this appears to be a boundary"
+a47bf94d,False,35,26,116.07,"Looking at the examples, I need to identify the transformation rule:
+
+1. The grid contains colored 3x3 blocks and scattered colored patterns
+2. There's a network of 8s (gray lines) with 5s (red dots) marking special positions
+3. The 3x3 solid blocks get transformed into cross/X patterns
+4. The scattered patterns seem to get rearranged based on the structure
+
+The key pattern: 
+- 3x3 solid blocks become cross patterns (center cell and 4 diagonal neighbors)
+- The colors get redistributed/swapped in"
+332f06d7,False,29,20,118.78,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each puzzle has a region marked with `2` (a marker) and a region marked with `0` (target location)
+2. The rule appears to be: move the `0` region to where the `2` region is, and replace the original `0` region with `1`
+
+Let me verify this pattern:
+- Example 1: `2` at top-left (rows 0-1, cols 1-2), `0` at bottom-right (rows 9-10, cols 8-9) → `0` moves to top-left, original `0` location becomes `1`
+- Example 2: `2` at bottom-"
+2ba387bc,False,26,16,120.16,"Looking at the examples, I need to identify the pattern:
+
+1. The input contains several colored rectangular blocks (some filled, some hollow)
+2. The output is a smaller grid that arranges these blocks in a specific way
+3. Hollow blocks (with 0s in the middle) and filled blocks are paired together
+4. The output appears to be organized in rows, with each row containing 2 blocks side by side (8 columns total, 4 per block)
+
+Let me identify the blocks in the test input:
+- Block 6 (filled, 4x4): rows "
+2c181942,False,30,24,120.56,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there's a small central pattern with different colored cells arranged around it (like a cross or plus sign pattern). The scattered larger shapes of the same colors elsewhere in the grid seem to be ""templates"" that get positioned around this central pattern.
+
+The rule appears to be:
+1. Find the central pattern (the small cross-like arrangement with different colors)
+2. Take each scattered shape and position it "
+71e489b6_0,False,31,16,124.04,"Looking at the examples, I need to identify the transformation rule:
+
+1. Find isolated 0s in regions of 1s (or isolated 1s in regions of 0s)
+2. Draw a 3x3 box of 7s centered on each isolated cell, with the original cell value in the center
+
+Let me trace through the test input to find isolated cells:
+
+In the 1-region (rows 3-11, cols 5-13):
+- Row 3, col 11: 0 (isolated)
+- Row 4, col 14: 0 (isolated) 
+- Row 5, col 5: 0 (isolated)
+- Row 6, col 4: 0 (isolated)
+- Row 7, col 3: 0 (isolated)
+- Row 8, c"
+5dbc8537_0,False,25,10,128.72,"Looking at the examples, I need to identify the transformation rule:
+
+Example 1: The input has a region filled with 9s (left side) and various colored rectangles scattered around. The output extracts just the 9-region and overlays the colored rectangles onto it, maintaining their relative positions.
+
+Example 2: Similar pattern - there's a background region (mix of 8s and 2s forming a pattern), and colored rectangles. The output shows the background pattern with the colored rectangles positioned "
+71e489b6_1,False,39,18,129.12,"Looking at the examples, I need to identify the transformation rule:
+
+1. Find isolated 0s in regions of 1s (or 1s in regions of 0s)
+2. Draw a 3x3 box of 7s around each isolated anomaly, with the anomaly at the center
+3. The 7s replace the background value but preserve the anomaly at the center
+
+Let me identify the anomalies in the test input:
+
+In the 1-regions:
+- Row 2, Col 4: 0 (surrounded by 1s)
+- Row 2, Col 16: 0 (surrounded by 1s)
+- Row 4, Col 6: 0 (surrounded by 1s)
+- Row 4, Col 9: 0 (surro"
+3a25b0d8_0,False,26,18,129.29,"Looking at the examples, I need to identify the pattern:
+
+In Example 1, there's a large irregular shape made of 1s with colored regions inside (7s, 3s, 4s, 6s, 9s). The output extracts and consolidates a rectangular region containing these colored elements.
+
+In Example 2, there's a large irregular shape made of 2s with colored regions inside (4s, 3s, 8s). Again, the output extracts and consolidates the region with the colored elements.
+
+The rule appears to be:
+1. Find the main border shape (the "
+3a25b0d8_1,False,28,14,129.77,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- There's a large irregular shape made of 1s with colored regions inside (7s, 3s, 4s, 6s, 9s)
+- The output extracts and consolidates a rectangular region containing these colored elements
+- The output is smaller and more compact
+
+In Example 2:
+- There's a shape made of 2s with colored regions inside (4s, 3s, 8s)
+- Again, the output extracts a rectangular region containing the colored elements
+- The pattern is sym"
+5dbc8537_1,False,66,20,130.16,"Looking at the examples, I need to identify the transformation rule:
+
+Example 1: The input has a 7-column section (columns 0-6) with 9s and 4s, and the rest contains various colored regions. The output is 7 columns wide and shows the colored regions overlaid on the 9-pattern.
+
+Example 2: The input has sections with 8s and 2s forming patterns, and colored regions. The output rearranges these, placing colored regions over the background pattern.
+
+The rule appears to be:
+1. Identify a background pa"
+800d221b,False,37,30,131.09,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there appear to be rectangular regions bounded by one color (acting as borders), with different colored regions inside. The transformation seems to:
+1. Identify border lines (often forming rectangles)
+2. Fill regions based on which corner/section they belong to
+3. Replace the border color with colors from the corner regions
+
+Let me trace through the test input:
+- There are 4 main colored regions in corners: to"
+b99e7126,False,42,29,131.71,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input has a repeating pattern of tiles (4x4 blocks separated by borders)
+2. Some tiles are marked with a different color (3 in Example 1, 1 in Example 2, 8 in Example 3)
+3. The marked tiles form a rectangular region
+4. The output tiles the marked pattern across the entire rectangular region they define
+
+In Example 1: The 3-colored tiles appear in rows 13-15, columns 9-19 (a 3x3 block of tiles). The output tiles this pat"
+78332cb0_0,False,23,5,133.66,"7 7 7 7 7
+7 4 4 4 7
+4 4 7 4 7
+7 4 4 4 7
+7 7 7 7 7
+6 6 6 6 6
+7 7 7 7 7
+7 4 7 4 4
+7 4 7 4 7
+4 4 4 4 7
+7 7 7 7 7
+6 6 6 6 6
+7 7 7 7 7
+4 4 4 4 7
+7 7 7 4 4
+7 4 4 4 7
+7 7 7 7 7
+6 6 6 6 6
+7 7 7 7 7
+7 4 4 4 7
+7 4 7 4 7
+7 4 7 4 4
+7 7 7 7 7"
+5545f144,False,31,15,135.85,"Looking at the examples, I need to identify the pattern:
+
+Example 1: The input has vertical lines of 3s dividing it into sections. The output is a smaller grid that seems to extract one section.
+
+Example 2: The input has vertical lines of 2s dividing it into sections. The output extracts one section.
+
+Example 3: The input has a vertical line of 4s dividing it into sections. The output extracts one section.
+
+The pattern appears to be:
+1. Find vertical dividing lines (a column with a repeating val"
+cb2d8a2c_0,False,27,14,136.23,"Let me analyze the pattern from the examples:
+
+1. There are vertical lines of 2s (with occasional 1s mixed in)
+2. There's a single cell with value 3
+3. The transformation creates:
+   - Lines of 3s extending from the 3 cell horizontally and vertically
+   - The vertical lines of 2s become solid 2s (replacing 1s with 2s)
+   - Rectangles are formed with 3s as borders
+
+Looking at the test input:
+- Column 1 has a vertical line with 1,2,2,2,2,2 (rows 0-5)
+- Column 7 has a vertical line with 2s and some"
+78332cb0_1,False,15,23,138.27,"Looking at the examples, I need to understand the transformation rule:
+
+Example 1: The input has vertical dividers (column of 6s) and a horizontal divider (row of 6s). The output rearranges the quadrants/sections.
+
+Example 2: The input has horizontal dividers (rows of 6s). The output arranges sections horizontally with vertical dividers.
+
+Example 3: The input has vertical dividers. The output arranges sections vertically with horizontal dividers.
+
+The pattern seems to be:
+- If input has horizont"
+7c66cb00,False,43,30,139.66,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input has a top section with small patterns and a bottom section with horizontal bands (bordered rectangles)
+2. The patterns from the top section are replicated into the corresponding colored bands below
+3. Each pattern is placed in the band that matches one of its colors
+4. The pattern uses the border color of that band to replace one of the colors in the original pattern
+
+Let me trace through the test input:
+
+Top sect"
+cb2d8a2c_1,False,42,29,142.99,"Let me analyze the pattern from the examples:
+
+1. There are lines of 2s (sometimes with 1s mixed in) and a single 3
+2. The 3 acts as a marker/anchor point
+3. Lines of 2s get extended and connected with perpendicular lines of 3s
+4. The 1s in the pattern seem to indicate where the line ends or changes direction
+
+Key observations:
+- Horizontal lines of 2s remain as 2s
+- Vertical lines of 3s are drawn from the marker 3 to connect to the horizontal lines
+- The 3s form rectangular frames connecting th"
+221dfab4_0,False,31,25,145.34,"Looking at the examples, I need to identify the transformation rule:
+
+1. In both examples, there's a row with ""4 4 4 4"" (or similar pattern) that acts as a marker
+2. The transformation involves:
+   - Finding the widest horizontal span of non-8 values in each row
+   - Replacing that widest span with ""3 3 3..."" 
+   - Placing ""4 4 4 4"" at other significant positions in rows with non-8 values
+   - The original non-8 values remain where they don't overlap with the new markers
+
+Let me apply this patte"
+4e34c42c_1,False,19,9,146.6,"Let me analyze the transformation rule by studying the examples.
+
+In Example 1, I can see several distinct patterns/shapes scattered across the grid, and the output combines them into a single consolidated region.
+
+In Example 2, similarly, there are multiple distinct patterns that get assembled together in the output.
+
+The rule appears to be:
+1. Identify all distinct non-background patterns (shapes with unique colors/structures)
+2. Extract each pattern as a rectangular region
+3. Arrange them hor"
+4c416de3,False,28,19,147.77,"Looking at the examples, I need to identify the transformation rule:
+
+1. There are rectangular regions bounded by 0s
+2. Inside these regions, there are colored cells (non-0, non-background)
+3. The rule appears to extend these colored cells outward from the rectangle, creating 2x2 blocks of that color just outside the corner or edge where the color appears
+
+Let me trace through the pattern:
+- Find rectangles bounded by 0s
+- For each colored cell inside, place a 2x2 block of that color outside the"
+135a2760,False,36,29,148.03,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1, the input has a pattern with some 3s missing in the sequence ""1 3 1 3 1 3 3 3 1"", and the output fills them in to make ""1 3 1 3 1 3 1 3 1"".
+
+In Example 2, there are multiple blocks with patterns that have irregularities, and the output regularizes them into consistent repeating patterns.
+
+The rule appears to be: **Find repeating patterns and complete them by filling in missing elements to make them regular/symmet"
+271d71e2,False,39,26,149.65,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each example has rectangular regions bounded by 0s containing 5s and sometimes 7s
+2. There are also 9s forming lines/boundaries
+3. The transformation appears to:
+   - Keep one ""reference"" region with 7s unchanged
+   - Transform other regions by replacing 5s with 7s based on the pattern from the reference region
+   - Move/reposition some regions
+
+Let me analyze the pattern more carefully:
+- Regions with both 5s and 7s seem t"
+4e34c42c_0,False,24,14,149.65,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- There are several small patterns scattered in the grid
+- The output combines these patterns into a single rectangular region
+- Patterns with a marker (like 4, 6, 9) seem to define positions/orientations
+
+In Example 2:
+- Similar scattered patterns
+- Output assembles them into one cohesive grid
+
+The rule appears to be:
+1. Identify distinct pattern blocks (marked by unique colors/numbers)
+2. Find patterns with spe"
+20a9e565_0,False,44,2,150.03,"Looking at the examples, I need to identify the pattern:
+
+1. There's a repeating pattern in the grid (made of various colored numbers)
+2. There are small ""5"" markers somewhere in the grid
+3. The output extracts a specific portion of the repeating pattern
+
+Let me analyze the test input:
+- There's a repeating pattern made of 4s and 6s
+- There are two ""5"" markers: one at (11,7-8) and another at (12,26-27)
+
+The pattern appears to be:
+- Rows 14-16: Pattern with 4s
+- Rows 18-20: Pattern with 6s  
+- Ro"
+20a9e565_1,False,28,8,150.37,"Looking at the examples, I need to identify the pattern:
+
+1. There's a repeating pattern in the grid (made of various colors)
+2. There are small ""5"" markers (appearing as L-shapes or small clusters)
+3. The output extracts a specific portion of the repeating pattern
+
+Let me analyze the test input:
+- There's a repeating pattern with colors 2 and 3
+- There are two ""5"" markers: one at (15-16, 6-7) and another at (21-22, 21-22)
+
+The pattern appears to be a 2x2 repeating unit with colors 2 and 3:
+- Lo"
+221dfab4_1,False,45,30,154.39,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- Background is 1, shapes are 8
+- There's a small marker of 4s (4x1 horizontal line)
+- The output shows: the marker becomes 4s, and for each blob of 8s, the longest horizontal span in that blob gets replaced with 3s, while other 8s in that row become 4s
+
+In Example 2:
+- Background is 8, shapes are 2
+- There's a small marker of 4s (3x1 horizontal line)
+- Same transformation applies
+
+The rule appears to be:
+1. Find"
+f560132c,False,26,12,155.34,"Looking at the examples, I need to identify the pattern:
+
+Example 1:
+- There's a small region with colored cells (2, 1, 5, 8, 9) embedded in a larger shape
+- There are 4 other colored regions (7, 4, 3)
+- The output is an 8x8 grid that seems to map the small colored pattern onto the bounding box defined by the other regions
+
+Example 2:
+- Similar structure: a small region with colors (6, 2, 4, 8, 3) 
+- Other colored regions (5, 1, 9)
+- Output is 10x10 grid
+
+The pattern appears to be:
+1. Find the r"
+7666fa5d,False,22,16,157.12,"Looking at the examples, I need to identify the pattern:
+
+In Example 1, there are diagonal lines of 4s forming triangular/diamond-like regions. The cells enclosed between these diagonal lines get filled with 2s.
+
+In Example 2, there are diagonal lines of 3s forming similar regions, and the cells enclosed between these lines get filled with 2s.
+
+The rule appears to be: Find regions enclosed by diagonal lines of non-8 values, and fill the interior cells with 2s.
+
+For the test input, I can see diag"
+dbff022c,False,31,13,158.96,"Let me analyze the pattern from the examples:
+
+In each example, there are rectangular frames (borders) made of the same color, and some have hollow interiors (with 0s). The rule appears to be:
+1. Find rectangular frames
+2. Look for small patterns/numbers outside or near these frames
+3. Fill the hollow interior of frames with those patterns
+
+Let me trace through Example 1:
+- There's a 4-frame with hollow spots (0s inside)
+- There's a 3-frame with hollow spots
+- Near the 4-frame, there's a pattern"
+db0c5428,False,24,17,160.68,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each input has a rectangular pattern with a 3x3 center region filled with 8s
+2. The pattern is symmetric and contains special marker values
+3. The output extends the pattern by reflecting/tiling it outward from the center
+
+Let me analyze the structure:
+- The central 3x3 region of 8s acts as a ""hole""
+- The pattern around it gets reflected/extended to fill the surrounding 8s
+- The extension creates a larger symmetric pattern
+"
+0934a4d8,False,29,9,162.44,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each input has a rectangular region marked with 8s
+2. The output is extracted from a specific region of the input
+3. The output dimensions match the 8-marked region dimensions
+
+Let me analyze the pattern:
+- In Example 1: 8s are at rows 14-23, cols 25-28 (10×4 region)
+- In Example 2: 8s are at rows 2-5, cols 21-25 (4×5 region)  
+- In Example 3: 8s are at rows 19-21, cols 12-18 (3×7 region)
+- In Example 4: 8s are at rows 7-10"
+45a5af55,False,33,26,162.49,"Looking at the examples, I need to identify the transformation rule:
+
+Example 1: 14x14 input → 26x26 output (roughly doubled)
+Example 2: 12x13 input → 24x24 output (roughly doubled)
+
+The pattern appears to be:
+1. The grid is expanded/doubled in size
+2. Each distinct horizontal stripe becomes a nested rectangular frame
+3. The stripes are nested from outside to inside based on their order in the input
+4. The most common color (background) forms the outermost layer
+5. Other colors form nested recta"
+3e6067c3_0,False,35,29,165.69,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a reference row near the bottom with scattered colored numbers (not 1, 2, or 8)
+2. Each colored square in the grid needs to be matched with its position in the reference row
+3. The transformation extends each colored square horizontally to the right (3 cells) OR vertically downward, depending on the pattern
+
+Let me trace through the logic:
+- Find all colored squares (numbers other than the background/border)
+- Find "
+80a900e0,False,27,22,165.86,"Let me analyze the transformation rule by studying the examples.
+
+In Example 1, I can see a pattern with colors 3 and 8 forming diagonal lines. The transformation extends these diagonal lines outward in both directions.
+
+In Example 2, there are patterns with colors 2, 3, and 4 forming diagonal structures, and the transformation extends these diagonals outward.
+
+The rule appears to be:
+1. Identify diagonal line segments formed by non-0/1 colors
+2. Extend these diagonal lines in both directions un"
+3e6067c3_1,False,39,30,167.17,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a reference row near the bottom with colored numbers (not 1 or 8)
+2. The grid contains rectangular blocks with borders of 1s and interiors of 8s
+3. Some blocks have a 2x2 colored square inside them
+4. The rule appears to be: for each colored square in a block, extend that color in a specific direction based on matching it with the reference row
+
+Let me trace the pattern more carefully:
+- When a color appears in a bl"
+f931b4a8_1,False,27,4,168.56,"Let me analyze the pattern from the examples.
+
+Looking at the examples, I need to identify:
+1. Which regions contain patterns (non-zero, non-uniform areas)
+2. Which regions are uniform (all same value)
+3. The transformation rule
+
+From Example 1:
+- Top-left: uniform 1s, Top-right: uniform 3s
+- Bottom-left: uniform 5s, Bottom-right: pattern with 6s and 0s
+- Output: The pattern from bottom-right is extracted and the 0s are replaced with the value from bottom-left (5)
+
+From Example 4:
+- Top: uniform"
+f931b4a8_0,False,37,10,169.0,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input grid is divided into quadrants
+2. One quadrant contains a pattern with non-zero values and some zeros
+3. The pattern from that quadrant is extracted and tiled/repeated to create the output
+
+Let me analyze the test input:
+- Top-left (4x4): Mixed values with 0s
+- Top-right (4x4): Pattern with 1s, 3s, and 0s
+- Bottom-left (4x4): All 2s
+- Bottom-right (4x4): Pattern with 3s, 2s, 5s, 1s, and 0s
+
+The bottom-left quadran"
+4a21e3da,False,32,20,169.22,"Looking at the examples, I need to identify the transformation rule:
+
+1. There's a ""2"" marker in the input that acts as an axis
+2. There's a pattern made of ""7""s 
+3. The pattern gets reflected/rotated around the ""2"" marker
+4. The ""2"" marker extends as a line (horizontal or vertical) through the grid
+5. The original pattern is removed and appears reflected on the opposite side of the ""2"" line
+
+In Example 1: ""2"" at (0,8) and (8,18) - creates vertical line at column 8 and horizontal line at row 8
+I"
+142ca369_0,False,24,18,171.76,"Looking at the examples, I need to identify the transformation rule.
+
+In each example, I can see:
+1. There are several colored shapes (non-zero values) scattered in the input
+2. These shapes appear to be ""extended"" or ""projected"" diagonally in the output
+3. The shapes seem to create diagonal lines that connect to each other
+
+Let me analyze the pattern more carefully:
+- Each colored shape extends diagonally (at 45-degree angles)
+- The extensions create paths that connect different colored regions"
+7b0280bc,False,43,30,172.81,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there are colored regions (non-background colors) that form connected paths or lines. The rule appears to be:
+1. Identify regions with a specific color (appears to be the color that forms the longest connected path)
+2. Replace that color with a new color (5 in examples 1 and 3, where 0→5 and 6→5 respectively)
+3. Replace another specific color with a different new color (2→3 in examples 1 and 3, 7→3 in example "
+7ed72f31_0,False,28,18,173.28,"Let me analyze the transformation rule by studying the examples.
+
+In Example 1:
+- There are colored shapes with a line of 2s nearby
+- The shapes get reflected/mirrored across the line of 2s
+
+In Example 2:
+- Similar pattern: shapes are reflected across lines of 2s
+- The line of 2s acts as a mirror axis
+
+The rule appears to be: **Reflect each colored shape across its nearest line of 2s**
+
+For the test input, I need to identify:
+1. The colored shapes (4s at top-right, 1s at left, 3s at bottom)
+2. T"
+142ca369_1,False,28,20,176.04,"Looking at the examples, I need to identify the transformation rule.
+
+In each example, I can see:
+1. There are colored shapes/patterns scattered in the input
+2. The output creates diagonal lines connecting these patterns
+
+Let me analyze the pattern more carefully:
+- Each colored shape appears to extend diagonally toward other shapes of different colors
+- The diagonals seem to connect pairs of colored regions
+
+For the test input, I can identify:
+- Top-left: 7s at (0,1), (1,0), (1,1) 
+- Top-right:"
+aa4ec2a5,False,31,26,180.33,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each connected region of 1s gets surrounded by a border of 2s
+2. Within larger regions, the 1s are replaced with 8s
+3. Within those 8s, any ""holes"" or indentations get filled with 6s
+4. The smallest/simplest regions keep their 1s
+
+Let me trace through the test input to identify all the connected regions of 1s and apply the transformation:
+
+4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+4 4 4 4 4 4 4 2 2 2 2 2 2 2 2 2"
+2d0172a1_0,False,34,9,181.29,"Looking at the examples, I need to identify the pattern:
+
+1. Each input has a rectangular region outlined by one color (4 or 9) against a background
+2. The outline forms a closed rectangular border
+3. Inside this border, there's a pattern made with the same color
+4. The output extracts just the bordered region and its contents
+
+Let me trace the border in the test input:
+- The border is made of 9s against a background of 7s
+- I need to find the rectangular region enclosed by 9s
+
+Scanning the inpu"
+2d0172a1_1,False,28,14,182.07,"Looking at the examples, I need to identify the pattern:
+
+1. Each input has a rectangular region outlined by one color (4 or 9 or 6) against a background
+2. The outline forms a closed rectangular border
+3. The output extracts and ""cleans up"" this bordered region, showing the pattern inside
+
+Let me trace the border in the test input:
+- The border is made of 6's forming a closed rectangle
+- Background is 8's
+- I need to find the minimal bounding rectangle containing the 6-border and extract/clean "
+7b3084d4,False,27,14,183.47,"Looking at the examples, I need to identify the pattern:
+
+1. Each input has several colored regions (non-zero values) scattered across a 20x20 grid
+2. One region in each colored area contains a single cell with value 5
+3. The output is a smaller grid that combines these regions, with the 5-marked regions positioned according to their relative locations
+
+Let me identify the colored regions and the 5-markers in the test input:
+
+- **Region 2 (cyan)**: Top-left area, rows 0-6, cols 1-7. The 5 is NOT"
+21897d95_0,False,38,30,183.61,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input contains regions filled with different colors and some cells marked with `1` (and sometimes `0`)
+2. The `1`s seem to mark boundaries or special positions
+3. The output is smaller than the input and shows a reorganized/simplified version
+
+Let me analyze the pattern more carefully:
+- The `1`s appear to mark boundaries between regions
+- Regions with `0` seem to be special/background areas
+- The output appears to extr"
+21897d95_1,False,33,24,183.64,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input contains regions marked with different colors and some cells marked with `1` (and sometimes `0`)
+2. The `1`s seem to indicate special markers or patterns
+3. The output appears to be a transformed/rearranged version based on these markers
+
+Let me analyze the pattern more carefully:
+- In each example, there are regions with `1` markers forming patterns (like crosses or L-shapes)
+- The output seems to rearrange or fi"
+58490d8a,False,22,9,184.84,"Looking at the examples, I need to identify the pattern:
+
+1. There's a rectangular region filled with 0s (the ""template"" area)
+2. Within this 0-region, there are some colored cells (non-0 values) placed in specific positions
+3. Throughout the rest of the grid, there are patterns made with the same colors
+4. The output shows the template filled in with those patterns
+
+The rule appears to be:
+- Find the rectangular 0-region
+- For each colored cell in the 0-region, find the corresponding pattern of"
+7ed72f31_1,False,41,28,185.84,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1, I can see:
+- There are colored shapes (3, 4, 5, 8) with a line of 2s nearby
+- The shapes get reflected/mirrored across the line of 2s
+
+In Example 2:
+- Similar pattern - shapes (4, 1, 3) with lines of 2s
+- Shapes are reflected across their respective lines of 2s
+
+The rule appears to be: **Find each colored shape that has a line of 2s adjacent to it, then mirror/reflect that shape across the line of 2s.**
+
+Applying"
+269e22fb_0,False,31,20,188.73,"Looking at the examples, I need to identify the transformation rule.
+
+Let me analyze the pattern:
+- Input grids are rectangular (varying dimensions)
+- Output grids are always exactly 2x the height and 2x the width of the input
+- The transformation appears to create a 2x2 tiling pattern
+
+Examining Example 1 more carefully:
+- Input: 8×10
+- Output: 16×20 (doubled dimensions)
+
+The pattern seems to be creating 4 quadrants where the input is transformed/rotated in different ways.
+
+After careful analys"
+b10624e5,False,40,27,191.21,"Looking at the examples, I need to identify the transformation rule.
+
+The grid is divided into 4 quadrants by lines of 1s (one horizontal at row 13, one vertical at column 13).
+
+In Example 1:
+- Top-left quadrant has a pattern with colors 8,2,3
+- Top-right quadrant has a 2x2 block of 2s
+- Bottom-left quadrant has scattered pixels (2,3,8)
+- Bottom-right quadrant has a 3x3 block of 2s
+
+The transformation appears to:
+1. Take the pattern from top-left and mirror/reflect it to top-right
+2. Take the pa"
+b6f77b65_0,False,18,12,191.56,"Let me analyze the transformation rule by studying the examples.
+
+Looking at the examples, I notice:
+1. There's a marker in the top-left corner (position 0,0) with a specific color
+2. The grid contains rectangular regions with colored borders
+3. The transformation appears to rotate or shift these regions based on the marker color
+
+Let me trace through the pattern more carefully:
+
+In each example, there are rectangular regions formed by colored borders. The marker color at (0,0) seems to determin"
+b6f77b65_1,False,19,12,193.13,"Let me analyze the transformation rule by studying the examples.
+
+Looking at the examples, I notice:
+1. There's a marker in the top-left corner (position 0,0) with a specific color
+2. The grid contains rectangular regions with colored borders
+3. The transformation seems to rotate or shift these regions based on the marker color
+
+Let me trace through the pattern more carefully:
+
+In each example, there are rectangular regions formed by colored borders. The marker color at (0,0) appears to determin"
+269e22fb_1,False,28,20,193.76,"Looking at the examples, I need to identify the transformation rule.
+
+Let me analyze the pattern:
+- The input grids are rectangular (not square in most cases)
+- The output grids are larger, roughly double in size
+- There seems to be a reflection/rotation pattern being applied
+
+Examining Example 1 more carefully:
+- Input: 8×10 → Output: 20×20 (doubled)
+- The input appears in the top-left
+- There's a transformation creating additional patterns
+
+After studying all examples, the pattern appears to b"
+136b0064,False,33,19,194.47,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input has a vertical line of 4s at column 7, dividing the grid into left and right sections
+2. The left section (columns 0-6) contains patterns in blocks of 4 rows (including separator rows of all 0s)
+3. There's a single 5 in the right section marking a position
+4. The output appears to rearrange/transform these patterns
+
+Let me analyze the pattern more carefully:
+- Each 4-row block on the left has two 3x3 patterns (col"
+1818057f,False,28,22,194.49,"Looking at the examples, I need to identify the transformation rule:
+
+Example 1: A rectangular region of 4s (roughly rows 4-6, cols 8-10) gets its interior cells changed to 8s.
+
+Example 2: Multiple rectangular regions of 4s have their interior cells changed to 8s in a repeating pattern.
+
+Example 3: Rectangular regions of 4s have their interior cells changed to 8s.
+
+The rule appears to be: Find rectangular regions that are densely populated with 4s, and change the interior 4s (not on the border o"
+65b59efc_1,False,33,16,198.45,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input grid is divided by lines of 5s into rectangular sections
+2. The last row contains special marker colors (not 0 or 5) that indicate which color should fill each section
+3. Each section in the top portion has a dominant non-zero, non-5 color
+4. The output maps each section to be filled with the pattern from the section indicated by the marker in the bottom row
+
+Let me analyze the test input:
+- Grid is divided by 5s "
+65b59efc_0,False,30,25,200.93,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input grid is divided by lines of 5s into rectangular sections
+2. The last non-zero row contains colored markers (numbers like 3, 4, 6, 7, 8, 9, 1)
+3. Each marker corresponds to a pattern/section in the upper part of the grid
+4. The output recreates these patterns, scaled/tiled according to the marker positions
+
+In the test input:
+- Grid is divided by 5s into sections
+- Row 13 (last non-zero row) has markers: 3 (col 2),"
+8e5c0c38_0,False,27,22,201.49,"Let me analyze the transformation rule by comparing the input and output in the examples.
+
+In Example 1:
+- There are three colored shapes (1, 6, and 2) on a background of 8s
+- Looking at the differences, certain cells within each shape are modified
+- The pattern seems to involve removing or adjusting specific cells that create asymmetry
+
+In Example 2:
+- Three colored shapes (8, 2, and 4) on a background of 0s
+- Similar modifications occur within the shapes
+
+The rule appears to be: **Remove isola"
+8f3a5a89,False,22,12,203.48,"Let me analyze the pattern from the examples:
+
+1. There's a cell marked with `6` which appears to be the starting point
+2. The transformation creates a border/path of `7`s from the `6` cell
+3. The `7`s seem to trace paths to reach all the `1` clusters/shapes
+4. The `1`s remain unchanged in the output
+
+Looking at the examples more carefully:
+- The `6` marks a corner/starting position
+- `7`s form a rectangular border/frame that encompasses all `1` patterns
+- The `7`s create the minimal bounding st"
+16b78196,False,44,30,203.66,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- There's a horizontal band of 8s (rows 14-18)
+- There are several colored shapes (4, 3, 6, 2, 1) scattered around
+- In the output, these colored shapes are moved/stacked vertically near the band of 8s
+- The shapes appear to be layered on top of each other in a specific column
+
+In Example 2:
+- There's a horizontal band of 2s (rows 8-12)
+- There are colored shapes (1, 4, 3) scattered around
+- In the output, these "
+4c7dc4dd_0,False,55,5,204.9,"Looking at the examples, I need to identify the pattern:
+
+In Example 1, there are rectangular regions bounded by 4's containing 0's and other numbers. The output extracts the contents of one specific bounded region.
+
+In Example 2, there are rectangular regions bounded by 8's containing 0's and other numbers. The output extracts the contents of one specific bounded region.
+
+The pattern is:
+1. Find rectangular regions bounded by a specific number (4 in Ex1, 8 in Ex2)
+2. Extract the interior conten"
+4c7dc4dd_1,False,35,6,204.92,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1, there are rectangular regions bounded by a specific value (4) that contain 0s and other values. The output extracts the contents of one of these rectangles.
+
+In Example 2, there are rectangular regions bounded by 8s containing 0s and other values. The output extracts the contents of one of these rectangles.
+
+The pattern seems to be:
+1. Find rectangles bounded by a border value (different from the background patte"
+36a08778_0,False,30,16,206.19,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input has vertical lines of 6s and horizontal segments of 2s
+2. The output creates rectangular frames (borders) of 6s around each segment of 2s
+3. The frames extend to connect with the vertical 6 lines that were in the input
+
+Let me trace through the pattern:
+- Each horizontal segment of 2s gets surrounded by a rectangular border of 6s
+- The borders extend vertically to reach the nearest vertical 6 line(s) from the inpu"
+8e5c0c38_1,False,41,22,207.54,"Looking at the examples, I need to identify the transformation rule.
+
+In Example 1:
+- There's a large shape made of 1s
+- A small shape made of 6s (3x3 pattern)
+- A shape made of 2s
+- The output shows the 1s shape is modified to match the 6s pattern's structure
+- The 2s shape is also modified similarly
+
+In Example 2:
+- There's a small shape made of 8s (3x3 pattern)
+- A large shape made of 2s
+- A large shape made of 4s
+- The output shows the 2s and 4s shapes are modified to match the 8s pattern's "
+b0039139_0,False,38,19,212.17,"Looking at the examples, I need to identify the pattern:
+
+1. The input is divided into sections separated by rows of 1s
+2. The first section contains a pattern with 4s (the ""shape"")
+3. The middle section(s) contain pattern(s) with 3s (the ""mask"")
+4. The remaining sections contain solid colors (the ""fill colors"")
+5. The output combines the shape, mask, and fill colors
+
+Let me analyze the test input:
+- Section 1 (rows 0-4): Shape with 4s
+- Section 2 (rows 6-11): Two mask patterns with 3s
+- Section"
+b0039139_1,False,22,5,212.24,"Looking at the examples, I need to identify the pattern:
+
+1. The input is divided into sections separated by columns of 1s
+2. The first section contains a pattern with 4s (the ""template"")
+3. The second section contains a pattern with 3s (the ""mask"")
+4. The third and fourth sections contain solid colors (the ""fill colors"")
+5. The output combines the fill colors based on where the template has 4s and where the mask has 3s
+
+The rule appears to be:
+- Where mask has 3: use the second fill color
+- Whe"
+981571dc,False,42,30,212.34,"Looking at the examples, I need to identify the transformation rule.
+
+In each example, there's a rectangular region filled with 0s in the input. The pattern seems to be:
+1. Find the rectangular region of 0s
+2. This region acts as a ""mask"" or ""window""
+3. The grid appears to have symmetry - it looks like the grid is meant to be symmetric (either horizontally, vertically, or both)
+4. The 0s are replaced with values that would make the grid symmetric
+
+Let me analyze the test input:
+- The 0s appear i"
+36a08778_1,False,30,30,213.38,"7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7
+7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7
+7 7 2 2 2 2 7 7 7 7 7 7 7 7 7 7 7 2 2 2 2 2 2 2 2 2 7 7 7 7
+7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7
+7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7
+7 7 7 7 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7
+7 7 7 7 6 7 7 7 6 6 6 6 6 7 7 7 7 7 7 7 7 7 6 7 7 7 7 7 7 7
+7 7 7 7 6 7 7 7 6 2 2 2 2 7 7 7 7 7 7 7 7 7 6 6 6 6 6 6 7 7
+7 7 7 7 6 7 7 7 6 7 "
+247ef758_1,False,23,12,215.87,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each puzzle has a rectangular region bounded by a vertical line (column of 2s) and horizontal borders (rows with a repeating pattern)
+2. The left side contains patterns/shapes made of various numbers
+3. These patterns get copied/reflected into the rectangular region on the right
+4. The left side gets cleared (set to 0s except for specific markers)
+
+Let me trace through the pattern:
+- Row 0: Pattern at top border
+- Row 4: `8"
+247ef758_0,False,28,15,217.67,"Looking at the examples, I need to identify the transformation rule:
+
+1. Each puzzle has a rectangular region bounded by a vertical line (column of 2s or 3s) and horizontal borders (rows with repeating patterns)
+2. The left side contains patterns (like clusters of same numbers)
+3. These patterns get copied/reflected into the rectangular region on the right
+4. The first 4 columns on the left get cleared to 0 (except for specific marker rows)
+
+Let me trace through the pattern:
+- Row 0: Top border "
+a395ee82,False,35,22,222.18,"Looking at the examples, I need to identify the transformation rule:
+
+In each example, there's a pattern/shape made of one color and scattered pixels of two other colors. The rule appears to be:
+1. Find the main pattern (the connected shape)
+2. Find the scattered pixels that form a cross or line pattern
+3. Tile/replicate the main pattern at positions indicated by the scattered pixels, replacing the center pixel with the other scattered color
+
+Let me analyze the test input:
+- Main pattern: The co"
+cbebaa4b_0,False,40,26,222.19,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1:
+- There are several colored shapes scattered around the input
+- In the output, these shapes are rearranged and connected by lines (color 1)
+- The shapes seem to be moved to form a more compact, connected arrangement
+
+In Example 2:
+- Similar pattern - scattered colored shapes in input
+- Output shows them rearranged and connected with lines (color 1)
+
+The rule appears to be:
+1. Identify all the colored shapes (non-"
+cbebaa4b_1,False,39,26,222.72,"Looking at the examples, I need to identify the transformation rule:
+
+In Example 1, there are several colored shapes scattered around the grid, each with ""2"" markers at certain positions. In the output, these shapes are rearranged and connected together in a specific way.
+
+In Example 2, similarly, scattered colored shapes with ""2"" markers get rearranged and connected.
+
+The pattern appears to be:
+1. Find shapes marked with color ""1"" (which forms a frame/connector)
+2. Collect all other colored sha"
+7b5033c1,False,37,25,222.78,"Looking at the examples, I need to identify the transformation rule.
+
+In Example 1:
+- There are several colored shapes (non-8 values) scattered in the grid
+- Each shape forms an L-like or connected pattern
+- The output lists each color with a count equal to the number of cells in that color's shape
+
+In Example 2:
+- Similar pattern with colored shapes (non-1 values) in a grid of 1s
+- Output lists each color with counts
+
+The rule appears to be:
+1. Identify all non-background colored regions
+2. For"
+e376de54,False,22,16,226.08,"Let me analyze the pattern from the examples:
+
+Example 1: The input has diagonal lines of different colors (2, 9, 1). In the output, these lines are extended/completed to form more regular diagonal patterns.
+
+Example 2: The input has horizontal lines of different lengths (5, 9, 3). In the output, the shorter lines are extended to match the length of the longest line.
+
+Example 3: The input has vertical lines of 8s with varying lengths. In the output, all vertical lines are extended to the same le"
+c7f57c3e,False,42,28,228.92,"Looking at the examples, I need to identify the transformation rule.
+
+In Example 1:
+- There are small patterns with 1s, 2s, and another color (8 or 3)
+- There are larger patterns with 1s, 2s, and another color (8 or 3)
+- The rule appears to be: for each small pattern, find the ""other"" color below the 2s, then replace that color in the corresponding larger pattern with the same color
+
+In Example 2:
+- Small patterns have 1s, 2s, and colors (4 or 6)
+- Large patterns have 1s, 2s, and colors (4 or 6)"
+8f215267,False,38,27,229.86,"Looking at the examples, I need to identify the transformation rule:
+
+1. There are rectangular frames (hollow rectangles) made of colored borders
+2. Outside these frames, there are small colored patterns/clusters
+3. The rule appears to be: for each frame, find matching colored patterns outside, and place a corresponding pattern inside the frame
+
+Let me trace through Example 1:
+- Blue (4) frame has blue patterns outside → blue pattern appears inside
+- Gray (8) frame has gray patterns outside → gr"
+13e47133_1,False,38,30,231.91,"Looking at the examples, I need to identify the pattern:
+
+1. The grid is divided into rectangular regions by lines of 2s (Example 1), 6s (Example 3), or 1s (this test case)
+2. Each region contains special colored cells (non-background colors)
+3. The transformation fills each region with a fractal/recursive pattern based on the special colors in that region
+
+For the test input:
+- Lines of 1s divide the grid into 4 quadrants
+- Top-left (rows 0-7, cols 0-6): contains 4 and 3
+- Top-right (rows 0-7, "
+bf45cf4b,False,31,25,233.24,"Looking at the examples, I need to identify the pattern:
+
+1. Each input has two distinct patterns/shapes made of non-background colors
+2. One pattern appears to be a ""template"" and the other is a ""tile""
+3. The output tiles the smaller pattern according to the shape/structure of the larger pattern
+
+In the test input:
+- Background color: 8
+- Pattern 1 (rows 1-5, cols 1-5): A 5x5 pattern with colors 6, 4, 3
+- Pattern 2 (rows 7-11, cols 6-10): A 5x5 pattern with colors 1
+
+The first pattern (6,4,3) i"
+13e47133_0,False,41,30,235.04,"Looking at the examples, I need to identify the pattern:
+
+1. The grid is divided by lines of a specific color (2, 6, or 8)
+2. Each rectangular region contains a unique colored cell (not the background color 3 or the dividing line color)
+3. The unique colored cell in each region determines how that region is filled with a nested rectangular pattern
+
+The rule appears to be:
+- Find rectangular regions bounded by dividing lines
+- Identify the unique marker color in each region
+- Fill that region wit"
+a32d8b75_0,False,42,30,236.57,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input has a left section (columns 0-4) with patterns, a vertical divider of 6s (column 5), and a right section (columns 6+) with a repeating pattern
+2. The left section contains small pattern blocks (3x3 or 4x4) with non-zero values
+3. The output removes the left section and divider, keeping only the right section
+4. The patterns from the left section are tiled/repeated into specific regions of the right section
+
+Let me"
+d35bdbdc_0,False,25,10,240.19,"Let me analyze the pattern from the examples.
+
+In each example, I notice:
+1. There are several 3x3 blocks with a unique center value
+2. There's a pattern of 5s forming lines/paths
+3. The transformation seems to:
+   - Keep the 5s pattern
+   - Remove most 3x3 blocks
+   - Keep certain 3x3 blocks and modify their centers
+   - The center of kept blocks gets replaced with the center value from another block
+
+Looking more carefully:
+- Each input has multiple 3x3 blocks (with different border colors and"
+d35bdbdc_1,False,25,10,240.81,"Let me analyze the pattern from the examples.
+
+In each example, I notice:
+1. There are several 3x3 blocks with a unique center value
+2. There's a pattern of 5s forming paths
+3. The transformation seems to:
+   - Keep certain 3x3 blocks and the 5-pattern
+   - Remove other 3x3 blocks
+   - Replace centers of remaining blocks with values from removed blocks
+
+Looking more carefully:
+- Each input has multiple 3x3 blocks (bordered pattern with unique center)
+- One 3x3 block's center value appears in ano"
+d8e07eb2_0,False,43,30,240.89,"Looking at the examples, I need to identify the transformation rule.
+
+Key observations:
+1. The grid has horizontal lines of 6s that divide it into sections
+2. There's a specific 3×3 pattern in rows 8-10, columns 7-9 that appears in all examples (the ""0"" pattern with specific arrangement)
+3. When this pattern appears, rectangular regions get outlined with 3s
+4. Rows below the bottom 6-line and certain other rows get filled with specific colors
+
+Let me trace the pattern:
+- The 3×3 ""0"" pattern at r"
+a32d8b75_1,False,40,30,241.03,"Looking at the examples, I need to identify the transformation rule:
+
+1. The input has a left section (columns 0-6) with patterns and a vertical line of 6s at column 5, and a right section (columns 7+) with a repeating pattern
+2. The left section contains several small pattern blocks (non-zero, non-6 values)
+3. The output removes the leftmost columns (0-7) and tiles/repeats the patterns from the left section across the remaining grid
+
+Let me analyze the pattern placement:
+- The patterns from the"
+d35bdbdc_2,False,24,10,241.09,"Let me analyze the pattern from the examples.
+
+In each example, I notice:
+1. There are several 3x3 blocks with a unique center value
+2. There's a pattern of 5s forming a path/structure
+3. The transformation seems to:
+   - Keep the 5s pattern
+   - Remove most 3x3 blocks
+   - Keep certain 3x3 blocks and modify their centers
+   - The center values of removed blocks appear to replace centers in kept blocks
+
+Looking more carefully:
+- 3x3 blocks with centers get processed
+- Some blocks are cleared (se"
+5961cc34,False,38,27,242.0,"Looking at the examples, I need to identify the transformation rule:
+
+1. There are shapes made of 1s with some 3s marking specific positions
+2. There's a vertical line of 2s with a 4 at the top
+3. The output replaces all 1s with 2s
+4. The 2s extend horizontally from shapes that have 3s on their right edge to connect to the vertical line of 2s
+5. The vertical line of 2s extends upward from its original position
+
+Let me trace through the test input:
+- First shape (rows 2-9, cols 1-8): has 3s at po"
+d8e07eb2_1,False,39,30,243.62,"Looking at the examples, I need to identify the transformation rule.
+
+Key observations:
+1. The grid has horizontal lines of 6s that divide it into sections
+2. There's a central 3x3 block pattern (rows 8-10, cols 7-9) with shapes made of 0, and similar patterns elsewhere
+3. The transformation adds rectangular borders of 3s around certain pattern blocks
+4. Some rows of 8s at the bottom are changed to 2s or 3s
+
+Let me trace the pattern:
+- When a 3x3 block appears in certain positions, it gets surro"
+9bbf930d,False,31,23,248.26,"Looking at the examples, I need to identify the transformation rule.
+
+In each example, the input has a leftmost column of 6s and a second column of 7s. The transformation appears to:
+1. Keep most of the grid the same
+2. Modify certain rows where all 7s appear (rows that are entirely 6 7 7 7 7... 7 7)
+3. These all-7 rows get their pattern flipped: the 6 and last value swap positions, or the 6 moves to the end
+
+Let me verify this pattern:
+- In Example 1, rows with pattern ""6 7 7 7 7 7 7 7 7 7 7 7 "

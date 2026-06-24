@@ -123,32 +123,45 @@ def _load_completed_ids(csv_path: Path) -> set:
 
 # ── Per-task pipeline ──────────────────────────────────────────────────────────
 
+_EMPTY_HINT = {'name': '', 'params': {}, 'detailed_hint': '', 'confidence': 0.0, 'concept_votes': {}, 'param_votes': {}}
+
+
 async def _run_task(
     task: KiVATask,
     output_dir: Path,
     num_attempts: int,
     queue: asyncio.Queue,
+    no_hints: bool = False,
 ) -> None:
     """
     Full pipeline for one task:
-      1. Load or detect hint (Phase 2)
+      1. Load or detect hint (Phase 2) — skipped when no_hints=True
       2. Solve all 3 MCQ stages (Phase 3)
       3. Push one CSV row dict to the queue
     """
     t0 = time.monotonic()
 
     # ── Phase 2: hint ──────────────────────────────────────────────────────
-    hint = _load_cached_hint(output_dir, task.task_id)
-    if hint is None:
-        try:
-            hint = await get_kiva_hints(task)
-            _save_hint(output_dir, task.task_id, hint)
-        except Exception as e:
-            print(f"[eval] Hint failed for {task.task_id}: {e}")
-            hint = {
-                'name': '', 'params': {}, 'detailed_hint': '',
-                'confidence': 0.0, 'concept_votes': {}, 'param_votes': {},
-            }
+    if no_hints:
+        # Carry ground-truth labels so the solver can score correctly,
+        # but leave detailed_hint empty so the model gets no pipeline assistance.
+        hint = {
+            'name': task.concept,
+            'params': {'parameter': [task.parameter]},
+            'detailed_hint': '',
+            'confidence': 0.0,
+            'concept_votes': {},
+            'param_votes': {},
+        }
+    else:
+        hint = _load_cached_hint(output_dir, task.task_id)
+        if hint is None:
+            try:
+                hint = await get_kiva_hints(task)
+                _save_hint(output_dir, task.task_id, hint)
+            except Exception as e:
+                print(f"[eval] Hint failed for {task.task_id}: {e}")
+                hint = _EMPTY_HINT
 
     hint_concept = hint.get('name', '')
     hint_params  = hint.get('params', {})
@@ -298,6 +311,7 @@ async def run_eval(
     output_dir: Path = DEFAULT_OUTPUT_DIR,
     resume: bool = True,
     kiva_root: Optional[str] = None,
+    no_hints: bool = False,
 ) -> Path:
     """
     Run the full KiVA evaluation pipeline.
@@ -361,7 +375,7 @@ async def run_eval(
     # Task coroutines — all fired concurrently; semaphores inside each module
     # throttle the actual LLM calls
     task_coros = [
-        _run_task(task, output_dir, num_attempts, queue)
+        _run_task(task, output_dir, num_attempts, queue, no_hints=no_hints)
         for task in tasks_to_run
     ]
 
@@ -434,6 +448,10 @@ def _parse_args() -> argparse.Namespace:
         help="Skip evaluation and just print summary from existing CSV",
     )
     parser.add_argument(
+        "--no-hints", action="store_true",
+        help="Baseline mode: skip Phase 2 pattern detection, solve MCQ from images only",
+    )
+    parser.add_argument(
         "--max-tokens", type=int, default=32000,
         help="Max output tokens per LLM call — benchmark cap (default: 32000)",
     )
@@ -470,4 +488,5 @@ if __name__ == "__main__":
             output_dir=args.output_dir,
             resume=not args.no_resume,
             kiva_root=args.kiva_root,
+            no_hints=args.no_hints,
         ))
