@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image has two fewer groups of circles compared to the input image (from 5 groups to 3 groups).",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes exactly 2 groups of circles from the original image, reducing the total count from 5 groups to 3 groups. Visually, this means two complete circle groupings that were present in the input image are entirely eliminated in the output image, while the remaining 3 groups of circles are preserved in their original positions and configurations.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

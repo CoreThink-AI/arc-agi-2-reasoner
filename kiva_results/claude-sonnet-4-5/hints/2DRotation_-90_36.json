@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The toy car with the snowman character has been rotated 90 degrees clockwise, changing from a front-facing view to a side view with the head on the left and wheels repositioned.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: 90-Degree Clockwise Rotation**\n\nThe toy car with the snowman character undergoes a 90-degree clockwise rotation around its central axis. Initially shown in a front-facing view, the object rotates so that what was previously the front now faces right, resulting in a left-side profile view. In the final position, the snowman's head appears on the left side of the frame, and the wheels are repositioned accordingly to reflect the new side-view orientation.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

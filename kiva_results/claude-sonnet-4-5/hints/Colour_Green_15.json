@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object changed from blue to green while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color change\n\n**Parameter:** Blue to green (hue shift)\n\n**Description:** This transformation applies a color change where the object's hue is modified from blue to green while all other visual properties remain constant. The object's shape, size, position, and orientation are preserved throughout the transformation, with only the color attribute being altered from its original blue value to the new green value.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

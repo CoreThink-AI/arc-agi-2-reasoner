@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The fortune cookie has been flipped vertically, with the opening and crack pattern now appearing on the opposite side.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Vertical Flip (Reflection across horizontal axis)**\n\nThe fortune cookie undergoes a vertical flip, where the image is reflected across a horizontal axis running through its center. This transformation inverts the cookie's orientation from top to bottom, causing the opening and distinctive crack pattern—originally positioned on one side—to now appear on the opposite side. The overall shape and features remain identical, but their vertical positions are reversed, creating a mirror image along the horizontal plane.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

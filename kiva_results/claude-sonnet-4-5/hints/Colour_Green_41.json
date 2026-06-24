@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red bottle in the input image has changed to a green bottle in the output image, with all other aspects remaining the same.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\nThis transformation applies a targeted color substitution where the red bottle in the input image is recolored to green in the output image. The parameter specifies a hue shift from red (approximately 0°) to green (approximately 120° on the color wheel), affecting only the bottle object while preserving all other elements, including the bottle's shape, position, lighting, shadows, and background. The transformation is a selective object-based color change rather than a global filter, maintaining the integrity of all non-targeted visual elements in the scene.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

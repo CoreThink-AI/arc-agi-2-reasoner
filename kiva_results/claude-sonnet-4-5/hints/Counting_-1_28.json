@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows three robot figures while the output image shows only two robot figures, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThe transformation involves removing one robot figure from the scene, reducing the total count from three robots in the input image to two robots in the output image. Specifically, one of the three robot objects has been deleted entirely from the composition. This results in a simpler scene with fewer elements while maintaining the remaining two robot figures in their original positions.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

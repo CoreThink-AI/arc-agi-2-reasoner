@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image shows 6 cupcake objects arranged in two rows, while the input image shows only 4 cupcake objects in a single row.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation: Grid Multiplication/Duplication**\n\nThe transformation increases the number of cupcake objects from 4 to 6 by adding a second row, changing the layout from a single horizontal row of 4 cupcakes to a 2-row grid arrangement containing 6 cupcakes total. This represents a duplication and reorganization where the original linear arrangement is converted into a multi-row grid format, with cupcakes distributed across both rows (likely 3 cupcakes per row based on the 6-object total).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

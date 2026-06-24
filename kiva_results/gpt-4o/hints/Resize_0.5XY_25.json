@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The cupcake object has shrunk to half its original size.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "The transformation is a uniform scaling. The object, a cupcake, has been scaled down by a factor of 0.5. Visually, this means the cupcake's width and height have both been reduced to half their original dimensions, resulting in a smaller but proportionally identical version of the original object.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

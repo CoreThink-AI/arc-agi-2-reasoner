@@ -1,0 +1,19 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "Two additional objects have been added to the row of objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The transformation type is *addition*. Two objects have been added to the existing group, increasing the total number of objects in the row. This results in a visual change where the original arrangement is extended by two new elements placed sequentially at the end of the row.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 2,
+    "+1": 1
+  },
+  "confidence": 1.0
+}

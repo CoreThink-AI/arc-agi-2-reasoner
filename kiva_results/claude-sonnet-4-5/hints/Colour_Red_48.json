@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green cabinet object has changed to a red color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation: Color Change**\n\nThe transformation applies a color substitution to a cabinet object, changing its hue from green to red while preserving all other attributes. The cabinet's shape, size, position, and orientation remain completely unchanged throughout the process. This is a pure color modification where only the RGB values of the object's surface are altered, with no geometric or structural transformations applied.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

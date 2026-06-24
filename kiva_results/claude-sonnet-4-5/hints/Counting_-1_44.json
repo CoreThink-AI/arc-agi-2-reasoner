@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The left image contains 5 objects while the right image contains 4 objects, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation involves removing one object from the scene, reducing the total count from 5 objects in the left image to 4 objects in the right image. This is a deletion operation where a single element has been eliminated from the original composition while the remaining four objects are preserved. The visual change is straightforward: one fewer object appears in the final image compared to the initial state.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

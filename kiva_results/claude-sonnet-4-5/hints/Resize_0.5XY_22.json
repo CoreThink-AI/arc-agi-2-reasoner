@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The ring-shaped object in the output image is half the size of the input object in both dimensions.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Uniform scaling (reduction)\n\n**Parameter Value:** 0.5× (50% scale factor in both dimensions)\n\n**Visual Description:** The transformation applies a uniform scale reduction to the ring-shaped object, decreasing both its width and height by half. The output image displays a ring that maintains the same proportions and shape as the original but occupies one-quarter of the original area, with all linear dimensions (outer diameter, inner diameter, and stroke width) reduced to 50% of their initial values.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

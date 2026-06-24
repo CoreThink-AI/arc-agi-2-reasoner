@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The poodle object has rotated 90 degrees clockwise.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **rotation**. The poodle object has rotated **90 degrees clockwise**. This means that if you were to trace the outline of the poodle, each point on the outline would move 90 degrees in a clockwise direction around a central pivot point, resulting in the poodle appearing to have turned on its side to the right.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

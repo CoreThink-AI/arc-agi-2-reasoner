@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The sheep object changed from red/coral color to blue color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color change (hue shift)\n\n**Parameter Value:** Red/coral (#FF6B6B or similar) to blue (#4A90E2 or similar)\n\n**Visual Description:** The transformation applies a color substitution to the sheep object, replacing its original red/coral fill color with a blue fill color. The sheep's shape, size, position, and orientation remain completely unchanged throughout the transformation—only the hue of the object is modified while all other visual properties are preserved.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

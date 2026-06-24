@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The duck object has rotated 90 degrees clockwise.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The duck object undergoes a rotation transformation. It rotates 90 degrees clockwise around its center. This causes the duck to turn to its right, with its head now pointing downwards and its feet pointing upwards.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 2,
+    "-90": 1
+  },
+  "confidence": 1.0
+}

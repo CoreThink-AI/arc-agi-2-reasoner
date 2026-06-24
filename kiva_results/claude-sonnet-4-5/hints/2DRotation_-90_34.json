@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The cactus has been rotated 90 degrees clockwise, changing from a vertical upright orientation to a horizontal orientation pointing to the right.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation.** The cactus undergoes a rotational transformation where it pivots 90 degrees in a clockwise direction around its center point. Initially positioned in a vertical, upright orientation, the cactus rotates through a quarter turn until it reaches a horizontal orientation with its top now pointing to the right. This transformation preserves the cactus's shape and size while changing only its angular position in the plane.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

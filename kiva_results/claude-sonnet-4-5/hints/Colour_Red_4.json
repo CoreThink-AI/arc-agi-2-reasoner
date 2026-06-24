@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green poodle-shaped object in the input image has changed to red in the output image while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution to a poodle-shaped object, changing it from green to red while preserving all other attributes. Specifically, the object's shape, size, position, and orientation remain identical between the input and output images—only the color value is modified from green to red. This is a simple color replacement transformation that affects a single object in the scene without altering any geometric or spatial properties.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The orange toy turtle in the input image has been transformed to a green toy turtle in the output image, with all parts changing from orange/brown/red tones to various shades of green.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Hue Shift (Color Replacement)**\n\nThe transformation applies a selective hue shift that converts all orange, brown, and red tones of the toy turtle to corresponding shades of green while preserving the original luminosity and saturation values. Specifically, the turtle's body shifts from warm orange/brown hues (approximately 20-40° on the color wheel) to cool green hues (approximately 120-140°), representing a hue rotation of roughly 100° or a targeted color replacement operation. The background and other elements remain unchanged, with only the turtle's coloration being modified while maintaining its texture details, shadows, and highlights.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

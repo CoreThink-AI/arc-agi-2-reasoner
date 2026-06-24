@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of brown oval objects increased from three in the input image to four in the output image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Addition**\n\nThis transformation adds one brown oval object to the scene, increasing the total count from three to four. Specifically, a new brown oval is inserted into the image while maintaining the existing three brown ovals in their original positions. The visual change is straightforward: the output image contains all elements from the input image plus one additional brown oval object placed somewhere in the composition.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

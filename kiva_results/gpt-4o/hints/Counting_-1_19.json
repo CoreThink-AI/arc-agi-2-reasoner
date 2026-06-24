@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One basketball is removed, reducing the total number from four to three.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "The transformation is a *reduction in quantity*. Specifically, one basketball is removed, decreasing the total number from four to three. Visually, this involves starting with four basketballs and eliminating one, leaving three basketballs remaining.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

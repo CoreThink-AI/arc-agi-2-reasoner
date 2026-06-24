@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The walkie-talkie has been horizontally flipped, with the antenna now positioned on the opposite side.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe walkie-talkie image has been flipped horizontally, creating a mirror image of the original. This transformation reverses the left-right orientation of the object, causing the antenna—which was originally on one side—to now appear on the opposite side. All other features of the walkie-talkie maintain their relative positions but are reflected across the central vertical axis, resulting in a complete left-to-right reversal of the image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

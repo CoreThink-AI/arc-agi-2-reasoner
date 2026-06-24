@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The figure's color scheme changed from predominantly blue/purple tones to predominantly red tones while maintaining the same pose and size.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Scheme Change (Hue Shift)**\n\nThe transformation applies a hue shift that converts the figure's color palette from cool blue/purple tones to warm red tones while preserving all other visual properties. The figure's pose, size, position, and structural details remain completely unchanged throughout the transformation. This is a pure color remapping operation where only the hue values are modified, shifting the entire spectrum from the blue-purple range (approximately 240°-270° on the color wheel) to the red range (approximately 0°-30°), while maintaining the original saturation and brightness relationships within the image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

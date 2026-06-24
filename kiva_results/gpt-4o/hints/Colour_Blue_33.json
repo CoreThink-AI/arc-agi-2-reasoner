@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The color of the sofa changed from red to blue.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "The transformation is a **color change**. The color of the sofa shifted from red to blue. Visually, the red hue of the sofa was entirely replaced by a blue hue, while the shape, size, and other features of the object remained unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

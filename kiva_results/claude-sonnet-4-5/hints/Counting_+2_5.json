@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of dark rectangular objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication**\n\nThe transformation duplicates the dark rectangular objects present in the input image, specifically doubling their quantity from 2 to 4 instances in the output. This duplication process maintains the visual characteristics of the original rectangles while creating exact copies that are positioned within the frame. The result is a systematic increase in the number of identical dark rectangular elements, transforming the composition from a sparse arrangement of 2 objects to a more populated layout containing 4 objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

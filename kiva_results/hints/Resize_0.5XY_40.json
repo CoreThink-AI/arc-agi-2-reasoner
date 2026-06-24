@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The donkey object in the output image is half the size of the donkey object in the input image.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "The transformation is a **scaling operation**. The donkey object has been scaled down by a factor of **0.5**. This means that both the width and height of the donkey in the output image are exactly half of its original dimensions in the input image.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

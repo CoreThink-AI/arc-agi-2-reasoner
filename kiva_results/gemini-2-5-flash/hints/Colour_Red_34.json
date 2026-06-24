@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green and brown colors of the popsicle in the input image have been replaced with shades of red and brown in the output image.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "The transformation is a **color replacement**. The green color of the popsicle in the input image has been replaced with shades of red, while the brown color has been replaced with shades of brown in the output image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

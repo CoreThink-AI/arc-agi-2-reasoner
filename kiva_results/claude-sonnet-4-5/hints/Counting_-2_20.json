@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of barn objects decreased from 4 in the input image to 2 in the output image.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThe transformation reduces the quantity of barn objects by exactly half, from 4 instances in the input image to 2 instances in the output image. This represents a 50% decrease in the number of barn objects present in the scene. The visual change involves the removal or deletion of two barn objects while retaining the remaining two barns in the output.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

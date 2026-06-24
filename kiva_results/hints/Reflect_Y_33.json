@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The object has been flipped horizontally across the Y-axis, so the head is now on the left and the tail is on the right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a horizontal reflection across the Y-axis. The object is flipped such that its left and right sides are interchanged. Consequently, the head, originally on the right, is now on the left, and the tail, originally on the left, is now on the right.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

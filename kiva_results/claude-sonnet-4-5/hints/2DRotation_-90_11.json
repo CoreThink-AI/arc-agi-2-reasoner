@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The green hat has been rotated 90 degrees clockwise, changing from an upright position to lying on its side.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation.** The green hat undergoes a rotation of exactly 90 degrees in the clockwise direction around its center point. Initially positioned upright with the crown at the top, the hat rotates to lie on its side, with the brim now oriented toward the right and what was previously the top of the crown now facing rightward. This quarter-turn transformation maintains the hat's size and shape while completely changing its orientation in the plane.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 5 brown circles while the input image contains 3 brown circles, showing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Addition**\n\nThe transformation adds 2 brown circles to the original set of 3 circles. Visually, the input displays 3 brown circles arranged in a single horizontal row, while the output displays 5 brown circles with 4 positioned in the top horizontal row and 1 placed below, resulting in a total increase from 3 to 5 objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

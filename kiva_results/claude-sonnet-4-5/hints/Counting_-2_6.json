@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 castle-like objects (4 in the top row and 1 in the bottom row), while the output image shows 3 castle-like objects (all in the top row), representing a decrease of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThis transformation removes 2 castle-like objects from the input image, reducing the total count from 5 to 3. Specifically, the rightmost castle from the top row and the single castle from the bottom row are deleted, leaving only 3 castles aligned in a single top row in the output image. The remaining objects maintain their original positions and appearance.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

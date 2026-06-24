@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The octopus has been horizontally flipped, with its head and tentacles now facing the opposite direction from left to right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe octopus image undergoes a horizontal flip, creating a mirror reflection across a vertical axis running through the center of the image. This transformation reverses the left-right orientation, causing the octopus's head and tentacles to face the opposite direction—if originally oriented left, they now face right, and vice versa. The vertical positions and overall shape remain unchanged, with only the horizontal coordinates inverted to produce the mirrored result.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

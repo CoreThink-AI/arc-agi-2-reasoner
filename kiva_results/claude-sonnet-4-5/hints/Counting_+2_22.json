@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of cookies increased from 3 in the input image to 5 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Multiplication**\n\nThe transformation increases the quantity of cookies from 3 to 5, adding 2 additional cookies to the scene. Visually, the output image displays 5 cookies arranged in the frame, whereas the input image contained only 3 cookies in the same or similar positions. This represents a discrete numerical increase in the count of identical objects while maintaining their visual characteristics.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

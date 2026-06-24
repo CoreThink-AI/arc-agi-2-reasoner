@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains four chess pieces while the input image contains three chess pieces, indicating one additional object was added.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Addition**\n\nThe transformation adds one chess piece to the scene, increasing the total count from three pieces in the input image to four pieces in the output image. This is a straightforward object insertion operation where a new chess piece is placed into the existing composition alongside the original three pieces. The added piece maintains visual consistency with the existing chess pieces in terms of style and rendering quality.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

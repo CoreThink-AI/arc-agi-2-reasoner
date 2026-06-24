@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The key object has doubled in size, appearing twice as large in both width and height in the output image compared to the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Uniform Scaling (Enlargement)**\n\nThe transformation applies a 2× scale factor to the key object, doubling both its width and height dimensions. This uniform scaling causes the object to appear four times larger in total area while maintaining its original proportions and aspect ratio. The enlargement is centered on the object, making it twice as wide and twice as tall in the output image compared to its original size in the input image.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

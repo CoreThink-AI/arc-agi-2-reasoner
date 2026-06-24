@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of Android figures increased from two to four.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "The visual transformation is a **replication**. The number of Android figures **doubled from two to four**. This was achieved by **duplicating the existing two figures and placing them adjacent to the originals**, resulting in a row of four identical Android figures.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

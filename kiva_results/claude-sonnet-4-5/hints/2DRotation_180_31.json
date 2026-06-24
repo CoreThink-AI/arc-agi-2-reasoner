@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The bunny figure has been rotated 180 degrees, appearing upside down in the output image compared to the upright position in the input image.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** 180-degree rotation\n\nThe bunny figure undergoes a 180-degree rotation around its center point, causing it to flip completely upside down. In the input image, the bunny appears in its standard upright position with the green base at the bottom, while in the output image, the figure is inverted with the green base now positioned at the top and the bunny's head pointing downward.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

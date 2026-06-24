@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The sheep object has been flipped horizontally across the Y-axis, so its head is now on the left and its tail is on the right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The object underwent a horizontal flip transformation across the Y-axis. This mirrored the object, changing its orientation such that the head, originally on the right, is now on the left, and the tail, originally on the left, is now on the right.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

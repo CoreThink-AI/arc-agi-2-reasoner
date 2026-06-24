@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The elephant has been flipped upside down, mirroring it across a horizontal axis.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Axis Reflection (180° rotation about horizontal axis)**\n\nThe image undergoes a horizontal flip where the elephant is mirrored across a horizontal axis running through its center. This transformation inverts the vertical orientation, causing what was at the top to move to the bottom and vice versa, resulting in an upside-down elephant. The left-right positioning remains unchanged while the top-bottom relationship is completely reversed, creating a mirror image along the horizontal plane.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

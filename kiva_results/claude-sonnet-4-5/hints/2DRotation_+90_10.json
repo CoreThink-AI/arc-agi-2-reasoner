@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The gun-shaped object has been rotated 90 degrees counter-clockwise, changing from a horizontal orientation pointing right to a vertical orientation pointing upward.",
+  "params": {
+    "parameter": [
+      "-90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree counter-clockwise rotation.** The gun-shaped object undergoes a rotation of exactly 90 degrees in the counter-clockwise direction around its center point. Initially, the object is positioned horizontally with its barrel pointing toward the right side of the frame. After the transformation, the object assumes a vertical orientation with its barrel pointing upward toward the top of the frame.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "-90": 3
+  },
+  "confidence": 1.0
+}

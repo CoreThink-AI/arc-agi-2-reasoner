@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green piano object has changed to a blue color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color substitution\n\n**Parameter:** Green (#00FF00 or similar) changed to blue (#0000FF or similar)\n\n**Visual Description:** The transformation applies a color change to a piano object while preserving all other visual properties. Specifically, the piano's original green color is replaced with blue, maintaining identical shape, size, position, and orientation throughout the conversion.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The dog has been horizontally flipped, with its orientation reversed from left-facing to right-facing while maintaining the same pose.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe image has undergone a horizontal flip transformation, creating a mirror reflection across a vertical axis through the center of the frame. The dog's orientation has been reversed from left-facing to right-facing, with all spatial elements inverted horizontally while the vertical positioning remains unchanged. The dog maintains its original pose and proportions, but appears as a mirror image of the original, as if reflected in a vertical mirror placed at the center of the image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

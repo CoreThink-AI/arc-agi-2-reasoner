@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The bicycle and rider in the output image are approximately twice the size of those in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Scale/Enlargement by a factor of 2×**\n\nThe image undergoes a uniform scaling transformation where all elements are magnified by approximately 200% (2× their original dimensions). The bicycle and rider increase proportionally in both width and height, doubling their apparent size while maintaining their original aspect ratio and relative positioning within the frame. This enlargement makes all details of the subject more prominent and visible, effectively zooming into the scene without cropping or altering the composition's fundamental structure.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

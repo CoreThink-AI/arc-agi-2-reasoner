@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The deer has been rotated 90 degrees clockwise, with the head moving from the left side to the bottom and the body orientation changing accordingly.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation**\n\nThe image undergoes a 90-degree clockwise rotation around its center point. In the original orientation, the deer's head is positioned on the left side of the frame with its body extending rightward. After the rotation, the deer's head moves to the bottom of the frame while the body reorients vertically, with what was previously the right side now pointing upward.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

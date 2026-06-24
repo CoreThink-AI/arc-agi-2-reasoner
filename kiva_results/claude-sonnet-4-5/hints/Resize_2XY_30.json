@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The cactus in the output image is approximately twice the size of the cactus in the input image while maintaining the same proportions and position.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Uniform Scaling (Enlargement)**\n\nThe transformation applies a 2× scale factor to the cactus object, doubling its dimensions in both width and height. The cactus maintains its original proportions and aspect ratio throughout the scaling process, while its position remains anchored at the same location. This results in a visually larger cactus that is twice the size of the original in all dimensions.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

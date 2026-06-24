@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 small figures while the output image shows only 4 figures, with one figure removed from the bottom left position.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes a single figure from the input image, specifically the object located in the bottom left position. The input contains 5 small figures arranged in a spatial layout, while the output retains only 4 figures, with all other elements maintaining their original positions. This is a selective deletion operation that targets one specific object while preserving the rest of the composition unchanged.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

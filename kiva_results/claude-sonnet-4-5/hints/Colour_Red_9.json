@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The piano object changed from blue to red while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution to the piano object, changing its fill color from blue to red while preserving all other visual properties. The piano maintains its exact shape, size, position, and orientation throughout the transformation—only the color attribute is modified. This is a simple recoloring operation where the RGB values of the object are replaced with new values corresponding to red, leaving the geometric and spatial characteristics completely unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

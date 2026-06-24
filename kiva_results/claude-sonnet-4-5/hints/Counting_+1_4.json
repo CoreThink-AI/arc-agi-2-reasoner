@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 5 objects while the input image contains 4 objects, with one additional object appearing in the lower left area.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Addition**\n\nThe transformation adds one new object to the image, increasing the total count from 4 to 5 objects. Specifically, the additional object is placed in the lower left area of the image, corresponding to the second row on the left side of the layout. This results in a modified spatial arrangement where the new object occupies a previously empty position in the bottom-left region.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

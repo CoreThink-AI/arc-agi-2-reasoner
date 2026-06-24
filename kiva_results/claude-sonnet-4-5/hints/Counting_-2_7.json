@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 brown rectangles while the output image contains only 3 brown rectangles, showing a reduction of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThis transformation involves the selective deletion of brown rectangular objects from the scene. Specifically, 2 out of the original 5 brown rectangles present in the input image are removed, resulting in exactly 3 brown rectangles remaining in the output image. The visual change reduces the total count of brown rectangular elements by 40%, though the specific positions or identities of the removed rectangles are not specified in the provided explanations.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

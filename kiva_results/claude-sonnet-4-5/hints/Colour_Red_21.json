@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The purple and blue rose in the input image has been changed to a red rose in the output image, with all other features remaining the same.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement/Hue Shift**\n\nThis transformation involves a targeted color substitution where the purple and blue hues of the rose in the input image are replaced with red tones in the output image. The modification is applied selectively to the rose petals only, preserving all other elements of the image including the background, stem, leaves, and overall composition unchanged. This represents a localized color mapping transformation that shifts the cool-toned (purple/blue) flower to a warm-toned (red) flower while maintaining the original lighting, texture, and structural details of the rose.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

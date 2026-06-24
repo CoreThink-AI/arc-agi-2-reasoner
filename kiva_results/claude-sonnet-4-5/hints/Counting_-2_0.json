@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 pin-like objects while the output image contains only 3 pin-like objects, indicating 2 objects were removed.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThis transformation involves the selective deletion of 2 pin-like objects from the original set of 5, resulting in 3 remaining objects in the output image. The visual change shows a reduction in the total number of pin-like elements displayed, with specific objects being eliminated while the remaining 3 pins retain their original positions and appearance. The parameter value is -2 objects (or 40% reduction), transforming the scene from a 5-object composition to a 3-object composition.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The butterfly changed from blue/purple coloring to green coloring while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change (Hue Shift)**\n\nThe transformation applies a hue shift to the butterfly object, changing its color from blue/purple tones to green tones while preserving all other visual properties. Specifically, the hue parameter is shifted approximately 60-90 degrees on the color wheel (from the blue-violet range around 240-270° to the green range around 120-150°). The butterfly's shape, size, position, and orientation remain completely unchanged throughout this transformation, with only the color values being modified.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

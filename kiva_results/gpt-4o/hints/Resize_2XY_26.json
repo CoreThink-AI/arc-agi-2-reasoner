@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The bicycle in the output image is double the size of the one in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "The transformation is a scaling operation with a parameter value of 2. The bicycle in the input image is uniformly enlarged, resulting in the output image where the bicycle's dimensions—height and width—are exactly double their original size. This scaling maintains the proportions of the bicycle while increasing its overall size.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

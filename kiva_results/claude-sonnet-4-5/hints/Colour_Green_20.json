@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue candy-shaped object has changed to green while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution to a specific object, changing it from blue to green. The candy-shaped object retains all of its original properties—including shape, size, position, and orientation—while only its color value is modified from blue to green. This is a simple attribute modification that affects solely the color channel of the target object without any geometric or spatial alterations.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

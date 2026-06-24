@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red/coral colored sheep object has changed to a green colored sheep object while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution to a sheep-shaped object, changing it from red/coral to green while preserving all other attributes. The object's shape, size, position, and orientation remain identical throughout the transformation—only the color property is modified. This is a simple recoloring operation where the RGB values of the sheep object are replaced with green values while maintaining the object's geometric and spatial properties intact.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

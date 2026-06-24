@@ -1,0 +1,19 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The character has been flipped upside down, with the head now at the bottom and legs at the top, indicating a horizontal axis reflection.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Axis Reflection (180° rotation about the horizontal axis)**\n\nThe character undergoes a horizontal axis reflection, effectively flipping it upside down. The head, originally positioned at the top, moves to the bottom position, while the legs transition from the bottom to the top. This creates a complete vertical inversion where the character's orientation is reversed across a horizontal line running through its center, resulting in an upside-down appearance of the original figure.",
+  "concept_votes": {
+    "Reflect": 2,
+    "2DRotation": 1
+  },
+  "param_votes": {
+    "X": 2
+  },
+  "confidence": 0.67
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One bottle has been removed from the group, reducing the total count from six to five.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "The transformation is a *removal*. Specifically, one bottle is removed from the original group of six bottles, reducing the total count to five. Visually, the group starts with six bottles, and one bottle is taken away, leaving five bottles remaining.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

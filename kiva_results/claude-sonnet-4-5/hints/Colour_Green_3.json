@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The mushroom-shaped object changed from blue/purple color to green color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color change (hue shift)\n\n**Parameter Value:** Blue/purple to green\n\n**Visual Description:** The mushroom-shaped object undergoes a complete color transformation from blue/purple to green while all other visual properties remain unchanged. The shape, size, position, and orientation of the mushroom are preserved exactly, with only the hue being modified across the entire object uniformly.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

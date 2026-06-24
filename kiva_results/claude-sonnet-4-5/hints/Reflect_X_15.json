@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The rose has been rotated 180 degrees, with the flower now appearing upside down and the stem pointing upward instead of downward.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe image has undergone a 180-degree rotation around its center point. This transformation inverts the entire composition, causing the rose flower head, which was originally at the top, to now appear at the bottom in an upside-down orientation, while the stem, which previously extended downward, now points upward. The rotation preserves all visual elements of the rose but completely reverses their spatial arrangement along the vertical axis.",
+  "concept_votes": {
+    "2DRotation": 2,
+    "Reflect": 1
+  },
+  "param_votes": {
+    "180": 2
+  },
+  "confidence": 0.67
+}

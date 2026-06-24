@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 3 rabbit objects while the output image shows 5 rabbit objects, indicating 2 additional objects were added.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication/Addition**\n\nThe transformation adds exactly 2 additional rabbit objects to the scene, increasing the total count from 3 rabbits in the input image to 5 rabbits in the output image. The new rabbits are duplicated instances that maintain the same visual characteristics as the original objects. This represents a straightforward object multiplication operation with a parameter value of +2 objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

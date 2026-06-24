@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object changed from green/yellow colors to red/orange colors while maintaining the same shape and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Color Palette Transformation**: The object undergoes a complete color substitution where green hues are replaced with red and yellow hues are replaced with orange, while all other visual properties remain unchanged. The transformation preserves the object's shape, size, position, and orientation exactly, affecting only the color values. This represents a systematic color mapping that shifts the entire palette from cool/neutral tones (green-yellow spectrum) to warm tones (red-orange spectrum).",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

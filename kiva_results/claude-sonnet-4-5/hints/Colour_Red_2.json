@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green rocking horse toy has changed to a red rocking horse toy while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\nThe transformation applies a color substitution where the rocking horse toy's primary color is changed from green to red. The object retains all other visual properties including its shape, dimensions, spatial position, and orientation. This is a straightforward hue shift affecting only the color channel while preserving the toy's form and structural characteristics.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

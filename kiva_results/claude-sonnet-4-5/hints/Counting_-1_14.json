@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of dog objects decreased from four in the input image to three in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation involves removing one dog object from the scene, reducing the total count from four dogs in the input image to three dogs in the output image. This is a straightforward deletion operation where a single instance of the dog object is eliminated while the remaining three dogs are preserved in their original positions and states.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

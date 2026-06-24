@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The toy car and character changed from red/pink tones to blue/purple tones while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color/Hue Shift\n\nThe transformation applies a hue adjustment that shifts the color palette from warm red/pink tones to cool blue/purple tones. The toy car and character undergo this chromatic change uniformly while preserving all other visual properties including shape, size, position, and orientation. This represents approximately a 180-240 degree hue rotation in the color spectrum, converting reds to blues and pinks to purples without affecting the luminance or structural elements of the objects.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The green hat has been horizontally flipped, with the decorative buckle on the band moving from the left side to the right side of the hat.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Horizontal Flip (Mirror Reflection)\n\n**Parameter:** 180-degree rotation along the vertical axis\n\n**Visual Description:** The green hat undergoes a horizontal flip, creating a mirror image of the original. The most noticeable change is that the decorative buckle on the hat band, which was originally positioned on the left side, now appears on the right side of the hat after the transformation. This reflection preserves all other features of the hat while reversing its left-right orientation.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

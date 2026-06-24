@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of cupcake objects decreased from 4 in the input image to 2 in the output image.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\n**Parameter Value: 50% (reduction from 4 to 2 objects)**\n\nThis transformation removes half of the cupcake objects present in the scene. Starting with 4 cupcakes in the input image, the transformation systematically reduces the count to 2 cupcakes in the output image, resulting in a 50% decrease in the total number of visible cupcake objects while maintaining the remaining objects in the scene.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

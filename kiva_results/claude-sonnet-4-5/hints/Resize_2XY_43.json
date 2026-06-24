@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The character figure has grown to approximately twice its original size in both width and height.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Uniform Scale (Enlargement)**\n\nThe character figure undergoes a uniform scaling transformation with a scale factor of approximately 2.0 (or 200%). This means both the width and height dimensions are multiplied by two, causing the figure to double in size while maintaining its original proportions and aspect ratio. The visual result is a character that appears twice as large as the original in all dimensions, with no distortion to its shape.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 door objects arranged in two rows, while the input image contains only 4 door objects in a single row.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Grid Multiplication/Tiling**\n\nThe transformation takes the input row of 4 door objects and replicates it to create a 2×3 grid arrangement, resulting in 6 door objects total in the output. Specifically, the original horizontal sequence is duplicated vertically, creating two identical rows stacked on top of each other, though the exact arrangement shifts from 4 objects in one row to 6 objects distributed across two rows (likely 3 objects per row). This represents a spatial reorganization where the content is both replicated and redistributed into a multi-row grid layout.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

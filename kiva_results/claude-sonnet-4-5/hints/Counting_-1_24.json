@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of objects decreased from 4 identical figures in the left image to 3 identical figures in the right image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal/Quantity Reduction**\n\nThe transformation involves removing one object from a set of identical figures, reducing the total count from 4 figures in the left image to 3 figures in the right image. Visually, this means one of the four identical shapes has been deleted while the remaining three figures maintain their original appearance and arrangement. The change is purely quantitative, affecting only the number of objects present without altering the characteristics of the remaining figures.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

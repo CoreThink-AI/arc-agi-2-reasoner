@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The butterfly object has rotated 90 degrees clockwise.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The image shows a rotation transformation. The butterfly object has been rotated 90 degrees clockwise. This means that each point of the butterfly has moved along a circular path, with the top of the butterfly shifting to the right, the right side moving to the bottom, and so on, resulting in the butterfly appearing on its side.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

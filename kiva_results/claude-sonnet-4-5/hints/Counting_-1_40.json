@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 dinosaur objects while the output image shows 4 dinosaur objects, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Removal\n\n**Parameter Value:** 1 object removed (reducing count from 5 to 4 dinosaurs)\n\n**Visual Change Description:** The transformation involves removing a single dinosaur object from the input image. Starting with 5 dinosaur objects in the input, one dinosaur is deleted, resulting in an output image containing 4 dinosaur objects. The remaining 4 dinosaurs maintain their original positions and appearances while one dinosaur has been completely eliminated from the scene.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

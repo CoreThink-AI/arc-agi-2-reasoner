@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The cup and its latte art are mirror-flipped along the vertical axis.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a vertical reflection (mirror flip) along the vertical axis. The cup and its latte art are flipped such that all elements are reversed horizontally. Specifically, the handle of the cup, originally on one side, appears on the opposite side after the transformation.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

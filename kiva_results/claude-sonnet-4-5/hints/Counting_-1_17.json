@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 brown cow objects while the output image shows 4 brown cow objects, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Removal\n\n**Parameter Value:** 1 object removed (reduction from 5 to 4 brown cow objects)\n\n**Visual Change Description:** The transformation involves the deletion of a single brown cow object from the original image. Starting with an input image containing 5 brown cow objects, the operation removes exactly one cow, resulting in an output image that displays the remaining 4 brown cow objects. The spatial arrangement of the remaining cows may be preserved or adjusted, but the key change is the reduction in the total count of cow objects by one unit.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of cupcake objects decreased from three in the input image to two in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Removal**\n\nThe transformation involves the deletion of one cupcake object from the scene, reducing the total count from three cupcakes in the input image to two cupcakes in the output image. This is a straightforward object removal operation where a single instance is eliminated while the remaining two cupcakes are preserved in their original positions and appearance.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

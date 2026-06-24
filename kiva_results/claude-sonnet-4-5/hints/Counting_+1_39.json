@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of croissant objects increased from 3 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication**\n\n**Parameter Value: +1 croissant (from 3 to 4 objects)**\n\nThis transformation involves adding one additional croissant object to the scene. The input image contains three croissants, and through the duplication process, a fourth croissant is introduced in the output image, increasing the total count by one while maintaining the visual characteristics of the existing croissant objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

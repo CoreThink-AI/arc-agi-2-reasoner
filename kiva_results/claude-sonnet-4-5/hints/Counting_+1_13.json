@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains five objects arranged in two rows (4 in top row, 1 in bottom row) while the input image contains only four objects in a single row.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication with Reflow Layout**\n\nThe transformation duplicates one object from the original set of four, increasing the total count to five objects, and then reorganizes them into a multi-row layout. Specifically, the four objects initially arranged in a single horizontal row are redistributed into two rows: the top row contains four objects while the bottom row contains the one duplicated object. This represents a combined duplication and reflow operation that changes both the quantity and spatial arrangement of the objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

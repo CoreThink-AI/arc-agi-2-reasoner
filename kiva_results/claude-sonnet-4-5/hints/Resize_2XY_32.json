@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The lobster in the output image is twice the size of the lobster in the input image, with all dimensions scaled proportionally.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Uniform scaling (enlargement)\n\n**Parameter Value:** 2× (200% or scale factor of 2)\n\n**Visual Description:** This transformation applies a uniform scale of 2× to the lobster image, doubling both its width and height while maintaining the original aspect ratio. Every dimension of the lobster—including its claws, body segments, antennae, and overall footprint—is proportionally enlarged to exactly twice its original size, resulting in an image with four times the total area but identical proportions and visual characteristics.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

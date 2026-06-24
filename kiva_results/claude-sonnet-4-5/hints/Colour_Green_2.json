@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue rocking horse toy has changed to a green color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\nThe transformation applies a color substitution to the rocking horse toy, changing it from blue to green while preserving all other attributes. The object's shape, size, position, and orientation remain identical between the input and output images. This is a targeted hue shift affecting only the rocking horse element, with no modifications to the background or any other components of the scene.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

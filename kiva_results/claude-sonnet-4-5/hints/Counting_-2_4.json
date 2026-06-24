@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of small brown figures decreased from 4 in the input image to 2 in the output image.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes exactly 2 objects from the original set of 4 small brown figures arranged horizontally. In the input image, 4 figures are visible in a horizontal arrangement, while the output image displays only 2 of these figures remaining in their positions. This represents a 50% reduction in the number of objects, with 2 specific figures being deleted while the remaining 2 figures maintain their original placement.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

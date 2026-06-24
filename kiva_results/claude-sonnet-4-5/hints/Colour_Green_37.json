@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue robot toy has changed to a green color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation: Color/Hue Shift**\n\nThe transformation applies a color change from blue to green on the robot toy object. The hue is shifted while preserving all other attributes including the object's shape, size, position, and orientation in the scene. This is a selective recoloring operation that targets only the robot toy, leaving all other elements in the image unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

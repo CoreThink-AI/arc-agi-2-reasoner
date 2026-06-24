@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The stroller-shaped object has been rotated 90 degrees clockwise, with the handle that was pointing up-right now pointing down-right.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation**\n\nThe stroller-shaped object undergoes a 90-degree clockwise rotation around its center point. Initially, the handle extends upward and to the right, but after the transformation, it points downward and to the right. This rotation repositions all elements of the stroller by a quarter turn in the clockwise direction, maintaining the object's shape and proportions while changing its orientation in the plane.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

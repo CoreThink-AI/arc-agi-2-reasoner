@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 chess pieces (pawns) arranged in two rows, while the output image shows only 4 chess pieces in a single row, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation removes one chess piece (pawn) from the scene, reducing the total count from 5 pieces to 4 pieces. Specifically, one pawn from the original two-row arrangement (3 pieces in the back row, 2 in the front) is deleted, and the remaining 4 pawns are reorganized into a single horizontal row in the output image. This represents a straightforward object deletion operation where the parameter is the removal of 1 pawn (20% reduction in object count).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

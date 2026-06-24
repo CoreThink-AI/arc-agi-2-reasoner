@@ -1,0 +1,8 @@
+{
+  "prompt_tokens": 3156779,
+  "completion_tokens": 144815,
+  "total_tokens": 3301594,
+  "model": "anthropic/claude-sonnet-4-5",
+  "tasks_completed": 700,
+  "elapsed_s": 7536.6
+}

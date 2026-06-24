@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated by 180°, flipping its orientation completely.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** of **180°**. The object has been turned around its center point, resulting in a complete inversion of its orientation. Elements such as the tree and rocks have flipped to the opposite side, appearing upside down relative to their original position.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

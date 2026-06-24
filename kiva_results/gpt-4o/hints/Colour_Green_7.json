@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object's color changed from yellow and orange to green.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "The transformation is a **color change**. The object's color shifted from yellow (and orange in some areas) to green. Visually, the yellow tones were replaced entirely by green, and any orange hues transitioned to green as well, resulting in a uniform green appearance.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

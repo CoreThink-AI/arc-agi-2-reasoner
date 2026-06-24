@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The cow changed from green to blue while maintaining the same size, orientation, and position.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution where the cow object's fill color is changed from green to blue. All other visual properties remain constant: the cow maintains its original size, spatial position, orientation, and there is no change in the number of objects present in the scene. This is a simple recoloring operation that affects only the hue attribute of the single cow object.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

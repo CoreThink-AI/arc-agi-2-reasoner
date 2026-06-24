@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The cupcake in the output image is half the size of the cupcake in the input image.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Scale/Resize reduction\n\n**Parameter Value:** 0.5× (50% of original size)\n\n**Visual Description:** This transformation applies a uniform scaling reduction to the cupcake image, decreasing both its width and height by half. The output image displays the cupcake at exactly 50% of its original dimensions, making it appear smaller while maintaining the same proportions and aspect ratio. All visual elements of the cupcake—including the frosting, wrapper, and any decorative details—are proportionally reduced to half their original size.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

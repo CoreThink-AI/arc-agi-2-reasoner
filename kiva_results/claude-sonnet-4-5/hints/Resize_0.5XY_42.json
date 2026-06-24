@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The building object in the output image is half the size of the input image in both width and height.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Uniform Scaling (50% reduction)**\n\nThe transformation applies a uniform scale factor of 0.5 (or 50%) to both the width and height dimensions of the building object. This proportional reduction decreases the object's size to one-quarter of its original area while maintaining its aspect ratio. The building appears smaller in the output image, with all features—including edges, details, and proportions—scaled down by exactly half in each dimension.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

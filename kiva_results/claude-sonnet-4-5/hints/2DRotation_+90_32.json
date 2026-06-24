@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The rooster has been flipped vertically, with its head and tail positions swapped from top-left/bottom-right to top-right/bottom-left orientation.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Vertical Flip (180° rotation around horizontal axis)**\n\nThe rooster image has undergone a vertical flip, also known as a reflection across a horizontal axis through its center. In this transformation, the top and bottom portions of the image are inverted: the rooster's head, originally positioned in the top-left area, moves to the bottom-left, while the tail feathers, originally in the bottom-right, relocate to the top-right. This creates a mirror image where the rooster appears upside-down, with all vertical relationships reversed while horizontal positioning remains consistent.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

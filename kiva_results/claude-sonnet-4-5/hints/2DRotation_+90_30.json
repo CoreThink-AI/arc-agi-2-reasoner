@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated 90 degrees clockwise from a horizontal orientation to a more vertical/diagonal orientation.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation**\n\nThe object undergoes a 90-degree clockwise rotation around its center point. Initially positioned in a horizontal orientation, the object is rotated a quarter turn in the clockwise direction, resulting in a final position that is vertically or diagonally oriented. This transformation preserves the object's shape and size while changing only its angular position by exactly 90 degrees.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

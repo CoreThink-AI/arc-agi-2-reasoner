@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One additional bowl has been added to the row, increasing the total count from three to four.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "The transformation is an addition. Specifically, one bowl has been added to the row, increasing the total number of bowls from three to four. Visually, the new bowl appears adjacent to the existing row, extending the sequence by one unit.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

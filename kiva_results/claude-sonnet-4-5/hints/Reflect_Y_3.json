@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The molecular structure has been flipped horizontally, with the left and right sides exchanged while maintaining the same vertical orientation.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Reflection (Flip)**\n\nThe molecular structure undergoes a horizontal reflection across a vertical axis, creating a mirror image where the left and right sides are exchanged. Each atom and bond that was positioned on the left side of the original structure now appears on the right side at the same vertical level, and vice versa. The vertical positions of all components remain unchanged, preserving the up-down orientation while reversing the left-right arrangement to produce the reflected configuration.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

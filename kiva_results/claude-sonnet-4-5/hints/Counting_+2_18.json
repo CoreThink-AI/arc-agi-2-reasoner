@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 monkey objects arranged in two rows, while the input image contains only 4 monkey objects in a single row.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Multiplication with Grid Rearrangement**\n\nThe transformation increases the number of monkey objects from 4 to 6 and reorganizes their spatial layout from a single horizontal row into a 2×3 grid arrangement (two rows with three objects each). The original four monkeys are preserved and two additional monkey objects are added to complete the rectangular grid pattern. This represents a combined operation of object duplication (adding 2 new instances) and spatial redistribution (converting linear arrangement to a multi-row grid layout).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

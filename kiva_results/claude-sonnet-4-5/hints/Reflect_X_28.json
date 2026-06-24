@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The barn structure has been rotated 180 degrees, with the chimney now at the bottom and the garage door now at the top, completely inverted from its original orientation.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** 180-degree rotation\n\nThe barn structure undergoes a complete 180-degree rotation around its center point, resulting in a full inversion of its orientation. The chimney, originally positioned at the top of the structure, moves to the bottom, while the garage door, initially at the bottom, relocates to the top. This transformation preserves the barn's shape and proportions but flips its vertical alignment entirely, creating a mirror image along the horizontal axis.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

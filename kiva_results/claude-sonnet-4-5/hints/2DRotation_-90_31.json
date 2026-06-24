@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The bunny figure on the green circular base has been rotated 90 degrees clockwise, changing from an upright frontal view to a side-lying horizontal orientation.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation**\n\nThe bunny figure positioned on the green circular base undergoes a 90-degree clockwise rotation around its center point. Initially, the bunny is oriented upright in a frontal view, standing vertically on the base. After the transformation, the bunny shifts to a horizontal, side-lying position, with what was previously the top of the figure now pointing to the right side of the frame.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 2,
+    "-90": 1
+  },
+  "confidence": 1.0
+}

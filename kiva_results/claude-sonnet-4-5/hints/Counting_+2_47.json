@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image shows 6 buckets arranged in two rows while the input image shows 4 buckets in a single row, indicating 2 additional objects were added.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Addition**\n\nThe transformation adds 2 additional buckets to the original set of 4 buckets, resulting in a total of 6 buckets in the output image. Visually, the input displays 4 buckets arranged in a single horizontal row, while the output reorganizes all 6 buckets into a two-row configuration (likely 3 buckets per row or a similar grid arrangement). This represents a straightforward object duplication or addition operation that increases the total count by 2 units while also restructuring the spatial layout from a linear to a multi-row arrangement.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

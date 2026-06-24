@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The red rectangular character has been rotated 180 degrees, with the legs that were at the bottom now appearing at the top, and the top portion now at the bottom.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation.** The red rectangular character undergoes a complete half-turn rotation around its center point, flipping it upside down. As a result of this 180-degree rotation, the legs that were originally positioned at the bottom of the character now appear at the top, while the upper portion that was at the top is now located at the bottom, creating a fully inverted version of the original figure.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

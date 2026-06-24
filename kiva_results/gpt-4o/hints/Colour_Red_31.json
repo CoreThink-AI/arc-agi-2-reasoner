@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object's color changed to predominantly red tones.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "The transformation is a color shift. The object's color was adjusted to predominantly red hues. Step by step, the original colors were altered by increasing the red channel's intensity while reducing the contributions of other color channels, resulting in a red-dominant appearance.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The toy train object changed from blue/purple tones to red/orange tones while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe toy train object underwent a hue shift transformation where its color palette changed from cool blue/purple tones to warm red/orange tones. The transformation preserved all other visual properties of the object, including its shape, size, position, and orientation in the scene. This represents a selective color adjustment applied specifically to the train object, shifting its hue approximately 180-240 degrees along the color wheel from the blue-violet spectrum to the red-orange spectrum.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

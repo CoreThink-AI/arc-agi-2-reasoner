@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of cupcakes increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Quantity Multiplication**\n\nThe transformation doubles the number of cupcakes present in the image, increasing the count from 2 to 4 (a multiplication factor of 2×). Visually, this means that where the input image displayed 2 cupcakes, the output image shows 4 cupcakes in the same or similar arrangement. The transformation preserves the appearance of individual cupcakes while replicating them to achieve the increased quantity.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

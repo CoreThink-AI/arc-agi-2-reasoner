@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The cookie in the output image is twice as large as the cookie in the input image, showing a doubling in both width and height.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Scale/Resize transformation with a scaling factor of 2× (200%).\n\n**Visual Change:** The chocolate chip cookie image undergoes uniform enlargement where both the width and height are doubled, resulting in an output image that is twice as large as the input in each dimension. All features of the cookie—including the chocolate chips, texture, and overall shape—are proportionally scaled up while maintaining the same aspect ratio and visual characteristics, simply appearing at a larger size.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 dinosaur objects while the input image contains 4 dinosaur objects, showing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication**\n\nThis transformation increases the number of dinosaur objects in the scene from 4 to 6, adding exactly 2 additional dinosaur instances. The visual change involves duplicating existing dinosaur objects while maintaining their general appearance and characteristics, resulting in a more populated scene with 50% more dinosaurs than the original image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

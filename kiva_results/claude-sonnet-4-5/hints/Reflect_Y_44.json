@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The mug has been flipped horizontally, with the handle moving from the right side to the left side and the decorative pattern mirrored accordingly.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation around the vertical axis)**\n\nThe image undergoes a horizontal flip, creating a mirror reflection across the vertical centerline. The mug's handle, originally positioned on the right side, moves to the left side in the transformed image. Simultaneously, any decorative patterns or text on the mug are reversed, appearing as mirror images of their original orientation, while the overall shape and proportions of the mug remain unchanged.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

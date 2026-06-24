@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green lion in the input image has been changed to a blue lion in the output image.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement (Hue Shift)**\n\nThe transformation applies a color replacement that changes the lion from green to blue, specifically shifting the hue by approximately 120 degrees on the color wheel (from green at ~120° to blue at ~240°). Visually, all green-colored pixels of the lion are systematically recolored to their blue equivalents while maintaining the same saturation and brightness levels, preserving the lion's shape, texture, and all other visual details. The background and any non-green elements remain unchanged, with only the lion's body color being affected by this targeted hue modification.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

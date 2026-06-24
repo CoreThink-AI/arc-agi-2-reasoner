@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The cow in the output image is approximately twice the size of the cow in the input image while maintaining the same proportions and orientation.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Uniform scaling (enlargement)\n\n**Parameter Value:** 2× (200% or scale factor of 2)\n\n**Visual Description:** The transformation applies a uniform scale enlargement to the cow image, doubling both its width and height dimensions. The cow's proportions, orientation, and aspect ratio remain identical to the original, with only the overall size increasing by a factor of two, making the output image appear twice as large while preserving all visual characteristics and details of the subject.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

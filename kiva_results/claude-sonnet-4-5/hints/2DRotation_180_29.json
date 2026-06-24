@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The bicycle has been rotated 180 degrees, appearing upside down in the output image compared to the upright position in the input image.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe image undergoes a 180-degree rotation around its center point, causing the bicycle to appear completely inverted. The bicycle, which is initially positioned upright with wheels on the bottom, is flipped so that it appears upside down with the wheels at the top and the seat at the bottom. This transformation preserves all visual elements of the bicycle but reverses their vertical orientation entirely.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

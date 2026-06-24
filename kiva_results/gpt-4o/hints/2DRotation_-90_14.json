@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated 90 degrees clockwise.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** of **90 degrees clockwise**. Visually, the object is turned around its center point so that elements originally at the top move to the right, elements on the right move to the bottom, elements on the bottom move to the left, and elements on the left move to the top. The overall shape and proportions of the object remain unchanged, but its orientation shifts by a quarter turn in the clockwise direction.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

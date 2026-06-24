@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The rubber duck in the output image is approximately twice the size of the duck in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Scale/Enlargement**\n\nThe transformation applies a uniform scaling with a factor of approximately 2× (200%) to the rubber duck image. The duck's dimensions—both width and height—are doubled proportionally, making the output image roughly twice as large as the input while maintaining the original aspect ratio and visual characteristics. This enlargement affects all features of the duck uniformly, preserving its shape and proportions while increasing its overall size on the canvas.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

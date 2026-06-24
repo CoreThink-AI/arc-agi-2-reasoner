@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 objects (4 in the top row and 2 in a new bottom row) compared to 4 objects in the input image, representing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication with Repositioning**\n\nThe transformation duplicates 2 of the 4 original objects from the input image, increasing the total count from 4 to 6 objects. The original 4 objects remain in their positions in the top row, while the 2 newly duplicated objects are placed in a new bottom row below them. This creates a two-row layout where the spatial arrangement expands vertically to accommodate the additional objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated by 180°, flipping its orientation upside down.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation** of **180°**. The object is turned upside down, reversing its orientation. For example, the cake slice and strawberries, originally positioned upright, are now flipped to point in the opposite direction.",
+  "concept_votes": {
+    "Reflect": 1,
+    "2DRotation": 2
+  },
+  "param_votes": {
+    "180": 2
+  },
+  "confidence": 0.67
+}

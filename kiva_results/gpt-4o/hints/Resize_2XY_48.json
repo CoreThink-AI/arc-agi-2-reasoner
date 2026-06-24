@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The object in the output image is double the size of the object in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "The transformation is a scaling transformation with a parameter value of 2. The object in the output image is scaled uniformly, doubling its size compared to the object in the input image. This results in all dimensions of the object increasing proportionally, making it appear twice as large in the right image as in the left image.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The kayak has been flipped vertically, with the orientation changing from pointing upper-right to pointing lower-right while maintaining the same left-right positioning.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Vertical Reflection (Horizontal Axis Flip)**\n\nThe kayak undergoes a vertical reflection across a horizontal axis, effectively flipping it upside down. Initially, the kayak points toward the upper-right direction, but after the transformation, it points toward the lower-right direction while maintaining its horizontal position along the left-right axis. This mirror-like flip preserves the kayak's size and horizontal placement but inverts its vertical orientation, creating a symmetrical reflection of the original image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 clownfish objects while the output image contains only 3 clownfish objects, showing a reduction of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThe transformation reduces the number of clownfish objects from 5 in the input image to 3 in the output image, removing exactly 2 objects. This represents a quantitative decrease where two clownfish are eliminated from the scene while the remaining three clownfish are preserved. The parameter value for this reduction transformation is -2 objects (or 40% reduction from the original count).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 coffee cup objects while the input image contains 4 coffee cup objects, showing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Duplication (Addition of 2 objects)**\n\nThis transformation increases the total number of coffee cup objects from 4 in the input image to 6 in the output image by duplicating 2 additional cups. The visual change involves adding exactly 2 more coffee cup instances to the existing arrangement, resulting in a net increase of 2 objects while maintaining the same object type throughout the scene.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

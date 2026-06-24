@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 brown circular objects while the output image contains only 3 brown circular objects, indicating a reduction of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThis transformation removes exactly 2 brown circular objects from the scene, reducing the total count from 5 objects in the input image to 3 objects in the output image. The visual change involves the deletion or disappearance of two of the brown circular elements while the remaining three objects persist in the output. This represents a quantitative reduction operation that decreases the object population by 40% (2 out of 5 objects removed).",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

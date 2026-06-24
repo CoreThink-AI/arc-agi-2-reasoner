@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The dog has been flipped upside down, which is a horizontal (X-axis) reflection showing the dog now on its back with legs up instead of standing.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Reflection (flip across the X-axis)**\n\nThe image has been flipped 180 degrees across a horizontal axis running through its center. This reflection inverts the vertical orientation of the dog, transforming it from an upright standing position to an upside-down position with its legs pointing upward and its head at the bottom. The left-to-right positioning remains unchanged, but all vertical relationships are reversed, creating a mirror image along the horizontal plane.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

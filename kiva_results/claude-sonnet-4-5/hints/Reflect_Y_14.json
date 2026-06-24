@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The L-shaped sofa has been horizontally flipped, with the shorter section moving from the right side to the left side.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe L-shaped sectional sofa undergoes a horizontal flip, creating a mirror image of the original configuration. Specifically, the shorter section of the sofa, which was initially positioned on the right side of the L-shape, moves to the left side after the transformation. This reflection maintains the sofa's overall dimensions and proportions while reversing its left-right orientation, as if viewing the original through a mirror placed vertically along its center.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

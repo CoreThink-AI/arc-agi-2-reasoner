@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object changed from green/olive tones to blue/purple tones while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a hue shift that converts the object's color palette from green/olive tones to blue/purple tones while preserving all other visual properties. Specifically, the hue values are shifted approximately 180-240 degrees along the color spectrum, moving from the yellow-green range to the blue-violet range. The object's shape, size, position, and orientation remain completely unchanged throughout this color transformation, with only the chromatic values being modified.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

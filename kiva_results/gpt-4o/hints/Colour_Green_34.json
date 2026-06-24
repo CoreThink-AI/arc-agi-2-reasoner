@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object's color changed from red and orange tones to green tones.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "The transformation is a **color shift**. The object's color changed from red and orange tones to green tones. This involved a hue adjustment, where the warm tones (red and orange) were shifted along the color spectrum to cooler green tones, altering the overall appearance of the object.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

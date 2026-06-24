@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 5 bottles while the input image contains 4 bottles, with one additional bottle appearing in the bottom left position.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Addition**\n\nThe transformation adds one bottle to the scene, increasing the total count from 4 bottles in the input image to 5 bottles in the output image. Specifically, the new bottle is inserted in the bottom left position of the composition. This is a straightforward object duplication and placement operation that expands the arrangement while maintaining the existing bottles in their original positions.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 camel objects while the output image shows 4 camel objects, indicating one camel was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Removal\n\n**Parameter Value:** 1 object removed (5 objects reduced to 4 objects)\n\n**Visual Description:** This transformation involves the removal of a single camel object from the scene. The input image contains 5 camel icons arranged in the frame, while the output image displays only 4 camel icons, with one camel having been deleted from the composition. The remaining 4 camels maintain their original appearance and relative positioning after the removal operation.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

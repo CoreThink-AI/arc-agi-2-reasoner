@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The cactus object has doubled in size from the input to the output image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "The transformation is a scaling operation with a parameter value of 2. The cactus object in the output image is twice as large as in the input image, with all dimensions uniformly increased by a factor of 2. This results in the cactus maintaining its original proportions while appearing larger overall.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

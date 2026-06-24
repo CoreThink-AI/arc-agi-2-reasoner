@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The kayak object changed from blue color to green color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color substitution\n\n**Parameter:** Blue to green color replacement\n\n**Description:** This transformation applies a color substitution where all blue pixels of the kayak object are replaced with green pixels. The kayak maintains its exact shape, size, position, and orientation throughout the process—only the color value changes from blue to green while all other visual properties remain identical.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

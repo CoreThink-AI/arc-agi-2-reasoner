@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue dinosaur/lizard object in the input image has changed to green in the output image while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Substitution**\n\nThis transformation applies a targeted color replacement where the blue dinosaur/lizard object is recolored to green while all other visual properties remain unchanged. Specifically, the blue hue is replaced with green across the entire object, preserving its exact shape, size, position, and orientation in the image. The transformation is a simple color mapping operation that affects only the dinosaur/lizard element, leaving the background and any other objects unmodified.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

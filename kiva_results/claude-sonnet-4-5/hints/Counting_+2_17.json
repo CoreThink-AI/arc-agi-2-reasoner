@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of brown cow objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Multiplication**\n\nThe transformation doubles the quantity of brown cow objects present in the scene, specifically increasing the count from 2 cows in the input image to 4 cows in the output image. Visually, this means that two additional brown cow objects are added to the composition, resulting in twice the original number of cows while maintaining their characteristic brown coloring and form.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

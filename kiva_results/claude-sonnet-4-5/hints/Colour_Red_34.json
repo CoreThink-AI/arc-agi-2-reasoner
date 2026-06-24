@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object changed from green and olive tones to red and orange tones.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Hue Shift**\n\n**Parameter Value: Approximately +180° to +210° hue rotation (or shift from green spectrum to red-orange spectrum)**\n\nThis transformation applies a systematic hue shift that remaps the color palette from cool to warm tones. Specifically, green values are shifted to red, while olive (yellow-green) tones are shifted to orange, maintaining the relative luminosity and saturation of the original colors but completely changing their position on the color wheel from the green-yellow range to the red-orange range.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

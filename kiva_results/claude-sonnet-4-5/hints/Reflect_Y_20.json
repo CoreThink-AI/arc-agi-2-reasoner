@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The character has been horizontally flipped, with the head spikes and body orientation mirrored from left to right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation along the vertical axis)**\n\nThe character undergoes a horizontal flip, creating a mirror image across a vertical axis through its center. All directional features are reversed: elements that were on the left side now appear on the right and vice versa, including the head spikes and body orientation. This transformation preserves the character's size and proportions while completely reversing its left-right orientation, as if viewing the original image in a mirror.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

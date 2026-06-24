@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 5 cookies while the input image contains 4 cookies, showing an increase of one object.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Addition**\n\nThe transformation adds exactly one cookie to the scene, increasing the total count from 4 cookies in the input image to 5 cookies in the output image. This is a straightforward object duplication or insertion operation where a new cookie instance is placed into the composition while maintaining the existing cookies. The visual change results in a quantitative increase of a single object unit, making the collection more numerous by one element.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

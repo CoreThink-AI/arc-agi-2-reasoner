@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of Android robot icons increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Duplication/Multiplication**\n\nThe transformation doubles the quantity of Android robot icons present in the image, specifically increasing the count from 2 icons in the input to 4 icons in the output (a multiplication factor of 2×). Visually, this means two additional Android robot icons are added to the scene, resulting in four total icons displayed in the final image. The transformation preserves the appearance of the individual icons while simply increasing their total number through replication.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

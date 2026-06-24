@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green garden swing chair has changed to a red color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Adjustment**\n\nThe transformation applies a color change to the garden swing chair, shifting its hue from green to red/orange while preserving all other visual properties. The chair's shape, size, position, and orientation remain completely unchanged throughout the modification. This is a targeted recoloring operation that affects only the swing chair object, leaving the surrounding environment unaltered.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

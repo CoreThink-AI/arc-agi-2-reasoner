@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue shoe in the input image has changed to a red shoe in the output image, with all other features remaining identical.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\nThe transformation applies a targeted color substitution where the blue shoe from the input image is recolored to red in the output image. Specifically, the blue hue (parameter value) of the shoe is replaced with a red hue while preserving all other visual attributes including shape, texture, shading, and positioning. All other elements in the image remain completely unchanged, making this a selective color modification that affects only the shoe object.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

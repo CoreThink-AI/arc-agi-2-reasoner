@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red bowl in the input image has changed to a green bowl in the output image, with all other features remaining identical.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\nThe transformation applies a targeted color substitution where the red bowl from the input image is recolored to green in the output image. Specifically, the hue parameter of the bowl object is shifted from red (approximately 0° on the color wheel) to green (approximately 120°), while maintaining the same saturation and brightness values. All other elements in the image, including the bowl's shape, position, shadows, and surrounding context, remain completely unchanged.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

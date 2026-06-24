@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The airplane rotated 90 degrees clockwise, changing its orientation from horizontal to vertical.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The airplane undergoes a 90-degree clockwise rotation. Initially oriented horizontally, the airplane pivots to a vertical position, with its nose pointing upwards.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

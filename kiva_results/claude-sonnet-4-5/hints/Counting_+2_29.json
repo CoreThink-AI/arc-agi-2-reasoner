@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of identical objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Horizontal Duplication**\n\nThe transformation duplicates the existing pair of objects horizontally, increasing the total count from 2 to 4 identical figures. Specifically, the original two objects are copied and placed to their right, creating a linear arrangement of four evenly-spaced identical items in a single row. This represents a 2× multiplication of the original set, with all new objects maintaining the same size, orientation, and spacing as the originals.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

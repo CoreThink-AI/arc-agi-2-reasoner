@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of coffee cups decreased from five to three.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "This transformation is a *reduction in quantity*. The parameter value is a decrease of 2 coffee cups. Visually, the scene initially contains five coffee cups, and two are removed, leaving three coffee cups remaining.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

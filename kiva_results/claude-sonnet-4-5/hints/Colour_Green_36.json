@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The cow changed from blue coloring to green coloring while maintaining the same size, orientation, and pattern.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution where the cow's blue coloring is replaced with green coloring. All other visual properties remain unchanged, including the cow's size, spatial orientation, and spotted pattern. This is a simple recoloring operation that affects only the hue while preserving the object's form, texture details, and positioning in the image.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

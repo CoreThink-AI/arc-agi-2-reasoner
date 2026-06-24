@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The overall color of the castle changed from green and brown tones to blue and purple tones.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "The image has undergone a **hue rotation** transformation. The hue of the castle has been rotated by **+180 degrees**, causing its color to shift from green and brown tones to blue and purple tones.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

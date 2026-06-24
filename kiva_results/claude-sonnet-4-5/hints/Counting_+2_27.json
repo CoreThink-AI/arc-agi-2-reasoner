@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Duplication**\n\nThe transformation doubles the number of objects present in the scene, specifically increasing from 2 objects in the input image to 4 objects in the output image. This duplication process creates exact copies of the original objects, effectively multiplying the object count by a factor of 2. The visual change results in twice as many instances of the same objects appearing in the output compared to the input.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

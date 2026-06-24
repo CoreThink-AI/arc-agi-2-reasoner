@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The hat in the output image is a mirror flip of the input image across the vertical Y-axis, as indicated by the buckle and feather changing sides.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a reflection. The hat from the input image has been reflected across the vertical Y-axis. This is evident as the buckle and feather, originally on the left side of the hat, are now on the right side in the output image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

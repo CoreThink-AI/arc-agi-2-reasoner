@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The toy train changed from red/orange/purple colors to various shades of green.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement (Hue Shift)**\n\nThe transformation applies a hue shift that replaces all warm-toned colors (reds, oranges, and purples) in the toy train with cool-toned green variations. Specifically, the red components are converted to green hues, orange elements become yellow-green or lime shades, and purple areas shift to blue-green or teal tones. This systematic color replacement maintains the original brightness and saturation levels while completely changing the color palette from warm to cool, resulting in a toy train rendered entirely in the green spectrum.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

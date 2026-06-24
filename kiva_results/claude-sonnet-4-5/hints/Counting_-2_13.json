@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 objects while the output image contains 3 objects, showing a reduction of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Reduction**\n\nThis transformation reduces the total number of objects in the image from 5 to 3, removing exactly 2 objects. The visual change involves selectively eliminating two objects from the original composition while preserving the remaining three objects in their positions. The result is a simplified scene with 40% fewer objects than the input image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

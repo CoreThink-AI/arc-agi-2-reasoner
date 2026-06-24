@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains three identical objects while the input image contains two, indicating one additional object was added.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Duplication**\n\nThe transformation adds one additional instance of an existing object to the scene, increasing the total count from two identical objects in the input image to three identical objects in the output image. This duplication operation preserves the appearance and properties of the original objects while creating a third copy positioned alongside the existing pair. The parameter value for this transformation is +1 object, resulting in a final count of 3 identical instances.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

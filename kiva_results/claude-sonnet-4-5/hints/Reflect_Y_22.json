@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The fortune cookie has been horizontally flipped, with the protruding wedge section moving from the left side to the right side.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe fortune cookie undergoes a horizontal flip, creating a mirror image of the original orientation. Specifically, the protruding wedge section that was originally positioned on the left side of the cookie is now located on the right side, while all other features maintain their relative positions but are reversed left-to-right. This transformation preserves the cookie's size and shape while inverting its directional orientation along the vertical axis.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

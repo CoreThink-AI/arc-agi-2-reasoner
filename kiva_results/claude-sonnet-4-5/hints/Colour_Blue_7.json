@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The orange toy turtle in the input image has changed to a blue color in the output image while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement/Hue Shift**\n\nThis transformation applies a selective color change to the toy turtle object, converting it from orange to blue while preserving all other visual properties. The turtle's shape, size, position, and orientation remain identical between the input and output images—only the hue value is modified. This represents a targeted color substitution where the orange pixels of the turtle are systematically replaced with corresponding blue values, maintaining the object's texture, shading, and dimensional appearance.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

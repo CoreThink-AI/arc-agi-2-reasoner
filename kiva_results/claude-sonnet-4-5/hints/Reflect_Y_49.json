@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The ship has been flipped vertically, with the bow and stern positions swapped from left to right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Reflection**\n\nThe image undergoes a horizontal reflection (flip along the vertical axis), where the ship's orientation is reversed from left to right. The bow (front) and stern (rear) of the ship exchange positions, creating a mirror image of the original. This transformation preserves the ship's vertical position and size while inverting its directional facing across the central vertical axis.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The object is flipped horizontally, as the left and right sides of the image are mirrored.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "The transformation is a horizontal reflection. The object is flipped along a vertical axis, causing the left and right sides of the image to be mirrored. This results in the left side of the original image appearing on the right and the right side appearing on the left.",
+  "concept_votes": {
+    "2DRotation": 1,
+    "Reflect": 2
+  },
+  "param_votes": {
+    "X": 2
+  },
+  "confidence": 0.67
+}

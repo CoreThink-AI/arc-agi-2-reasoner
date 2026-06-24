@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of brown oval objects decreased from 4 in the input image to 3 in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThe transformation involves removing one brown oval object from the scene, reducing the total count from 4 to 3. Visually, this means that one of the four brown oval shapes present in the input image is deleted or made invisible in the output image, while the remaining three brown ovals retain their original positions and appearance. The specific oval that was removed would need to be identified by comparing the spatial arrangement of objects between the input and output images.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

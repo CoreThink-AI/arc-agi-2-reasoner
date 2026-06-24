@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red mug has changed to a blue/purple colored mug while maintaining the same shape, size, orientation, and decorative pattern.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Color/Hue Shift\n\nThe transformation applies a selective color change to the mug object, shifting its base color from red to blue/purple while preserving all other visual properties. The mug's shape, size, spatial orientation, and decorative pattern elements remain completely unchanged throughout the transformation. This is a targeted hue modification that affects only the primary surface color of the object, leaving its structural and textural characteristics intact.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

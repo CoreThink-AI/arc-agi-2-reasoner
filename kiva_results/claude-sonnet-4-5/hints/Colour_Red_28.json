@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green cookie-like object has changed to a red color while maintaining the same shape, size, orientation, and number of objects.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThis transformation applies a hue shift that converts the green cookie-like object to red while preserving all other visual properties. The object's shape, size, spatial orientation, and quantity remain completely unchanged—only the color value is modified from green to red. This represents a simple color substitution or recoloring operation affecting solely the chromatic attribute of the target object.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

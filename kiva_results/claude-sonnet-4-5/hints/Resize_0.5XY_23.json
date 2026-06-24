@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The donut in the output image is half the size of the donut in the input image.",
+  "params": {
+    "parameter": [
+      "0.5XY"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Uniform scaling (reduction)\n\n**Parameter Value:** 0.5× or 50% scale factor\n\n**Visual Change:** The donut object undergoes a uniform reduction in size, where both its width and height dimensions are scaled down by exactly half compared to the input image. This proportional scaling maintains the donut's aspect ratio and shape while reducing its overall footprint to one-quarter of its original area, making it appear smaller but otherwise identical in appearance.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "0.5XY": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The LEGO brick changed from red/orange colors to green/yellow-green colors while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Green"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color/Hue Shift**\n\nThe transformation applies a hue shift that changes the LEGO brick's color palette from red/orange tones to green/yellow-green tones while preserving all other properties. The brick's physical characteristics—including its shape, size, orientation, and structural details—remain completely unchanged throughout the transformation. This is a pure color remapping operation where warm colors (reds/oranges) are systematically replaced with cooler colors (greens/yellow-greens), likely through a hue rotation of approximately 120-150 degrees in the color wheel.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Green": 3
+  },
+  "confidence": 1.0
+}

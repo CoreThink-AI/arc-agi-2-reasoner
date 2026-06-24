@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The blue/purple basketball in the input image has changed to a red basketball in the output image, with all other features remaining the same.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Replacement**\n\nThe transformation applies a color replacement operation where the basketball's hue is modified from blue/purple to red, while preserving all other visual attributes including the basketball's texture, lighting, shadows, and position. The parameter value targets the blue-purple color range (approximately 240-270° hue) and replaces it with red (approximately 0° hue), maintaining the same saturation and brightness levels. All other elements in the image, including the background and any additional features, remain completely unchanged throughout this selective color modification.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

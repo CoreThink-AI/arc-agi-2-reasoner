@@ -1,0 +1,19 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The clownfish object rotated 90 degrees counter-clockwise.",
+  "params": {
+    "parameter": [
+      "-90"
+    ]
+  },
+  "detailed_hint": "The clownfish object was rotated 90 degrees counter-clockwise.",
+  "concept_votes": {
+    "2DRotation": 2,
+    "Reflect": 1
+  },
+  "param_votes": {
+    "-90": 2
+  },
+  "confidence": 0.67
+}

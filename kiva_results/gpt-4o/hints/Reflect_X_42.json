@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The croissant rotated 90 degrees clockwise between the input and output images.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "The transformation is a **rotation**. The croissant is rotated exactly **90 degrees clockwise**. Visually, this means the croissant's orientation in the output image is shifted such that its original top side now points to the right, completing a quarter-turn in the clockwise direction.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

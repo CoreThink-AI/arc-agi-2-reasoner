@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The mug is mirror-flipped along the vertical axis, causing the handle to switch sides.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "The transformation is a vertical-axis reflection (mirror flip). The mug is flipped along its vertical axis, resulting in the handle switching from one side to the opposite side. This creates a mirrored version of the original image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

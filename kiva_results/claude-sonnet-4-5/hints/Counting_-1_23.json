@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 rabbit objects while the output image shows 4 rabbit objects, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Removal\n\n**Parameter Value:** 1 object removed (5 rabbits reduced to 4 rabbits)\n\n**Visual Change Description:** The transformation involves removing a single rabbit object from the input image. Starting with an initial configuration of 5 rabbit objects, one rabbit is deleted from the scene, resulting in a final output displaying 4 rabbit objects in the remaining positions.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

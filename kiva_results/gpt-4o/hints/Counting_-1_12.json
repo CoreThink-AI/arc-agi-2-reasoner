@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "One dolphin is removed from the row of objects in the output image.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "The transformation type is *object removal*. Specifically, one dolphin is removed from the row of dolphins in the output image. Visually, the input image contains a row of dolphins, and in the output image, this row is identical except that one dolphin has been eliminated, reducing the total count by one.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The object has been rotated 180 degrees, with the orientation completely inverted from the input to the output image.",
+  "params": {
+    "parameter": [
+      "180"
+    ]
+  },
+  "detailed_hint": "**Transformation: 180-degree rotation**\n\nThe object undergoes a complete 180-degree rotation around its center point, resulting in a full inversion of its orientation. Every element of the original image is rotated halfway around a circle, causing what was at the top to move to the bottom and what was on the left to shift to the right. This transformation preserves the object's size and shape while flipping it upside-down, creating a mirror image through the center point.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "180": 3
+  },
+  "confidence": 1.0
+}

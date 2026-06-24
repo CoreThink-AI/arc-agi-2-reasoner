@@ -1,0 +1,18 @@
+{
+  "name": "2DRotation",
+  "description": "the object rotates by a fixed angle (+90°, -90°, or 180°)",
+  "reason": "The Spider-Man figure has been rotated 90 degrees clockwise from a standing upright position to lying horizontally on its side.",
+  "params": {
+    "parameter": [
+      "+90"
+    ]
+  },
+  "detailed_hint": "**Transformation: 90-degree clockwise rotation.** The Spider-Man figure undergoes a rotational transformation where it pivots 90 degrees in a clockwise direction around its center point. Initially, the figure stands in an upright, vertical position, but after the rotation is applied, it transitions to a horizontal orientation lying on its side, with what was previously the top of the figure now pointing to the right.",
+  "concept_votes": {
+    "2DRotation": 3
+  },
+  "param_votes": {
+    "+90": 3
+  },
+  "confidence": 1.0
+}

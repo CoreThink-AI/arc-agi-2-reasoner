@@ -1,0 +1,18 @@
+{
+  "name": "Resize",
+  "description": "the object's physical size changes (grows larger or shrinks smaller)",
+  "reason": "The dog silhouette in the output image is approximately twice the size of the dog in the input image.",
+  "params": {
+    "parameter": [
+      "2XY"
+    ]
+  },
+  "detailed_hint": "**Transformation: Uniform Scaling (2x magnification)**\n\nThe transformation applies a scale factor of approximately 2.0 to the dog silhouette, doubling both its width and height while maintaining the original aspect ratio. The dog shape expands uniformly from its center (or a fixed anchor point), resulting in a silhouette that occupies roughly four times the original area. All features of the dog—including ears, legs, tail, and body contours—are proportionally enlarged, preserving the shape's geometry while increasing its overall dimensions by a factor of two in each direction.",
+  "concept_votes": {
+    "Resize": 3
+  },
+  "param_votes": {
+    "2XY": 3
+  },
+  "confidence": 1.0
+}

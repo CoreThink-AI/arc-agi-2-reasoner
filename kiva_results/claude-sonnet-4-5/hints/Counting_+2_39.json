@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The number of brown croissant-shaped objects increased from 2 in the input image to 4 in the output image.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Multiplication\n\n**Parameter Value:** 2× (doubling from 2 to 4 objects)\n\n**Description:** This transformation duplicates the brown croissant-shaped objects present in the input image. Starting with 2 croissants in the original image, the transformation creates copies to produce a total of 4 croissants in the output image, effectively doubling the quantity while maintaining the same object type and appearance.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}

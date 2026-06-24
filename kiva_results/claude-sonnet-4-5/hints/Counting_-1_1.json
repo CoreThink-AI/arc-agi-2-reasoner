@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image shows 5 bowl objects while the output image shows 4 bowl objects, indicating one object was removed.",
+  "params": {
+    "parameter": [
+      "-1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Object Removal\n\n**Parameter Value:** 1 object removed (5 bowls reduced to 4 bowls)\n\n**Visual Change Description:** The transformation involves removing a single bowl object from the input image. Starting with an arrangement of 5 bowls in the input, one bowl is deleted, resulting in an output image containing 4 bowls. The remaining bowls maintain their original positions and appearance, with only the count changing from 5 to 4 objects.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-1": 3
+  },
+  "confidence": 1.0
+}

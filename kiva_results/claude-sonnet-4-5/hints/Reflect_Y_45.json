@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The step ladder has been horizontally flipped, with the handrails switching from left-leaning to right-leaning orientation.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation about the vertical axis)**\n\nThe step ladder undergoes a horizontal flip, creating a mirror image across a vertical axis. In this transformation, the handrails that originally leaned toward the left side now lean toward the right side, reversing the ladder's lateral orientation. All spatial relationships are inverted left-to-right while maintaining the vertical structure and proportions of the ladder.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

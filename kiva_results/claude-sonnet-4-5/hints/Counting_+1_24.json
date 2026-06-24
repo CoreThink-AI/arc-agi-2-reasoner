@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains five objects arranged in two rows (four in the top row and one in the bottom left) while the input image contains only four objects in a single row.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Duplication with Repositioning**\n\nThis transformation duplicates one of the four objects from the input image's single row and repositions it to create a new layout. Specifically, one object is copied and placed in the bottom left position, resulting in a total of five objects arranged in two rows: four objects remain in the top row (maintaining their original positions) and one duplicated object appears alone in the bottom left. The visual change involves adding one additional object instance while reorganizing the spatial arrangement from a single horizontal row to a two-row configuration.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

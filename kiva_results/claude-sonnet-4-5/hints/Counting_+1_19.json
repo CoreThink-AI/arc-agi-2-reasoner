@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains three brown circles while the input image contains only two brown circles, indicating one additional object was added.",
+  "params": {
+    "parameter": [
+      "+1"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Addition**\n\nThe transformation adds one brown circle to the image, increasing the total count from two brown circles in the input to three brown circles in the output. This is a straightforward object duplication or addition operation where a new instance of the existing brown circle element is placed in the scene. The visual change is discrete and quantifiable: exactly one additional brown circular object appears in the final image.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+1": 3
+  },
+  "confidence": 1.0
+}

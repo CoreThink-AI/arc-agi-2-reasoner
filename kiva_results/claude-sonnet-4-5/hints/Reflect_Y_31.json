@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The bunny figure has been horizontally flipped, with its ears and body orientation mirrored from left to right.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation around the vertical axis)**\n\nThe bunny figure undergoes a horizontal flip, also known as a reflection across the vertical axis. In this transformation, the entire figure is mirrored from left to right, reversing the orientation of all features including the ears and body position. Elements that were on the left side of the figure now appear on the right side and vice versa, while the vertical positioning remains unchanged, creating a mirror image of the original bunny.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The object changed from green and olive tones to blue and purple tones.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Hue Shift**\n\n**Parameter Value: Approximately +180° to +240° (cyan-to-blue range)**\n\nThis transformation applies a hue rotation that systematically shifts all colors in the green-olive spectrum to the blue-purple spectrum. Green tones are remapped to cyan and blue hues, while olive (yellow-green) tones shift toward purple and violet, maintaining the original luminosity and saturation values while rotating the color wheel position by roughly 180-240 degrees.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

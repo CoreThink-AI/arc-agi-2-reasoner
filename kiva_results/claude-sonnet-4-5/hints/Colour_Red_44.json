@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The green dinosaur/lizard object has changed to a red color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Red"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change (Hue Shift)**\n\nThe transformation applies a color substitution where the green dinosaur/lizard object is recolored to red while preserving all other visual properties. Specifically, the hue is shifted from green to red (approximately a 240-degree shift on the color wheel or a change from RGB green values to red values), while the object's shape, size, position, and orientation remain completely unchanged. This is a pure color replacement transformation that affects only the chromatic properties of the dinosaur figure, leaving its form and spatial characteristics identical to the original.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Red": 3
+  },
+  "confidence": 1.0
+}

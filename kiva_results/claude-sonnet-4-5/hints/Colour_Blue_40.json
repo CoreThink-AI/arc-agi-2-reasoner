@@ -1,0 +1,18 @@
+{
+  "name": "Colour",
+  "description": "the object's color changes to a specific color (Red, Green, or Blue)",
+  "reason": "The red/orange burger object has changed to a blue/purple color while maintaining the same shape, size, and orientation.",
+  "params": {
+    "parameter": [
+      "Blue"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Color Change**\n\nThe transformation applies a color substitution to the burger object, changing it from red/orange to blue/purple while preserving all other visual properties. The object's shape, size, position, and orientation remain completely unchanged throughout the transformation. This is a pure hue shift that affects only the color channel of the burger graphic, leaving its geometric and spatial characteristics intact.",
+  "concept_votes": {
+    "Colour": 3
+  },
+  "param_votes": {
+    "Blue": 3
+  },
+  "confidence": 1.0
+}

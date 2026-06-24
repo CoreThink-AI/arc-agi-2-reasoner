@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The fan has been horizontally flipped, with the motor housing moving from the right side to the left side of the image.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Mirror Reflection across vertical axis)**\n\nThe image has undergone a horizontal flip, creating a mirror reflection across a vertical axis running through the center of the frame. This transformation reverses the left-right orientation of all elements in the image, most notably causing the fan's motor housing to switch from the right side to the left side. The fan blades and all other components are mirrored accordingly, producing a complete lateral inversion while maintaining the original vertical positioning and scale of all elements.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

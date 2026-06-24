@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The input image contains 5 croissant objects while the output image contains 3 croissant objects, showing a reduction of 2 objects.",
+  "params": {
+    "parameter": [
+      "-2"
+    ]
+  },
+  "detailed_hint": "**Transformation Type: Object Removal**\n\nThis transformation involves the selective deletion of croissant objects from the image. Specifically, 2 out of the original 5 croissant objects are removed, reducing the total count from 5 to 3 croissants in the output image. The visual change results in a less populated scene with fewer food items displayed, while the remaining 3 croissants retain their original positions and appearance.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "-2": 3
+  },
+  "confidence": 1.0
+}

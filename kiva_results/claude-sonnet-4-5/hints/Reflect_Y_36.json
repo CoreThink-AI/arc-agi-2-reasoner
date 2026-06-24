@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The toy car with the snowman driver has been horizontally flipped, with the number '2' now appearing as a mirrored '2' (resembling 'S') on the chest.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation Type:** Horizontal flip (mirror reflection across the vertical axis)\n\n**Parameter Value:** 180° rotation around the vertical y-axis, or equivalently, a reflection across a vertical plane through the center of the image\n\n**Visual Change:** The toy car with its snowman driver has been mirrored from left to right, reversing the entire scene's orientation. Most notably, the number '2' displayed on the snowman's chest now appears as a backward '2' (resembling an 'S' shape), confirming the horizontal flip transformation has been applied to all elements in the image.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

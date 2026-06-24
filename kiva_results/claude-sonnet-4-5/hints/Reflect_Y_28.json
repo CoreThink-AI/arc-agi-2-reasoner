@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The barn structure has been horizontally flipped, with the chimney moving from the right side to the left side of the roof.",
+  "params": {
+    "parameter": [
+      "Y"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (Reflection across vertical axis)**\n\nThe barn structure undergoes a horizontal flip, creating a mirror image of the original. The most notable change is the chimney, which moves from its original position on the right side of the roof to the left side. All other elements of the barn—including doors, windows, and structural features—are similarly reversed left-to-right while maintaining their vertical positions.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "Y": 3
+  },
+  "confidence": 1.0
+}

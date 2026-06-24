@@ -1,0 +1,18 @@
+{
+  "name": "Reflect",
+  "description": "the object is mirror-flipped across a horizontal (X) or vertical (Y) axis",
+  "reason": "The rose has been flipped horizontally, with the stem now pointing to the upper right instead of lower right, and the flower orientation reversed left-to-right.",
+  "params": {
+    "parameter": [
+      "X"
+    ]
+  },
+  "detailed_hint": "**Transformation: Horizontal Flip (180° rotation about the vertical axis)**\n\nThe image has undergone a horizontal flip, creating a mirror reflection across a vertical center line. The rose stem, which originally pointed toward the lower right, now extends toward the upper right, while the flower head has been reversed from right-facing to left-facing orientation. All elements including the leaves have been repositioned to their mirrored counterparts, resulting in a complete left-to-right reversal of the entire composition.",
+  "concept_votes": {
+    "Reflect": 3
+  },
+  "param_votes": {
+    "X": 3
+  },
+  "confidence": 1.0
+}

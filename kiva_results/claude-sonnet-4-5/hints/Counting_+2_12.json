@@ -1,0 +1,18 @@
+{
+  "name": "Counting",
+  "description": "the number of objects changes (one more or fewer object appears)",
+  "reason": "The output image contains 6 fish objects while the input image contains 4 fish objects, showing an increase of 2 objects.",
+  "params": {
+    "parameter": [
+      "+2"
+    ]
+  },
+  "detailed_hint": "**Transformation: Object Duplication**\n\nThis transformation increases the number of fish objects in the image by duplicating 2 additional instances, changing the total count from 4 fish in the input to 6 fish in the output. The duplication parameter is +2 objects (or a 50% increase from the original count). Visually, the scene maintains its original composition while adding two more fish objects, likely positioned to maintain visual balance or follow the existing spatial arrangement of the aquatic elements.",
+  "concept_votes": {
+    "Counting": 3
+  },
+  "param_votes": {
+    "+2": 3
+  },
+  "confidence": 1.0
+}
